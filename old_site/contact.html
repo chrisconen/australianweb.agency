@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Australian Web Agency - Website Design Sydney</title>
+    <meta name="description" content="Get in touch with Australian Web Agency for website design, webshop development, SEO, and 3D visualisation in Sydney.">
+	
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"></noscript>
+    <style>
+        :root {
+            --gold: #C9A227; --gold-light: #E8D48A; --gold-dark: #8B7019;
+            --black: #0A0A0A; --black-light: #141414; --white: #FAFAFA; --gray: #888;
+            --green: #22c55e; --red: #ef4444;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --ease: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: var(--font-body); background: var(--black); color: var(--white); line-height: 1.6; overflow-x: hidden; max-width: 100vw; }
+        ::selection { background: var(--gold); color: var(--black); }
+        a { color: inherit; text-decoration: none; }
+        
+        .noise { position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+        .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light)); z-index: 10000; }
+
+        /* Nav */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.5rem 3rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05);
+            max-width: 100%; box-sizing: border-box; }
+        .nav-logo { display: flex; align-items: center; gap: 1rem; }
+        .nav-logo-icon { width: 50px; height: 50px; background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--black); }
+        .nav-logo-text { display: flex; flex-direction: column; }
+        .nav-logo-name { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; }
+        .nav-logo-name span { color: var(--gold); }
+        .nav-logo-tagline { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; position: relative; padding: 0.5rem 0; transition: color 0.3s; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s var(--ease); }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-cta { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 0.75rem 1.5rem;
+            font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.4s; }
+        .nav-cta:hover { background: var(--gold); color: var(--black); }
+        .nav-hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+        .nav-hamburger span { width: 30px; height: 2px; background: var(--white); }
+        @media (max-width: 968px) { 
+            .nav { padding: 1rem 1.5rem; } 
+            .nav-links { 
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                z-index: 999;
+                padding-top: 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+            .nav-cta { display: none; } 
+            .nav-hamburger { display: flex; position: relative; z-index: 1001; }
+            .nav-hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+            .nav-hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .nav-hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+        }
+
+        /* Hero */
+        .page-hero { padding: 12rem 3rem 4rem; text-align: center; position: relative; }
+        .page-hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 150%; height: 100%; background: radial-gradient(ellipse at center top, rgba(201,162,39,0.1) 0%, transparent 60%); }
+        .page-hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .page-hero-badge { display: inline-flex; align-items: center; gap: 0.75rem;
+            background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.3);
+            padding: 0.5rem 1.25rem; border-radius: 100px; margin-bottom: 2rem; }
+        .page-hero-badge-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
+        .page-hero-badge-text { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+        .page-hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem); font-weight: 800; line-height: 1; margin-bottom: 1.5rem; }
+        .page-hero h1 em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+        .page-hero p { font-size: 1.25rem; color: var(--gray); max-width: 600px; margin: 0 auto; }
+        @media (max-width: 768px) { .page-hero { padding: 10rem 1.5rem 3rem; } }
+
+        /* Contact Section */
+        .contact-section { padding: 4rem 3rem 8rem; }
+        .contact-container { max-width: 1400px; margin: 0 auto; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; }
+        @media (max-width: 1024px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
+        @media (max-width: 768px) { .contact-section { padding: 3rem 1.5rem 4rem; } }
+
+        .contact-info h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .contact-info h2 em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+        .contact-info > p { color: var(--gray); font-size: 1.1rem; line-height: 1.8; margin-bottom: 3rem; }
+        
+        .contact-item { display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .contact-item:last-child { border-bottom: none; }
+        .contact-item-icon { width: 60px; height: 60px; flex-shrink: 0;
+            background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.3); border-radius: 16px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .contact-item-content h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--gold); }
+        .contact-item-content p, .contact-item-content a { color: var(--gray); font-size: 1rem; transition: color 0.3s; }
+        .contact-item-content a:hover { color: var(--white); }
+
+        .social-links { display: flex; gap: 1rem; margin-top: 2rem; }
+        .social-link { width: 50px; height: 50px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; transition: all 0.3s; }
+        .social-link:hover { background: var(--gold); border-color: var(--gold); transform: translateY(-3px); }
+
+        /* Form */
+        .contact-form-wrapper { background: var(--black-light); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 24px; padding: 3rem; }
+        .contact-form-wrapper h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .form-group label span { color: var(--gold); }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; background: var(--black); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; padding: 1rem 1.25rem; font-family: var(--font-body); font-size: 1rem; color: var(--white); transition: all 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,162,39,0.1); }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: var(--gray); }
+        .form-group select { cursor: pointer; }
+        .form-group select option { background: var(--black); }
+        .form-group textarea { min-height: 150px; resize: vertical; }
+        
+        .form-submit { width: 100%; background: var(--gold); border: none; color: var(--black);
+            padding: 1.25rem 2rem; border-radius: 12px; font-family: var(--font-body); font-size: 1rem; font-weight: 700;
+            cursor: pointer; transition: all 0.4s; display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
+        .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,162,39,0.3); }
+        
+        .form-message { margin-top: 1.5rem; padding: 1rem 1.5rem; border-radius: 12px; display: none; }
+        .form-message.success { display: block; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: var(--green); }
+        .form-message.error { display: block; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: var(--red); }
+
+        /* FAQ */
+        .faq-section { padding: 6rem 3rem; background: var(--black-light); }
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-label { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+        .section-label::before, .section-label::after { content: '—'; margin: 0 1rem; opacity: 0.5; }
+        .section-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; }
+        .section-title em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+        
+        .faq-item { background: var(--black); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; margin-bottom: 1rem; overflow: hidden; }
+        .faq-question { width: 100%; padding: 1.5rem 2rem; background: none; border: none; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: var(--font-body); font-size: 1.1rem; font-weight: 600; color: var(--white); text-align: left; transition: color 0.3s; }
+        .faq-question:hover { color: var(--gold); }
+        .faq-icon { font-size: 1.5rem; color: var(--gold); transition: transform 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-item.active .faq-answer { max-height: 500px; }
+        .faq-answer-content { padding: 0 2rem 1.5rem; color: var(--gray); line-height: 1.8; }
+        @media (max-width: 768px) { .faq-section { padding: 4rem 1.5rem; } }
+
+        /* Footer */
+        .footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.05); padding: 5rem 3rem 2rem; }
+        .footer-container { max-width: 1400px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        @media (max-width: 968px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+        @media (max-width: 480px) { .footer { padding: 3rem 1.5rem 2rem; } .footer-grid { grid-template-columns: 1fr; } }
+        .footer-brand { max-width: 350px; }
+        .footer-logo { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .footer-logo-icon { width: 45px; height: 45px; background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-weight: 800; color: var(--black); }
+        .footer-logo-text { font-family: var(--font-display); font-weight: 700; }
+        .footer-logo-text span { color: var(--gold); }
+        .footer-desc { color: var(--gray); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+        .footer-column h4 { font-family: var(--font-display); font-weight: 700; margin-bottom: 1.5rem; color: var(--gold); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: var(--gray); font-size: 0.95rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center;
+            padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; gap: 1rem; }
+        .footer-copyright { font-size: 0.85rem; color: var(--gray); }
+        .footer-legal { display: flex; gap: 2rem; }
+        .footer-legal a { font-size: 0.85rem; color: var(--gray); transition: color 0.3s; }
+        .footer-legal a:hover { color: var(--gold); }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s var(--ease); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="scroll-progress"></div>
+    
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">AW</div>
+            <div class="nav-logo-text">
+                <span class="nav-logo-name">Australian<span>Web</span></span>
+                <span class="nav-logo-tagline">Premium Digital Agency</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="references.html">References</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <button class="nav-cta">GET A QUOTE</button>
+        <div class="nav-hamburger"><span></span><span></span><span></span></div>
+    </nav>
+    
+    <section class="page-hero">
+        <div class="page-hero-content reveal">
+            <div class="page-hero-badge">
+                <span class="page-hero-badge-dot"></span>
+                <span class="page-hero-badge-text">Get In Touch</span>
+            </div>
+            <h1>Contact <em>Us</em></h1>
+            <p>Ready to start your project? Have questions? We'd love to hear from you.</p>
+        </div>
+    </section>
+    
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h2>Let's <em>talk</em></h2>
+                    <p>Whether you need a new website, want to modernize an existing site, or require a custom solution – we're here to help.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📧</div>
+                        <div class="contact-item-content">
+                            <h3>Email</h3>
+                            <a href="/cdn-cgi/l/email-protection#aac3c4ccc5eacbdfd9ded8cbc6c3cbc4ddcfc884cbcdcfc4c9d3"><span class="__cf_email__" data-cfemail="fe97909891be9f8b8d8a8c9f92979f90899b9cd09f999b909d87">[email&#160;protected]</span></a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-content">
+                            <h3>Location</h3>
+                            <p>Sydney, NSW Australia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🕐</div>
+                        <div class="contact-item-content">
+                            <h3>Business Hours</h3>
+                            <p>Mon - Fri: 9AM - 5PM AEST</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://facebook.com/australianweb.agency" class="social-link">📘</a>
+                        <a href="https://linkedin.com/company/australianweb-agency" class="social-link">💼</a>
+                        <a href="https://behance.net/australianweb" class="social-link">🎨</a>
+                        <a href="https://youtube.com/@australianweb" class="social-link">▶️</a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper reveal">
+                    <h2>Send us a message</h2>
+                    <form id="contactForm" action="send_email.php" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name <span>*</span></label>
+                                <input type="text" name="name" placeholder="John Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Company</label>
+                                <input type="text" name="company" placeholder="Your Company">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email <span>*</span></label>
+                                <input type="email" name="email" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone <span>*</span></label>
+                                <input type="tel" name="phone" placeholder="+61 4XX XXX XXX" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Service <span>*</span></label>
+                            <select name="service" required>
+                                <option value="">Select a service...</option>
+                                <option value="website_design">Website Design</option>
+                                <option value="webshop">Webshop Development</option>
+                                <option value="seo">SEO Optimisation</option>
+                                <option value="branding">Branding & Logo</option>
+                                <option value="3d">3D Visualisation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message <span>*</span></label>
+                            <textarea name="uzenet" placeholder="Tell us about your project..." required></textarea>
+                        </div>
+                        <div style="display:none"><input type="text" name="honeypot" value=""></div>
+                        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+                        <button type="submit" class="form-submit">Send Message →</button>
+                        <div id="formMessage" class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="section-header reveal">
+                <span class="section-label">FAQ</span>
+                <h2 class="section-title">Common <em>Questions</em></h2>
+            </div>
+            <div class="reveal">
+                <div class="faq-item">
+                    <button class="faq-question">How long does it take to build a website?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-content">Most websites are completed within 2-4 weeks. Simple landing pages take 1-2 weeks, while complex e-commerce sites may take 4-6 weeks.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How much does a website cost?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-content">Simple websites start from $1,500 AUD, while complex e-commerce solutions range from $5,000-15,000+ AUD. Contact us for a tailored quote.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Do you provide ongoing support?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-content">Yes! We offer maintenance and support packages to keep your website secure and performing optimally.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Will my website be mobile-friendly?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-content">Absolutely! All our websites are built mobile-first, ensuring perfect display on all devices.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">AW</div>
+                        <span class="footer-logo-text">Australian<span>Web</span></span>
+                    </div>
+                    <p class="footer-desc">Premium website design for ambitious Australian businesses.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Website Design</a></li>
+                        <li><a href="#">Webshop Development</a></li>
+                        <li><a href="#">SEO Optimisation</a></li>
+                        <li><a href="#">3D Visualisation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="references.html">References</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="/cdn-cgi/l/email-protection#c6afa8a0a986a7b3b5b2b4a7aaafa7a8b1a3a4e8a7a1a3a8a5bf"><span class="__cf_email__" data-cfemail="157c7b737a55746066616774797c747b6270773b7472707b766c">[email&#160;protected]</span></a></li>
+                        <li>Sydney, NSW Australia</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 Australian Web Agency. All rights reserved.</p>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+    
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // Mobile menu
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger?.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        const scrollProgress = document.querySelector('.scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            scrollProgress.style.width = (window.scrollY / scrollable) * 100 + '%';
+        });
+        
+        document.querySelectorAll('.reveal').forEach(el => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => { if (entry.isIntersecting) el.classList.add('active'); });
+            }, { threshold: 0.1 });
+            observer.observe(el);
+        });
+        
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                document.querySelectorAll('.faq-item').forEach(i => i !== item && i.classList.remove('active'));
+                item.classList.toggle('active');
+            });
+        });
+
+        // Lazy load reCAPTCHA on form focus
+        let recaptchaLoaded = false;
+        function loadRecaptcha() {
+            if (recaptchaLoaded) return;
+            recaptchaLoaded = true;
+            const script = document.createElement('script');
+            script.src = 'https://www.google.com/recaptcha/api.js?render=6LdTGiMsAAAAADUbRw7GqubmzKxEMUkRKO80Hahc';
+            script.async = true;
+            document.head.appendChild(script);
+        }
+        
+        // Load reCAPTCHA when user interacts with form
+        document.getElementById('contactForm').addEventListener('focusin', loadRecaptcha, {once: true});
+
+        // reCAPTCHA v3 form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const submitBtn = form.querySelector('.form-submit');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending... ⏳';
+            
+            if (typeof grecaptcha !== 'undefined') {
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LdTGiMsAAAAADUbRw7GqubmzKxEMUkRKO80Hahc', {action: 'contact'}).then(function(token) {
+                        document.getElementById('recaptchaResponse').value = token;
+                        form.submit();
+                    });
+                });
+            } else {
+                form.submit();
+            }
+        });
+
+        // Check URL params for success/error messages
+        const urlParams = new URLSearchParams(window.location.search);
+        const formMessage = document.getElementById('formMessage');
+        if (urlParams.has('success')) {
+            formMessage.textContent = '✓ Message sent successfully! We\'ll get back to you soon.';
+            formMessage.className = 'form-message success';
+            history.replaceState(null, '', window.location.pathname);
+        } else if (urlParams.has('error')) {
+            formMessage.textContent = '✗ ' + urlParams.get('error');
+            formMessage.className = 'form-message error';
+            history.replaceState(null, '', window.location.pathname);
+        }
+    </script>
+</body>
+</html>

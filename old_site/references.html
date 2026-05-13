@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>References | Australian Web Agency - 3D Visualisation Sydney</title>
+    <meta name="description" content="Explore our stunning 3D visualisations, client testimonials, and completed projects. See why Australian businesses trust us.">
+	
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"></noscript>
+    
+    <style>
+        :root {
+            --gold: #C9A227;
+            --gold-light: #E8D48A;
+            --gold-dark: #8B7019;
+            --black: #0A0A0A;
+            --black-light: #141414;
+            --black-medium: #1A1A1A;
+            --white: #FAFAFA;
+            --gray: #888888;
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: var(--font-body);
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        ::selection { background: var(--gold); color: var(--black); }
+        a { color: inherit; text-decoration: none; }
+        
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+            z-index: 10000;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 1rem; }
+        .nav-logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-weight: 800; font-size: 1.5rem;
+            color: var(--black);
+        }
+        .nav-logo-text { display: flex; flex-direction: column; }
+        .nav-logo-name { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; }
+        .nav-logo-name span { color: var(--gold); }
+        .nav-logo-tagline { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a {
+            font-size: 0.9rem; font-weight: 500; position: relative; padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--gold);
+            transition: width 0.4s var(--ease-out-expo);
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-cta {
+            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+            padding: 0.75rem 1.5rem; font-family: var(--font-body); font-weight: 600;
+            font-size: 0.85rem; cursor: pointer; transition: all 0.4s ease;
+        }
+        .nav-cta:hover { background: var(--gold); color: var(--black); }
+        .nav-hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+        .nav-hamburger span { width: 30px; height: 2px; background: var(--white); }
+        
+        @media (max-width: 968px) {
+            .nav { padding: 1rem 1.5rem; }
+            .nav-links { 
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                z-index: 999;
+                padding-top: 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; position: relative; z-index: 1001; }
+            .nav-hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+            .nav-hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .nav-hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+        }
+        
+        /* Page Hero */
+        .page-hero {
+            padding: 12rem 3rem 6rem; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .page-hero::before {
+            content: ''; position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%); width: 150%; height: 100%;
+            background: radial-gradient(ellipse at center top, rgba(201, 162, 39, 0.1) 0%, transparent 60%);
+        }
+        .page-hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .page-hero-badge {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            background: rgba(201, 162, 39, 0.1); border: 1px solid rgba(201, 162, 39, 0.3);
+            padding: 0.5rem 1.25rem; border-radius: 100px; margin-bottom: 2rem;
+        }
+        .page-hero-badge-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
+        .page-hero-badge-text {
+            font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--gold);
+        }
+        .page-hero h1 {
+            font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800; line-height: 1; margin-bottom: 1.5rem;
+        }
+        .page-hero h1 em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+        .page-hero p { font-size: 1.25rem; color: var(--gray); max-width: 600px; margin: 0 auto; }
+        
+        @media (max-width: 768px) { .page-hero { padding: 10rem 1.5rem 4rem; } }
+        
+        /* Section Styles */
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-label {
+            display: inline-block; font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+        }
+        .section-label::before, .section-label::after { content: '—'; margin: 0 1rem; opacity: 0.5; }
+        .section-title {
+            font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700; line-height: 1.1;
+        }
+        .section-title em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+        
+        /* Web Projects Section */
+        .web-projects { padding: 6rem 3rem; background: var(--black-light); }
+        .web-projects-container { max-width: 1400px; margin: 0 auto; }
+        .project-showcase { display: grid; gap: 6rem; }
+        .project-showcase-item {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+        }
+        .project-showcase-item:nth-child(even) { direction: rtl; }
+        .project-showcase-item:nth-child(even) > * { direction: ltr; }
+        
+        @media (max-width: 968px) {
+            .project-showcase-item, .project-showcase-item:nth-child(even) {
+                grid-template-columns: 1fr; direction: ltr; gap: 2rem;
+            }
+            .web-projects { padding: 4rem 1.5rem; }
+        }
+        
+        .project-showcase-image {
+            position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 16/10;
+        }
+        .project-showcase-image img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.8s var(--ease-out-expo);
+        }
+        .project-showcase-image:hover img { transform: scale(1.05); }
+        .project-showcase-content h3 {
+            font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+            margin-bottom: 1rem; color: var(--gold);
+        }
+        .project-showcase-content p {
+            color: var(--gray); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;
+        }
+        .project-tech { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .project-tech span {
+            background: rgba(201, 162, 39, 0.1); border: 1px solid rgba(201, 162, 39, 0.3);
+            padding: 0.5rem 1rem; border-radius: 100px; font-size: 0.8rem; color: var(--gold);
+        }
+        
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.875rem 1.75rem; font-family: var(--font-body);
+            font-weight: 600; font-size: 0.9rem; cursor: pointer;
+            transition: all 0.4s var(--ease-out-expo); border-radius: 4px;
+        }
+        .btn-outline {
+            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+        }
+        .btn-outline:hover { background: var(--gold); color: var(--black); }
+        .btn-primary { background: var(--gold); color: var(--black); border: none; }
+        .btn-primary:hover {
+            background: var(--gold-light); transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(201, 162, 39, 0.3);
+        }
+        
+        /* 3D Gallery Section */
+        .gallery-section { padding: 8rem 3rem; }
+        .gallery-container { max-width: 1600px; margin: 0 auto; }
+        .gallery-filter {
+            display: flex; justify-content: center; gap: 1rem;
+            flex-wrap: wrap; margin-bottom: 4rem;
+        }
+        .filter-btn {
+            background: transparent; border: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray); padding: 0.75rem 1.5rem;
+            font-family: var(--font-body); font-size: 0.85rem; font-weight: 500;
+            cursor: pointer; border-radius: 100px; transition: all 0.3s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--gold); border-color: var(--gold); color: var(--black);
+        }
+        
+        .gallery-masonry {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+        }
+        @media (max-width: 1200px) { .gallery-masonry { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) {
+            .gallery-section { padding: 4rem 1.5rem; }
+            .gallery-masonry { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        }
+        @media (max-width: 480px) { .gallery-masonry { grid-template-columns: 1fr; } }
+        
+        .gallery-item {
+            position: relative; border-radius: 16px; overflow: hidden;
+            cursor: pointer; aspect-ratio: 1;
+        }
+        .gallery-item.tall { aspect-ratio: 3/4; }
+        .gallery-item.wide { aspect-ratio: 4/3; grid-column: span 2; }
+        @media (max-width: 768px) { .gallery-item.wide { grid-column: span 1; aspect-ratio: 1; } }
+        
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s var(--ease-out-expo);
+        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(10, 10, 10, 0.9) 100%);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 1.5rem; opacity: 0; transition: opacity 0.4s ease;
+        }
+        .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+        .gallery-item-title {
+            font-family: var(--font-display); font-size: 1.1rem;
+            font-weight: 600; margin-bottom: 0.25rem;
+        }
+        .gallery-item-category {
+            font-size: 0.75rem; color: var(--gold);
+            text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 8rem 3rem; background: var(--black-light);
+            position: relative; overflow: hidden;
+        }
+        .testimonials-section::before {
+            content: '"'; font-family: var(--font-serif); font-size: 30rem;
+            color: rgba(201, 162, 39, 0.03); position: absolute;
+            top: -3rem; left: 5%; line-height: 1; pointer-events: none;
+        }
+        .testimonials-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .testimonials-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem;
+        }
+        @media (max-width: 1024px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .testimonials-section { padding: 4rem 1.5rem; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+        }
+        
+        .testimonial-card {
+            background: var(--black); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px; padding: 2.5rem; transition: all 0.4s ease;
+        }
+        .testimonial-card:hover {
+            border-color: rgba(201, 162, 39, 0.3); transform: translateY(-5px);
+        }
+        .testimonial-stars {
+            color: var(--gold); font-size: 1.1rem;
+            letter-spacing: 0.15rem; margin-bottom: 1.5rem;
+        }
+        .testimonial-text {
+            font-family: var(--font-serif); font-size: 1.1rem;
+            font-style: italic; line-height: 1.7; margin-bottom: 2rem; color: var(--gray);
+        }
+        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .testimonial-avatar {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-weight: 700; color: var(--black);
+        }
+        .testimonial-info h4 {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 1rem; margin-bottom: 0.25rem;
+        }
+        .testimonial-info span { font-size: 0.85rem; color: var(--gray); }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 6rem 3rem;
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+        }
+        .stats-container { max-width: 1200px; margin: 0 auto; }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; text-align: center;
+        }
+        @media (max-width: 768px) {
+            .stats-section { padding: 4rem 1.5rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        }
+        .stat-item h3 {
+            font-family: var(--font-display); font-size: 4rem; font-weight: 800;
+            color: var(--black); line-height: 1; margin-bottom: 0.5rem;
+        }
+        .stat-item p {
+            font-size: 1rem; font-weight: 600; color: rgba(0, 0, 0, 0.7);
+            text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 3rem; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 150%; height: 100%;
+            background: radial-gradient(ellipse at center bottom, rgba(201, 162, 39, 0.15) 0%, transparent 60%);
+        }
+        .cta-container { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        .cta-title {
+            font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700; margin-bottom: 1.5rem;
+        }
+        .cta-title em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+        .cta-text { font-size: 1.2rem; color: var(--gray); margin-bottom: 2.5rem; }
+        @media (max-width: 768px) { .cta-section { padding: 4rem 1.5rem; } }
+        
+        /* Footer */
+        .footer {
+            background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 5rem 3rem 2rem;
+        }
+        .footer-container { max-width: 1400px; margin: 0 auto; }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem; margin-bottom: 4rem;
+        }
+        @media (max-width: 968px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+        @media (max-width: 480px) {
+            .footer { padding: 3rem 1.5rem 2rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+        .footer-brand { max-width: 350px; }
+        .footer-logo { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .footer-logo-icon {
+            width: 45px; height: 45px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-weight: 800; color: var(--black);
+        }
+        .footer-logo-text { font-family: var(--font-display); font-weight: 700; }
+        .footer-logo-text span { color: var(--gold); }
+        .footer-desc { color: var(--gray); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+        .footer-social { display: flex; gap: 1rem; }
+        .footer-social-link {
+            width: 45px; height: 45px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease; font-size: 1.2rem;
+        }
+        .footer-social-link:hover {
+            background: var(--gold); border-color: var(--gold); transform: translateY(-3px);
+        }
+        .footer-column h4 {
+            font-family: var(--font-display); font-weight: 700;
+            margin-bottom: 1.5rem; color: var(--gold);
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: var(--gray); font-size: 0.95rem; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05);
+            flex-wrap: wrap; gap: 1rem;
+        }
+        .footer-copyright { font-size: 0.85rem; color: var(--gray); }
+        .footer-legal { display: flex; gap: 2rem; }
+        .footer-legal a { font-size: 0.85rem; color: var(--gray); transition: color 0.3s ease; }
+        .footer-legal a:hover { color: var(--gold); }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.95); z-index: 10000;
+            align-items: center; justify-content: center; padding: 2rem;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-close {
+            position: absolute; top: 2rem; right: 2rem;
+            width: 50px; height: 50px; background: rgba(255,255,255,0.1);
+            border: none; border-radius: 50%; color: var(--white);
+            font-size: 1.5rem; cursor: pointer; transition: all 0.3s ease;
+        }
+        .lightbox-close:hover { background: var(--gold); color: var(--black); }
+        .lightbox img { max-width: 90%; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+        
+        /* Animations */
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: all 1s var(--ease-out-expo);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="scroll-progress"></div>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <img src="" alt="Gallery Image" id="lightbox-img">
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">AW</div>
+            <div class="nav-logo-text">
+                <span class="nav-logo-name">Australian<span>Web</span></span>
+                <span class="nav-logo-tagline">Premium Digital Agency</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="references.html" class="active">References</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-cta">GET A QUOTE</button>
+        <div class="nav-hamburger"><span></span><span></span><span></span></div>
+    </nav>
+    
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content reveal">
+            <div class="page-hero-badge">
+                <span class="page-hero-badge-dot"></span>
+                <span class="page-hero-badge-text">Our Work & Testimonials</span>
+            </div>
+            <h1>Our <em>References</em></h1>
+            <p>Explore our completed projects, stunning 3D visualisations, and hear what our clients have to say about working with us.</p>
+        </div>
+    </section>
+    
+    <!-- Web Projects Section -->
+    <section class="web-projects">
+        <div class="web-projects-container">
+            <div class="section-header reveal">
+                <span class="section-label">Completed Projects</span>
+                <h2 class="section-title">Websites & <em>Webshops</em></h2>
+            </div>
+            
+            <div class="project-showcase">
+                <div class="project-showcase-item reveal">
+                    <div class="project-showcase-image">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" alt="EcoClean Sydney">
+                    </div>
+                    <div class="project-showcase-content">
+                        <h3>EcoClean Sydney</h3>
+                        <p>Responsive HTML-based website with lightning-fast load times and comprehensive SEO optimisation for Sydney, Central Coast and Newcastle. Features a custom booking system that accounts for current orders, calculates service durations, travel times, and schedules the next available service.</p>
+                        <div class="project-tech">
+                            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>PHP</span><span>SEO</span>
+                        </div>
+                        <a href="https://ecocleanaustralia.com" target="_blank" class="btn btn-outline">View Live Site →</a>
+                    </div>
+                </div>
+                
+                <div class="project-showcase-item reveal">
+                    <div class="project-showcase-image">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop" alt="Memorial Stones Sydney">
+                    </div>
+                    <div class="project-showcase-content">
+                        <h3>Memorial Stones Sydney</h3>
+                        <p>Responsive PHP-based dynamic website with fast load times and SEO optimisation for Sydney, Central Coast and Newcastle. Template-based, cost-effective design featuring blog integration, contact form, product categories, and beautiful gallery functionality.</p>
+                        <div class="project-tech">
+                            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>PHP</span><span>MySQL</span>
+                        </div>
+                        <a href="http://memorialstones.au" target="_blank" class="btn btn-outline">View Live Site →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 3D Gallery Section -->
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <div class="section-header reveal">
+                <span class="section-label">3D Visualisation</span>
+                <h2 class="section-title">Stunning <em>Renders</em></h2>
+            </div>
+            
+            <div class="gallery-filter reveal">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="architecture">Architecture</button>
+                <button class="filter-btn" data-filter="interior">Interiors</button>
+                <button class="filter-btn" data-filter="bathroom">Bathrooms</button>
+                <button class="filter-btn" data-filter="bedroom">Bedrooms</button>
+                <button class="filter-btn" data-filter="kitchen">Kitchens</button>
+                <button class="filter-btn" data-filter="product">Products</button>
+            </div>
+            
+            <div class="gallery-masonry reveal">
+                <div class="gallery-item wide" data-category="architecture" onclick="openLightbox('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=450&fit=crop" alt="Modern House Exterior">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Modern House Exterior</span>
+                        <span class="gallery-item-category">Architecture</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="interior" onclick="openLightbox('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=400&fit=crop" alt="Luxury Living Room">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Luxury Living Room</span>
+                        <span class="gallery-item-category">Interior</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item tall" data-category="bathroom" onclick="openLightbox('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400&h=533&fit=crop" alt="Modern Bathroom">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Modern Bathroom</span>
+                        <span class="gallery-item-category">Bathroom</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="bedroom" onclick="openLightbox('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=400&fit=crop" alt="Master Bedroom">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Master Bedroom</span>
+                        <span class="gallery-item-category">Bedroom</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="kitchen" onclick="openLightbox('https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?w=400&h=400&fit=crop" alt="Modern Kitchen">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Modern Kitchen</span>
+                        <span class="gallery-item-category">Kitchen</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item wide" data-category="architecture" onclick="openLightbox('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=450&fit=crop" alt="Commercial Building">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Commercial Building</span>
+                        <span class="gallery-item-category">Architecture</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="product" onclick="openLightbox('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop" alt="Designer Sofa">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Designer Sofa</span>
+                        <span class="gallery-item-category">Product</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item tall" data-category="interior" onclick="openLightbox('https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=400&h=533&fit=crop" alt="Luxury Hallway">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Luxury Hallway</span>
+                        <span class="gallery-item-category">Interior</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="bathroom" onclick="openLightbox('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&h=400&fit=crop" alt="Spa Bathroom">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Spa Bathroom</span>
+                        <span class="gallery-item-category">Bathroom</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="bedroom" onclick="openLightbox('https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&h=400&fit=crop" alt="Minimalist Bedroom">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Minimalist Bedroom</span>
+                        <span class="gallery-item-category">Bedroom</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="kitchen" onclick="openLightbox('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop" alt="Open Kitchen">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Open Kitchen</span>
+                        <span class="gallery-item-category">Kitchen</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="product" onclick="openLightbox('https://images.unsplash.com/photo-1503602642458-232111445657?w=1200')">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1503602642458-232111445657?w=400&h=400&fit=crop" alt="Modern Chair">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">Modern Chair</span>
+                        <span class="gallery-item-category">Product</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <div class="section-header reveal">
+                <span class="section-label">Client Love</span>
+                <h2 class="section-title">What Our Clients <em>Say</em></h2>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Professional team, fast, and reliable! We're thrilled with our new website. The custom booking system has streamlined our operations significantly."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">EW</div>
+                        <div class="testimonial-info">
+                            <h4>Emma Wilson</h4>
+                            <span>EcoClean Australia</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Australian Web boosted our online traffic significantly. The SEO optimisation has been incredible - we're now ranking on page one for our key terms."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">LB</div>
+                        <div class="testimonial-info">
+                            <h4>Liam Brown</h4>
+                            <span>TechTrend Innovations</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Outstanding 3D visualisations! They brought our architectural designs to life in ways we couldn't imagine. Clients love the photorealistic renders."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SC</div>
+                        <div class="testimonial-info">
+                            <h4>Sarah Chen</h4>
+                            <span>Design Studio Sydney</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"From concept to launch, the entire process was smooth and professional. They truly understood our vision and delivered beyond expectations."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MK</div>
+                        <div class="testimonial-info">
+                            <h4>Michael Kim</h4>
+                            <span>Horizon Properties</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Our webshop conversion rate increased by 40% after the redesign. The user experience improvements made a massive difference to our bottom line."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JT</div>
+                        <div class="testimonial-info">
+                            <h4>Jessica Taylor</h4>
+                            <span>Boutique Home Decor</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Exceptional service and attention to detail. They don't just build websites - they build relationships. Highly recommend for any business."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">DP</div>
+                        <div class="testimonial-info">
+                            <h4>David Park</h4>
+                            <span>Sydney Consulting Group</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stats-grid reveal">
+                <div class="stat-item">
+                    <h3>150+</h3>
+                    <p>Projects Delivered</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <h3>20+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5★</h3>
+                    <p>Average Rating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container reveal">
+            <h2 class="cta-title">Ready to join our <em>success stories</em>?</h2>
+            <p class="cta-text">Let's discuss your project and create something amazing together.</p>
+            <a href="contact.html" class="btn btn-primary">Get Your Free Quote →</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">AW</div>
+                        <span class="footer-logo-text">Australian<span>Web</span></span>
+                    </div>
+                    <p class="footer-desc">Premium website design and digital solutions for ambitious Australian businesses. Based in Sydney, serving clients nationwide.</p>
+                    <div class="footer-social">
+                        <a href="#" class="footer-social-link">📘</a>
+                        <a href="#" class="footer-social-link">💼</a>
+                        <a href="#" class="footer-social-link">📸</a>
+                        <a href="#" class="footer-social-link">▶️</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Website Design</a></li>
+                        <li><a href="#">Webshop Development</a></li>
+                        <li><a href="#">SEO Optimisation</a></li>
+                        <li><a href="#">Branding & Logo</a></li>
+                        <li><a href="#">3D Visualisation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="references.html">References</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="/cdn-cgi/l/email-protection#fb92959d94bb9a8e888f899a97929a958c9e99d59a9c9e959882"><span class="__cf_email__" data-cfemail="f29b9c949db29387818680939e9b939c859790dc9395979c918b">[email&#160;protected]</span></a></li>
+                        <li><a href="#">Sydney, NSW Australia</a></li>
+                        <li><a href="#">Mon-Fri: 9AM - 5PM</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 Australian Web Agency. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger?.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Scroll Progress
+        const scrollProgress = document.querySelector('.scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            scrollProgress.style.width = (scrolled / scrollable) * 100 + '%';
+        });
+        
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+        
+        // Gallery Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Lightbox
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('lightbox')) {
+                closeLightbox();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+</body>
+</html>

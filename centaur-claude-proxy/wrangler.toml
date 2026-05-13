@@ -1,0 +1,37 @@
+# ============================================================
+#  CENTAUR.OS // Cloudflare Worker config — v3.0
+# ============================================================
+name = "centaur-claude-proxy"
+main = "src/index.js"
+compatibility_date = "2024-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ─── KV namespace for rate limiting ───
+# Create once:  wrangler kv namespace create RATE_LIMIT
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "497418f88e88411799fdafb47fa3afb5"
+
+# ─── D1 database for conversation persistence ───
+# Create once:  wrangler d1 create centaur-conversations
+# Then paste the database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "centaur-conversations"
+database_id = "c379ebc6-a21c-4158-a6b9-194d6f98a14b"
+
+# ─── Scheduled cleanup: prune old conversations daily at 03:00 UTC ───
+# (14:00 AEST in winter, 13:00 AEDT in summer — middle of the night for Sydney)
+[triggers]
+crons = ["0 3 * * *"]
+
+# ─── Optional: custom domain mapping ───
+# [routes]
+# pattern = "api.australianweb.agency/centaur/*"
+# zone_name = "australianweb.agency"
+
+# Secrets (set via CLI, NOT in this file):
+#   wrangler secret put ANTHROPIC_API_KEY
+#   wrangler secret put RESEND_API_KEY
+#   wrangler secret put ADMIN_PASSWORD
+#   wrangler secret put SESSION_SECRET

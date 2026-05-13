@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Website Score Calculator | Australian Web Agency</title>
+    <meta name="description" content="Get a free website score and analysis. Discover how your website performs in design, SEO, performance, UX and mobile responsiveness.">
+    <meta name="keywords" content="website score, website audit, free website analysis, website grader, web design audit sydney">
+    <meta name="author" content="Australian Web Agency">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://australianweb.agency/website-score">
+	
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <meta property="og:title" content="Free Website Score Calculator | Australian Web Agency">
+    <meta property="og:description" content="Get a free website score. Discover how your site performs.">
+    <meta property="og:type" content="website">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gold: #FFD700;
+            --green: #10B981;
+            --yellow: #F59E0B;
+            --red: #EF4444;
+            --gray: #333333;
+            --font-display: 'Syne', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { background: var(--black); color: var(--white); font-family: var(--font-mono); overflow-x: hidden; cursor: none; line-height: 1.7; }
+        ::selection { background: var(--gold); color: var(--black); }
+        a { color: inherit; text-decoration: none; }
+        
+        .cursor { position: fixed; width: 20px; height: 20px; border: 2px solid var(--gold); border-radius: 50%; pointer-events: none; z-index: 99999; transition: transform 0.1s ease, background 0.2s ease; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+        .cursor-dot { position: fixed; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%); }
+        .cursor.hover { transform: translate(-50%, -50%) scale(3); background: var(--gold); }
+        
+        #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.6; }
+        
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; mix-blend-mode: difference; }
+		.nav.scrolled {background: var(--black); mix-blend-mode: normal; }
+        .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; position: relative; padding: 0.5rem 0; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 1px; background: var(--white); transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2rem; border: 1px solid var(--white); transition: all 0.4s ease; }
+        .nav-cta:hover { background: var(--white); color: var(--black); }
+		.nav.menu-open {background: var(--black); mix-blend-mode: normal; }
+        
+        .nav-hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; position: relative; }
+        .nav-hamburger span { width: 30px; height: 2px; background: var(--white); transition: all 0.3s ease; }
+        .nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        
+        /* App Container */
+        .app-container { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 4rem; position: relative; z-index: 1; }
+        .app-wrapper { max-width: 900px; margin: 0 auto; width: 100%; }
+        
+        .app-header { text-align: center; margin-bottom: 3rem; }
+        .app-label { font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+        .app-title { font-family: var(--font-display); font-size: clamp(2rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+        .app-title span { color: var(--gold); }
+        .app-subtitle { font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto; }
+        
+        /* Quiz Container */
+        .quiz-container { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 3rem; }
+        
+        /* Progress Bar */
+        .progress-bar { margin-bottom: 2rem; }
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+        .progress-text { font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
+        .progress-track { height: 4px; background: rgba(255,255,255,0.1); border-radius: 100px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--gold); border-radius: 100px; transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        
+        /* Question */
+        .question-container { display: none; }
+        .question-container.active { display: block; animation: fadeIn 0.5s ease; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .question-number { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+        .question-text { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; margin-bottom: 2rem; line-height: 1.4; }
+        
+        .options { display: flex; flex-direction: column; gap: 1rem; }
+        .option { padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 1rem; }
+        .option:hover { border-color: var(--gold); background: rgba(255,215,0,0.05); }
+        .option.selected { border-color: var(--gold); background: rgba(255,215,0,0.1); }
+        .option-indicator { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; flex-shrink: 0; position: relative; transition: all 0.3s ease; }
+        .option.selected .option-indicator { border-color: var(--gold); }
+        .option.selected .option-indicator::after { content: ''; position: absolute; inset: 3px; background: var(--gold); border-radius: 50%; }
+        .option-text { font-size: 0.95rem; }
+        
+        /* Navigation Buttons */
+        .quiz-nav { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2rem; border: 1px solid var(--gold); color: var(--gold); background: transparent; cursor: pointer; font-family: var(--font-mono); transition: all 0.3s ease; border-radius: 8px; }
+        .btn:hover { background: var(--gold); color: var(--black); }
+        .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .btn:disabled:hover { background: transparent; color: var(--gold); }
+        .btn-secondary { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); }
+        .btn-secondary:hover { border-color: var(--white); color: var(--white); background: transparent; }
+        
+        /* Results */
+        .results-container { display: none; }
+        .results-container.active { display: block; animation: fadeIn 0.5s ease; }
+        
+        .results-header { text-align: center; margin-bottom: 3rem; }
+        .results-score-ring { width: 200px; height: 200px; margin: 0 auto 2rem; position: relative; }
+        .results-score-ring svg { transform: rotate(-90deg); }
+        .results-score-ring circle { fill: none; stroke-width: 8; }
+        .results-score-ring .bg { stroke: rgba(255,255,255,0.1); }
+        .results-score-ring .progress { stroke: var(--gold); stroke-linecap: round; stroke-dasharray: 565.48; stroke-dashoffset: 565.48; transition: stroke-dashoffset 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .results-score-value { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .results-score-number { font-family: var(--font-display); font-size: 4rem; font-weight: 800; line-height: 1; }
+        .results-score-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
+        
+        .results-grade { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .results-summary { font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto; }
+        
+        /* Category Scores */
+        .category-scores { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin: 3rem 0; }
+        .category-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.5rem; text-align: center; }
+        .category-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+        .category-name { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.5rem; }
+        .category-score { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; }
+        .category-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 100px; margin-top: 0.75rem; overflow: hidden; }
+        .category-bar-fill { height: 100%; border-radius: 100px; transition: width 1s cubic-bezier(0.25, 1, 0.5, 1); }
+        
+        /* Recommendations */
+        .recommendations { margin-top: 3rem; }
+        .recommendations-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+        .recommendations-title::before { content: '💡'; }
+        .recommendation-list { display: flex; flex-direction: column; gap: 1rem; }
+        .recommendation-item { padding: 1.25rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; display: flex; align-items: flex-start; gap: 1rem; }
+        .recommendation-priority { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 700; flex-shrink: 0; }
+        .recommendation-priority.high { background: rgba(239,68,68,0.2); color: var(--red); }
+        .recommendation-priority.medium { background: rgba(245,158,11,0.2); color: var(--yellow); }
+        .recommendation-priority.low { background: rgba(16,185,129,0.2); color: var(--green); }
+        .recommendation-text { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+        
+        /* CTA Section */
+        .results-cta { margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,215,0,0.05)); border: 1px solid rgba(255,215,0,0.2); border-radius: 16px; text-align: center; }
+        .results-cta h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .results-cta p { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+        
+        /* Restart */
+        .restart-btn { margin-top: 2rem; text-align: center; }
+        .restart-btn button { background: transparent; border: none; color: rgba(255,255,255,0.4); font-family: var(--font-mono); font-size: 0.8rem; cursor: pointer; transition: color 0.3s ease; }
+        .restart-btn button:hover { color: var(--gold); }
+        
+        /* Footer */
+        .footer { padding: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1); position: relative; z-index: 1; }
+        .footer-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+        .footer-left p { font-size: 0.8rem; color: rgba(255, 255, 255, 0.4); }
+        .footer-credit { font-size: 0.75rem; color: rgba(255, 255, 255, 0.3); margin-top: 0.5rem; }
+        .footer-credit a { color: var(--gold); }
+        .footer-right { display: flex; gap: 2rem; }
+        .footer-social { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); transition: color 0.3s ease; }
+        .footer-social:hover { color: var(--gold); }
+        
+        .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+        
+        .loader { position: fixed; inset: 0; background: var(--black); z-index: 99999; display: flex; align-items: center; justify-content: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
+        .loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-text { font-family: var(--font-display); font-size: 2rem; font-weight: 800; }
+        .loader-text span { display: inline-block; animation: loaderReveal 0.5s ease forwards; opacity: 0; transform: translateY(100%); }
+        @keyframes loaderReveal { to { opacity: 1; transform: translateY(0); } }
+        
+        .magnetic { transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+        
+        @media (max-width: 968px) {
+            .nav { padding: 1.5rem 2rem; }
+            .nav-links, .nav-cta { display: none; }
+            .nav-hamburger { display: flex; }
+            .nav-links.active { display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000000; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; z-index: 999; }
+            .nav-links.active a { font-size: 1.5rem; }
+            
+            .app-container { padding: 6rem 1.5rem 2rem; }
+            .quiz-container { padding: 2rem 1.5rem; }
+            .category-scores { grid-template-columns: repeat(2, 1fr); }
+            .category-scores .category-card:last-child { grid-column: span 2; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+        
+        @media (max-width: 480px) {
+            .category-scores { grid-template-columns: 1fr; }
+            .category-scores .category-card:last-child { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader">
+        <div class="loader-text" id="loaderText"></div>
+    </div>
+    
+    <div class="noise"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <canvas id="canvas-bg"></canvas>
+    
+    <nav class="nav">
+        <a href="index.html" class="nav-logo magnetic">AWA</a>
+        <ul class="nav-links">
+            <li><a href="services.html" class="magnetic">Services</a></li>
+            <li><a href="portfolio.html" class="magnetic">Work</a></li>
+			<li><a href="references.html" class="magnetic">References</a></li>
+            <li><a href="website-score.html" class="magnetic">Free Score</a></li>
+            <li><a href="about.html" class="magnetic">About</a></li>
+            <li><a href="contact.html" class="magnetic">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta magnetic">Start Project</a>
+        <div class="nav-hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    
+    <main class="app-container">
+        <div class="app-wrapper">
+            <div class="app-header">
+                <p class="app-label">Free Tool</p>
+                <h1 class="app-title">Website <span>Score</span> Calculator</h1>
+                <p class="app-subtitle">Answer 10 quick questions about your website and get a detailed analysis with actionable recommendations.</p>
+            </div>
+            
+            <div class="quiz-container" id="quizContainer">
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div class="progress-header">
+                        <span class="progress-text">Progress</span>
+                        <span class="progress-text" id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Questions will be injected here -->
+                <div id="questionsContainer"></div>
+                
+                <!-- Navigation -->
+                <div class="quiz-nav">
+                    <button class="btn btn-secondary" id="prevBtn" disabled>← Back</button>
+                    <button class="btn" id="nextBtn">Next →</button>
+                </div>
+            </div>
+            
+            <!-- Results -->
+            <div class="results-container" id="resultsContainer">
+                <div class="results-header">
+                    <div class="results-score-ring">
+                        <svg width="200" height="200" viewBox="0 0 200 200">
+                            <circle class="bg" cx="100" cy="100" r="90"/>
+                            <circle class="progress" id="scoreCircle" cx="100" cy="100" r="90"/>
+                        </svg>
+                        <div class="results-score-value">
+                            <span class="results-score-number" id="totalScore">0</span>
+                            <span class="results-score-label">out of 100</span>
+                        </div>
+                    </div>
+                    <div class="results-grade" id="scoreGrade">Calculating...</div>
+                    <p class="results-summary" id="scoreSummary"></p>
+                </div>
+                
+                <div class="category-scores" id="categoryScores"></div>
+                
+                <div class="recommendations">
+                    <h3 class="recommendations-title">Key Recommendations</h3>
+                    <div class="recommendation-list" id="recommendationList"></div>
+                </div>
+                
+                <div class="results-cta">
+                    <h3>Want to Improve Your Score?</h3>
+                    <p>Our team can help you achieve a 90+ website score with a professional redesign.</p>
+                    <a href="contact.html" class="btn magnetic">Get Free Consultation →</a>
+                </div>
+                
+                <div class="restart-btn">
+                    <button onclick="restartQuiz()">↻ Take the quiz again</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <p>© 2025 Australian Web Agency. All rights reserved.</p>
+                <p class="footer-credit">Designed & developed by <a href="#">Claude AI</a> & Chris Conen</p>
+            </div>
+            <div class="footer-right">
+                <a href="#" class="footer-social magnetic">Instagram</a>
+                <a href="#" class="footer-social magnetic">LinkedIn</a>
+                <a href="#" class="footer-social magnetic">Behance</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+		// ============================================
+	    // NAV SCROLL BG
+	    // ============================================
+	    window.addEventListener('scroll', () => {
+        document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 50);
+        });
+		
+        // ============================================
+        // QUIZ DATA
+        // ============================================
+        const questions = [
+            {
+                category: 'design',
+                question: 'How would you describe your website\'s visual design?',
+                options: [
+                    { text: 'Modern, clean, and professionally designed', score: 20 },
+                    { text: 'Decent but could use some updates', score: 14 },
+                    { text: 'Outdated or uses a basic template', score: 8 },
+                    { text: 'No website yet or very poor design', score: 2 }
+                ]
+            },
+            {
+                category: 'design',
+                question: 'Does your website have consistent branding (colors, fonts, imagery)?',
+                options: [
+                    { text: 'Yes, fully consistent throughout', score: 20 },
+                    { text: 'Mostly consistent with some variations', score: 14 },
+                    { text: 'Inconsistent in several areas', score: 8 },
+                    { text: 'No clear branding at all', score: 2 }
+                ]
+            },
+            {
+                category: 'seo',
+                question: 'Does your website appear on the first page of Google for relevant searches?',
+                options: [
+                    { text: 'Yes, for multiple key terms', score: 20 },
+                    { text: 'Yes, for 1-2 terms', score: 14 },
+                    { text: 'Only for our brand name', score: 8 },
+                    { text: 'Not at all or I\'m not sure', score: 2 }
+                ]
+            },
+            {
+                category: 'seo',
+                question: 'Does your website have proper meta titles and descriptions on each page?',
+                options: [
+                    { text: 'Yes, all pages are optimized', score: 20 },
+                    { text: 'Some pages are optimized', score: 14 },
+                    { text: 'Only the homepage', score: 8 },
+                    { text: 'No or I don\'t know what that means', score: 2 }
+                ]
+            },
+            {
+                category: 'performance',
+                question: 'How fast does your website load?',
+                options: [
+                    { text: 'Very fast (under 2 seconds)', score: 20 },
+                    { text: 'Reasonably fast (2-4 seconds)', score: 14 },
+                    { text: 'A bit slow (4-6 seconds)', score: 8 },
+                    { text: 'Very slow (over 6 seconds) or I don\'t know', score: 2 }
+                ]
+            },
+            {
+                category: 'performance',
+                question: 'Are your images optimized for web?',
+                options: [
+                    { text: 'Yes, compressed and in modern formats', score: 20 },
+                    { text: 'Some are optimized', score: 14 },
+                    { text: 'I think so but not sure', score: 8 },
+                    { text: 'No or I don\'t know', score: 2 }
+                ]
+            },
+            {
+                category: 'ux',
+                question: 'How easy is it for visitors to find information on your site?',
+                options: [
+                    { text: 'Very easy - clear navigation and structure', score: 20 },
+                    { text: 'Fairly easy with minor issues', score: 14 },
+                    { text: 'Somewhat difficult', score: 8 },
+                    { text: 'Very difficult or confusing', score: 2 }
+                ]
+            },
+            {
+                category: 'ux',
+                question: 'Does your website have clear calls-to-action (CTAs)?',
+                options: [
+                    { text: 'Yes, prominent and compelling CTAs', score: 20 },
+                    { text: 'Yes, but they could be stronger', score: 14 },
+                    { text: 'Only basic contact information', score: 8 },
+                    { text: 'No clear CTAs', score: 2 }
+                ]
+            },
+            {
+                category: 'mobile',
+                question: 'How does your website look and work on mobile devices?',
+                options: [
+                    { text: 'Excellent - fully responsive and optimized', score: 20 },
+                    { text: 'Good but with some minor issues', score: 14 },
+                    { text: 'Usable but not great', score: 8 },
+                    { text: 'Poor or not mobile-friendly', score: 2 }
+                ]
+            },
+            {
+                category: 'mobile',
+                question: 'Can visitors easily complete actions (forms, purchases) on mobile?',
+                options: [
+                    { text: 'Yes, seamlessly', score: 20 },
+                    { text: 'Yes, with some minor friction', score: 14 },
+                    { text: 'It\'s difficult', score: 8 },
+                    { text: 'Not possible or I don\'t know', score: 2 }
+                ]
+            }
+        ];
+        
+        const categoryInfo = {
+            design: { name: 'Design', icon: '🎨', color: '#8B5CF6' },
+            seo: { name: 'SEO', icon: '🔍', color: '#10B981' },
+            performance: { name: 'Speed', icon: '⚡', color: '#F59E0B' },
+            ux: { name: 'UX', icon: '👆', color: '#3B82F6' },
+            mobile: { name: 'Mobile', icon: '📱', color: '#EC4899' }
+        };
+        
+        const recommendations = {
+            design: [
+                { threshold: 15, priority: 'high', text: 'Consider a professional redesign to modernize your visual appearance and build trust with visitors.' },
+                { threshold: 30, priority: 'medium', text: 'Update your design with consistent branding elements and modern aesthetics.' },
+                { threshold: 40, priority: 'low', text: 'Minor design refinements could help improve visual appeal.' }
+            ],
+            seo: [
+                { threshold: 15, priority: 'high', text: 'Implement comprehensive SEO strategy including keyword research, meta tags, and content optimization.' },
+                { threshold: 30, priority: 'medium', text: 'Optimize all pages with proper meta titles, descriptions, and heading structure.' },
+                { threshold: 40, priority: 'low', text: 'Continue building quality backlinks and creating relevant content.' }
+            ],
+            performance: [
+                { threshold: 15, priority: 'high', text: 'Critical: Optimize images, enable caching, and consider a faster hosting solution.' },
+                { threshold: 30, priority: 'medium', text: 'Compress images and minify CSS/JavaScript to improve loading times.' },
+                { threshold: 40, priority: 'low', text: 'Consider implementing lazy loading and a CDN for faster delivery.' }
+            ],
+            ux: [
+                { threshold: 15, priority: 'high', text: 'Restructure navigation and add clear calls-to-action to guide visitors.' },
+                { threshold: 30, priority: 'medium', text: 'Improve CTA visibility and simplify user journeys.' },
+                { threshold: 40, priority: 'low', text: 'A/B test different CTA placements and copy for better conversions.' }
+            ],
+            mobile: [
+                { threshold: 15, priority: 'high', text: 'Urgent: Make your website fully responsive for mobile users (60%+ of traffic).' },
+                { threshold: 30, priority: 'medium', text: 'Fix mobile usability issues and optimize touch interactions.' },
+                { threshold: 40, priority: 'low', text: 'Fine-tune mobile experience for faster interactions.' }
+            ]
+        };
+        
+        // ============================================
+        // QUIZ LOGIC
+        // ============================================
+        let currentQuestion = 0;
+        let answers = [];
+        
+        function initQuiz() {
+            const container = document.getElementById('questionsContainer');
+            
+            questions.forEach((q, index) => {
+                const questionHTML = `
+                    <div class="question-container" data-index="${index}" ${index === 0 ? 'class="active"' : ''}>
+                        <div class="question-number">Question ${index + 1} of ${questions.length}</div>
+                        <h2 class="question-text">${q.question}</h2>
+                        <div class="options">
+                            ${q.options.map((opt, optIndex) => `
+                                <div class="option" data-score="${opt.score}" data-question="${index}" onclick="selectOption(this)">
+                                    <div class="option-indicator"></div>
+                                    <span class="option-text">${opt.text}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += questionHTML;
+            });
+            
+            // Show first question
+            document.querySelector('.question-container').classList.add('active');
+            updateProgress();
+        }
+        
+        function selectOption(element) {
+            const questionIndex = parseInt(element.dataset.question);
+            const score = parseInt(element.dataset.score);
+            
+            // Remove selection from siblings
+            element.parentElement.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            
+            // Select this option
+            element.classList.add('selected');
+            
+            // Store answer
+            answers[questionIndex] = {
+                category: questions[questionIndex].category,
+                score: score
+            };
+            
+            // Auto-advance after short delay
+            setTimeout(() => {
+                if (currentQuestion < questions.length - 1) {
+                    goToQuestion(currentQuestion + 1);
+                }
+            }, 300);
+        }
+        
+        function goToQuestion(index) {
+            if (index < 0 || index >= questions.length) return;
+            
+            document.querySelectorAll('.question-container').forEach(q => q.classList.remove('active'));
+            document.querySelector(`.question-container[data-index="${index}"]`).classList.add('active');
+            
+            currentQuestion = index;
+            updateProgress();
+            updateNavButtons();
+        }
+        
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+            document.getElementById('progressPercent').textContent = `${Math.round(progress)}%`;
+        }
+        
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentQuestion === questions.length - 1) {
+                nextBtn.textContent = 'See Results →';
+                nextBtn.onclick = showResults;
+            } else {
+                nextBtn.textContent = 'Next →';
+                nextBtn.onclick = () => goToQuestion(currentQuestion + 1);
+            }
+        }
+        
+        document.getElementById('prevBtn').onclick = () => goToQuestion(currentQuestion - 1);
+        document.getElementById('nextBtn').onclick = () => goToQuestion(currentQuestion + 1);
+        
+        function showResults() {
+            // Check if all questions answered
+            if (answers.filter(a => a).length < questions.length) {
+                alert('Please answer all questions before seeing your results.');
+                return;
+            }
+            
+            // Calculate scores
+            const categoryScores = {};
+            Object.keys(categoryInfo).forEach(cat => {
+                categoryScores[cat] = 0;
+            });
+            
+            answers.forEach(answer => {
+                categoryScores[answer.category] += answer.score;
+            });
+            
+            const totalScore = Object.values(categoryScores).reduce((a, b) => a + b, 0) / 2;
+            
+            // Hide quiz, show results
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').classList.add('active');
+            
+            // Animate score
+            animateScore(totalScore);
+            
+            // Set grade
+            const grade = getGrade(totalScore);
+            document.getElementById('scoreGrade').textContent = grade.label;
+            document.getElementById('scoreGrade').style.color = grade.color;
+            document.getElementById('scoreSummary').textContent = grade.summary;
+            
+            // Render category scores
+            renderCategoryScores(categoryScores);
+            
+            // Render recommendations
+            renderRecommendations(categoryScores);
+        }
+        
+        function animateScore(score) {
+            const scoreEl = document.getElementById('totalScore');
+            const circleEl = document.getElementById('scoreCircle');
+            const circumference = 565.48;
+            
+            let current = 0;
+            const duration = 1500;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                current = Math.round(score * progress);
+                scoreEl.textContent = current;
+                
+                const offset = circumference - (progress * score / 100) * circumference;
+                circleEl.style.strokeDashoffset = offset;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+        
+        function getGrade(score) {
+            if (score >= 90) return { label: '🏆 Excellent!', color: '#10B981', summary: 'Your website is performing exceptionally well across all categories. Keep up the great work!' };
+            if (score >= 75) return { label: '👍 Good', color: '#10B981', summary: 'Your website is solid with room for improvement in a few areas.' };
+            if (score >= 60) return { label: '⚠️ Fair', color: '#F59E0B', summary: 'Your website has potential but needs work in several key areas to compete effectively.' };
+            if (score >= 40) return { label: '🔧 Needs Work', color: '#F59E0B', summary: 'Your website has significant issues that are likely affecting your business results.' };
+            return { label: '🚨 Critical', color: '#EF4444', summary: 'Your website needs urgent attention. It may be actively hurting your business.' };
+        }
+        
+        function renderCategoryScores(scores) {
+            const container = document.getElementById('categoryScores');
+            container.innerHTML = '';
+            
+            Object.entries(categoryInfo).forEach(([key, info]) => {
+                const score = scores[key];
+                const percentage = (score / 40) * 100;
+                
+                container.innerHTML += `
+                    <div class="category-card">
+                        <div class="category-icon">${info.icon}</div>
+                        <div class="category-name">${info.name}</div>
+                        <div class="category-score" style="color: ${info.color}">${score}/40</div>
+                        <div class="category-bar">
+                            <div class="category-bar-fill" style="width: ${percentage}%; background: ${info.color}"></div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        function renderRecommendations(scores) {
+            const container = document.getElementById('recommendationList');
+            container.innerHTML = '';
+            
+            const recs = [];
+            
+            Object.entries(scores).forEach(([category, score]) => {
+                const catRecs = recommendations[category];
+                for (const rec of catRecs) {
+                    if (score <= rec.threshold) {
+                        recs.push({ ...rec, category });
+                        break;
+                    }
+                }
+            });
+            
+            // Sort by priority
+            const priorityOrder = { high: 0, medium: 1, low: 2 };
+            recs.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+            
+            // Show top 4
+            recs.slice(0, 4).forEach(rec => {
+                container.innerHTML += `
+                    <div class="recommendation-item">
+                        <span class="recommendation-priority ${rec.priority}">${rec.priority}</span>
+                        <span class="recommendation-text">${rec.text}</span>
+                    </div>
+                `;
+            });
+        }
+        
+        function restartQuiz() {
+            currentQuestion = 0;
+            answers = [];
+            
+            document.getElementById('resultsContainer').classList.remove('active');
+            document.getElementById('quizContainer').style.display = 'block';
+            
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            goToQuestion(0);
+        }
+        
+        // Initialize
+        initQuiz();
+        
+        // ============================================
+        // LOADER
+        // ============================================
+        const loaderText = document.getElementById('loaderText');
+        const loader = document.getElementById('loader');
+        ['S','C','O','R','E'].forEach((letter, i) => {
+            const span = document.createElement('span');
+            span.textContent = letter;
+            span.style.animationDelay = `${i * 0.08}s`;
+            loaderText.appendChild(span);
+        });
+        window.addEventListener('load', () => setTimeout(() => loader.classList.add('hidden'), 1200));
+        
+        // ============================================
+        // CURSOR
+        // ============================================
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+        });
+        
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+        
+        document.querySelectorAll('a, button, .magnetic, .option').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+        
+        // ============================================
+        // PARTICLES
+        // ============================================
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        const particles = [];
+        for (let i = 0; i < 30; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 0.5,
+                speedX: (Math.random() - 0.5) * 0.3,
+                speedY: (Math.random() - 0.5) * 0.3,
+                opacity: Math.random() * 0.4 + 0.1
+            });
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.speedX; p.y += p.speedY;
+                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 215, 0, ${p.opacity})`;
+                ctx.fill();
+            });
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x, dy = p1.y - p2.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${0.06 * (1 - dist/100)})`;
+                        ctx.stroke();
+                    }
+                });
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+        
+        // ============================================
+        // MAGNETIC
+        // ============================================
+        document.querySelectorAll('.magnetic').forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width/2;
+                const y = e.clientY - rect.top - rect.height/2;
+                el.style.transform = `translate(${x*0.2}px, ${y*0.2}px)`;
+            });
+            el.addEventListener('mouseleave', () => el.style.transform = 'translate(0,0)');
+        });
+        
+        // ============================================
+        // MOBILE MENU
+        // ============================================
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger?.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks?.classList.toggle('active');
+		    document.querySelector('.nav').classList.toggle('menu-open');
+            document.body.style.overflow = navLinks?.classList.contains('active') ? 'hidden' : '';
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger?.classList.remove('active');
+                navLinks?.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
+</body>
+</html>

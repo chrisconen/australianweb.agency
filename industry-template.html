@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DYNAMIC VARIABLES - Replace these for each industry -->
+    <title>AI Web Design for Sydney [INDUSTRY] | Living Websites | Australian Web Agency</title>
+    <meta name="description"
+        content="Automated [INDUSTRY_SOLUTION] for Sydney [INDUSTRY]. AI-powered Living Websites that work 24/7. Stop losing clients while you're on the job.">
+    <meta name="keywords"
+        content="[INDUSTRY] web design Sydney, AI automation [INDUSTRY], Living Website [INDUSTRY], 24/7 [INDUSTRY] booking">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Web Design for Sydney [INDUSTRY] | Australian Web Agency">
+    <meta property="og:description"
+        content="Automated [INDUSTRY_SOLUTION] for Sydney [INDUSTRY]. AI-powered Living Websites that work 24/7.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_AU">
+
+    <!-- Schema.org for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Australian Web Agency - [INDUSTRY] Solutions",
+        "description": "AI-powered Living Websites for [INDUSTRY] in Sydney",
+        "areaServed": "Sydney, Australia",
+        "serviceType": "Web Design & AI Automation for [INDUSTRY]"
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gold: #FFD700;
+            --gray: #333333;
+            --font-display: 'Syne', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, #000 0%, #111 100%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title .gold {
+            color: var(--gold);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 1.25rem 3rem;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 6rem 2rem;
+            background: #0a0a0a;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--gold);
+        }
+
+        .problem-list {
+            list-style: none;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .problem-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .problem-list li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: #ff4444;
+            font-weight: bold;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 6rem 2rem;
+            background: var(--black);
+        }
+
+        .demo-embed {
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 215, 0, 0.03);
+        }
+
+        .demo-link {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--gold);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border: 1px solid var(--gold);
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .demo-link:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        .feature h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+        }
+
+        .final-cta h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">AI-Powered Living Websites</div>
+            <h1 class="hero-title">
+                Web Design for Sydney <span class="gold">[INDUSTRY]</span>
+            </h1>
+            <p class="hero-subtitle">
+                Stop losing clients while you're busy. Our Living Websites work 24/7 — answering questions, qualifying
+                leads, and booking appointments automatically.
+            </p>
+            <a href="https://australianweb.agency/contact.html" class="cta-button">Get Your System</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">The Problem Every [INDUSTRY] Faces</h2>
+
+            <!-- DYNAMIC CONTENT - Customize per industry -->
+            <ul class="problem-list">
+                <li><strong>You lose clients while you're on the job</strong> — No one to answer calls or emails</li>
+                <li><strong>Unqualified leads waste your time</strong> — You spend hours on quotes that go nowhere</li>
+                <li><strong>Your website is a digital brochure</strong> — It doesn't sell, it just sits there</li>
+                <li><strong>You're working IN the business, not ON it</strong> — No time to grow</li>
+            </ul>
+
+            <p style="margin-top: 2rem; font-size: 1.2rem; color: var(--gold);">
+                <strong>Sound familiar?</strong> There's a better way.
+            </p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <h2 class="section-title">The Solution: A Living Website</h2>
+
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                Imagine a website that works like your best employee — answering questions, qualifying leads,
+                and booking appointments <strong>while you're asleep</strong>.
+            </p>
+
+            <div class="demo-embed">
+                <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem;">
+                    See It In Action
+                </h3>
+                <p>We've built this exact system for [INDUSTRY] in Sydney. Here's a live demo:</p>
+
+                <!-- DYNAMIC DEMO LINK - Replace per industry -->
+                <a href="https://australianweb.agency/[DEMO_FILE].html" class="demo-link" target="_blank">
+                    → View Live Demo for [INDUSTRY]
+                </a>
+
+                <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+                    Click through, interact with it, see how it understands your needs and guides you to action.
+                </p>
+            </div>
+
+            <h3 style="font-family: var(--font-display); font-size: 2rem; margin: 3rem 0 2rem; color: var(--gold);">
+                What You Get
+            </h3>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>24/7 [INDUSTRY_SOLUTION]</h3>
+                    <p>Automated lead qualification, instant quotes, and smart booking — all while you focus on actual
+                        work.</p>
+                </div>
+                <div class="feature">
+                    <h3>AI-Powered Intelligence</h3>
+                    <p>The website learns from visitor behavior and adapts in real-time to maximize conversions.</p>
+                </div>
+                <div class="feature">
+                    <h3>Never Miss a Lead Again</h3>
+                    <p>Every visitor is engaged, every question answered, every opportunity captured.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Stop Losing Clients?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                We're the <strong>Centaur Covenant</strong> — Australia's first Human + AI creative partnership.
+                We build Living Websites that sell while you sleep.
+            </p>
+            <a href="https://australianweb.agency/contact.html" class="cta-button">Get Your System Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            Built by the <strong>CENTAUR COVENANT</strong> © 2026 |
+            <a href="https://australianweb.agency">Australian Web Agency</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>

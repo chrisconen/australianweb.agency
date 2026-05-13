@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Australian Web Agency - Website Design Sydney</title>
+    <meta name="description" content="Explore our portfolio of stunning websites, webshops, and 3D visualisations. See how we help Australian businesses succeed online.">
+	
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Fonts - Optimized loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"></noscript>
+    
+    <style>
+        :root {
+            --gold: #C9A227;
+            --gold-light: #E8D48A;
+            --gold-dark: #8B7019;
+            --black: #0A0A0A;
+            --black-light: #141414;
+            --black-medium: #1A1A1A;
+            --white: #FAFAFA;
+            --gray: #888888;
+            --gray-dark: #333333;
+            
+            --font-display: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        ::selection {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Noise Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+            z-index: 10000;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .nav-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--black);
+        }
+        
+        .nav-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-logo-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .nav-logo-name span {
+            color: var(--gold);
+        }
+        
+        .nav-logo-tagline {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.4s var(--ease-out-expo);
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--gold);
+        }
+        
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+        
+        .nav-hamburger span {
+            width: 30px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 968px) {
+            .nav { padding: 1rem 1.5rem; }
+            .nav-links { 
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                z-index: 999;
+                padding-top: 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; position: relative; z-index: 1001; }
+            .nav-hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+            .nav-hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .nav-hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+        }
+        
+        /* Page Hero */
+        .page-hero {
+            padding: 12rem 3rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150%;
+            height: 100%;
+            background: radial-gradient(ellipse at center top, rgba(201, 162, 39, 0.1) 0%, transparent 60%);
+        }
+        
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .page-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+        
+        .page-hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        
+        .page-hero-badge-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        
+        .page-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-hero h1 em {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--gold);
+        }
+        
+        .page-hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .page-hero { padding: 10rem 1.5rem 4rem; }
+        }
+        
+        /* Our Story Section */
+        .story-section {
+            padding: 6rem 3rem;
+            background: var(--black-light);
+        }
+        
+        .story-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        
+        @media (max-width: 968px) {
+            .story-container { 
+                grid-template-columns: 1fr; 
+                gap: 3rem;
+            }
+            .story-section { padding: 4rem 1.5rem; }
+        }
+        
+        .story-content h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-content h2 em {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--gold);
+        }
+        
+        .story-content p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-content p strong {
+            color: var(--white);
+        }
+        
+        .story-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .story-stat {
+            padding: 1.5rem;
+            background: var(--black);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+        }
+        
+        .story-stat-value {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .story-stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+        }
+        
+        .story-image {
+            position: relative;
+        }
+        
+        .story-image-main {
+            width: 100%;
+            border-radius: 24px;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+        
+        .story-image-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--gold);
+            color: var(--black);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .story-image-badge-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        
+        .story-image-badge-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Services Detail Section */
+        .services-detail {
+            padding: 8rem 3rem;
+        }
+        
+        .services-detail-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-label::before,
+        .section-label::after {
+            content: '—';
+            margin: 0 1rem;
+            opacity: 0.5;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        
+        .section-title em {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--gold);
+        }
+        
+        .service-detail-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-bottom: 8rem;
+        }
+        
+        .service-detail-item:nth-child(even) {
+            direction: rtl;
+        }
+        
+        .service-detail-item:nth-child(even) > * {
+            direction: ltr;
+        }
+        
+        .service-detail-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        @media (max-width: 968px) {
+            .service-detail-item,
+            .service-detail-item:nth-child(even) {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                direction: ltr;
+            }
+            .services-detail { padding: 4rem 1.5rem; }
+        }
+        
+        .service-detail-content {
+            padding: 2rem 0;
+        }
+        
+        .service-detail-number {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 800;
+            color: rgba(201, 162, 39, 0.15);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .service-detail-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-detail-text {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .service-detail-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .service-detail-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+        
+        .service-detail-features li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .service-detail-image {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+        
+        .service-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--ease-out-expo);
+        }
+        
+        .service-detail-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .service-detail-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-out-expo);
+        }
+        
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(201, 162, 39, 0.3);
+        }
+        
+        /* Tech Stack Section */
+        .tech-section {
+            padding: 6rem 3rem;
+            background: var(--black-light);
+        }
+        
+        .tech-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+        
+        @media (max-width: 968px) {
+            .tech-grid { grid-template-columns: repeat(4, 1fr); }
+            .tech-section { padding: 4rem 1.5rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .tech-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        .tech-item {
+            background: var(--black);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 2rem 1rem;
+            transition: all 0.4s ease;
+        }
+        
+        .tech-item:hover {
+            border-color: rgba(201, 162, 39, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .tech-item-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-item-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+        }
+        
+        /* Projects Grid */
+        .projects-section {
+            padding: 8rem 3rem;
+        }
+        
+        .projects-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--black);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 768px) {
+            .projects-section { padding: 4rem 1.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+        
+        .project-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--ease-out-expo);
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .project-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(10, 10, 10, 0.95) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+        
+        .project-card:hover .project-card-overlay {
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.95) 100%);
+        }
+        
+        .project-card-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-card-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-card-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+        
+        .project-card:hover .project-card-desc {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 3rem;
+            background: linear-gradient(135deg, var(--black-medium) 0%, var(--black) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150%;
+            height: 100%;
+            background: radial-gradient(ellipse at center bottom, rgba(201, 162, 39, 0.15) 0%, transparent 60%);
+        }
+        
+        .cta-container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-title em {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--gold);
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
+        @media (max-width: 768px) {
+            .cta-section { padding: 4rem 1.5rem; }
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--black);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 5rem 3rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        
+        @media (max-width: 968px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .footer { padding: 3rem 1.5rem 2rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+        
+        .footer-brand {
+            max-width: 350px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            color: var(--black);
+        }
+        
+        .footer-logo-text {
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+        
+        .footer-logo-text span {
+            color: var(--gold);
+        }
+        
+        .footer-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .footer-social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .footer-social-link:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        .footer-column h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-legal a {
+            font-size: 0.85rem;
+            color: var(--gray);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-legal a:hover {
+            color: var(--gold);
+        }
+        
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s var(--ease-out-expo);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="scroll-progress"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">AW</div>
+            <div class="nav-logo-text">
+                <span class="nav-logo-name">Australian<span>Web</span></span>
+                <span class="nav-logo-tagline">Premium Digital Agency</span>
+            </div>
+        </a>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html" class="active">Portfolio</a></li>
+            <li><a href="references.html">References</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        
+        <button class="nav-cta">GET A QUOTE</button>
+        
+        <div class="nav-hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content reveal">
+            <div class="page-hero-badge">
+                <span class="page-hero-badge-dot"></span>
+                <span class="page-hero-badge-text">Our Services & Work</span>
+            </div>
+            <h1>Our <em>Portfolio</em></h1>
+            <p>Discover our comprehensive range of digital services and explore the projects that showcase our expertise and creativity.</p>
+        </div>
+    </section>
+    
+    <!-- Our Story Section -->
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-content reveal">
+                <h2>Our <em>Journey</em></h2>
+                <p>
+                    Our story began in <strong>2004</strong> when we first discovered the power of digital presence for business growth. 
+                    Since then, we've honed our skills across web development, design, and digital marketing through countless real-world projects.
+                </p>
+                <p>
+                    After years of working with global brands and businesses, including collaborating with major tech companies on 
+                    web design and technical support, we established <strong>Australian Web</strong> to bring premium digital solutions 
+                    to ambitious Australian businesses.
+                </p>
+                <p>
+                    Today, we combine <strong>20+ years of experience</strong> with cutting-edge technology to deliver websites that 
+                    don't just look beautiful—they drive real business results.
+                </p>
+                
+                <div class="story-stats">
+                    <div class="story-stat">
+                        <div class="story-stat-value">20+</div>
+                        <div class="story-stat-label">Years Experience</div>
+                    </div>
+                    <div class="story-stat">
+                        <div class="story-stat-value">150+</div>
+                        <div class="story-stat-label">Projects Delivered</div>
+                    </div>
+                    <div class="story-stat">
+                        <div class="story-stat-value">98%</div>
+                        <div class="story-stat-label">Client Satisfaction</div>
+                    </div>
+                    <div class="story-stat">
+                        <div class="story-stat-value">5★</div>
+                        <div class="story-stat-label">Average Rating</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-image reveal">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop" alt="Our Team" class="story-image-main">
+                <div class="story-image-badge">
+                    <div class="story-image-badge-value">2004</div>
+                    <div class="story-image-badge-label">Since</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Detail Section -->
+    <section class="services-detail">
+        <div class="services-detail-container">
+            <div class="section-header reveal">
+                <span class="section-label">What We Do</span>
+                <h2 class="section-title">Our <em>Services</em> in Detail</h2>
+            </div>
+            
+            <!-- Website Design -->
+            <div class="service-detail-item reveal">
+                <div class="service-detail-content">
+                    <div class="service-detail-number">01</div>
+                    <h3 class="service-detail-title">Website Design</h3>
+                    <p class="service-detail-text">
+                        In today's digital world, a business without an online presence is nearly invisible. We craft modern, 
+                        mobile-friendly, and user-centric websites that stand out visually and functionally. Our mission is to 
+                        help businesses thrive online by boosting their reach and competitiveness.
+                    </p>
+                    <ul class="service-detail-features">
+                        <li>Custom designs tailored to your brand identity</li>
+                        <li>Mobile-first responsive development</li>
+                        <li>Lightning-fast load times (under 2 seconds)</li>
+                        <li>SEO-optimised structure from day one</li>
+                        <li>Clean, maintainable code (HTML5/CSS3/JS)</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Quote →</button>
+                </div>
+                <div class="service-detail-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop" alt="Website Design">
+                </div>
+            </div>
+            
+            <!-- Webshop Development -->
+            <div class="service-detail-item reveal">
+                <div class="service-detail-content">
+                    <div class="service-detail-number">02</div>
+                    <h3 class="service-detail-title">Webshop Development</h3>
+                    <p class="service-detail-text">
+                        In the fast-paced world of e-commerce, a professional, user-friendly, and mobile-optimised webshop is 
+                        key to success. We create custom webshops that are visually appealing and packed with powerful features 
+                        to drive conversions and sales.
+                    </p>
+                    <ul class="service-detail-features">
+                        <li>WooCommerce & custom e-commerce solutions</li>
+                        <li>Secure payment gateway integration</li>
+                        <li>Inventory management systems</li>
+                        <li>Product filtering and search functionality</li>
+                        <li>Conversion-optimised checkout process</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Quote →</button>
+                </div>
+                <div class="service-detail-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop" alt="Webshop Development">
+                </div>
+            </div>
+            
+            <!-- SEO -->
+            <div class="service-detail-item reveal">
+                <div class="service-detail-content">
+                    <div class="service-detail-number">03</div>
+                    <h3 class="service-detail-title">SEO & Marketing</h3>
+                    <p class="service-detail-text">
+                        A website is only effective if it's visible to your audience. Our SEO services ensure your site ranks 
+                        higher on search engines, driving organic traffic and connecting you with potential customers. We use 
+                        a comprehensive approach including technical SEO, content optimisation, and link building.
+                    </p>
+                    <ul class="service-detail-features">
+                        <li>Keyword research & content strategy</li>
+                        <li>On-page optimisation (titles, meta, structure)</li>
+                        <li>Technical SEO (speed, security, crawlability)</li>
+                        <li>Local SEO for Australian businesses</li>
+                        <li>Google Analytics & Search Console setup</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Quote →</button>
+                </div>
+                <div class="service-detail-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=600&fit=crop" alt="SEO Marketing">
+                </div>
+            </div>
+            
+            <!-- Branding -->
+            <div class="service-detail-item reveal">
+                <div class="service-detail-content">
+                    <div class="service-detail-number">04</div>
+                    <h3 class="service-detail-title">Branding & Logo Design</h3>
+                    <p class="service-detail-text">
+                        First impressions matter. Your brand's visual identity is the first thing customers notice. A cohesive, 
+                        professional design builds trust and sets you apart from competitors. We create memorable brand identities 
+                        that resonate with your target audience.
+                    </p>
+                    <ul class="service-detail-features">
+                        <li>Custom logo design with multiple concepts</li>
+                        <li>Complete brand identity packages</li>
+                        <li>Business cards & stationery design</li>
+                        <li>Social media graphics & templates</li>
+                        <li>Brand guidelines documentation</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Quote →</button>
+                </div>
+                <div class="service-detail-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop" alt="Branding Design">
+                </div>
+            </div>
+            
+            <!-- 3D Visualisation -->
+            <div class="service-detail-item reveal">
+                <div class="service-detail-content">
+                    <div class="service-detail-number">05</div>
+                    <h3 class="service-detail-title">3D Visualisation</h3>
+                    <p class="service-detail-text">
+                        Our unique 3D visualisation services create photorealistic or stylised visuals for architecture, interior 
+                        design, product design, and marketing. Perfect for client presentations, decision-making, and promotional 
+                        campaigns that require stunning visual impact.
+                    </p>
+                    <ul class="service-detail-features">
+                        <li>Architectural exterior & interior renders</li>
+                        <li>Product visualisation for e-commerce</li>
+                        <li>Virtual tours & 360° panoramas</li>
+                        <li>Animation & promotional videos</li>
+                        <li>High-resolution marketing materials</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Quote →</button>
+                </div>
+                <div class="service-detail-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop" alt="3D Visualisation">
+                </div>
+            </div>
+            
+            <!-- Digital Content -->
+            <div class="service-detail-item reveal">
+                <div class="service-detail-content">
+                    <div class="service-detail-number">06</div>
+                    <h3 class="service-detail-title">Digital Content</h3>
+                    <p class="service-detail-text">
+                        A great website is just the start. To reach your audience, you need engaging digital content that tells 
+                        your story. From social media management to video production and copywriting, we create content that 
+                        captivates and converts.
+                    </p>
+                    <ul class="service-detail-features">
+                        <li>Social media content creation</li>
+                        <li>Video production & editing</li>
+                        <li>Professional copywriting</li>
+                        <li>Photography & image editing</li>
+                        <li>Content strategy & planning</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Quote →</button>
+                </div>
+                <div class="service-detail-image">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop" alt="Digital Content">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tech Stack -->
+    <section class="tech-section">
+        <div class="tech-container">
+            <div class="section-header reveal">
+                <span class="section-label">Our Tools</span>
+                <h2 class="section-title">Technologies We <em>Master</em></h2>
+            </div>
+            
+            <div class="tech-grid reveal">
+                <div class="tech-item">
+                    <div class="tech-item-icon">🌐</div>
+                    <div class="tech-item-name">HTML5</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🎨</div>
+                    <div class="tech-item-name">CSS3</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">⚡</div>
+                    <div class="tech-item-name">JavaScript</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">📦</div>
+                    <div class="tech-item-name">WordPress</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🛒</div>
+                    <div class="tech-item-name">WooCommerce</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🔧</div>
+                    <div class="tech-item-name">PHP</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🗄️</div>
+                    <div class="tech-item-name">MySQL</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🎬</div>
+                    <div class="tech-item-name">Blender 3D</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="projects-container">
+            <div class="section-header reveal">
+                <span class="section-label">Our Work</span>
+                <h2 class="section-title">Selected <em>Projects</em></h2>
+            </div>
+            
+            <div class="projects-filter reveal">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="website">Websites</button>
+                <button class="filter-btn" data-filter="webshop">Webshops</button>
+                <button class="filter-btn" data-filter="3d">3D Visualisation</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card reveal" data-category="website">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop" alt="EcoClean Sydney">
+                    <div class="project-card-overlay">
+                        <span class="project-card-category">Website • SEO</span>
+                        <h3 class="project-card-title">EcoClean Sydney</h3>
+                        <p class="project-card-desc">Eco-friendly cleaning services with custom booking system.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card reveal" data-category="website">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=450&fit=crop" alt="Memorial Stones">
+                    <div class="project-card-overlay">
+                        <span class="project-card-category">Website • E-commerce</span>
+                        <h3 class="project-card-title">Memorial Stones Sydney</h3>
+                        <p class="project-card-desc">Beautiful memorial products with gallery integration.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card reveal" data-category="3d">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=450&fit=crop" alt="Interior Visualisation">
+                    <div class="project-card-overlay">
+                        <span class="project-card-category">3D Visualisation</span>
+                        <h3 class="project-card-title">Luxury Interior Renders</h3>
+                        <p class="project-card-desc">Photorealistic interior visualisation for real estate.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card reveal" data-category="3d">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=450&fit=crop" alt="Architecture">
+                    <div class="project-card-overlay">
+                        <span class="project-card-category">3D Visualisation</span>
+                        <h3 class="project-card-title">Modern Architecture</h3>
+                        <p class="project-card-desc">Exterior renders for architectural firms.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card reveal" data-category="3d">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=450&fit=crop" alt="Bathroom Design">
+                    <div class="project-card-overlay">
+                        <span class="project-card-category">3D Visualisation</span>
+                        <h3 class="project-card-title">Bathroom Design</h3>
+                        <p class="project-card-desc">Luxury bathroom interior visualisation.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card reveal" data-category="branding">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=450&fit=crop" alt="Brand Identity">
+                    <div class="project-card-overlay">
+                        <span class="project-card-category">Branding</span>
+                        <h3 class="project-card-title">Brand Identity Suite</h3>
+                        <p class="project-card-desc">Complete branding package for startup.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container reveal">
+            <h2 class="cta-title">Ready to start your <em>project</em>?</h2>
+            <p class="cta-text">Let's discuss how we can help bring your vision to life. Book a free consultation today.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary">Get Your Free Quote →</button>
+                <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">AW</div>
+                        <span class="footer-logo-text">Australian<span>Web</span></span>
+                    </div>
+                    <p class="footer-desc">Premium website design and digital solutions for ambitious Australian businesses. Based in Sydney, serving clients nationwide.</p>
+                    <div class="footer-social">
+                        <a href="#" class="footer-social-link">📘</a>
+                        <a href="#" class="footer-social-link">💼</a>
+                        <a href="#" class="footer-social-link">📸</a>
+                        <a href="#" class="footer-social-link">▶️</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Website Design</a></li>
+                        <li><a href="#">Webshop Development</a></li>
+                        <li><a href="#">SEO Optimisation</a></li>
+                        <li><a href="#">Branding & Logo</a></li>
+                        <li><a href="#">3D Visualisation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="references.html">References</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="/cdn-cgi/l/email-protection#432a2d252c032236303731222f2a222d3426216d2224262d203a"><span class="__cf_email__" data-cfemail="c5acaba3aa85a4b0b6b1b7a4a9aca4abb2a0a7eba4a2a0aba6bc">[email&#160;protected]</span></a></li>
+                        <li><a href="#">Sydney, NSW Australia</a></li>
+                        <li><a href="#">Mon-Fri: 9AM - 5PM</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 Australian Web Agency. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger?.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Scroll Progress
+        const scrollProgress = document.querySelector('.scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            scrollProgress.style.width = (scrolled / scrollable) * 100 + '%';
+        });
+        
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+        
+        // Filter buttons
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

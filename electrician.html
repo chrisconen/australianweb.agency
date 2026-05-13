@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Electrician Parramatta | 24/7 Emergency & Residential Electrical Services</title>
+    <meta name="description"
+        content="Your trusted local electricians in Parramatta. 24/7 emergency service, residential repairs, switchboards, lighting & more. Call 1300 941 876.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #F59E0B;
+            --primary-dark: #D97706;
+            --primary-light: #FCD34D;
+            --secondary: #1E3A5F;
+            --secondary-dark: #0F2744;
+            --secondary-light: #2D4A6F;
+            --accent: #10B981;
+            --danger: #EF4444;
+            --white: #FFFFFF;
+            --black: #0A0A0A;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-600: #4B5563;
+            --gray-800: #1F2937;
+            --font: 'Plus Jakarta Sans', sans-serif;
+            --ease: cubic-bezier(0.25, 1, 0.5, 1);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            z-index: 10001;
+        }
+
+        /* Emergency Banner */
+        .emergency-banner {
+            background: linear-gradient(90deg, var(--danger), #DC2626);
+            color: var(--white);
+            padding: 0.6rem 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .emergency-banner a {
+            background: var(--white);
+            color: var(--danger);
+            padding: 0.3rem 0.75rem;
+            border-radius: 100px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .emergency-banner a:hover {
+            transform: scale(1.05);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 36px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s var(--ease);
+            background: transparent;
+        }
+
+        .nav.scrolled {
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
+            padding: 0.75rem 2rem;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--white);
+            transition: color 0.4s var(--ease);
+        }
+
+        .nav-logo span {
+            color: var(--primary);
+        }
+
+        .nav.scrolled .nav-logo {
+            color: var(--secondary);
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav.scrolled .nav-links a {
+            color: var(--gray-600);
+        }
+
+        .nav.scrolled .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s var(--ease);
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .nav-hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+
+        .nav.scrolled .nav-hamburger span {
+            background: var(--secondary);
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .nav {
+                padding: 1rem 1.5rem;
+            }
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 0 6rem;
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--secondary) 50%, var(--secondary-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            color: var(--white);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title span {
+            color: var(--primary);
+        }
+
+        .hero-text {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.75rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 12px;
+            transition: all 0.3s var(--ease);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.35);
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--secondary);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-trust {
+            display: flex;
+            gap: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-trust-icon {
+            font-size: 1.25rem;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-img-main {
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+        }
+
+        .hero-floating-card {
+            position: absolute;
+            background: var(--white);
+            padding: 1rem 1.25rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hero-floating-card-1 {
+            top: 10%;
+            left: -10%;
+        }
+
+        .hero-floating-card-2 {
+            bottom: 15%;
+            right: -5%;
+            animation-delay: -2s;
+        }
+
+        .floating-card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .floating-card-text {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .floating-card-sub {
+            font-size: 0.65rem;
+            color: var(--gray-400);
+        }
+
+        @media (max-width: 968px) {
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin: 0 auto 2rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-trust {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero-image {
+                margin-top: 3rem;
+            }
+
+            .hero-floating-card {
+                display: none;
+            }
+        }
+
+        /* Stats */
+        .stats {
+            padding: 4rem 0;
+            background: var(--gray-50);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.4s var(--ease);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Services */
+        .services {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--primary-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s var(--ease);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transform: scaleX(0);
+            transition: transform 0.4s var(--ease);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 968px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 6rem 0;
+            background: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-us-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .why-us-content {
+            color: var(--white);
+        }
+
+        .why-us-content .section-label {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary-light);
+        }
+
+        .why-us-content .section-title {
+            color: var(--white);
+        }
+
+        .why-us-content .section-title span {
+            color: var(--primary);
+        }
+
+        .why-us-list {
+            margin-top: 2rem;
+        }
+
+        .why-us-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .why-us-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .why-us-item-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .why-us-item-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .why-us-item-text {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .why-us-image img {
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (max-width: 968px) {
+            .why-us-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-us-image {
+                order: -1;
+            }
+        }
+
+        /* Reviews */
+        .reviews {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.4s var(--ease);
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .review-stars {
+            color: var(--primary);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .review-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .review-name {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .review-location {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+        }
+
+        @media (max-width: 968px) {
+            .reviews-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Service Areas */
+        .areas {
+            padding: 6rem 0;
+        }
+
+        .areas-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .areas-map {
+            background: var(--gray-100);
+            border-radius: 24px;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .areas-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .areas-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .areas-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        .areas-item::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        @media (max-width: 968px) {
+            .areas-content {
+                grid-template-columns: 1fr;
+            }
+
+            .areas-map {
+                height: 300px;
+            }
+        }
+
+        /* CTA */
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-text {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-dark {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .btn-dark:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Contact */
+        .contact {
+            padding: 6rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info h2 span {
+            color: var(--primary);
+        }
+
+        .contact-info>p {
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--gray-50);
+            border-radius: 16px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .contact-card:hover {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            transform: translateX(5px);
+        }
+
+        .contact-card-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-card-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-card-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .contact-form {
+            background: var(--gray-50);
+            padding: 2.5rem;
+            border-radius: 24px;
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-family: var(--font);
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+        }
+
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-dark);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            max-width: 280px;
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-bottom a {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Concept Badge */
+        .concept-badge {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: var(--white);
+            color: var(--secondary);
+            padding: 0.5rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s var(--ease);
+        }
+
+        .concept-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .concept-badge-icon {
+            font-size: 0.8rem;
+        }
+
+        .concept-badge span {
+            font-size: 0.5rem;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-top: 0.05rem;
+            display: block;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s var(--ease);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.7s var(--ease);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.7s var(--ease);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .stagger-1 {
+            transition-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            transition-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            transition-delay: 0.3s;
+        }
+
+        .stagger-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* EMERGENCY MODE */
+        .emergency-toggle {
+            position: fixed;
+            bottom: 4rem;
+            right: 2rem;
+            width: 70px;
+            height: 70px;
+            background: var(--danger);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.3s;
+            animation: pulse-red 2s infinite;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .emergency-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-red {
+            0% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(220, 38, 38, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+            }
+        }
+
+        body.emergency-active .nav-links,
+        body.emergency-active .hero-text,
+        body.emergency-active .hero-badge,
+        body.emergency-active .hero-trust,
+        body.emergency-active .hero-buttons,
+        body.emergency-active .hero-image,
+        body.emergency-active .stats,
+        body.emergency-active .services,
+        body.emergency-active .why-us,
+        body.emergency-active .reviews,
+        body.emergency-active .areas,
+        body.emergency-active .cta,
+        body.emergency-active .contact {
+            display: none !important;
+        }
+
+        body.emergency-active .hero {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100vh;
+            padding: 4rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--danger);
+            z-index: 10000;
+        }
+
+        body.emergency-active .hero-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+        }
+
+        body.emergency-active .hero-title span {
+            color: var(--white);
+        }
+
+        .emergency-screen {
+            display: none;
+            text-align: center;
+            color: var(--white);
+            width: 100%;
+        }
+
+        body.emergency-active .emergency-screen {
+            display: block;
+        }
+
+        .emergency-call-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            color: var(--danger);
+            font-size: 2.5rem;
+            font-weight: 800;
+            padding: 1.5rem 3rem;
+            border-radius: 100px;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            animation: shake 5s infinite;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            90% {
+                transform: translateX(0);
+            }
+
+            92% {
+                transform: translateX(-5px);
+            }
+
+            94% {
+                transform: translateX(5px);
+            }
+
+            96% {
+                transform: translateX(-5px);
+            }
+
+            98% {
+                transform: translateX(5px);
+            }
+        }
+
+        .emergency-eta {
+            font-size: 2rem;
+            font-weight: 700;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+        }
+
+        /* =============================================
+           PREMIUM TECH UPGRADE - Shadow System
+           ============================================= */
+        :root {
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --shadow-glow-primary: 0 0 20px rgba(245, 158, 11, 0.15);
+            --shadow-glow-danger: 0 0 25px rgba(239, 68, 68, 0.2);
+        }
+
+        /* SVG Icon Base Styles */
+        .icon-svg {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            fill: currentColor;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-svg-lg {
+            width: 48px;
+            height: 48px;
+        }
+
+        /* Micro-Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 20px 10px rgba(239, 68, 68, 0);
+            }
+        }
+
+        @keyframes pulseGlowPrimary {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 20px 10px rgba(245, 158, 11, 0);
+            }
+        }
+
+        /* Emergency Button Pulsing */
+        .emergency-toggle {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .emergency-toggle:hover {
+            animation: pulseGlow 1s ease-in-out infinite;
+        }
+
+        /* Card Hover Enhancements */
+        .service-card,
+        .stat-card,
+        .why-us-item,
+        .review-card {
+            transition: all 0.4s var(--ease);
+        }
+
+        .service-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px);
+        }
+
+        .stat-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Button Enhancements */
+        .btn-primary:hover {
+            box-shadow: var(--shadow-glow-primary);
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .emergency-button:hover {
+            box-shadow: var(--shadow-glow-danger);
+            transform: scale(1.05);
+        }
+
+        /* Typography Improvements */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            letter-spacing: 0.02em;
+            font-weight: 800;
+        }
+
+        .section-title {
+            letter-spacing: 0.05em;
+        }
+
+        .hero-title {
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        /* Scroll Reveal Base */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Icon Hover Animations */
+        .service-icon,
+        .stat-icon,
+        .contact-card-icon,
+        .why-us-item-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon,
+        .stat-card:hover .stat-icon,
+        .contact-card:hover .contact-card-icon,
+        .why-us-item:hover .why-us-item-icon {
+            transform: rotate(5deg) scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-progress"></div>
+
+    <!-- Emergency Banner -->
+    <div class="emergency-banner">
+        <div class="pulse-dot"></div>
+        <span>⚡ 24/7 EMERGENCY ELECTRICIAN AVAILABLE</span>
+        <a href="tel:1300941876">CALL NOW</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">⚡</div>
+            Local <span>Electrician</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#areas">Areas</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="tel:1300941876" class="nav-cta">📞 1300 941 876</a>
+        <div class="nav-hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content reveal">
+                    <div class="hero-badge">
+                        <div class="hero-badge-dot"></div>
+                        Trusted Parramatta Electricians
+                    </div>
+
+                    <!-- Emergency Screen Content (Hidden by default) -->
+                    <div class="emergency-screen">
+                        <div style="font-size: 5rem; margin-bottom: 1rem;">🚨</div>
+                        <h2 style="font-size: 2rem; margin-bottom: 2rem; opacity: 0.9;">EMERGENCY PRIORITY LINE</h2>
+                        <a href="tel:1300941876" class="emergency-call-btn">📞 CALL NOW</a>
+                        <div>
+                            <div class="emergency-eta">⚡ ETA: 45 MINUTES</div>
+                        </div>
+                        <p style="margin-top: 2rem; opacity: 0.7;">Technicians are on standby 24/7 in Parramatta</p>
+                    </div>
+
+                    <h1 class="hero-title">Your Local <span>Electrical Experts</span> in Parramatta</h1>
+                    <p class="hero-text">Fast, reliable electrical services for your home and business. Licensed
+                        electricians available 24/7 for emergencies. No job too big or small.</p>
+                    <div class="hero-buttons">
+                        <a href="tel:1300941876" class="btn btn-primary">📞 Call 1300 941 876</a>
+                        <a href="#contact" class="btn btn-white">Get Free Quote</a>
+                    </div>
+                    <div class="hero-trust">
+                        <div class="hero-trust-item"><span class="hero-trust-icon">✅</span> Fully Licensed</div>
+                        <div class="hero-trust-item"><span class="hero-trust-icon">🛡️</span> Fully Insured</div>
+                        <div class="hero-trust-item"><span class="hero-trust-icon">⚡</span> Same Day Service</div>
+                    </div>
+                </div>
+                <div class="hero-image reveal-right">
+                    <img class="hero-img-main" src="electrician_sydney_parramatta.webp" alt="Professional Electrician">
+                    <div class="hero-floating-card hero-floating-card-1">
+                        <div class="floating-card-icon">⭐</div>
+                        <div class="floating-card-text">5-Star Rated</div>
+                        <div class="floating-card-sub">100+ Google Reviews</div>
+                    </div>
+                    <div class="hero-floating-card hero-floating-card-2">
+                        <div class="floating-card-icon">🕐</div>
+                        <div class="floating-card-text">24/7 Available</div>
+                        <div class="floating-card-sub">Emergency Service</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card reveal stagger-1">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card reveal stagger-2">
+                    <div class="stat-icon">👨‍👩‍👧‍👦</div>
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-card reveal stagger-3">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Emergency Service</div>
+                </div>
+                <div class="stat-card reveal stagger-4">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Satisfaction Guarantee</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">⚡ Our Services</div>
+                <h2 class="section-title">Professional <span>Electrical Services</span></h2>
+                <p class="section-subtitle">From emergency repairs to complete installations, we've got all your
+                    electrical needs covered.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal stagger-1">
+                    <div class="service-icon">🚨</div>
+                    <h3 class="service-title">Emergency Electrical</h3>
+                    <p class="service-desc">24/7 emergency response for power outages, sparking outlets, electrical
+                        fires, and urgent repairs. We're here when you need us most.</p>
+                </div>
+                <div class="service-card reveal stagger-2">
+                    <div class="service-icon">🏠</div>
+                    <h3 class="service-title">Residential Services</h3>
+                    <p class="service-desc">Complete home electrical solutions including wiring, power points, safety
+                        inspections, and smart home installations.</p>
+                </div>
+                <div class="service-card reveal stagger-3">
+                    <div class="service-icon">💡</div>
+                    <h3 class="service-title">Lighting Installation</h3>
+                    <p class="service-desc">Indoor & outdoor lighting design, LED upgrades, downlights, security
+                        lighting, and energy-efficient solutions.</p>
+                </div>
+                <div class="service-card reveal stagger-1">
+                    <div class="service-icon">🔌</div>
+                    <h3 class="service-title">Switchboard Upgrades</h3>
+                    <p class="service-desc">Modern switchboard installations, safety switch upgrades, and circuit
+                        breaker replacements for improved safety.</p>
+                </div>
+                <div class="service-card reveal stagger-2">
+                    <div class="service-icon">🌀</div>
+                    <h3 class="service-title">Ceiling Fans</h3>
+                    <p class="service-desc">Expert ceiling fan installation, repair, and replacement. Stay cool and save
+                        on energy costs.</p>
+                </div>
+                <div class="service-card reveal stagger-3">
+                    <div class="service-icon">🔔</div>
+                    <h3 class="service-title">Smoke Alarms</h3>
+                    <p class="service-desc">Installation, testing, and maintenance of smoke alarms to keep your family
+                        safe and compliant with regulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us" id="why-us">
+        <div class="why-us-pattern"></div>
+        <div class="container">
+            <div class="why-us-grid">
+                <div class="why-us-content reveal-left">
+                    <div class="section-label">✨ Why Choose Us</div>
+                    <h2 class="section-title">Parramatta's Most <span>Trusted Electricians</span></h2>
+                    <div class="why-us-list">
+                        <div class="why-us-item">
+                            <div class="why-us-item-icon">⏱️</div>
+                            <div>
+                                <div class="why-us-item-title">On-Time, Every Time</div>
+                                <div class="why-us-item-text">We respect your time. Our electricians arrive when
+                                    promised.</div>
+                            </div>
+                        </div>
+                        <div class="why-us-item">
+                            <div class="why-us-item-icon">💰</div>
+                            <div>
+                                <div class="why-us-item-title">Upfront Pricing</div>
+                                <div class="why-us-item-text">No surprises. You'll know the cost before we start any
+                                    work.</div>
+                            </div>
+                        </div>
+                        <div class="why-us-item">
+                            <div class="why-us-item-icon">🛡️</div>
+                            <div>
+                                <div class="why-us-item-title">Lifetime Workmanship Guarantee</div>
+                                <div class="why-us-item-text">We stand behind our work with a comprehensive guarantee.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="why-us-item">
+                            <div class="why-us-item-icon">
+                                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    <polyline points="9 22 9 12 15 12 15 22" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="why-us-item-title">Clean & Tidy</div>
+                                <div class="why-us-item-text">We leave your home spotless. Shoe covers and drop sheets
+                                    always.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-us-image reveal-right">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=700&fit=crop"
+                        alt="Electrician at work">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="var(--primary)" stroke="var(--primary)"
+                        style="width: 16px; height: 16px;">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                    Customer Reviews
+                </div>
+                <h2 class="section-title">What Our <span>Customers Say</span></h2>
+                <p class="section-subtitle">Don't just take our word for it. Here's what Parramatta residents think
+                    about our service.</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card reveal stagger-1">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Called them for an emergency at 11pm and they were here within 45 minutes.
+                        Fixed our power issue quickly and professionally. Highly recommend!"</p>
+                    <div class="review-author">
+                        <div class="review-avatar">JM</div>
+                        <div>
+                            <div class="review-name">James Mitchell</div>
+                            <div class="review-location">Parramatta</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card reveal stagger-2">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Excellent service! They installed new LED downlights throughout our home.
+                        Clean, efficient, and the price was exactly as quoted. Will use again."</p>
+                    <div class="review-author">
+                        <div class="review-avatar">SK</div>
+                        <div>
+                            <div class="review-name">Sarah Kim</div>
+                            <div class="review-location">Harris Park</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card reveal stagger-3">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Very professional team. They upgraded our old switchboard and explained
+                        everything clearly. Fair pricing and great communication throughout."</p>
+                    <div class="review-author">
+                        <div class="review-avatar">RP</div>
+                        <div>
+                            <div class="review-name">Raj Patel</div>
+                            <div class="review-location">Westmead</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Areas -->
+    <section class="areas" id="areas">
+        <div class="container">
+            <div class="areas-content">
+                <div class="reveal-left">
+                    <div class="section-label">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                            style="width: 16px; height: 16px;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        Service Areas
+                    </div>
+                    <h2 class="section-title">Proudly Servicing <span>Parramatta</span> & Surrounds</h2>
+                    <p style="color: var(--gray-600); margin-top: 1rem;">We provide fast, reliable electrical services
+                        across Parramatta and the greater Western Sydney region.</p>
+                    <div class="areas-list">
+                        <div class="areas-item">Parramatta CBD</div>
+                        <div class="areas-item">Harris Park</div>
+                        <div class="areas-item">Westmead</div>
+                        <div class="areas-item">Northmead</div>
+                        <div class="areas-item">Merrylands</div>
+                        <div class="areas-item">Granville</div>
+                        <div class="areas-item">Toongabbie</div>
+                        <div class="areas-item">Rydalmere</div>
+                        <div class="areas-item">Epping</div>
+                        <div class="areas-item">Carlingford</div>
+                        <div class="areas-item">Castle Hill</div>
+                        <div class="areas-item">Baulkham Hills</div>
+                    </div>
+                </div>
+                <div class="areas-map reveal-right">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53044.95026174!2d150.96!3d-33.81!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12a3f0a2b0b5a5%3A0x5017d681632c850!2sParramatta%20NSW!5e0!3m2!1sen!2sau!4v1600000000000"
+                        allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-pattern"></div>
+        <div class="container">
+            <div class="cta-content reveal">
+                <h2 class="cta-title">Need an Electrician Today?</h2>
+                <p class="cta-text">Don't wait until a small problem becomes a big one. Call us now for fast, reliable
+                    electrical service in Parramatta.</p>
+                <div class="cta-buttons">
+                    <a href="tel:1300941876" class="btn btn-dark">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path
+                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                        </svg>
+                        Call 1300 941 876
+                    </a>
+                    <a href="#contact" class="btn btn-white">Request a Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal-left">
+                    <h2>Get In <span>Touch</span></h2>
+                    <p>Ready to get started? Contact us for a free quote or to schedule a service call.</p>
+                    <div class="contact-cards">
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-card-label">Phone</div>
+                                <div class="contact-card-value">1300 941 876</div>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-card-label">Email</div>
+                                <div class="contact-card-value"><a href="/cdn-cgi/l/email-protection"
+                                        class="__cf_email__"
+                                        data-cfemail="94fdfaf2fbd4e4f5e6e6f5f9f5e0e0f5f1f8f1f7e0e6fdf7fdf5fabafaf1e0baf5e1">[email&#160;protected]</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-card-label">Service Area</div>
+                                <div class="contact-card-value">Parramatta & Western Sydney</div>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-card-label">Hours</div>
+                                <div class="contact-card-value">24/7 Emergency Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form reveal-right">
+                    <h3>Request a Free Quote</h3>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" placeholder="John Smith">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" placeholder="0400 000 000">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Service Required</label>
+                            <select>
+                                <option>Select a service...</option>
+                                <option>Emergency Electrical</option>
+                                <option>Residential Electrical</option>
+                                <option>Lighting Installation</option>
+                                <option>Switchboard Upgrade</option>
+                                <option>Ceiling Fan Installation</option>
+                                <option>Smoke Alarm Service</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea placeholder="Tell us about your electrical needs..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-submit">Get Free Quote →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo" style="color: white;">
+                        <div class="nav-logo-icon">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                style="width: 24px; height: 24px;">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="currentColor" />
+                            </svg>
+                        </div>
+                        Local <span>Electrician</span>
+                    </a>
+                    <p>Your trusted local electricians in Parramatta. Providing quality electrical services to homes and
+                        businesses since 2009.</p>
+                    <div class="footer-social">
+                        <a href="#">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"
+                                style="width: 20px; height: 20px;">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"
+                                style="width: 20px; height: 20px;">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="white" />
+                                <circle cx="17.5" cy="6.5" r="1.5" fill="white" />
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"
+                                style="width: 20px; height: 20px;">
+                                <path
+                                    d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Emergency Electrical</a></li>
+                        <li><a href="#">Residential Services</a></li>
+                        <li><a href="#">Lighting Installation</a></li>
+                        <li><a href="#">Switchboard Upgrades</a></li>
+                        <li><a href="#">Ceiling Fans</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Service Areas</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Parramatta</a></li>
+                        <li><a href="#">Harris Park</a></li>
+                        <li><a href="#">Westmead</a></li>
+                        <li><a href="#">Merrylands</a></li>
+                        <li><a href="#">Granville</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:1300941876">1300 941 876</a></li>
+                        <li><a href="#">Email
+                                Us</a></li>
+                        <li><a href="#contact">Get a Quote</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>CENTAUR COVENANT © 2026 · Lic. 245920C</span>
+                <span>Website concept by <a href="https://australianweb.agency">Australian Web Agency</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Emergency Toggle -->
+    <div class="emergency-toggle" onclick="toggleEmergencyMode()" title="Toggle Emergency Mode">
+        <svg class="icon-svg icon-svg-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            style="width: 32px; height: 32px;">
+            <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <circle cx="12" cy="17" r="0.5" fill="currentColor" />
+        </svg>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function toggleEmergencyMode() {
+            document.body.classList.toggle('emergency-active');
+
+            // Optional: Scroll to top when activating to ensure visibility
+            if (document.body.classList.contains('emergency-active')) {
+                window.scrollTo(0, 0);
+            }
+        }
+    </script>
+
+    <a href="https://australianweb.agency" class="concept-badge" target="_blank">
+        <div class="concept-badge-icon">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                style="width: 20px; height: 20px;">
+                <polygon points="12 2 15 10 23 12 15 14 12 22 9 14 1 12 9 10 12 2" fill="var(--primary)" />
+            </svg>
+        </div>
+        <div>CONCEPT DESIGN<span>by Australian Web Agency</span></div>
+    </a>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        const nav = document.querySelector('.nav');
+        const backToTop = document.querySelector('.back-to-top');
+        const scrollProgress = document.querySelector('.scroll-progress');
+
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+            backToTop.classList.toggle('visible', window.scrollY > 500);
+            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.classList.add('active');
+        });
+        document.querySelectorAll('a, button, .menu-card, .gallery-item').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) el.classList.add('active');
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        document.querySelectorAll('.menu-tab').forEach(tab => {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            document.querySelectorAll('.hero-img').forEach((img, i) => {
+                const speed = 0.03 * (i + 1);
+                img.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // CENTAUR COVENANT Footer
+        const footer = document.createElement('footer');
+        footer.style.cssText = 'background: var(--secondary-dark); color: var(--white); padding: 2rem; text-align: center; font-size: 0.9rem; margin-top: 4rem;';
+        footer.innerHTML = `
+            <p style="margin-bottom: 0.5rem;">&copy; 2026 Local Electrician Parramatta</p>
+            <p style="opacity: 0.8;">A <span style="color: var(--primary);">CENTAUR COVENANT</span> Production</p>
+        `;
+        document.body.appendChild(footer);
+    </script>
+</body>
+
+</html>

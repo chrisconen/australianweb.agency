@@ -50,50 +50,41 @@
     <!-- ============================================================
          NAVIGATION
          ============================================================ -->
-    <nav class="nav-shell" id="nav-shell">
-        <a href="index.html" class="nav-logo">
-            <span class="nav-logo-mark" aria-hidden="true">
-                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--gold);">
-                    <circle cx="50" cy="50" r="44"/>
-                    <circle cx="50" cy="50" r="6" fill="currentColor"/>
-                    <path d="M50 6 L50 94 M6 50 L94 50" stroke-width="1" opacity="0.4"/>
-                </svg>
-            </span>
-            AWA
-        </a>
+    <header class="nav-shell">
+        <nav class="nav" aria-label="Primary">
+            <a href="index.html" class="nav-logo" aria-label="Centaur OS home">
+                <span class="nav-logo-mark" aria-hidden="true">
+                    <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="50" cy="50" r="6" fill="currentColor"/><path d="M50 6 L50 94 M6 50 L94 50" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
+                </span>
+                AWA <span class="live">SYDNEY · LIVE</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html" class="active">Capabilities</a></li>
+                <li><a href="portfolio.html">Field Reports</a></li>
+                <li><a href="references.html">Voices</a></li>
+                <li><a href="about.html">Triad</a></li>
+            </ul>
+            <a href="contact.html" class="nav-cta">
+                <span>Initiate</span>
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5h6m-3-3 3 3-3 3"/></svg>
+            </a>
+            <button class="nav-mobile" id="nav-mobile-btn" aria-label="Open menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </button>
+        </nav>
+    </header>
 
-        <ul class="nav-links">
+    <div class="nav-drawer" id="nav-drawer">
+        <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="services.html" class="active">Capabilities</a></li>
+            <li><a href="services.html">Capabilities</a></li>
             <li><a href="portfolio.html">Field Reports</a></li>
             <li><a href="references.html">Voices</a></li>
             <li><a href="about.html">Triad</a></li>
+            <li><a href="contact.html">Initiate Transmission</a></li>
         </ul>
-
-                <a href="contact.html" class="nav-cta">
-            <span class="nav-cta-pulse"></span>
-            Initiate
-            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-
-        <button class="nav-burger" id="nav-burger" aria-label="Menu">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        </button>
-    </nav>
-
-    <!-- Mobile sheet -->
-    <div class="sheet-backdrop" id="sheet-backdrop"></div>
-    <aside class="mobile-sheet" id="mobile-sheet" aria-hidden="true">
-        <button class="mobile-sheet-close" id="mobile-sheet-close" aria-label="Close">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-        <a href="index.html">Home</a>
-        <a href="services.html" class="active">Capabilities</a>
-        <a href="portfolio.html">Field Reports</a>
-        <a href="references.html">Voices</a>
-        <a href="about.html">Triad</a>
-        <a href="contact.html">Initiate Transmission</a>
-    </aside>
+    </div>
 
     <!-- ============================================================
          HERO
@@ -615,11 +606,9 @@
     <script>(function(){'use strict';const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;const isDesktop=window.matchMedia('(hover: hover) and (pointer: fine)').matches;if(isDesktop&&!reduceMotion){const dot=document.getElementById('cursor-dot');const ring=document.getElementById('cursor-ring');if(dot&&ring){document.body.classList.add('cursor-loaded');}
 let ringX=0,ringY=0,mouseX=0,mouseY=0;document.addEventListener('mousemove',(e)=>{mouseX=e.clientX;mouseY=e.clientY;if(dot){dot.style.left=mouseX+'px';dot.style.top=mouseY+'px';}});(function followLoop(){ringX+=(mouseX-ringX)*0.15;ringY+=(mouseY-ringY)*0.15;if(ring){ring.style.left=ringX+'px';ring.style.top=ringY+'px';}
 requestAnimationFrame(followLoop);})();document.querySelectorAll('a, button, .module-card, .starter-card, .orbit-tile, .stack-item').forEach(el=>{el.addEventListener('mouseenter',()=>ring&&ring.classList.add('hover'));el.addEventListener('mouseleave',()=>ring&&ring.classList.remove('hover'));});}
-const navShell=document.getElementById('nav-shell');let lastScrollY=window.scrollY;function handleNavScroll(){const y=window.scrollY;if(navShell){navShell.classList.toggle('scrolled',y>40);}
+const navShell=document.querySelector('.nav-shell');let lastScrollY=window.scrollY;function handleNavScroll(){const y=window.scrollY;if(navShell){navShell.classList.toggle('scrolled',y>40);}
 lastScrollY=y;}
-window.addEventListener('scroll',handleNavScroll,{passive:true});handleNavScroll();const burger=document.getElementById('nav-burger');const sheet=document.getElementById('mobile-sheet');const backdrop=document.getElementById('sheet-backdrop');const sheetClose=document.getElementById('mobile-sheet-close');function openSheet(){sheet.classList.add('open');backdrop.classList.add('open');sheet.setAttribute('aria-hidden','false');}
-function closeSheet(){sheet.classList.remove('open');backdrop.classList.remove('open');sheet.setAttribute('aria-hidden','true');}
-if(burger)burger.addEventListener('click',openSheet);if(sheetClose)sheetClose.addEventListener('click',closeSheet);if(backdrop)backdrop.addEventListener('click',closeSheet);document.querySelectorAll('.mobile-sheet a').forEach(a=>a.addEventListener('click',closeSheet));document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeSheet();});if('IntersectionObserver'in window&&!reduceMotion){const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));}
+window.addEventListener('scroll',handleNavScroll,{passive:true});handleNavScroll();const mobileBtn=document.getElementById('nav-mobile-btn');const drawer=document.getElementById('nav-drawer');if(mobileBtn&&drawer){mobileBtn.addEventListener('click',()=>drawer.classList.toggle('open'));drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>drawer.classList.remove('open'));});}if('IntersectionObserver'in window&&!reduceMotion){const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));}
 document.querySelectorAll('a[href^="#mod-"], a[href="#terminal"]').forEach(a=>{a.addEventListener('click',(e)=>{const href=a.getAttribute('href');if(href&&href.startsWith('#')){const target=document.querySelector(href);if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'center'});}}});});})();</script>
 
 </body>

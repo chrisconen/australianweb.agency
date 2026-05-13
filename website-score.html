@@ -48,22 +48,35 @@
         
         #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.6; }
         
-        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; mix-blend-mode: difference; }
-		.nav.scrolled {background: var(--black); mix-blend-mode: normal; }
-        .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; }
-        .nav-links { display: flex; gap: 3rem; list-style: none; }
-        .nav-links a { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; position: relative; padding: 0.5rem 0; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 1px; background: var(--white); transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-cta { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2rem; border: 1px solid var(--white); transition: all 0.4s ease; }
-        .nav-cta:hover { background: var(--white); color: var(--black); }
-		.nav.menu-open {background: var(--black); mix-blend-mode: normal; }
-        
-        .nav-hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; position: relative; }
-        .nav-hamburger span { width: 30px; height: 2px; background: var(--white); transition: all 0.3s ease; }
-        .nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .nav-hamburger.active span:nth-child(2) { opacity: 0; }
-        .nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .nav-shell { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 200; width: min(1100px, calc(100vw - 48px)); opacity: 0; animation: navIn 0.8s 0.2s cubic-bezier(0.7, 0, 0.3, 1) forwards; }
+        @keyframes navIn { to { opacity: 1; } }
+        .nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; background: rgba(10, 10, 13, 0.6); backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%); border: 1px solid rgba(201, 169, 98, 0.15); border-radius: 100px; position: relative; transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; }
+        .nav-shell.scrolled .nav { background: rgba(8, 8, 11, 0.92); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border-color: rgba(201, 169, 98, 0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(201, 169, 98, 0.05); }
+        .nav::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, rgba(201,169,98,0.4), transparent 50%, rgba(74,144,164,0.4)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; opacity: 0.5; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 600; letter-spacing: 0.25em; color: #F5F5F0; font-size: 14px; }
+        .nav-logo-mark { width: 28px; height: 28px; display: grid; place-items: center; }
+        .nav-logo-mark svg { width: 100%; height: 100%; filter: drop-shadow(0 0 6px rgba(201,169,98,0.4)); }
+        .nav-logo .live { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #6FBAD0; font-weight: 400; padding: 2px 8px; border: 1px solid rgba(74,144,164,0.4); border-radius: 100px; margin-left: 6px; }
+        .nav-logo .live::before { content: ''; display: inline-block; width: 5px; height: 5px; background: #6FBAD0; border-radius: 50%; margin-right: 6px; vertical-align: middle; animation: hudPulse 1.6s ease-in-out infinite; box-shadow: 0 0 6px #6FBAD0; }
+        @keyframes hudPulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.7); } }
+        .nav-links { display: flex; list-style: none; gap: 4px; }
+        .nav-links a { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,245,240,0.6); padding: 8px 14px; border-radius: 100px; transition: color 0.3s, background 0.3s; position: relative; }
+        .nav-links a:hover { color: #E8D5A3; background: rgba(201,169,98,0.08); }
+        .nav-links a::after { display: none; }
+        .nav-cta { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #050507; background: linear-gradient(135deg, #E8D5A3, #C9A962); padding: 10px 18px; border-radius: 100px; font-weight: 700; transition: all 0.3s; position: relative; overflow: hidden; border: none; }
+        .nav-cta::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, #C9A962, #E8D5A3); opacity: 0; transition: opacity 0.3s; }
+        .nav-cta:hover { box-shadow: 0 0 24px rgba(201,169,98,0.4); background: linear-gradient(135deg, #E8D5A3, #C9A962); color: #050507; }
+        .nav-cta:hover::before { opacity: 1; }
+        .nav-cta > * { position: relative; z-index: 1; }
+        .nav-mobile { display: none; background: none; border: none; color: #C9A962; padding: 8px; cursor: pointer; }
+        @media (max-width: 960px) { .nav-links { display: none; } .nav-mobile { display: block; } .nav-cta { padding: 8px 14px; font-size: 10px; } }
+        @media (max-width: 480px) { .nav-shell { top: 12px; width: calc(100vw - 24px); } .nav { padding: 8px 12px; } .nav-logo .live { display: none; } }
+        .nav-drawer { position: fixed; inset: 0; background: rgba(5,5,7,0.95); backdrop-filter: blur(20px); z-index: 199; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s; }
+        .nav-drawer.open { display: flex; opacity: 1; }
+        .nav-drawer ul { list-style: none; text-align: center; }
+        .nav-drawer li { margin: 16px 0; }
+        .nav-drawer a { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.3em; color: #F5F5F0; text-transform: uppercase; }
+        .nav-drawer a:hover { color: #C9A962; }
         
         /* App Container */
         .app-container { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 4rem; position: relative; z-index: 1; }
@@ -161,14 +174,25 @@
         .restart-btn button:hover { color: var(--gold); }
         
         /* Footer */
-        .footer { padding: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1); position: relative; z-index: 1; }
-        .footer-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
-        .footer-left p { font-size: 0.8rem; color: rgba(255, 255, 255, 0.4); }
-        .footer-credit { font-size: 0.75rem; color: rgba(255, 255, 255, 0.3); margin-top: 0.5rem; }
-        .footer-credit a { color: var(--gold); }
-        .footer-right { display: flex; gap: 2rem; }
-        .footer-social { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); transition: color 0.3s ease; }
-        .footer-social:hover { color: var(--gold); }
+        .footer { padding: 60px 24px 40px; border-top: 1px solid rgba(201,169,98,0.1); background: rgba(5,5,7,0.6); backdrop-filter: blur(8px); position: relative; z-index: 1; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+        .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+        .footer-brand-mark { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 600; letter-spacing: 0.25em; color: #F5F5F0; font-size: 14px; }
+        .footer-brand-mark svg { width: 24px; height: 24px; color: #C9A962; }
+        .footer-brand p { font-style: italic; font-size: 14px; color: rgba(245,245,240,0.6); max-width: 320px; line-height: 1.5; }
+        .footer-col-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #C9A962; margin-bottom: 16px; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-links a { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(245,245,240,0.6); transition: color 0.3s; }
+        .footer-links a:hover { color: #E8D5A3; }
+        .footer-social { display: flex; gap: 12px; margin-top: 16px; }
+        .footer-social a { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid rgba(201,169,98,0.2); border-radius: 8px; color: rgba(245,245,240,0.6); transition: all 0.3s; }
+        .footer-social a:hover { border-color: #C9A962; color: #C9A962; background: rgba(201,169,98,0.05); }
+        .footer-social svg { width: 16px; height: 16px; }
+        .footer-log-static { max-width: 1200px; margin: 24px auto 0; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(201,169,98,0.1); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; color: rgba(245,245,240,0.6); }
+        .footer-log-ok { color: #6FBAD0; font-weight: 700; }
+        .footer-bottom { max-width: 1200px; margin: 48px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: rgba(245,245,240,0.3); flex-wrap: wrap; gap: 12px; }
+        .footer-pulse { display: inline-flex; align-items: center; gap: 8px; }
+        .footer-pulse::before { content: ''; width: 6px; height: 6px; background: #6FBAD0; border-radius: 50%; box-shadow: 0 0 6px #6FBAD0; animation: hudPulse 1.6s infinite; }
         
         .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
         
@@ -181,19 +205,15 @@
         .magnetic { transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
         
         @media (max-width: 968px) {
-            .nav { padding: 1.5rem 2rem; }
-            .nav-links, .nav-cta { display: none; }
-            .nav-hamburger { display: flex; }
-            .nav-links.active { display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000000; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; z-index: 999; }
-            .nav-links.active a { font-size: 1.5rem; }
-            
             .app-container { padding: 6rem 1.5rem 2rem; }
             .quiz-container { padding: 2rem 1.5rem; }
             .category-scores { grid-template-columns: repeat(2, 1fr); }
             .category-scores .category-card:last-child { grid-column: span 2; }
-            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-inner { grid-template-columns: 1fr 1fr; }
         }
-        
+
+        @media (max-width: 500px) { .footer-inner { grid-template-columns: 1fr; } }
+
         @media (max-width: 480px) {
             .category-scores { grid-template-columns: 1fr; }
             .category-scores .category-card:last-child { grid-column: span 1; }
@@ -210,23 +230,41 @@
     <div class="cursor-dot" id="cursorDot"></div>
     <canvas id="canvas-bg"></canvas>
     
-    <nav class="nav">
-        <a href="index.html" class="nav-logo magnetic">AWA</a>
-        <ul class="nav-links">
-            <li><a href="services.html" class="magnetic">Services</a></li>
-            <li><a href="portfolio.html" class="magnetic">Work</a></li>
-			<li><a href="references.html" class="magnetic">References</a></li>
-            <li><a href="website-score.html" class="magnetic">Free Score</a></li>
-            <li><a href="about.html" class="magnetic">About</a></li>
-            <li><a href="contact.html" class="magnetic">Contact</a></li>
+    <header class="nav-shell">
+        <nav class="nav" aria-label="Primary">
+            <a href="index.html" class="nav-logo" aria-label="Centaur OS home">
+                <span class="nav-logo-mark" aria-hidden="true">
+                    <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="50" cy="50" r="6" fill="currentColor"/><path d="M50 6 L50 94 M6 50 L94 50" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
+                </span>
+                AWA <span class="live">SYDNEY · LIVE</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Capabilities</a></li>
+                <li><a href="portfolio.html">Field Reports</a></li>
+                <li><a href="references.html">Voices</a></li>
+                <li><a href="about.html">Triad</a></li>
+            </ul>
+            <a href="contact.html" class="nav-cta">
+                <span>Initiate</span>
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5h6m-3-3 3 3-3 3"/></svg>
+            </a>
+            <button class="nav-mobile" id="nav-mobile-btn" aria-label="Open menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </button>
+        </nav>
+    </header>
+
+    <div class="nav-drawer" id="nav-drawer">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Capabilities</a></li>
+            <li><a href="portfolio.html">Field Reports</a></li>
+            <li><a href="references.html">Voices</a></li>
+            <li><a href="about.html">Triad</a></li>
+            <li><a href="contact.html">Initiate Transmission</a></li>
         </ul>
-        <a href="contact.html" class="nav-cta magnetic">Start Project</a>
-        <div class="nav-hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+    </div>
     
     <main class="app-container">
         <div class="app-wrapper">
@@ -297,25 +335,59 @@
     
     <footer class="footer">
         <div class="footer-inner">
-            <div class="footer-left">
-                <p>© 2025 Australian Web Agency. All rights reserved.</p>
-                <p class="footer-credit">Designed & developed by <a href="#">Claude AI</a> & Chris Conen</p>
+            <div class="footer-brand">
+                <div class="footer-brand-mark">
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="50" cy="50" r="44"/>
+                        <circle cx="50" cy="50" r="6" fill="currentColor"/>
+                        <path d="M50 6 L50 94 M6 50 L94 50" stroke-width="1" opacity="0.4"/>
+                    </svg>
+                    AWA·CENTAUR
+                </div>
+                <p>Australia's first AI–Human hybrid agency. Building living websites that compound revenue while you sleep.</p>
             </div>
-            <div class="footer-right">
-                <a href="#" class="footer-social magnetic">Instagram</a>
-                <a href="#" class="footer-social magnetic">LinkedIn</a>
-                <a href="#" class="footer-social magnetic">Behance</a>
+            <div>
+                <div class="footer-col-title">Navigate</div>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Work</a></li>
+                    <li><a href="references.html">Voices</a></li>
+                </ul>
             </div>
+            <div>
+                <div class="footer-col-title">Reach Us</div>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@australianweb.agency">info@australianweb.agency</a></li>
+                    <li><a href="contact.html">Contact Form</a></li>
+                    <li><a href="https://www.google.com/maps?q=Sydney+NSW" target="_blank" rel="noopener">Sydney, AU</a></li>
+                </ul>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/australianwebagency" target="_blank" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://x.com/website_sydney" target="_blank" aria-label="X">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l6.5 8L4 20h2l5.5-6.8L16 20h4l-6.8-8.5L19.5 4h-2l-5 6.2L8 4H4z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/chris-conen/" target="_blank" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-log-static">
+            <span class="footer-log-ok">[OK]</span> gemini_nexus.market_pulse :: detect_opportunity :: "autonomous_ai_systems" trending in Sydney
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-pulse">CENTAUR.OS · v22.06 · OPERATIONAL</div>
+            <div>© 2026 Australian Web Agency · The Centaur Covenant</div>
         </div>
     </footer>
     
     <script>
-		// ============================================
-	    // NAV SCROLL BG
-	    // ============================================
-	    window.addEventListener('scroll', () => {
-        document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 50);
-        });
+	        // ============================================
+        // NAV SCROLL BG
+        // ============================================
 		
         // ============================================
         // QUIZ DATA
@@ -790,24 +862,21 @@
             el.addEventListener('mouseleave', () => el.style.transform = 'translate(0,0)');
         });
         
-        // ============================================
-        // MOBILE MENU
-        // ============================================
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        hamburger?.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks?.classList.toggle('active');
-		    document.querySelector('.nav').classList.toggle('menu-open');
-            document.body.style.overflow = navLinks?.classList.contains('active') ? 'hidden' : '';
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger?.classList.remove('active');
-                navLinks?.classList.remove('active');
-                document.body.style.overflow = '';
+        // MOBILE NAV
+        const mobileBtn = document.getElementById('nav-mobile-btn');
+        const drawer = document.getElementById('nav-drawer');
+        if (mobileBtn && drawer) {
+            mobileBtn.addEventListener('click', () => drawer.classList.toggle('open'));
+            drawer.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => drawer.classList.remove('open'));
             });
-        });
+        }
+
+        // NAV SCROLL
+        const navShell = document.querySelector('.nav-shell');
+        window.addEventListener('scroll', () => {
+            if (navShell) navShell.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
     </script>
 </body>
 </html>

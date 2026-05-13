@@ -1,0 +1,37 @@
+{
+  "name": "livingjs",
+  "version": "0.1.0",
+  "description": "Turn any website into an autonomous AI agent. One script tag.",
+  "main": "dist/living.min.js",
+  "module": "dist/living.esm.js",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "npx serve examples/cosmetic-dental-demo",
+    "test": "node tests/run.js"
+  },
+  "keywords": [
+    "ai-agent",
+    "living-website",
+    "mcp",
+    "model-context-protocol",
+    "automation",
+    "lead-generation",
+    "chatbot-alternative",
+    "autonomous-website",
+    "ai-powered",
+    "dental",
+    "medical",
+    "legal"
+  ],
+  "author": "Australian Web Agency — The Centaur Covenant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisconen/livingjs.git"
+  },
+  "homepage": "https://australianweb.agency",
+  "bugs": {
+    "url": "https://github.com/chrisconen/livingjs/issues"
+  }
+}

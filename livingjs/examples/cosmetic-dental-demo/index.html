@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminous Dental Studio | Premium Cosmetic Dentistry Sydney</title>
+    <meta name="description" content="Transform your smile at Sydney's premier cosmetic dental studio. Veneers, implants, whitening & Invisalign. Book your free consultation today.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --border: #222;
+            --text: #f0f0f0;
+            --text-dim: #888;
+            --accent: #C9A962;
+            --accent-glow: rgba(201, 169, 98, 0.15);
+            --white: #ffffff;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* ─── Navigation ─── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10,10,10,0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        .nav-cta {
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { background: var(--accent); color: var(--bg); }
+
+        /* ─── Hero ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 50%, var(--accent-glow) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+            font-weight: 600;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.1rem 2.2rem;
+            background: var(--accent);
+            color: var(--bg);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201, 169, 98, 0.3);
+        }
+
+        /* ─── Trust Bar ─── */
+        .trust {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding: 3rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trust-item { text-align: center; }
+        .trust-number { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: var(--accent); }
+        .trust-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-top: 0.25rem; }
+
+        /* ─── Services ─── */
+        section { padding: 6rem 3rem; }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .service-name { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .service-desc { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 1rem; }
+        .service-price { font-size: 0.8rem; color: var(--accent); font-weight: 500; }
+
+        /* ─── Testimonials ─── */
+        .testimonials { background: var(--surface); }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+        }
+
+        .testimonial {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .testimonial-stars { color: var(--accent); margin-bottom: 1rem; font-size: 0.9rem; }
+        .testimonial-text { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 1rem; font-style: italic; }
+        .testimonial-author { font-weight: 500; font-size: 0.85rem; }
+        .testimonial-role { font-size: 0.75rem; color: var(--text-dim); }
+
+        /* ─── Booking Section ─── */
+        #booking {
+            background: var(--bg);
+            text-align: center;
+        }
+
+        .booking-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        .booking-form input:focus,
+        .booking-form select:focus,
+        .booking-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .booking-form select { cursor: pointer; }
+        .booking-form select option { background: var(--surface); }
+
+        .booking-submit {
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            padding: 1.1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: var(--sans);
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .booking-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(201, 169, 98, 0.3);
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            padding: 3rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .footer-badge {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            opacity: 0.6;
+        }
+
+        /* ─── Living.js Data Attributes (hidden by default) ─── */
+        [data-living-after-hours],
+        [data-living-emergency],
+        [data-living-nudge],
+        [data-living-value-prop] {
+            display: none;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .hero { padding: 7rem 1.5rem 3rem; }
+            section { padding: 4rem 1.5rem; }
+            .trust { gap: 2rem; flex-wrap: wrap; }
+            footer { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo">Luminous Dental</a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#booking">Book Now</a></li>
+        </ul>
+        <a href="#booking" class="nav-cta" data-living-cta>Free Consultation</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <p class="hero-label">Premium Cosmetic Dentistry • Sydney CBD</p>
+            <h1 class="hero-title">The smile you've been <em>thinking about</em></h1>
+            <p class="hero-subtitle">World-class veneers, implants, and smile makeovers. Crafted with precision. Delivered with care. Finance options available.</p>
+            <a href="#booking" class="hero-cta" data-living-cta>
+                <span>Book Free Consultation</span>
+                <span>→</span>
+            </a>
+        </div>
+
+        <!-- Living.js: After-hours message (hidden by default, shown by Living.js) -->
+        <div data-living-after-hours style="position:absolute; bottom:2rem; left:3rem; right:3rem; background:var(--surface); border:1px solid var(--accent); border-radius:12px; padding:1.5rem 2rem; max-width:500px;">
+            <p style="color:var(--accent); font-weight:600; margin-bottom:0.5rem;">We're currently closed</p>
+            <p style="color:var(--text-dim); font-size:0.9rem;">But you can book online 24/7. Choose your preferred time and we'll confirm first thing in the morning.</p>
+        </div>
+
+        <!-- Living.js: Emergency message -->
+        <div data-living-emergency style="position:absolute; top:6rem; right:3rem; background:#1a0000; border:1px solid #ff4444; border-radius:12px; padding:1.5rem 2rem; max-width:400px;">
+            <p style="color:#ff4444; font-weight:600; margin-bottom:0.5rem;">🚨 Dental Emergency?</p>
+            <p style="color:var(--text-dim); font-size:0.9rem;">Call our emergency line or leave your number below for an immediate callback.</p>
+            <a href="tel:+61280001234" style="display:inline-block; margin-top:0.75rem; padding:0.6rem 1.2rem; background:#ff4444; color:#fff; border-radius:6px; font-size:0.85rem; font-weight:600;">Call Now: (02) 8000 1234</a>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust" data-living-section="trust">
+        <div class="trust-item">
+            <div class="trust-number">15+</div>
+            <div class="trust-label">Years Experience</div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-number">5,000+</div>
+            <div class="trust-label">Smiles Transformed</div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-number">4.9</div>
+            <div class="trust-label">Google Rating</div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-number">0%</div>
+            <div class="trust-label">Interest Finance</div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section id="services" data-living-section="services">
+        <p class="section-label">Our Treatments</p>
+        <h2 class="section-title">Crafted for confidence</h2>
+        <div class="services-grid">
+            <div class="service-card" data-living-pricing>
+                <div class="service-icon">✨</div>
+                <h3 class="service-name">Porcelain Veneers</h3>
+                <p class="service-desc">Ultra-thin, custom-crafted shells that transform the appearance of your teeth. Natural-looking, stain-resistant, and built to last.</p>
+                <p class="service-price">From $1,200 per tooth</p>
+            </div>
+            <div class="service-card" data-living-pricing>
+                <div class="service-icon">🦷</div>
+                <h3 class="service-name">Dental Implants</h3>
+                <p class="service-desc">Permanent tooth replacement that looks, feels, and functions like natural teeth. Titanium posts with ceramic crowns.</p>
+                <p class="service-price">From $4,500 per implant</p>
+            </div>
+            <div class="service-card" data-living-pricing>
+                <div class="service-icon">💎</div>
+                <h3 class="service-name">Smile Makeover</h3>
+                <p class="service-desc">Complete smile transformation combining veneers, whitening, alignment, and contouring. Your dream smile, designed together.</p>
+                <p class="service-price">From $8,000</p>
+            </div>
+            <div class="service-card" data-living-pricing>
+                <div class="service-icon">⚡</div>
+                <h3 class="service-name">Zoom Whitening</h3>
+                <p class="service-desc">Professional in-chair whitening. Up to 8 shades whiter in a single 90-minute session. Instant, visible results.</p>
+                <p class="service-price">From $695</p>
+            </div>
+            <div class="service-card" data-living-pricing>
+                <div class="service-icon">🔄</div>
+                <h3 class="service-name">Invisalign</h3>
+                <p class="service-desc">Clear aligner therapy for straighter teeth without metal braces. Custom treatment plans with predictable results.</p>
+                <p class="service-price">From $4,200</p>
+            </div>
+            <div class="service-card" data-living-pricing>
+                <div class="service-icon">👑</div>
+                <h3 class="service-name">Crowns & Bridges</h3>
+                <p class="service-desc">Restore damaged or missing teeth with precision-crafted ceramic restorations. Same-day CEREC technology available.</p>
+                <p class="service-price">From $1,500</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof (hidden by default, surfaced by Living.js for price shoppers) -->
+    <div data-living-value-prop data-living-social-proof style="padding:2rem 3rem; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+        <p style="text-align:center; color:var(--accent); font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1rem;">Why patients choose Luminous</p>
+        <div style="display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; font-size:0.9rem; color:var(--text-dim);">
+            <span>✓ Payment plans from $50/week</span>
+            <span>✓ 10-year warranty on veneers</span>
+            <span>✓ Free parking in CBD</span>
+            <span>✓ Same-day emergency care</span>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials" data-living-section="testimonials">
+        <p class="section-label">Patient Stories</p>
+        <h2 class="section-title">Hear from our patients</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"I'd been self-conscious about my smile for years. Dr. Chen and her team gave me veneers that look completely natural. For the first time in a decade, I smile in photos."</p>
+                <p class="testimonial-author">Sarah K.</p>
+                <p class="testimonial-role">Porcelain Veneers — 8 units</p>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"The implant process was smoother than I expected. The team kept me informed at every step and the result is incredible — you can't tell which tooth is the implant."</p>
+                <p class="testimonial-author">Michael T.</p>
+                <p class="testimonial-role">Single Tooth Implant</p>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Booked online at midnight when I couldn't sleep from a broken tooth. Got a callback at 8am and was in the chair by 9. That's the kind of service you can't fake."</p>
+                <p class="testimonial-author">Emma L.</p>
+                <p class="testimonial-role">Emergency Crown</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nudge (shown by Living.js when visitor is idle) -->
+    <div data-living-nudge style="position:fixed; bottom:100px; right:20px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.2rem 1.5rem; max-width:300px; z-index:9999; box-shadow:0 8px 30px rgba(0,0,0,0.5);">
+        <p style="font-size:0.9rem; margin-bottom:0.75rem;">Not sure which treatment is right for you?</p>
+        <a href="#booking" style="color:var(--accent); font-size:0.85rem; font-weight:600;">Book a free consultation →</a>
+    </div>
+
+    <!-- Booking -->
+    <section id="booking" data-living-section="booking" data-living-booking>
+        <p class="section-label">Book Now</p>
+        <h2 class="section-title" style="margin-left:auto; margin-right:auto; text-align:center;">Your new smile starts here</h2>
+        <p style="text-align:center; color:var(--text-dim); margin-bottom:2.5rem; max-width:500px; margin-left:auto; margin-right:auto;">Free consultation. No obligation. We'll discuss your goals and create a personalised treatment plan.</p>
+        <form class="booking-form" data-living-form="booking">
+            <input type="text" name="name" placeholder="Full name" required>
+            <input type="email" name="email" placeholder="Email address" required>
+            <input type="tel" name="phone" placeholder="Phone number" required>
+            <select name="treatment" required>
+                <option value="" disabled selected>What are you interested in?</option>
+                <option value="veneers">Porcelain Veneers</option>
+                <option value="implants">Dental Implants</option>
+                <option value="smile-makeover">Smile Makeover</option>
+                <option value="whitening">Teeth Whitening</option>
+                <option value="invisalign">Invisalign</option>
+                <option value="crowns">Crowns & Bridges</option>
+                <option value="emergency">Emergency / Pain</option>
+                <option value="general">General Check-up</option>
+                <option value="other">Other / Not Sure</option>
+            </select>
+            <select name="timeframe">
+                <option value="" disabled selected>When would you like to come in?</option>
+                <option value="asap">As soon as possible</option>
+                <option value="this-week">This week</option>
+                <option value="next-week">Next week</option>
+                <option value="this-month">Within the month</option>
+                <option value="just-exploring">Just exploring options</option>
+            </select>
+            <textarea name="message" placeholder="Anything else we should know? (optional)" rows="3"></textarea>
+            <button type="submit" class="booking-submit">Book Free Consultation →</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            <span class="nav-logo" style="font-size:1rem;">Luminous Dental</span>
+            <span style="margin-left:1rem;">© 2026 • Sydney CBD</span>
+        </div>
+        <div class="footer-badge">
+            Powered by <a href="https://australianweb.agency" target="_blank" style="color:var(--accent);">Living.js</a> — Australian Web Agency
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════
+         LIVING.JS — This is where the magic happens.
+         One script. The website is now alive.
+         ═══════════════════════════════════════════════ -->
+    <script type="module">
+        import Living from '../../src/core/living.js';
+
+        Living.init({
+            business: 'cosmetic-dental',
+            location: 'Sydney CBD',
+
+            // AI configuration (optional — works without it using rule engine)
+            // ai: {
+            //     provider: 'anthropic',
+            //     apiKey: 'your-api-key-here',
+            // },
+
+            // MCP connections (optional — enables direct calendar/payment integration)
+            // mcp: [
+            //     { name: 'calendar', url: 'https://calendarmcp.googleapis.com/mcp/v1' },
+            //     { name: 'stripe', url: 'https://mcp.stripe.com' },
+            // ],
+
+            // Webhook for form submissions (optional — works with n8n, Make, Zapier)
+            // webhookUrl: 'https://your-n8n-instance.com/webhook/living-lead',
+
+            // Override business hours (default from preset: 8-17)
+            business: {
+                type: 'cosmetic-dental',
+                location: 'Sydney CBD',
+                hours: { start: 8, end: 17 },
+            },
+
+            // Decision engine checks every 5 seconds
+            decisionInterval: 5000,
+        });
+
+        // Debug: see what Living.js is doing
+        document.addEventListener('living:ready', () => {
+            console.log('Living.js state:', Living.getState());
+        });
+
+        // Handle form submissions locally (before webhook)
+        document.querySelector('[data-living-form="booking"]')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(e.target));
+            console.log('Booking submitted:', data);
+
+            // Show success
+            e.target.innerHTML = `
+                <div style="text-align:center; padding:3rem 0;">
+                    <div style="font-size:3rem; margin-bottom:1rem;">✓</div>
+                    <h3 style="font-family:var(--serif); font-size:1.5rem; margin-bottom:0.5rem; color:var(--accent);">Consultation Booked</h3>
+                    <p style="color:var(--text-dim);">Thank you ${data.name}! We'll confirm your appointment within 2 hours.</p>
+                </div>
+            `;
+        });
+    </script>
+
+</body>
+</html>

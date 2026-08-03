@@ -1003,16 +1003,25 @@
         const y = scrollY;
         bar.style.width = (max > 0 ? y / max * 100 : 0) + "%";
 
+        const last = sections.length - 1;
         let idx = 0, local = 0;
         for (let i = 0; i < sections.length; i++) {
           const p = (y - sections[i].offsetTop) / sections[i].offsetHeight;
           if (p >= 0) { idx = i; local = Math.min(1, p); }
         }
+        // The last section can never be scrolled through: its sticky pin holds the
+        // final 100vh, and the footer sits below. Rescale to the range the page can
+        // actually reach, or the closing shot stops ~55% in.
+        if (idx === last) {
+          const reach = (max - sections[last].offsetTop) / sections[last].offsetHeight;
+          if (reach > 0) local = Math.min(1, local / reach);
+        }
         // piecewise-linear: every section owns its own slice of footage
         target = T[idx] + (T_END[idx] - T[idx]) * local;
 
         sections.forEach((s, i) => {
-          const active = i === idx && local < .92;
+          // the closing copy stays put — there is nothing to scroll to after it
+          const active = i === idx && (local < .92 || i === last);
           s.querySelector(".pin").classList.toggle("in", active || (i === 0 && y < 40));
           s.querySelector(".wrap").style.setProperty("--drift", i === idx ? local.toFixed(3) : 0);
         });

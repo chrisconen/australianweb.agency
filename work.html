@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Work — AWA, Australian Web Agency</title>
+  <meta name="description"
+    content="Forty-four live demo builds from AWA — 3D motion, landing pages, SaaS and brand sites. Every one runs in the browser.">
+  <link rel="canonical" href="https://australianweb.agency/work.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://conen.dev">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #ffffff;
+      --dim: rgba(255, 255, 255, .7);
+      --gold: #ffc14d;
+      --sky: #4fb8ff;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+      --display: "Archivo", "Arial Black", Helvetica, sans-serif;
+      --text: "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    body {
+      background: #04060a;
+      color: var(--ink);
+      font-family: var(--text);
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: #04060a
+    }
+
+    /* ambient wash so the page is not a flat black sheet */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(70% 45% at 12% 0%, rgba(79, 184, 255, .16), transparent 70%),
+        radial-gradient(60% 45% at 92% 8%, rgba(255, 193, 77, .13), transparent 70%);
+    }
+
+    /* ---------- chrome ---------- */
+    header.top {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: clamp(1rem, 2.4vw, 1.6rem) clamp(1.2rem, 5vw, 3.4rem);
+      background: linear-gradient(to bottom, #04060a 40%, rgba(4, 6, 10, .82) 78%, transparent);
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: .7rem;
+      text-decoration: none;
+      color: var(--ink)
+    }
+
+    .brand b {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -.05em
+    }
+
+    .brand span {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--dim)
+    }
+
+    .top nav {
+      display: flex;
+      gap: clamp(1rem, 2.4vw, 2.2rem);
+      align-items: center
+    }
+
+    .top nav a {
+      color: var(--dim);
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      transition: color .3s
+    }
+
+    .top nav a:hover {
+      color: var(--gold)
+    }
+
+    .top nav a.pill {
+      color: #04060a;
+      background: var(--ink);
+      padding: .7rem 1.2rem;
+      border-radius: 100px
+    }
+
+    .top nav a.pill:hover {
+      background: var(--gold)
+    }
+
+    @media(max-width:760px) {
+      .top nav a:not(.pill) {
+        display: none
+      }
+    }
+
+    /* ---------- masthead ---------- */
+    main {
+      position: relative;
+      z-index: 10;
+      padding: 0 clamp(1.2rem, 5vw, 3.4rem) clamp(3rem, 8vw, 6rem)
+    }
+
+    .head {
+      padding: clamp(2rem, 6vw, 5rem) 0 clamp(1.6rem, 3vw, 2.4rem)
+    }
+
+    .over {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      font-size: clamp(.64rem, 1.1vw, .76rem);
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: clamp(.9rem, 2.2vw, 1.4rem);
+    }
+
+    .over::before {
+      content: "";
+      height: 3px;
+      width: clamp(24px, 4vw, 52px);
+      background: currentColor;
+      border-radius: 3px
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: .86;
+      letter-spacing: -.045em;
+      font-size: clamp(2.6rem, 8vw, 6.4rem);
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--gold)
+    }
+
+    .lead {
+      margin-top: clamp(1rem, 2.2vw, 1.6rem);
+      max-width: 60ch;
+      font-size: clamp(1rem, 1.35vw, 1.16rem);
+      line-height: 1.65;
+      color: var(--dim)
+    }
+
+    .lead strong {
+      color: var(--ink);
+      font-weight: 700
+    }
+
+    /* ---------- filter ---------- */
+    .filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      position: sticky;
+      top: clamp(3.8rem, 8vw, 5rem);
+      z-index: 20;
+      padding: .9rem 0 1.1rem;
+      background: linear-gradient(to bottom, #04060a 55%, rgba(4, 6, 10, .75) 85%, transparent);
+    }
+
+    .filter button {
+      all: unset;
+      cursor: pointer;
+      padding: .58rem 1.05rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      background: rgba(10, 14, 20, .5);
+      backdrop-filter: blur(10px);
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      transition: background .3s, border-color .3s, color .3s;
+    }
+
+    .filter button:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .filter button[aria-pressed="true"] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #04060a
+    }
+
+    .filter button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px
+    }
+
+    .filter .n {
+      margin-left: auto;
+      align-self: center;
+      font-size: .64rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ---------- grid ---------- */
+    .items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+      gap: clamp(.8rem, 1.6vw, 1.3rem);
+    }
+
+    .item {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s var(--ease), transform .6s var(--ease);
+      transition-delay: calc(var(--i) * 45ms);
+    }
+
+    .item.shown {
+      opacity: 1;
+      transform: none
+    }
+
+    .item[hidden] {
+      display: none
+    }
+
+    .item__hit {
+      all: unset;
+      box-sizing: border-box;
+      display: block;
+      cursor: pointer;
+      height: 100%;
+      padding: .55rem .55rem 1.05rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(10, 14, 20, .5);
+      backdrop-filter: blur(14px);
+      transition: border-color .35s, background .35s, transform .35s var(--ease);
+    }
+
+    .item__hit:hover,
+    .item__hit:focus-visible {
+      border-color: var(--gold);
+      background: rgba(10, 14, 20, .74);
+      transform: translateY(-3px);
+    }
+
+    .item__hit:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px
+    }
+
+    /* preview shell — the iframe is only ever mounted on intent */
+    .item__frame {
+      display: block;
+      position: relative;
+      aspect-ratio: 16/10;
+      border-radius: 13px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(79, 184, 255, .14), rgba(255, 193, 77, .1)),
+        #0a0e14;
+    }
+
+    .item__ph {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      text-align: center;
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(1rem, 2.2vw, 1.5rem);
+      letter-spacing: -.03em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .3);
+      transition: opacity .4s;
+    }
+
+    .item__frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1440px;
+      height: 900px;
+      border: 0;
+      transform: scale(var(--s, .28));
+      transform-origin: 0 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .6s var(--ease);
+    }
+
+    .item__frame iframe.up {
+      opacity: 1
+    }
+
+    .item__hit:hover .item__ph,
+    .item__hit:focus-visible .item__ph {
+      opacity: .12
+    }
+
+    .item__meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: .8rem;
+      padding: .85rem .5rem .3rem;
+    }
+
+    .item__meta b {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+    }
+
+    .item__meta em {
+      font-style: normal;
+      flex: none;
+      font-size: .56rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .item__desc {
+      padding: 0 .5rem;
+      font-size: .8rem;
+      line-height: 1.55;
+      color: var(--dim);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ---------- modal ---------- */
+    #peek {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: rgba(4, 6, 10, .93);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .4s var(--ease), visibility .4s;
+    }
+
+    #peek.open {
+      opacity: 1;
+      visibility: visible
+    }
+
+    .peek-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: clamp(.9rem, 2vw, 1.3rem) clamp(1rem, 3vw, 2rem);
+    }
+
+    .peek-bar h3 {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(1rem, 2.2vw, 1.5rem);
+      letter-spacing: -.03em;
+      text-transform: uppercase;
+    }
+
+    .peek-bar div {
+      display: flex;
+      gap: .5rem;
+      align-items: center
+    }
+
+    .peek-bar a,
+    .peek-bar button {
+      all: unset;
+      box-sizing: border-box;
+      cursor: pointer;
+      padding: .6rem 1.05rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, .26);
+      font-size: .64rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      transition: background .3s, color .3s, border-color .3s;
+    }
+
+    .peek-bar a:hover,
+    .peek-bar button:hover,
+    .peek-bar a:focus-visible,
+    .peek-bar button:focus-visible {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #04060a
+    }
+
+    #peekFrame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #04060a;
+      display: block
+    }
+
+    footer {
+      position: relative;
+      z-index: 10;
+      padding: clamp(2rem, 5vw, 3rem) clamp(1.2rem, 5vw, 3.4rem) clamp(3rem, 6vw, 4rem);
+      display: flex;
+      justify-content: space-between;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      border-top: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    footer a {
+      color: var(--dim);
+      text-decoration: none
+    }
+
+    footer a:hover {
+      color: var(--gold)
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .item {
+        opacity: 1 !important;
+        transform: none !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="top">
+    <a class="brand" href="/"><b>AWA</b><span>Australian Web Agency</span></a>
+    <nav>
+      <a href="/#services">Services</a>
+      <a href="/#process">Process</a>
+      <a href="/">&larr; Back to site</a>
+      <a href="/#contact" class="pill">Start a project</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="head">
+      <p class="over">The full archive</p>
+      <h1>Forty-four<br><em>live builds</em></h1>
+      <p class="lead">Every one of these runs in the browser — no mockups, no screenshots.
+        <strong>Hover a card to see it move, click to open it full screen.</strong>
+        Scroll-scrubbed film, WebGL, canvas orbits, kinetic type — the techniques behind them are the
+        ones we bring to client work.
+      </p>
+    </div>
+
+    <div class="filter" role="group" aria-label="Filter by discipline">
+      <button data-f="all" aria-pressed="true">All</button>
+      <button data-f="3d" aria-pressed="false">3D Motion</button>
+      <button data-f="hero" aria-pressed="false">Hero</button>
+      <button data-f="landing" aria-pressed="false">Landing</button>
+      <button data-f="saas" aria-pressed="false">SaaS</button>
+      <button data-f="brand" aria-pressed="false">Brand</button>
+      <span class="n" id="count"></span>
+    </div>
+
+    <div class="items" id="items">
+        <article class="item" data-cat="3d" style="--i:0">
+          <button class="item__hit" data-demo="aurum-noir" aria-label="Preview AURUM &amp; NOIR — ECLIPSE">
+            <span class="item__frame"><span class="item__ph">AURUM &amp; NOIR — ECLIPSE</span></span>
+            <span class="item__meta">
+              <b>AURUM &amp; NOIR — ECLIPSE</b>
+              <em>3D Motion</em>
+            </span>
+            <span class="item__desc">Cinematic 3D scroll site for a fictional Swiss luxury watch maison — scrolling spins the tourbillon chronograph through a 144-frame canvas orbit, while AI-generated macro and exploded-assembly films scrub frame-perfectly with the scroll.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:1">
+          <button class="item__hit" data-demo="atelier-ai" aria-label="Preview ATELIER AI">
+            <span class="item__frame"><span class="item__ph">ATELIER AI</span></span>
+            <span class="item__meta">
+              <b>ATELIER AI</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Premium AI interior design studio landing page with gorgeous layouts, high-end typography, before/after slider comparison, pricing interactive toggles, and smooth scroll animations.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:2">
+          <button class="item__hit" data-demo="elysian" aria-label="Preview ELYSIAN">
+            <span class="item__frame"><span class="item__ph">ELYSIAN</span></span>
+            <span class="item__meta">
+              <b>ELYSIAN</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Luxury editorial architecture and interior design portfolio template with custom WebGL grain background, GSAP-driven horizontal slide-ins, and elegant responsive grid galleries.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:3">
+          <button class="item__hit" data-demo="fit4fun" aria-label="Preview FIT 4 FUN">
+            <span class="item__frame"><span class="item__ph">FIT 4 FUN</span></span>
+            <span class="item__meta">
+              <b>FIT 4 FUN</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Fitness landing built in vanilla JS where the hero video is scrubbed frame-accurate by scroll with lerp smoothing — headline characters dissolve on descent while sections stack sticky beneath each other.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="3d" style="--i:4">
+          <button class="item__hit" data-demo="aetheris" aria-label="Preview AETHERIS VOYAGE">
+            <span class="item__frame"><span class="item__ph">AETHERIS VOYAGE</span></span>
+            <span class="item__meta">
+              <b>AETHERIS VOYAGE</b>
+              <em>3D Motion</em>
+            </span>
+            <span class="item__desc">Cinematic space-travel hero in React — layered 3D depth, blur-text entrances and liquid-glass panels, every beat choreographed in Framer Motion.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="saas" style="--i:5">
+          <button class="item__hit" data-demo="veldara" aria-label="Preview VELDARA">
+            <span class="item__frame"><span class="item__ph">VELDARA</span></span>
+            <span class="item__meta">
+              <b>VELDARA</b>
+              <em>SaaS</em>
+            </span>
+            <span class="item__desc">Developer-framework landing where the hero video is decomposed into canvas frames and scrubbed by scroll — particle fields and mask reveals carry the rest of the page.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="brand" style="--i:6">
+          <button class="item__hit" data-demo="asme" aria-label="Preview ASME">
+            <span class="item__frame"><span class="item__ph">ASME</span></span>
+            <span class="item__meta">
+              <b>ASME</b>
+              <em>Brand</em>
+            </span>
+            <span class="item__desc">Luxury-minimal agency site in React + Framer Motion — liquid-glass surfaces floating over full-bleed video sections, with restraint doing the heavy lifting.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:7">
+          <button class="item__hit" data-demo="toonhub" aria-label="Preview TOONHUB">
+            <span class="item__frame"><span class="item__ph">TOONHUB</span></span>
+            <span class="item__meta">
+              <b>TOONHUB</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Collectible-figure hero in React where a 3D character carousel spins vinyl toys into the spotlight — toy-store energy with razor-sharp Tailwind layout.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:8">
+          <button class="item__hit" data-demo="aethera" aria-label="Preview AETHERA STUDIO">
+            <span class="item__frame"><span class="item__ph">AETHERA STUDIO</span></span>
+            <span class="item__meta">
+              <b>AETHERA STUDIO</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Cinematic fullscreen hero with a looping video background and Instrument Serif display type — a studio opener built on quiet confidence.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:9">
+          <button class="item__hit" data-demo="asme-hero" aria-label="Preview ASME — HERO CUT">
+            <span class="item__frame"><span class="item__ph">ASME — HERO CUT</span></span>
+            <span class="item__meta">
+              <b>ASME — HERO CUT</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">The Asme identity distilled into a single viewport — liquid-glass UI floating over a full-screen looping video, dark and cinematic.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:10">
+          <button class="item__hit" data-demo="codenest" aria-label="Preview CODENEST">
+            <span class="item__frame"><span class="item__ph">CODENEST</span></span>
+            <span class="item__meta">
+              <b>CODENEST</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Coding-education hero streaming its background video over HLS — dark theme, self-hosted fonts, React running straight from vendor bundles.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:11">
+          <button class="item__hit" data-demo="cozypaws" aria-label="Preview COZYPAWS">
+            <span class="item__frame"><span class="item__ph">COZYPAWS</span></span>
+            <span class="item__meta">
+              <b>COZYPAWS</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Pet-store hero locked to a single viewport — no scroll, three fully rethought responsive breakpoints instead of one squeezed layout.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:0">
+          <button class="item__hit" data-demo="vex" aria-label="Preview VEX">
+            <span class="item__frame"><span class="item__ph">VEX</span></span>
+            <span class="item__meta">
+              <b>VEX</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Future-city hero riding a full-bleed video of a neon metropolis — typography and UI kept minimal so the motion does the talking.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:1">
+          <button class="item__hit" data-demo="atelier" aria-label="Preview ATELIER">
+            <span class="item__frame"><span class="item__ph">ATELIER</span></span>
+            <span class="item__meta">
+              <b>ATELIER</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Design-agency hero with self-hosted Instrument Serif and Inter, plus a fully animated hamburger menu — mobile treated as a first-class layout.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:2">
+          <button class="item__hit" data-demo="mentality" aria-label="Preview MĖNTALITY">
+            <span class="item__frame"><span class="item__ph">MĖNTALITY</span></span>
+            <span class="item__meta">
+              <b>MĖNTALITY</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Light-mode hero on a porcelain #EDEEF5 base with brand-green accents — glassmorphic navbar and Motion-driven entrances, polished to a shine.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:3">
+          <button class="item__hit" data-demo="lithos" aria-label="Preview LITHOS">
+            <span class="item__frame"><span class="item__ph">LITHOS</span></span>
+            <span class="item__meta">
+              <b>LITHOS</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Geology-brand hero where a cursor-following spotlight reveals a second image through a soft circular mask — the page literally responds to your hand.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:4">
+          <button class="item__hit" data-demo="synthetic-nature" aria-label="Preview SYNTHETIC NATURE">
+            <span class="item__frame"><span class="item__ph">SYNTHETIC NATURE</span></span>
+            <span class="item__meta">
+              <b>SYNTHETIC NATURE</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Organic-odyssey hero blending a cinematic nature loop with Framer Motion entrances — lush, slow and deliberate.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:5">
+          <button class="item__hit" data-demo="portal" aria-label="Preview PORTAL">
+            <span class="item__frame"><span class="item__ph">PORTAL</span></span>
+            <span class="item__meta">
+              <b>PORTAL</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Full-viewport cinematic hero — “Step Through. Work Smarter.” — every element entering on staggered blur-fade-up delays.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:6">
+          <button class="item__hit" data-demo="rivr" aria-label="Preview RIVR">
+            <span class="item__frame"><span class="item__ph">RIVR</span></span>
+            <span class="item__meta">
+              <b>RIVR</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">DeFi dashboard hero in sleek glassmorphism — frosted panels, Motion micro-animations and a premium fintech sheen.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:7">
+          <button class="item__hit" data-demo="stellar" aria-label="Preview STELLAR.AI">
+            <span class="item__frame"><span class="item__ph">STELLAR.AI</span></span>
+            <span class="item__meta">
+              <b>STELLAR.AI</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Clean white AI-product hero — Inter typography, centered max-width layout and custom CSS keyframe animations, no dark-mode crutch.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:8">
+          <button class="item__hit" data-demo="velorah" aria-label="Preview VELORAH">
+            <span class="item__frame"><span class="item__ph">VELORAH</span></span>
+            <span class="item__meta">
+              <b>VELORAH</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Fullscreen looping video hero with a glassmorphic nav and cinematic typography — built on shadcn/ui primitives without looking like it.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:9">
+          <button class="item__hit" data-demo="viktor" aria-label="Preview VIKTOR.">
+            <span class="item__frame"><span class="item__ph">VIKTOR.</span></span>
+            <span class="item__meta">
+              <b>VIKTOR.</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Personal-brand hero built around 200px display type with tight negative tracking — the name is the layout, revealed line by line.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:10">
+          <button class="item__hit" data-demo="terraelix" aria-label="Preview TERRAELIX">
+            <span class="item__frame"><span class="item__ph">TERRAELIX</span></span>
+            <span class="item__meta">
+              <b>TERRAELIX</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Wellness-supplement hero with word-by-word headline reveals over a botanical backdrop, closing on a three-panel footer strip.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:11">
+          <button class="item__hit" data-demo="aurai" aria-label="Preview AURAI">
+            <span class="item__frame"><span class="item__ph">AURAI</span></span>
+            <span class="item__meta">
+              <b>AURAI</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Always-on AI wellness companion introduced in a single breathing viewport — looping ambient video beneath calm, minimal UI.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:0">
+          <button class="item__hit" data-demo="jack" aria-label="Preview JACK — 3D CREATOR">
+            <span class="item__frame"><span class="item__ph">JACK — 3D CREATOR</span></span>
+            <span class="item__meta">
+              <b>JACK — 3D CREATOR</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Dark Kanit-typeset portfolio for a 3D artist — a wall of animated project marquees scrolling in opposite directions, driven by Framer Motion.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:1">
+          <button class="item__hit" data-demo="prisma" aria-label="Preview PRISMA">
+            <span class="item__frame"><span class="item__ph">PRISMA</span></span>
+            <span class="item__meta">
+              <b>PRISMA</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Creative-studio landing in three acts — hero, about, features — dark and moody with a warm cream palette and Framer Motion pacing.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:2">
+          <button class="item__hit" data-demo="skyelite" aria-label="Preview SKYELITE">
+            <span class="item__frame"><span class="item__ph">SKYELITE</span></span>
+            <span class="item__meta">
+              <b>SKYELITE</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Private-jet landing exported statically from Next.js — full-viewport video, muted luxury type and charter-grade restraint.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:3">
+          <button class="item__hit" data-demo="dentalhealth" aria-label="Preview DENTAL HEALTH">
+            <span class="item__frame"><span class="item__ph">DENTAL HEALTH</span></span>
+            <span class="item__meta">
+              <b>DENTAL HEALTH</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Dental-clinic landing — splash screen, fixed navbar and three full-screen sections, everything hand-rolled in one App.tsx with zero UI libraries.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:4">
+          <button class="item__hit" data-demo="axion" aria-label="Preview AXION STUDIO">
+            <span class="item__frame"><span class="item__ph">AXION STUDIO</span></span>
+            <span class="item__meta">
+              <b>AXION STUDIO</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Design-agency landing whose hero background is a live GPU shader — three sections of generative color running beneath crisp agency copy.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:5">
+          <button class="item__hit" data-demo="asme-ii" aria-label="Preview ASME — EDITION II">
+            <span class="item__frame"><span class="item__ph">ASME — EDITION II</span></span>
+            <span class="item__meta">
+              <b>ASME — EDITION II</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">The Asme brand rebuilt as a full black one-pager — Instrument Serif italics, philosophy and about chapters, Framer Motion holding the rhythm.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:6">
+          <button class="item__hit" data-demo="synapsex" aria-label="Preview SYNAPSEX">
+            <span class="item__frame"><span class="item__ph">SYNAPSEX</span></span>
+            <span class="item__meta">
+              <b>SYNAPSEX</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Neural-AI interface landing set entirely in Space Mono — black screen, white text, full-viewport video sections and a watermark display face.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:7">
+          <button class="item__hit" data-demo="orbis" aria-label="Preview ORBIS.NFT">
+            <span class="item__frame"><span class="item__ph">ORBIS.NFT</span></span>
+            <span class="item__meta">
+              <b>ORBIS.NFT</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">NFT drop site in four sections of deep-space video — liquid-glass panels, Anton display type and self-hosted everything.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:8">
+          <button class="item__hit" data-demo="michael-smith" aria-label="Preview MICHAEL SMITH">
+            <span class="item__frame"><span class="item__ph">MICHAEL SMITH</span></span>
+            <span class="item__meta">
+              <b>MICHAEL SMITH</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Dark personal portfolio mixing GSAP scroll choreography with Framer Motion micro-moves and HLS-streamed video — three motion systems, one voice.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:9">
+          <button class="item__hit" data-demo="mindloop" aria-label="Preview MINDLOOP">
+            <span class="item__frame"><span class="item__ph">MINDLOOP</span></span>
+            <span class="item__meta">
+              <b>MINDLOOP</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Newsletter platform in strict monochrome — pure black, white foreground, Instrument Serif italics as the only ornament allowed in.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:10">
+          <button class="item__hit" data-demo="questly" aria-label="Preview QUESTLY">
+            <span class="item__frame"><span class="item__ph">QUESTLY</span></span>
+            <span class="item__meta">
+              <b>QUESTLY</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">SaaS hero for a citation tool — “Get cited. Effortlessly.” — full-viewport, icon-precise and lean enough to load instantly.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:11">
+          <button class="item__hit" data-demo="studio-a" aria-label="Preview STUDIO A">
+            <span class="item__frame"><span class="item__ph">STUDIO A</span></span>
+            <span class="item__meta">
+              <b>STUDIO A</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Web-design agency landing in two full-screen movements — liquid-glass surfaces, blur/fade choreography and digital experiences built to outlast trends.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:0">
+          <button class="item__hit" data-demo="bloom" aria-label="Preview BLOOM">
+            <span class="item__frame"><span class="item__ph">BLOOM</span></span>
+            <span class="item__meta">
+              <b>BLOOM</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">AI plant-design product hero on a bright base — Poppins UI paired with Source Serif italics, a looping botanical video breathing behind the copy.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:1">
+          <button class="item__hit" data-demo="buildwithus" aria-label="Preview BUILDWITHUS">
+            <span class="item__frame"><span class="item__ph">BUILDWITHUS</span></span>
+            <span class="item__meta">
+              <b>BUILDWITHUS</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Studio hero pairing Instrument Serif display italics with Inter over a full-bleed looping video — warm, confident and quietly premium.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:2">
+          <button class="item__hit" data-demo="designpro" aria-label="Preview DESIGNPRO">
+            <span class="item__frame"><span class="item__ph">DESIGNPRO</span></span>
+            <span class="item__meta">
+              <b>DESIGNPRO</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Minimal design-studio hero with self-hosted Inter and a looping showreel video — restraint carrying the whole viewport.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="saas" style="--i:3">
+          <button class="item__hit" data-demo="nexora" aria-label="Preview NEXORA">
+            <span class="item__frame"><span class="item__ph">NEXORA</span></span>
+            <span class="item__meta">
+              <b>NEXORA</b>
+              <em>SaaS</em>
+            </span>
+            <span class="item__desc">Automation-SaaS landing where Instrument Serif accents float over Inter body copy and a full-bleed workflow video — smarter automation, sold on calm.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="brand" style="--i:4">
+          <button class="item__hit" data-demo="mainframe" aria-label="Preview MAINFRAME">
+            <span class="item__frame"><span class="item__ph">MAINFRAME</span></span>
+            <span class="item__meta">
+              <b>MAINFRAME</b>
+              <em>Brand</em>
+            </span>
+            <span class="item__desc">Retro-futurist creative-agency site set in self-hosted Helvetica Now — analog warmth and grid discipline over a looping video backdrop.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:5">
+          <button class="item__hit" data-demo="lumora" aria-label="Preview LUMORA">
+            <span class="item__frame"><span class="item__ph">LUMORA</span></span>
+            <span class="item__meta">
+              <b>LUMORA</b>
+              <em>Landing</em>
+            </span>
+            <span class="item__desc">Meditation-app landing across four full-screen video movements — Instrument Serif italics carrying “clarity in an endlessly noisy universe.”</span>
+          </button>
+        </article>
+        <article class="item" data-cat="hero" style="--i:6">
+          <button class="item__hit" data-demo="orbital" aria-label="Preview ORBITAL">
+            <span class="item__frame"><span class="item__ph">ORBITAL</span></span>
+            <span class="item__meta">
+              <b>ORBITAL</b>
+              <em>Hero</em>
+            </span>
+            <span class="item__desc">Light-mode space-exploration hero with a live typewriter telemetry feed and mask-clipped rise-in headlines — React and Framer Motion compiled in the browser.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="saas" style="--i:7">
+          <button class="item__hit" data-demo="transformdata" aria-label="Preview TRANSFORM DATA">
+            <span class="item__frame"><span class="item__ph">TRANSFORM DATA</span></span>
+            <span class="item__meta">
+              <b>TRANSFORM DATA</b>
+              <em>SaaS</em>
+            </span>
+            <span class="item__desc">Data-AI SaaS hero built around a frosted glass command box floating over a looping video — Fustat display type, GPT-4o badge and all.</span>
+          </button>
+        </article>
+    </div>
+  </main>
+
+  <div id="peek" role="dialog" aria-modal="true" aria-label="Live demo preview" aria-hidden="true">
+    <div class="peek-bar">
+      <h3 id="peekTitle"></h3>
+      <div>
+        <a id="peekOpen" href="#" target="_blank" rel="noopener">Open in new tab &#8599;</a>
+        <button id="peekClose" aria-label="Close preview">Close &#10005;</button>
+      </div>
+    </div>
+    <iframe id="peekFrame" title="Live demo preview"></iframe>
+  </div>
+
+  <footer>
+    <div>&copy; 2026 AWA — Australian Web Agency</div>
+    <div><a href="mailto:hello@australianweb.agency">hello@australianweb.agency</a></div>
+    <div><a href="/">australianweb.agency</a></div>
+  </footer>
+
+  <script>
+    (() => {
+      const BASE = "https://conen.dev/work/";
+      const items = [...document.querySelectorAll(".item")];
+      const count = document.getElementById("count");
+
+      // ---- reveal on scroll ----
+      const seen = new IntersectionObserver((es, o) => {
+        es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("shown"); o.unobserve(e.target); } });
+      }, { rootMargin: "0px 0px -8% 0px" });
+      items.forEach(i => seen.observe(i));
+
+      // ---- filter ----
+      const chips = [...document.querySelectorAll(".filter button")];
+      function apply(f) {
+        let n = 0;
+        items.forEach(i => {
+          const on = f === "all" || i.dataset.cat === f;
+          i.hidden = !on;
+          if (on) { n++; i.classList.add("shown"); }
+        });
+        count.textContent = n + " / " + items.length;
+        chips.forEach(c => c.setAttribute("aria-pressed", c.dataset.f === f));
+      }
+      chips.forEach(c => c.addEventListener("click", () => apply(c.dataset.f)));
+      apply("all");
+
+      // ---- hover preview ----
+      // ponytail: one live iframe for the whole grid. Forty-four demos, each with its
+      // own video, would be hundreds of megabytes of autoplay if they all mounted.
+      const fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
+      let hot = null, timer = 0;
+
+      function mount(hit) {
+        if (hot === hit) return;
+        unmount();
+        hot = hit;
+        const shell = hit.querySelector(".item__frame");
+        const f = document.createElement("iframe");
+        f.src = BASE + hit.dataset.demo + "/";
+        f.setAttribute("tabindex", "-1");
+        f.setAttribute("aria-hidden", "true");
+        f.setAttribute("scrolling", "no");
+        f.style.setProperty("--s", (shell.clientWidth / 1440).toFixed(4));
+        f.addEventListener("load", () => f.classList.add("up"), { once: true });
+        shell.appendChild(f);
+      }
+      function unmount() {
+        if (!hot) return;
+        const f = hot.querySelector("iframe");
+        if (f) f.remove();
+        hot = null;
+      }
+
+      if (fine) document.getElementById("items").addEventListener("pointerover", e => {
+        const hit = e.target.closest(".item__hit");
+        clearTimeout(timer);
+        if (!hit) { timer = setTimeout(unmount, 260); return; }
+        timer = setTimeout(() => mount(hit), 340);   // intent, not a fly-past
+      });
+
+      // ---- fullscreen preview ----
+      const peek = document.getElementById("peek"),
+        frame = document.getElementById("peekFrame"),
+        peekTitle = document.getElementById("peekTitle"),
+        peekOpen = document.getElementById("peekOpen"),
+        peekClose = document.getElementById("peekClose");
+      let opener = null, teardown = 0;
+
+      function openPeek(hit) {
+        const url = BASE + hit.dataset.demo + "/";
+        opener = hit;
+        clearTimeout(teardown);
+        unmount();
+        peekTitle.textContent = hit.querySelector(".item__meta b").textContent;
+        peekOpen.href = url;
+        frame.src = url;
+        peek.classList.add("open");
+        peek.setAttribute("aria-hidden", "false");
+        document.documentElement.style.overflow = "hidden";
+        peekClose.focus();
+      }
+      function closePeek() {
+        peek.classList.remove("open");
+        peek.setAttribute("aria-hidden", "true");
+        document.documentElement.style.overflow = "";
+        teardown = setTimeout(() => { frame.src = "about:blank"; }, 450);
+        if (opener) opener.focus();
+      }
+
+      document.getElementById("items").addEventListener("click", e => {
+        const hit = e.target.closest(".item__hit");
+        if (hit) openPeek(hit);
+      });
+      peekClose.addEventListener("click", closePeek);
+      addEventListener("keydown", e => {
+        if (e.key === "Escape" && peek.classList.contains("open")) closePeek();
+      });
+    })();
+  </script>
+</body>
+
+</html>

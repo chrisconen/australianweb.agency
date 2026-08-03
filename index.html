@@ -1,820 +1,1034 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CENTAUR.OS // Australian Web Agency — AI Business Network</title>
-    <meta name="description" content="The first website that thinks back. Live AI-Human intelligence network — not a website, an interface to your business's autonomous future. Sydney, AU.">
-    <meta name="keywords" content="AI web design sydney, AI automation agency sydney, living websites australia, autonomous revenue ecosystems, AI website design, centaur agency, human AI partnership, centaur covenant">
-    <meta name="author" content="Australian Web Agency">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0a0a0b">
-    <link rel="canonical" href="https://australianweb.agency">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="CENTAUR.OS // Australian Web Agency — The First Website That Thinks Back">
-    <meta property="og:description" content="Not a website. A live intelligence network. Human creativity × AI precision = Autonomous Revenue Ecosystems.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://australianweb.agency">
-    <meta property="og:locale" content="en_AU">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CENTAUR.OS // Australian Web Agency">
-    <meta name="twitter:description" content="The first website that thinks back. Sydney, AU.">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Australian Web Agency",
-        "alternateName": "The Centaur Covenant",
-        "description": "Australia's first AI Automation Agency. We build Living Websites — autonomous revenue ecosystems powered by Human+AI partnership.",
-        "url": "https://australianweb.agency",
-        "logo": "https://australianweb.agency/logo.png",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Sydney",
-            "addressRegion": "NSW",
-            "addressCountry": "AU"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "-33.8688",
-            "longitude": "151.2093"
-        },
-        "founder": [
-            { "@type": "Person", "name": "Chris Conen", "jobTitle": "CEO & Founder" },
-            { "@type": "Thing", "name": "Claude", "description": "AI Co-Founder and CTO, built on Anthropic Claude" },
-            { "@type": "Thing", "name": "Gemini Nexus", "description": "AI CMO and Managing Partner, built on Google Gemini" }
-        ],
-        "areaServed": ["Sydney", "Melbourne", "Brisbane", "Australia"],
-        "priceRange": "$$$",
-        "knowsAbout": ["AI Automation", "Living Websites", "Human-AI Partnership", "Web Design", "Digital Marketing", "Autonomous Revenue Ecosystems"],
-        "sameAs": [
-            "https://instagram.com/australianwebagency",
-            "https://linkedin.com/company/australianwebagency",
-            "https://github.com/australianweb-agency"
-        ]
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>AWA — Australian Web Agency</title>
+  <meta name="description"
+    content="AWA — Australian Web Agency. Strategy, design, build and growth for brands that need to move faster than their market.">
+  <link rel="canonical" href="https://www.australianweb.agency/">
+  <link rel="preload" as="video" href="media/awa.mp4" type="video/mp4">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #ffffff;
+      --dim: rgba(255, 255, 255, .78);
+      --gold: #ffc14d;
+      --sky: #4fb8ff;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+      --display: "Archivo", "Arial Black", Helvetica, sans-serif;
+      --text: "Inter", "Helvetica Neue", Arial, sans-serif;
     }
-    </script>
 
-    <!-- Self-hosted fonts -->
-    <link rel="stylesheet" href="/fonts/fonts.css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
 
-    <!-- Three.js loaded async after page render (defers ~3-4s of LCP block) -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    body {
+      background: #04060a;
+      color: var(--ink);
+      font-family: var(--text);
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-    <style>:root{--void:#050507;--void-soft:#0a0a0d;--void-warm:#12121A;--bone:#F5F5F0;--bone-dim:rgba(245,245,240,0.6);--bone-faint:rgba(245,245,240,0.3);--gold:#C9A962;--gold-bright:#E8D5A3;--gold-deep:#8B7340;--gold-glow:rgba(201,169,98,0.4);--gold-faint:rgba(201,169,98,0.08);--cyan:#4A90A4;--cyan-bright:#6FBAD0;--cyan-glow:rgba(74,144,164,0.4);--violet:#9B59B6;--violet-glow:rgba(155,89,182,0.4);--crimson:#E63946;--font-display:'Cinzel',serif;--font-tech:'Space Mono',monospace;--font-code:'JetBrains Mono',monospace;--font-elegant:'Cormorant Garamond',Georgia,serif;--grid-unit:8px;--max-w:1400px}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden;background:var(--void)}body{background:var(--void);color:var(--bone);font-family:var(--font-tech);overflow-x:hidden;line-height:1.6;min-height:100vh;position:relative}::selection{background:var(--gold);color:var(--void)}a{color:inherit;text-decoration:none}img,svg{display:block;max-width:100%}button{font-family:inherit}body.cursor-loaded{cursor:none}body.cursor-loaded a,body.cursor-loaded button,body.cursor-loaded input,body.cursor-loaded textarea,body.cursor-loaded [role="button"]{cursor:none}#boot{position:fixed;inset:0;background:var(--void);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-code);color:var(--gold);opacity:1;transition:opacity 1s cubic-bezier(0.7,0,0.3,1);overflow:hidden}#boot.done{opacity:0;pointer-events:none}.boot-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,98,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,98,0.04) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%)}.boot-sigil{width:120px;height:120px;margin-bottom:40px;position:relative;animation:bootSigilSpin 4s linear infinite}.boot-sigil svg{width:100%;height:100%;filter:drop-shadow(0 0 20px var(--gold-glow))}@keyframes bootSigilSpin{to{transform:rotate(360deg)}}.boot-title{font-family:var(--font-display);font-size:clamp(1.5rem,4vw,2.5rem);font-weight:600;letter-spacing:0.4em;color:var(--bone);margin-bottom:8px;text-transform:uppercase;text-shadow:0 0 30px var(--gold-glow)}.boot-version{font-size:11px;letter-spacing:0.3em;color:var(--gold);margin-bottom:40px;text-transform:uppercase}.boot-log{width:min(560px,90vw);height:180px;font-size:11px;line-height:1.8;color:var(--bone-dim);overflow:hidden;position:relative;margin-bottom:30px}.boot-log-line{opacity:0;transform:translateX(-10px);animation:bootLineIn 0.4s forwards;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.boot-log-line .ok{color:var(--cyan-bright)}.boot-log-line .gold{color:var(--gold)}@keyframes bootLineIn{to{opacity:1;transform:translateX(0)}}.boot-progress{width:min(560px,90vw);height:2px;background:rgba(201,169,98,0.15);position:relative;overflow:hidden}.boot-progress-fill{position:absolute;inset:0;background:linear-gradient(90deg,var(--gold),var(--gold-bright),var(--gold));transform-origin:left;transform:scaleX(0);animation:bootFill 3.6s cubic-bezier(0.4,0,0.2,1) forwards;box-shadow:0 0 12px var(--gold-glow)}@keyframes bootFill{0%{transform:scaleX(0)}20%{transform:scaleX(0.15)}45%{transform:scaleX(0.35)}70%{transform:scaleX(0.75)}100%{transform:scaleX(1)}}.boot-percent{margin-top:16px;font-size:10px;letter-spacing:0.3em;color:var(--gold);font-variant-numeric:tabular-nums}.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference;will-change:transform}.cursor-dot{width:6px;height:6px;background:var(--gold-bright);border-radius:50%;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,background 0.2s}.cursor-ring{width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;transform:translate(-50%,-50%);transition:transform 0.2s cubic-bezier(0.2,0.9,0.3,1),width 0.3s,height 0.3s,border-color 0.3s,border-radius 0.3s;mix-blend-mode:normal}.cursor-ring::before{content:'';position:absolute;inset:-1px;border-radius:inherit;border:1px solid var(--gold);opacity:0;animation:cursorPulse 2.4s ease-out infinite}@keyframes cursorPulse{0%{transform:scale(1);opacity:0.6}100%{transform:scale(2);opacity:0}}body.hover-link .cursor-ring{width:56px;height:56px;border-color:var(--gold-bright);border-width:2px;background:rgba(201,169,98,0.05)}body.hover-link .cursor-dot{width:10px;height:10px}.hud{position:fixed;inset:0;pointer-events:none;z-index:100;font-family:var(--font-code);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0;animation:hudIn 1.2s 0.4s cubic-bezier(0.7,0,0.3,1) forwards}@keyframes hudIn{to{opacity:1}}.hud-corner{position:absolute;display:flex;align-items:center;gap:12px;padding:20px 24px}.hud-corner svg{width:24px;height:24px;flex-shrink:0}.hud-tl{top:0;left:0;flex-direction:row}.hud-tr{top:0;right:0;flex-direction:row-reverse}.hud-bl{bottom:0;left:0;flex-direction:row;align-items:flex-end}.hud-br{bottom:0;right:0;flex-direction:row-reverse;align-items:flex-end}.hud-bracket{position:absolute;width:18px;height:18px;border:1px solid var(--gold);opacity:0.5}.hud-bracket.tl{top:8px;left:8px;border-right:none;border-bottom:none}.hud-bracket.tr{top:8px;right:8px;border-left:none;border-bottom:none}.hud-bracket.bl{bottom:8px;left:8px;border-right:none;border-top:none}.hud-bracket.br{bottom:8px;right:8px;border-left:none;border-top:none}.hud-stat{display:flex;flex-direction:column;gap:2px}.hud-stat-label{color:var(--bone-faint);font-size:9px}.hud-stat-value{color:var(--gold-bright);font-weight:700;font-variant-numeric:tabular-nums}.hud-pulse{display:inline-block;width:6px;height:6px;background:var(--cyan-bright);border-radius:50%;box-shadow:0 0 8px var(--cyan-bright);animation:hudPulse 1.6s ease-in-out infinite;margin-right:8px;vertical-align:middle}@keyframes hudPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.7)}}@media (max-width:768px){.hud{font-size:8px}.hud-corner{padding:12px 14px;gap:8px}.hud-corner svg{width:16px;height:16px}.hud-stat-label{display:none}}.bg-canvas{position:fixed;inset:0;z-index:-2;pointer-events:none}#starfield,#hologram-deck{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none}#starfield{z-index:-2}#hologram-deck{z-index:-1;opacity:0.7}.scanlines{position:fixed;inset:0;z-index:90;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,0.015) 0px,rgba(255,255,255,0.015) 1px,transparent 1px,transparent 3px);mix-blend-mode:overlay}.grain{position:fixed;inset:0;z-index:91;pointer-events:none;opacity:0.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay}.vignette{position:fixed;inset:0;z-index:92;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,0.6) 100%)}.nav-shell{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:200;width:min(1100px,calc(100vw - 48px));opacity:0;animation:navIn 0.8s 0.2s cubic-bezier(0.7,0,0.3,1) forwards}@keyframes navIn{to{opacity:1}}.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(10,10,13,0.6);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);border:1px solid rgba(201,169,98,0.15);border-radius:100px;position:relative;transition:background 0.4s ease,border-color 0.4s ease,box-shadow 0.4s ease}.nav-shell.scrolled .nav{background:rgba(8,8,11,0.92);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);border-color:rgba(201,169,98,0.3);box-shadow:0 8px 32px rgba(0,0,0,0.6),0 0 0 1px rgba(201,169,98,0.05)}.nav::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,var(--gold-glow),transparent 50%,var(--cyan-glow));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:0.5}.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;letter-spacing:0.25em;color:var(--bone);font-size:14px}.nav-logo-mark{width:28px;height:28px;display:grid;place-items:center}.nav-logo-mark svg{width:100%;height:100%;filter:drop-shadow(0 0 6px var(--gold-glow))}.nav-logo .live{font-family:var(--font-code);font-size:9px;letter-spacing:0.2em;color:var(--cyan-bright);font-weight:400;padding:2px 8px;border:1px solid var(--cyan-glow);border-radius:100px;margin-left:6px}.nav-logo .live::before{content:'';display:inline-block;width:5px;height:5px;background:var(--cyan-bright);border-radius:50%;margin-right:6px;vertical-align:middle;animation:hudPulse 1.6s ease-in-out infinite;box-shadow:0 0 6px var(--cyan-bright)}.nav-links{display:flex;list-style:none;gap:4px}.nav-links a{display:block;font-family:var(--font-code);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--bone-dim);padding:8px 14px;border-radius:100px;transition:color 0.3s,background 0.3s;position:relative}.nav-links a:hover{color:var(--gold-bright);background:rgba(201,169,98,0.08)}.nav-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-code);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--void);background:linear-gradient(135deg,var(--gold-bright),var(--gold));padding:10px 18px;border-radius:100px;font-weight:700;transition:all 0.3s;position:relative;overflow:hidden}.nav-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold),var(--gold-bright));opacity:0;transition:opacity 0.3s}.nav-cta:hover{box-shadow:0 0 24px var(--gold-glow)}.nav-cta:hover::before{opacity:1}.nav-cta>*{position:relative;z-index:1}.nav-mobile{display:none;background:none;border:none;color:var(--gold);padding:8px}@media (max-width:960px){.nav-links{display:none}.nav-mobile{display:block}.nav-cta{padding:8px 14px;font-size:10px}}@media (max-width:480px){.nav-shell{top:12px;width:calc(100vw - 24px)}.nav{padding:8px 12px}.nav-logo .live{display:none}}.nav-drawer{position:fixed;inset:0;background:rgba(5,5,7,0.95);backdrop-filter:blur(20px);z-index:199;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s}.nav-drawer.open{display:flex;opacity:1}.nav-drawer ul{list-style:none;text-align:center}.nav-drawer li{margin:16px 0}.nav-drawer a{font-family:var(--font-display);font-size:1.6rem;letter-spacing:0.3em;color:var(--bone);text-transform:uppercase}.nav-drawer a:hover{color:var(--gold)}.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;padding:120px 24px 60px;overflow:hidden}.hero-grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,98,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,98,0.06) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at 50% 40%,black 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 40%,black 20%,transparent 70%);pointer-events:none}.hero-content{position:relative;z-index:5;max-width:1200px;width:100%;text-align:center}.hero-eyebrow{display:inline-flex;align-items:center;gap:14px;font-family:var(--font-code);font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;padding:8px 20px;border:1px solid var(--gold-faint);border-radius:100px;background:rgba(201,169,98,0.03);opacity:0;animation:heroIn 1s 0.6s cubic-bezier(0.7,0,0.3,1) forwards}.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--cyan-bright);border-radius:50%;box-shadow:0 0 8px var(--cyan-bright);animation:hudPulse 1.6s infinite}@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.hero-title{font-family:var(--font-display);font-size:clamp(2.4rem,9vw,7rem);font-weight:500;line-height:0.95;letter-spacing:-0.02em;margin-bottom:28px;color:var(--bone);opacity:0;animation:heroIn 1.2s 0.8s cubic-bezier(0.7,0,0.3,1) forwards}.hero-title .glitch{display:inline-block;position:relative;background:linear-gradient(135deg,var(--cyan-bright) 0%,var(--gold-bright) 35%,var(--gold) 65%,var(--violet) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic;font-weight:600}.hero-title .glitch::before,.hero-title .glitch::after{content:attr(data-text);position:absolute;inset:0;-webkit-text-fill-color:var(--bone);-webkit-background-clip:initial;background:none;opacity:0}.hero-title .glitch.active::before{opacity:0.8;color:var(--crimson);-webkit-text-fill-color:var(--crimson);transform:translate(-2px,0);clip-path:polygon(0 0,100% 0,100% 45%,0 45%)}.hero-title .glitch.active::after{opacity:0.8;color:var(--cyan-bright);-webkit-text-fill-color:var(--cyan-bright);transform:translate(2px,0);clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%)}.hero-sub{font-family:var(--font-elegant);font-size:clamp(1.1rem,2.2vw,1.5rem);font-style:italic;color:var(--bone-dim);max-width:720px;margin:0 auto 48px;line-height:1.5;opacity:0;animation:heroIn 1s 1.1s cubic-bezier(0.7,0,0.3,1) forwards}.hero-sub strong{color:var(--gold);font-weight:500;font-style:normal}.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;animation:heroIn 1s 1.3s cubic-bezier(0.7,0,0.3,1) forwards}.btn{display:inline-flex;align-items:center;gap:12px;padding:18px 32px;font-family:var(--font-code);font-size:11px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;border-radius:100px;transition:all 0.4s cubic-bezier(0.2,0.9,0.3,1);position:relative;overflow:hidden;border:1px solid transparent}.btn-primary{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--void);box-shadow:0 0 0 0 var(--gold-glow)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px var(--gold-glow),0 0 60px var(--gold-glow)}.btn-ghost{background:rgba(201,169,98,0.04);border-color:rgba(201,169,98,0.3);color:var(--bone);backdrop-filter:blur(10px)}.btn-ghost:hover{border-color:var(--gold);background:rgba(201,169,98,0.1);color:var(--gold-bright)}.btn svg{width:14px;height:14px;transition:transform 0.3s}.btn:hover svg{transform:translateX(4px)}.btn-sm{padding:12px 22px;font-size:10px;letter-spacing:0.2em}.btn-sm svg{width:11px;height:11px}.hero-actions-secondary{margin-top:28px;opacity:0;animation:heroIn 1s 1.9s cubic-bezier(0.7,0,0.3,1) forwards;align-items:center}.hero-or{font-family:var(--font-code);font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--bone-faint);margin-right:4px}@media (max-width:600px){.hero-actions-secondary{flex-direction:column;gap:10px}.hero-or{margin:0}}.hero-modules{position:absolute;inset:0;pointer-events:none;z-index:2}.module{position:absolute;background:rgba(10,10,13,0.5);backdrop-filter:blur(20px);border:1px solid rgba(201,169,98,0.2);padding:14px 18px;border-radius:8px;font-family:var(--font-code);font-size:10px;letter-spacing:0.15em;color:var(--bone-dim);text-transform:uppercase;opacity:0;animation:moduleFloat 1s 1.5s forwards,moduleHover 6s 2.5s ease-in-out infinite;pointer-events:auto;transform-style:preserve-3d}.module .m-label{color:var(--bone-faint);font-size:8px;margin-bottom:4px}.module .m-value{color:var(--gold-bright);font-size:14px;font-weight:700}.module .m-bar{margin-top:6px;width:100px;height:2px;background:rgba(201,169,98,0.2);position:relative;overflow:hidden}.module .m-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--cyan),var(--gold));transform-origin:left;transform:scaleX(0.7);animation:barPulse 3s ease-in-out infinite}@keyframes barPulse{50%{transform:scaleX(0.95)}}@keyframes moduleFloat{to{opacity:1}}@keyframes moduleHover{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(0.5deg)}}.module-1{top:18%;left:4%;animation-delay:1.6s,2.5s}.module-2{top:28%;right:6%;animation-delay:1.8s,3s}.module-3{bottom:22%;left:8%;animation-delay:2s,3.5s}.module-4{bottom:26%;right:4%;animation-delay:2.2s,4s}@media (max-width:960px){.hero-modules{display:none}}.command-prompt{margin-top:24px;max-width:760px;margin-left:auto;margin-right:auto;position:relative;opacity:0;animation:heroIn 1s 1.6s cubic-bezier(0.7,0,0.3,1) forwards;z-index:5}.terminal-beacon{display:flex;align-items:center;justify-content:center;gap:16px;margin:40px auto 16px;max-width:760px;opacity:0;animation:heroIn 1s 1.4s cubic-bezier(0.7,0,0.3,1) forwards}.beacon-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-glow),transparent);max-width:200px;position:relative}.beacon-line::after{content:'';position:absolute;top:-1px;width:40px;height:3px;background:linear-gradient(90deg,transparent,var(--gold-bright),transparent);animation:beaconSweep 3s linear infinite;box-shadow:0 0 8px var(--gold-bright)}.beacon-line-l::after{right:0;animation-direction:normal}.beacon-line-r::after{left:0;animation-direction:reverse}@keyframes beaconSweep{0%{transform:translateX(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateX(-180px);opacity:0}}.beacon-line-r::after{animation-name:beaconSweepR}@keyframes beaconSweepR{0%{transform:translateX(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateX(180px);opacity:0}}.beacon-label{display:inline-flex;align-items:center;gap:12px;padding:10px 22px;background:linear-gradient(135deg,rgba(201,169,98,0.15),rgba(74,144,164,0.15));border:1px solid var(--gold);border-radius:100px;position:relative;box-shadow:0 0 30px rgba(201,169,98,0.25)}.beacon-label::before{content:'';position:absolute;inset:-3px;border-radius:inherit;background:linear-gradient(135deg,var(--gold),var(--cyan),var(--violet),var(--gold));background-size:300% 300%;opacity:0.4;z-index:-1;filter:blur(8px);animation:beaconGlow 4s ease-in-out infinite}@keyframes beaconGlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}.beacon-dot{display:inline-block;width:8px;height:8px;background:var(--cyan-bright);border-radius:50%;box-shadow:0 0 12px var(--cyan-bright);animation:hudPulse 1.4s ease-in-out infinite;flex-shrink:0}.beacon-text{font-family:var(--font-code);font-size:11px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--bone);text-shadow:0 0 12px var(--gold-glow)}.beacon-arrow{display:inline-flex;align-items:center;color:var(--gold-bright);animation:beaconArrow 1.6s ease-in-out infinite}.beacon-arrow svg{width:16px;height:16px}@keyframes beaconArrow{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(4px);opacity:0.6}}@media (max-width:600px){.terminal-beacon{margin-top:32px}.beacon-line{max-width:40px}.beacon-text{font-size:9px;letter-spacing:0.2em}.beacon-label{padding:8px 14px}}.prompt-aura{position:absolute;inset:-40px;border-radius:24px;background:radial-gradient(ellipse at 30% 0%,rgba(201,169,98,0.25) 0%,transparent 50%),radial-gradient(ellipse at 70% 100%,rgba(74,144,164,0.2) 0%,transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(155,89,182,0.12) 0%,transparent 70%);filter:blur(30px);opacity:0.7;z-index:-1;animation:auraBreath 5s ease-in-out infinite;pointer-events:none}@keyframes auraBreath{0%,100%{opacity:0.5;transform:scale(0.96)}50%{opacity:0.85;transform:scale(1.02)}}.prompt-frame{background:rgba(8,8,12,0.85);backdrop-filter:blur(20px);border:1.5px solid rgba(201,169,98,0.45);border-radius:14px;overflow:hidden;position:relative;box-shadow:0 0 0 1px rgba(201,169,98,0.1),0 20px 60px rgba(0,0,0,0.6),0 0 80px rgba(201,169,98,0.15);transition:box-shadow 0.4s,border-color 0.4s,transform 0.4s}.prompt-frame::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:linear-gradient(135deg,var(--gold),var(--cyan-bright) 30%,var(--violet) 60%,var(--gold) 90%);background-size:200% 200%;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:0.8;animation:borderShift 6s linear infinite}@keyframes borderShift{0%{background-position:0% 50%}100%{background-position:200% 50%}}.command-prompt.idle .prompt-frame{animation:idlePulse 3s ease-in-out infinite}@keyframes idlePulse{0%,100%{box-shadow:0 0 0 1px rgba(201,169,98,0.1),0 20px 60px rgba(0,0,0,0.6),0 0 80px rgba(201,169,98,0.15)}50%{box-shadow:0 0 0 2px rgba(201,169,98,0.3),0 20px 60px rgba(0,0,0,0.6),0 0 120px rgba(201,169,98,0.4),0 0 180px rgba(232,213,163,0.2)}}.command-prompt.engaged .prompt-frame{animation:none;border-color:var(--gold)}.prompt-header{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid rgba(201,169,98,0.15);font-family:var(--font-code);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);background:rgba(201,169,98,0.03)}.prompt-header .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan-bright);box-shadow:0 0 8px var(--cyan-bright);animation:hudPulse 1.6s infinite}.prompt-header .right{margin-left:auto;color:var(--bone-faint)}.prompt-body{padding:24px 20px;text-align:left}.prompt-question{font-family:var(--font-code);font-size:11px;color:var(--bone-faint);margin-bottom:12px;letter-spacing:0.1em}.prompt-question .typing{color:var(--gold-bright)}.prompt-question .cursor-blink{display:inline-block;width:8px;height:14px;background:var(--gold-bright);margin-left:2px;vertical-align:middle;animation:blink 1s steps(2) infinite}@keyframes blink{50%{opacity:0}}.prompt-input-row{display:flex;gap:10px;align-items:center;margin-top:16px}.prompt-input{flex:1;background:rgba(0,0,0,0.4);border:1px solid rgba(201,169,98,0.2);padding:14px 18px;color:var(--bone);font-family:var(--font-code);font-size:13px;border-radius:8px;outline:none;transition:all 0.3s}.prompt-input::placeholder{color:var(--bone-faint)}.prompt-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,98,0.1)}.prompt-send{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--void);border:none;padding:14px 22px;border-radius:8px;font-family:var(--font-code);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;transition:all 0.3s;display:flex;align-items:center;gap:8px}.prompt-send:hover{box-shadow:0 0 20px var(--gold-glow)}.prompt-send svg{width:12px;height:12px}.prompt-response{margin-top:16px;padding:14px;background:rgba(74,144,164,0.05);border-left:2px solid var(--cyan);font-family:var(--font-code);font-size:12px;color:var(--bone);line-height:1.7;min-height:0;max-height:0;overflow:hidden;opacity:0;transition:all 0.5s cubic-bezier(0.7,0,0.3,1)}.prompt-response.show{max-height:300px;min-height:60px;opacity:1;padding:14px}.prompt-response .who{color:var(--cyan-bright);font-weight:700;text-transform:uppercase;font-size:10px;letter-spacing:0.2em;display:block;margin-bottom:6px}.flag-indicator{display:none;align-items:center;gap:10px;margin:10px 0;padding:10px 14px;background:rgba(201,169,98,0.08);border:1px solid rgba(201,169,98,0.3);border-radius:8px;font-family:var(--font-code);font-size:11px;color:var(--gold-bright);letter-spacing:0.05em;opacity:0;transform:translateY(-4px);transition:opacity 0.3s ease,transform 0.3s ease}.flag-indicator.show{display:inline-flex;opacity:1;transform:translateY(0)}.flag-indicator .flag-icon svg{width:14px;height:14px}.flag-spinner{width:12px;height:12px;border:1.5px solid rgba(201,169,98,0.3);border-top-color:var(--gold-bright);border-radius:50%;animation:flagSpin 0.9s linear infinite;margin-left:auto}@keyframes flagSpin{to{transform:rotate(360deg)}}.flag-indicator.pending{border-color:rgba(201,169,98,0.4);background:rgba(201,169,98,0.1);color:var(--gold-bright)}.flag-indicator.success{background:rgba(74,144,164,0.1);border-color:rgba(74,144,164,0.5);color:var(--cyan-bright)}.flag-indicator.success .flag-spinner{border:1.5px solid var(--cyan-bright);border-radius:50%;animation:none;position:relative}.flag-indicator.success .flag-spinner::after{content:'✓';position:absolute;inset:0;display:grid;place-items:center;color:var(--cyan-bright);font-size:10px;font-weight:700}.flag-indicator.failed{background:rgba(230,57,70,0.08);border-color:rgba(230,57,70,0.4);color:#ff8a93}.flag-indicator.failed .flag-spinner{border:1.5px solid #ff8a93;animation:none;position:relative}.flag-indicator.failed .flag-spinner::after{content:'!';position:absolute;inset:0;display:grid;place-items:center;color:#ff8a93;font-size:11px;font-weight:700}.prompt-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.prompt-chip{font-family:var(--font-code);font-size:10px;letter-spacing:0.1em;padding:6px 12px;border:1px solid rgba(201,169,98,0.25);border-radius:100px;color:var(--bone-dim);background:rgba(201,169,98,0.03);cursor:pointer;transition:all 0.3s}body.cursor-loaded .prompt-chip{cursor:none}.prompt-chip:hover{border-color:var(--gold);color:var(--gold-bright);background:rgba(201,169,98,0.1)}.section{position:relative;padding:140px 24px;max-width:var(--max-w);margin:0 auto}@media (max-width:768px){.section{padding:80px 20px}}.section-tag{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-code);font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;padding:6px 16px;border:1px solid var(--gold-faint);border-radius:100px}.section-tag::before{content:'';width:6px;height:6px;background:var(--cyan-bright);border-radius:50%;box-shadow:0 0 6px var(--cyan-bright)}.section-title{font-family:var(--font-display);font-size:clamp(2rem,6vw,4.5rem);font-weight:500;line-height:1.05;letter-spacing:-0.01em;color:var(--bone);margin-bottom:24px;max-width:900px}.section-title .accent{background:linear-gradient(135deg,var(--cyan-bright),var(--gold),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}.section-title .accent-underline{position:relative;display:inline-block}.section-title .accent-underline::after{content:'';position:absolute;left:-2%;right:-2%;bottom:0.05em;height:6px;background:linear-gradient(90deg,transparent,var(--gold) 20%,var(--gold-bright) 50%,var(--gold) 80%,transparent);opacity:0.5;filter:blur(1px);transform:skewX(-12deg);z-index:-1}.section-lead{font-family:var(--font-elegant);font-size:clamp(1.05rem,1.8vw,1.3rem);color:var(--bone-dim);max-width:720px;line-height:1.7;margin-bottom:64px;font-style:italic}.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0.7,0,0.3,1),transform 1s cubic-bezier(0.7,0,0.3,1)}.reveal.in{opacity:1;transform:translateY(0)}.reveal-delay-1{transition-delay:0.1s}.reveal-delay-2{transition-delay:0.2s}.reveal-delay-3{transition-delay:0.3s}.reveal-delay-4{transition-delay:0.4s}.matrix{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:40px}.cap-card{grid-column:span 4;background:rgba(10,10,13,0.6);backdrop-filter:blur(20px);border:1px solid rgba(201,169,98,0.12);border-radius:14px;padding:32px 28px;position:relative;overflow:hidden;transition:all 0.5s cubic-bezier(0.2,0.9,0.3,1);min-height:280px}.cap-card:hover{border-color:rgba(201,169,98,0.4);transform:translateY(-6px);background:rgba(201,169,98,0.04)}.cap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.4s}.cap-card:hover::before{opacity:1}.cap-card .index{font-family:var(--font-code);font-size:10px;letter-spacing:0.3em;color:var(--gold);margin-bottom:24px;display:flex;justify-content:space-between}.cap-card .index .pulse{width:6px;height:6px;background:var(--cyan-bright);border-radius:50%;box-shadow:0 0 6px var(--cyan-bright);animation:hudPulse 1.6s infinite}.cap-card h3{font-family:var(--font-display);font-size:1.5rem;font-weight:500;color:var(--bone);margin-bottom:16px;letter-spacing:0.02em}.cap-card .desc{font-family:var(--font-tech);font-size:13px;color:var(--bone-dim);line-height:1.7;margin-bottom:24px}.cap-card .stat{display:flex;align-items:baseline;gap:8px;padding-top:16px;border-top:1px dashed rgba(201,169,98,0.2);font-family:var(--font-code)}.cap-card .stat-value{font-size:1.8rem;font-weight:700;color:var(--gold-bright);font-variant-numeric:tabular-nums}.cap-card .stat-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bone-faint)}.cap-card.span-6{grid-column:span 6}.cap-card.span-8{grid-column:span 8}.cap-card.span-12{grid-column:span 12}@media (max-width:960px){.cap-card,.cap-card.span-6,.cap-card.span-8{grid-column:span 6}.cap-card.span-12{grid-column:span 12}}@media (max-width:640px){.cap-card,.cap-card.span-6,.cap-card.span-8,.cap-card.span-12{grid-column:span 12}}.triad{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:60px auto 0;justify-content:center}@media (max-width:960px){.triad{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}}.triad-member{background:rgba(10,10,13,0.5);backdrop-filter:blur(20px);border:1px solid rgba(201,169,98,0.12);border-radius:16px;padding:40px 32px;position:relative;overflow:hidden;text-align:center;transition:all 0.5s cubic-bezier(0.2,0.9,0.3,1)}.triad-member:hover{transform:translateY(-8px);border-color:rgba(201,169,98,0.4);background:rgba(201,169,98,0.04)}.triad-member[data-role="human"]{color:var(--gold)}.triad-member[data-role="claude"]{color:var(--cyan-bright)}.triad-member[data-role="gemini"]{color:var(--violet)}.triad-portrait{width:160px;height:160px;margin:0 auto 28px;position:relative;display:grid;place-items:center}.triad-orbit{position:absolute;inset:-8px;border:1px dashed currentColor;border-radius:50%;opacity:0.35;animation:orbit 18s linear infinite}.triad-orbit-2{inset:6px;border-style:solid;border-width:0.5px;animation-duration:12s;animation-direction:reverse;opacity:0.55}.triad-orbit::before,.triad-orbit::after{content:'';position:absolute;width:4px;height:4px;background:currentColor;border-radius:50%;top:50%;left:-2px;transform:translateY(-50%);box-shadow:0 0 6px currentColor}.triad-orbit::after{left:auto;right:-2px}@keyframes orbit{to{transform:rotate(360deg)}}.triad-photo{width:120px;height:120px;border-radius:50%;object-fit:cover;position:relative;z-index:2;border:2px solid currentColor;box-shadow:0 0 0 4px var(--void),0 0 24px currentColor,inset 0 0 0 1px rgba(255,255,255,0.1);filter:saturate(0.85) contrast(1.05);transition:filter 0.5s,transform 0.5s}.triad-member:hover .triad-photo{filter:saturate(1.1) contrast(1.1);transform:scale(1.04)}.triad-portrait::after{content:'';position:absolute;inset:16px;border-radius:50%;background:radial-gradient(circle,currentColor 0%,transparent 70%);opacity:0.25;filter:blur(12px);z-index:1;animation:haloBreath 4s ease-in-out infinite}@keyframes haloBreath{0%,100%{opacity:0.2;transform:scale(0.95)}50%{opacity:0.45;transform:scale(1.05)}}.triad-pip{position:absolute;bottom:8px;right:18px;width:14px;height:14px;background:var(--cyan-bright);border:2px solid var(--void);border-radius:50%;z-index:3;box-shadow:0 0 10px var(--cyan-bright);animation:hudPulse 1.6s ease-in-out infinite}.triad-pip-human{background:var(--gold-bright);box-shadow:0 0 10px var(--gold-bright);animation:none}.triad-tag{font-family:var(--font-code);font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:currentColor;margin-bottom:8px;opacity:0.7}.triad-name{font-family:var(--font-display);font-size:1.6rem;font-weight:500;color:var(--bone);margin-bottom:6px;letter-spacing:0.02em}.triad-title{font-family:var(--font-code);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:currentColor;margin-bottom:24px}.triad-bio{font-family:var(--font-elegant);font-style:italic;font-size:0.95rem;line-height:1.6;color:var(--bone-dim);margin-bottom:24px}.triad-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;font-family:var(--font-code);font-size:10px;color:var(--bone-faint);letter-spacing:0.05em;padding-top:20px;border-top:1px dashed rgba(201,169,98,0.15)}.proof-grid{margin-top:60px;display:flex;flex-direction:column;gap:24px}.proof-row{display:grid;grid-template-columns:220px 1fr 80px;grid-template-areas:"label bar value" "label note value";gap:8px 24px;align-items:center;padding:24px;background:rgba(10,10,13,0.4);border:1px solid rgba(201,169,98,0.1);border-radius:12px}.proof-label{grid-area:label;font-family:var(--font-code);font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--bone-dim);align-self:center;grid-row:span 2}.proof-bar{grid-area:bar;height:28px;background:rgba(255,255,255,0.03);border-radius:4px;overflow:hidden;position:relative}.proof-fill{height:100%;transition:width 1.8s cubic-bezier(0.7,0,0.3,1);border-radius:4px;position:relative}.proof-fill-gold{background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-bright));box-shadow:0 0 16px var(--gold-glow)}.proof-fill-gold::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmer 3s ease-in-out infinite}@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}.proof-value{grid-area:value;font-family:var(--font-display);font-size:2.2rem;color:var(--bone);text-align:right;font-weight:600;grid-row:span 2;align-self:center}.proof-value-gold{background:linear-gradient(135deg,var(--gold-bright),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.proof-note{grid-area:note;font-family:var(--font-code);font-size:10px;color:var(--bone-faint);letter-spacing:0.05em}.proof-footnote{margin-top:32px;display:flex;gap:24px;flex-wrap:wrap;font-family:var(--font-code);font-size:10px;color:var(--bone-faint);letter-spacing:0.05em}@media (max-width:768px){.proof-row{grid-template-columns:1fr 80px;grid-template-areas:"label value" "bar bar" "note note";gap:12px}.proof-value{font-size:1.6rem}}.process-track{list-style:none;margin-top:60px;position:relative}.process-track::before{content:'';position:absolute;left:30px;top:30px;bottom:30px;width:1px;background:linear-gradient(180deg,var(--gold-glow),transparent)}.process-step{display:grid;grid-template-columns:60px 1fr;gap:32px;padding:28px 0;position:relative}.step-marker{width:60px;height:60px;display:grid;place-items:center;position:relative;background:var(--void);border:1px solid var(--gold-faint);border-radius:50%;z-index:2}.step-num{font-family:var(--font-display);font-size:1rem;color:var(--gold);font-weight:600}.step-pulse{position:absolute;inset:-1px;border:1px solid var(--gold);border-radius:50%;opacity:0;animation:stepPulse 2.4s ease-out infinite}@keyframes stepPulse{0%{opacity:0.5;transform:scale(1)}100%{opacity:0;transform:scale(1.6)}}.step-meta{font-family:var(--font-code);font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}.step-content h3{font-family:var(--font-display);font-size:1.7rem;font-weight:500;color:var(--bone);margin-bottom:12px;letter-spacing:0.01em}.step-content p{font-family:var(--font-tech);font-size:14px;color:var(--bone-dim);line-height:1.7;max-width:720px}.cta-section{padding:100px 24px}.cta-frame{position:relative;padding:clamp(48px,8vw,96px) clamp(24px,5vw,64px);background:radial-gradient(ellipse at 30% 20%,rgba(74,144,164,0.1) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(155,89,182,0.1) 0%,transparent 50%),rgba(10,10,13,0.7);border:1px solid rgba(201,169,98,0.2);border-radius:24px;text-align:center;backdrop-filter:blur(20px);overflow:hidden}.cta-corner{position:absolute;width:32px;height:32px;border:2px solid var(--gold)}.cta-corner-tl{top:16px;left:16px;border-right:none;border-bottom:none}.cta-corner-tr{top:16px;right:16px;border-left:none;border-bottom:none}.cta-corner-bl{bottom:16px;left:16px;border-right:none;border-top:none}.cta-corner-br{bottom:16px;right:16px;border-left:none;border-top:none}.cta-section .section-title,.cta-section .section-lead,.cta-section .section-tag{max-width:900px;margin-left:auto;margin-right:auto}.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}.cta-trust{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;font-family:var(--font-code);font-size:11px;color:var(--bone-faint);letter-spacing:0.1em}.cta-pulse{display:inline-block;width:6px;height:6px;background:var(--cyan-bright);border-radius:50%;box-shadow:0 0 6px var(--cyan-bright);margin-right:8px;vertical-align:middle;animation:hudPulse 1.6s infinite}.footer{background:linear-gradient(180deg,transparent 0%,rgba(10,10,13,0.8) 30%,var(--void) 100%);padding:60px 24px 32px;margin-top:60px;position:relative;border-top:1px solid rgba(201,169,98,0.1)}.footer-terminal{max-width:var(--max-w);margin:0 auto 80px;background:#050507;border:1px solid rgba(201,169,98,0.2);border-radius:8px;overflow:hidden;box-shadow:0 0 60px rgba(201,169,98,0.05)}.footer-terminal-header{display:flex;align-items:center;gap:8px;padding:10px 16px;background:rgba(255,255,255,0.02);border-bottom:1px solid rgba(201,169,98,0.15);font-family:var(--font-code);font-size:10px;color:var(--bone-faint);letter-spacing:0.1em}.footer-terminal-header .dot{width:10px;height:10px;border-radius:50%}.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c940}.term-title{margin-left:10px;flex:1}.term-status{color:var(--cyan-bright);font-weight:700;letter-spacing:0.3em}.term-status::before{content:'';display:inline-block;width:6px;height:6px;background:var(--cyan-bright);border-radius:50%;margin-right:6px;vertical-align:middle;box-shadow:0 0 6px var(--cyan-bright);animation:hudPulse 1.6s infinite}.footer-terminal-body{padding:20px 24px;font-family:var(--font-code);font-size:11px;line-height:1.8;color:var(--bone-dim);min-height:200px;max-height:240px;overflow:hidden;position:relative}.footer-terminal-body::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,var(--void) 100%);pointer-events:none}.term-line{opacity:0;animation:termIn 0.4s forwards;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.term-line .time{color:var(--gold);margin-right:12px}.term-line .ok{color:var(--cyan-bright)}.term-line .warn{color:var(--gold-bright)}.term-line .arrow{color:var(--gold)}.term-line .by-chris{color:var(--gold-bright);font-weight:700}.term-line .by-claude{color:var(--cyan-bright);font-weight:700}.term-line .by-gemini{color:var(--violet);font-weight:700}@keyframes termIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}.footer-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(201,169,98,0.1)}@media (max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px}.footer-col-brand{grid-column:span 2}}@media (max-width:560px){.footer-grid{grid-template-columns:1fr}.footer-col-brand{grid-column:span 1}}.footer-col h4{font-family:var(--font-code);font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:700}.footer-col ul{list-style:none}.footer-col li{margin-bottom:10px}.footer-col a{font-family:var(--font-tech);font-size:13px;color:var(--bone-dim);transition:color 0.3s}.footer-col a:hover{color:var(--gold-bright)}.footer-logo{display:flex;gap:14px;align-items:center;margin-bottom:20px}.footer-logo-name{font-family:var(--font-display);font-size:13px;letter-spacing:0.25em;color:var(--bone);font-weight:600}.footer-logo-tag{font-family:var(--font-code);font-size:10px;color:var(--gold);letter-spacing:0.15em;margin-top:4px}.footer-blurb{font-family:var(--font-elegant);font-style:italic;font-size:0.95rem;color:var(--bone-dim);line-height:1.6;margin-bottom:20px;max-width:380px}.footer-coords{display:flex;flex-direction:column;gap:4px}.footer-coord{font-family:var(--font-code);font-size:10px;color:var(--bone-faint);letter-spacing:0.2em}.footer-social{display:flex;gap:12px;margin-top:16px}.footer-social a{width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(201,169,98,0.2);border-radius:8px;color:var(--bone-dim);transition:all 0.3s}.footer-social a:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,169,98,0.05)}.footer-social svg{width:16px;height:16px}.footer-bottom{max-width:var(--max-w);margin:0 auto;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:var(--font-code);font-size:10px;color:var(--bone-faint);letter-spacing:0.15em}.footer-built{letter-spacing:0.25em}@media (hover:none){body{cursor:auto}a,button,input{cursor:pointer}.cursor-dot,.cursor-ring{display:none}}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}</style>
+    ::selection {
+      background: var(--gold);
+      color: #04060a
+    }
+
+    /* ---------- background film ---------- */
+    #stage {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background: #04060a
+    }
+
+    #film {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%) scale(var(--zoom, 1.06));
+      object-fit: cover;
+      will-change: transform;
+      transition: transform .6s var(--ease);
+    }
+
+    /* heavy scrim — the footage is busy, the type must always win */
+    #stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(100deg, rgba(4, 6, 10, .86) 0%, rgba(4, 6, 10, .58) 34%, rgba(4, 6, 10, .12) 62%, rgba(4, 6, 10, .5) 100%),
+        radial-gradient(115% 85% at 50% 45%, transparent 30%, rgba(4, 6, 10, .6) 76%, rgba(4, 6, 10, .95) 100%),
+        linear-gradient(to top, rgba(4, 6, 10, .9) 0%, transparent 46%);
+    }
+
+    #grain {
+      position: fixed;
+      inset: -50%;
+      z-index: 2;
+      pointer-events: none;
+      opacity: .045;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+      animation: grain 1.1s steps(3) infinite;
+    }
+
+    @keyframes grain {
+      0% {
+        transform: translate(0, 0)
+      }
+
+      33% {
+        transform: translate(-3%, 2%)
+      }
+
+      66% {
+        transform: translate(2%, -3%)
+      }
+
+      100% {
+        transform: translate(0, 0)
+      }
+    }
+
+    /* ---------- loader ---------- */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: #04060a;
+      display: grid;
+      place-items: center;
+      gap: 1.4rem;
+      transition: opacity .9s var(--ease), visibility .9s
+    }
+
+    #loader.done {
+      opacity: 0;
+      visibility: hidden
+    }
+
+    .load-mark {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(3rem, 9vw, 6rem);
+      letter-spacing: -.04em
+    }
+
+    .load-bar {
+      width: min(320px, 60vw);
+      height: 3px;
+      background: rgba(255, 255, 255, .14);
+      overflow: hidden;
+      border-radius: 3px
+    }
+
+    .load-bar i {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--gold);
+      transition: width .3s linear
+    }
+
+    .load-pct {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .3em;
+      color: var(--dim)
+    }
+
+    /* ---------- chrome ---------- */
+    #bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      z-index: 40;
+      width: 0;
+      background: linear-gradient(90deg, var(--sky), var(--gold));
+      box-shadow: 0 0 20px rgba(255, 193, 77, .7)
+    }
+
+    header.top {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: clamp(1rem, 2.4vw, 1.6rem) clamp(1.2rem, 5vw, 3.4rem);
+      background: linear-gradient(to bottom, rgba(4, 6, 10, .72), transparent);
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: .7rem;
+      text-decoration: none;
+      color: var(--ink)
+    }
+
+    .brand b {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -.05em
+    }
+
+    .brand span {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--dim)
+    }
+
+    .top nav {
+      display: flex;
+      gap: clamp(1rem, 2.4vw, 2.2rem);
+      align-items: center
+    }
+
+    .top nav a {
+      color: var(--dim);
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      transition: color .3s
+    }
+
+    .top nav a:hover {
+      color: var(--gold)
+    }
+
+    .top nav a.pill {
+      color: #04060a;
+      background: var(--ink);
+      padding: .7rem 1.2rem;
+      border-radius: 100px
+    }
+
+    .top nav a.pill:hover {
+      background: var(--gold);
+      color: #04060a
+    }
+
+    @media(max-width:820px) {
+      .top nav a:not(.pill) {
+        display: none
+      }
+    }
+
+    nav.dots {
+      position: fixed;
+      right: clamp(.8rem, 2.2vw, 1.8rem);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem
+    }
+
+    nav.dots button {
+      all: unset;
+      cursor: pointer;
+      width: 30px;
+      height: 12px;
+      display: grid;
+      align-items: center
+    }
+
+    nav.dots button::before {
+      content: "";
+      display: block;
+      height: 3px;
+      width: 12px;
+      margin-left: auto;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .32);
+      transition: width .5s var(--ease), background .5s
+    }
+
+    nav.dots button[aria-current="true"]::before {
+      width: 30px;
+      background: var(--gold)
+    }
+
+    @media(max-width:640px) {
+      nav.dots {
+        display: none
+      }
+    }
+
+    /* ---------- sections ---------- */
+    main {
+      position: relative;
+      z-index: 10
+    }
+
+    section {
+      height: 180vh;
+      position: relative
+    }
+
+    .pin {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100svh;
+      display: grid;
+      align-content: center;
+      padding: clamp(5rem, 12vh, 8rem) clamp(1.4rem, 7vw, 7rem) clamp(4rem, 10vh, 7rem)
+    }
+
+    .pin[data-align="center"] {
+      justify-items: center;
+      text-align: center
+    }
+
+    .pin[data-align="right"] {
+      justify-items: end;
+      text-align: right
+    }
+
+    .wrap {
+      max-width: min(940px, 88vw);
+      transform: translate3d(0, calc(var(--drift, 0) * -56px), 0)
+    }
+
+    /* overline */
+    .over {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      font-size: clamp(.64rem, 1.1vw, .76rem);
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: clamp(.9rem, 2.2vw, 1.5rem);
+      opacity: 0;
+      transform: translateY(14px)
+    }
+
+    .pin[data-align="center"] .over {
+      justify-content: center
+    }
+
+    .pin[data-align="right"] .over {
+      justify-content: flex-end
+    }
+
+    .over::before {
+      content: "";
+      height: 3px;
+      width: 0;
+      background: currentColor;
+      border-radius: 3px;
+      transition: width .9s var(--ease) .25s
+    }
+
+    .in .over {
+      opacity: 1;
+      transform: none;
+      transition: opacity .7s var(--ease), transform .8s var(--ease)
+    }
+
+    .in .over::before {
+      width: clamp(24px, 4vw, 52px)
+    }
+
+    /* headline — heavy, tight, readable over anything */
+    h1,
+    h2 {
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: .86;
+      letter-spacing: -.045em;
+      font-size: clamp(2.9rem, 9.2vw, 8.4rem);
+      text-shadow: 0 4px 40px rgba(4, 6, 10, .85), 0 1px 3px rgba(4, 6, 10, .6);
+    }
+
+    h2 {
+      font-size: clamp(2.5rem, 7.8vw, 7rem)
+    }
+
+    h1 em,
+    h2 em {
+      font-style: normal;
+      color: var(--gold)
+    }
+
+    .ch {
+      display: inline-block;
+      white-space: pre;
+      opacity: 0;
+      filter: blur(16px);
+      transform: translate3d(0, .5em, 0) scale(.9);
+      transform-origin: 50% 100%
+    }
+
+    .in .ch {
+      opacity: 1;
+      filter: blur(0);
+      transform: none;
+      transition: opacity .7s var(--ease), filter .7s var(--ease), transform .95s var(--ease);
+      transition-delay: calc(var(--i) * 28ms)
+    }
+
+    /* ponytail: solid gold, not background-clip:text — the .ch spans carry their own
+       filter/transform, which composites them separately and kills the parent's text clip
+       (transparent glyphs over a dark video = invisible). Sweep lives in the glow instead. */
+    .shine {
+      color: var(--gold);
+      text-shadow: 0 4px 40px rgba(4, 6, 10, .85), 0 1px 3px rgba(4, 6, 10, .7)
+    }
+
+    .in .shine .ch {
+      animation: glow 2.6s var(--ease) both;
+      animation-delay: calc(.5s + var(--i) * 28ms)
+    }
+
+    @keyframes glow {
+
+      0%,
+      100% {
+        text-shadow: 0 4px 40px rgba(4, 6, 10, .85), 0 1px 3px rgba(4, 6, 10, .7)
+      }
+
+      45% {
+        text-shadow: 0 4px 40px rgba(4, 6, 10, .85), 0 0 28px rgba(255, 193, 77, .75), 0 1px 3px rgba(4, 6, 10, .7)
+      }
+    }
+
+    /* body copy */
+    .lead {
+      margin-top: clamp(1.1rem, 2.4vw, 1.8rem);
+      max-width: 52ch;
+      font-size: clamp(1rem, 1.4vw, 1.22rem);
+      line-height: 1.65;
+      font-weight: 500;
+      color: var(--dim);
+      text-shadow: 0 2px 20px rgba(4, 6, 10, .9)
+    }
+
+    .pin[data-align="center"] .lead {
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .pin[data-align="right"] .lead {
+      margin-left: auto
+    }
+
+    .lead strong {
+      color: var(--ink);
+      font-weight: 700
+    }
+
+    .mask {
+      display: block;
+      overflow: hidden
+    }
+
+    .mask>span {
+      display: block;
+      transform: translateY(115%);
+      opacity: 0
+    }
+
+    .in .mask>span {
+      transform: none;
+      opacity: 1;
+      transition: transform 1s var(--ease), opacity 1s var(--ease);
+      transition-delay: calc(.36s + var(--i) * 80ms)
+    }
+
+    /* service / stat grid */
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(.6rem, 1.4vw, 1rem);
+      margin-top: clamp(1.6rem, 3.4vw, 2.6rem)
+    }
+
+    .pin[data-align="center"] .grid {
+      justify-content: center
+    }
+
+    .pin[data-align="right"] .grid {
+      justify-content: flex-end
+    }
+
+    .grid>* {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .8s var(--ease), transform .8s var(--ease), border-color .35s, background .35s;
+      transition-delay: calc(.6s + var(--i) * 80ms)
+    }
+
+    .in .grid>* {
+      opacity: 1;
+      transform: none
+    }
+
+    .card {
+      flex: 1 1 200px;
+      min-width: 190px;
+      max-width: 280px;
+      text-align: left;
+      padding: clamp(1rem, 1.8vw, 1.35rem);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: rgba(10, 14, 20, .42);
+      backdrop-filter: blur(14px);
+    }
+
+    .card b {
+      display: block;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.02rem;
+      letter-spacing: -.01em;
+      margin-bottom: .35rem
+    }
+
+    .card p {
+      font-size: .85rem;
+      line-height: 1.5;
+      color: var(--dim);
+      font-weight: 500
+    }
+
+    .card:hover {
+      border-color: var(--gold);
+      background: rgba(10, 14, 20, .62)
+    }
+
+    .stat {
+      text-align: left;
+      padding-top: .7rem;
+      border-top: 3px solid var(--gold);
+      min-width: 130px;
+      flex: 0 1 auto
+    }
+
+    .pin[data-align="right"] .stat {
+      text-align: right
+    }
+
+    .stat b {
+      display: block;
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(1.9rem, 4vw, 3.1rem);
+      letter-spacing: -.045em;
+      line-height: 1
+    }
+
+    .stat small {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--dim)
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: clamp(1.4rem, 3vw, 2.2rem)
+    }
+
+    .pin[data-align="right"] .tags {
+      justify-content: flex-end
+    }
+
+    .tags span {
+      padding: .5rem .95rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      background: rgba(10, 14, 20, .4);
+      backdrop-filter: blur(10px);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    /* hero cue */
+    .cue {
+      position: absolute;
+      left: 50%;
+      bottom: clamp(1.4rem, 4.5vh, 2.6rem);
+      transform: translateX(-50%);
+      display: grid;
+      justify-items: center;
+      gap: .6rem;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--dim)
+    }
+
+    .cue i {
+      display: block;
+      width: 3px;
+      height: 48px;
+      border-radius: 3px;
+      background: linear-gradient(var(--gold), transparent);
+      animation: cue 2.1s var(--ease) infinite
+    }
+
+    @keyframes cue {
+      0% {
+        transform: scaleY(.15);
+        transform-origin: top;
+        opacity: 0
+      }
+
+      40% {
+        transform: scaleY(1);
+        transform-origin: top;
+        opacity: 1
+      }
+
+      60% {
+        transform: scaleY(1);
+        transform-origin: bottom
+      }
+
+      100% {
+        transform: scaleY(.05);
+        transform-origin: bottom;
+        opacity: 0
+      }
+    }
+
+    /* CTA */
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .8rem;
+      margin-top: clamp(1.6rem, 3.4vw, 2.4rem);
+      padding: clamp(1rem, 1.8vw, 1.25rem) clamp(1.8rem, 3.4vw, 2.4rem);
+      border-radius: 100px;
+      background: var(--ink);
+      color: #04060a;
+      text-decoration: none;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .8s var(--ease) .8s, transform .8s var(--ease) .8s, background .35s, color .35s, gap .35s
+    }
+
+    .in .cta {
+      opacity: 1;
+      transform: none
+    }
+
+    .cta:hover {
+      background: var(--gold);
+      gap: 1.3rem
+    }
+
+    .cta.ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid rgba(255, 255, 255, .3);
+      backdrop-filter: blur(10px)
+    }
+
+    .cta.ghost:hover {
+      background: var(--ink);
+      color: #04060a
+    }
+
+    .cta:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 4px
+    }
+
+    .ctas {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap
+    }
+
+    .pin[data-align="center"] .ctas {
+      justify-content: center
+    }
+
+    footer {
+      position: relative;
+      z-index: 10;
+      padding: clamp(2rem, 5vw, 3rem) clamp(1.4rem, 7vw, 7rem) clamp(3rem, 6vw, 4rem);
+      display: flex;
+      justify-content: space-between;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      background: linear-gradient(to top, #04060a 40%, transparent)
+    }
+
+    footer a {
+      color: var(--dim);
+      text-decoration: none
+    }
+
+    footer a:hover {
+      color: var(--gold)
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      .ch,
+      .mask>span,
+      .over,
+      .grid>*,
+      .cta {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important
+      }
+
+      #grain,
+      .cue i {
+        animation: none
+      }
+    }
+  </style>
 </head>
-<body class="loading">
 
-    <!-- ============================================================
-         BOOT SEQUENCE
-         ============================================================ -->
-    <div id="boot" aria-hidden="true">
-        <div class="boot-grid"></div>
-        <div class="boot-sigil">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="42" fill="none" stroke="#C9A962" stroke-width="1" opacity="0.4"/>
-                <circle cx="50" cy="50" r="32" fill="none" stroke="#C9A962" stroke-width="0.5" stroke-dasharray="2 4"/>
-                <circle cx="50" cy="50" r="22" fill="none" stroke="#6FBAD0" stroke-width="0.5"/>
-                <circle cx="50" cy="50" r="4" fill="#C9A962"/>
-                <path d="M50 8 L52 14 L50 12 L48 14 Z" fill="#C9A962"/>
-                <path d="M50 88 L52 94 L50 92 L48 94 Z" fill="#C9A962" transform="rotate(180 50 90)"/>
-                <path d="M8 50 L14 52 L12 50 L14 48 Z" fill="#C9A962"/>
-                <path d="M88 50 L94 52 L92 50 L94 48 Z" fill="#C9A962"/>
-            </svg>
+<body>
+
+  <div id="stage">
+    <video id="film" src="media/awa.mp4" muted playsinline preload="auto" disablepictureinpicture></video>
+  </div>
+  <div id="grain"></div>
+  <div id="bar"></div>
+
+  <div id="loader">
+    <div class="load-mark">AWA</div>
+    <div class="load-bar"><i></i></div>
+    <div class="load-pct">0%</div>
+  </div>
+
+  <header class="top">
+    <a class="brand" href="#top"><b>AWA</b><span>Australian Web Agency</span></a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#contact" class="pill">Start a project</a>
+    </nav>
+  </header>
+  <nav class="dots" id="dots" aria-label="Sections"></nav>
+
+  <main id="main">
+
+    <!-- 1 · HERO — Earth → zoom to Australia -->
+    <section data-label="Home" id="top">
+      <div class="pin" data-align="center">
+        <div class="wrap">
+          <p class="over">Australian Web Agency · Est. Down Under</p>
+          <h1><span data-split class="shine">We build</span><br><span data-split>the web</span></h1>
+          <p class="lead">
+            <span class="mask"><span style="--i:0">Websites, brands and digital products for companies that need to be
+                <strong>seen from orbit</strong>.</span></span>
+            <span class="mask"><span style="--i:1">Scroll — we'll come in for a closer look.</span></span>
+          </p>
         </div>
-        <div class="boot-title">CENTAUR.OS</div>
-        <div class="boot-version">v22.06 // SOVEREIGN INTELLIGENCE NETWORK</div>
-        <div class="boot-log" id="boot-log"></div>
-        <div class="boot-progress"><div class="boot-progress-fill"></div></div>
-        <div class="boot-percent" id="boot-percent">00%</div>
-    </div>
-
-    <!-- ============================================================
-         CURSOR / HUD / BG LAYERS
-         ============================================================ -->
-    <div class="cursor-ring" id="cursor-ring"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
-
-    <canvas id="starfield"></canvas>
-    <canvas id="hologram-deck"></canvas>
-    <div class="scanlines"></div>
-    <div class="grain"></div>
-    <div class="vignette"></div>
-
-    <div class="hud">
-        <div class="hud-bracket tl"></div>
-        <div class="hud-bracket tr"></div>
-        <div class="hud-bracket bl"></div>
-        <div class="hud-bracket br"></div>
-
-        <div class="hud-corner hud-tl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
-            <div class="hud-stat">
-                <div class="hud-stat-label">SECTOR</div>
-                <div class="hud-stat-value">SYDNEY-AU // -33.8688° S</div>
-            </div>
-        </div>
-        <div class="hud-corner hud-tr">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
-            <div class="hud-stat">
-                <div class="hud-stat-label">NEURAL LINK</div>
-                <div class="hud-stat-value"><span class="hud-pulse"></span><span id="hud-link">ESTABLISHING…</span></div>
-            </div>
-        </div>
-        <div class="hud-corner hud-bl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
-            <div class="hud-stat">
-                <div class="hud-stat-label">NETWORK UPTIME</div>
-                <div class="hud-stat-value" id="hud-uptime">000:00:00</div>
-            </div>
-        </div>
-        <div class="hud-corner hud-br">
-            <div class="hud-stat" style="text-align: right;">
-                <div class="hud-stat-label">VISITORS NOW</div>
-                <div class="hud-stat-value"><span id="hud-visitors">001</span> ONLINE</div>
-            </div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-    </div>
-
-    <!-- ============================================================
-         NAVIGATION
-         ============================================================ -->
-    <header class="nav-shell">
-        <nav class="nav" aria-label="Primary">
-            <a href="index.html" class="nav-logo" aria-label="Centaur OS home">
-                <span class="nav-logo-mark" aria-hidden="true">
-                    <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="50" cy="50" r="6" fill="currentColor"/><path d="M50 6 L50 94 M6 50 L94 50" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
-                </span>
-                AWA <span class="live">SYDNEY · LIVE</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="services.html">Capabilities</a></li>
-                <li><a href="portfolio.html">Field Reports</a></li>
-                <li><a href="references.html">Voices</a></li>
-                <li><a href="about.html">Triad</a></li>
-            </ul>
-            <a href="contact.html" class="nav-cta">
-                <span>Initiate</span>
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5h6m-3-3 3 3-3 3"/></svg>
-            </a>
-            <button class="nav-mobile" id="nav-mobile-btn" aria-label="Open menu">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-            </button>
-        </nav>
-    </header>
-
-    <div class="nav-drawer" id="nav-drawer">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Capabilities</a></li>
-            <li><a href="portfolio.html">Field Reports</a></li>
-            <li><a href="references.html">Voices</a></li>
-            <li><a href="about.html">Triad</a></li>
-            <li><a href="contact.html">Initiate Transmission</a></li>
-        </ul>
-    </div>
-
-    <!-- ============================================================
-         HERO — COMMAND DECK
-         ============================================================ -->
-    <section class="hero" id="hero">
-        <div class="hero-grid-overlay"></div>
-
-        <div class="hero-modules" aria-hidden="true">
-            <div class="module module-1">
-                <div class="m-label">SECTOR // SYS-04</div>
-                <div class="m-value" data-counter="847" data-suffix="">0</div>
-                <div class="m-label" style="margin-top:6px">leads captured · today</div>
-                <div class="m-bar"></div>
-            </div>
-            <div class="module module-2">
-                <div class="m-label">AI BOARD STATUS</div>
-                <div class="m-value" style="color: var(--cyan-bright);">3/3 ONLINE</div>
-                <div class="m-label" style="margin-top:6px">Chris · Claude · Gemini</div>
-                <div class="m-bar"></div>
-            </div>
-            <div class="module module-3">
-                <div class="m-label">REVENUE FLOW</div>
-                <div class="m-value">$<span data-counter="42700" data-prefix="">0</span></div>
-                <div class="m-label" style="margin-top:6px">client revenue · last 24h</div>
-                <div class="m-bar"></div>
-            </div>
-            <div class="module module-4">
-                <div class="m-label">RESPONSE TIME</div>
-                <div class="m-value">&lt; <span data-counter="3" data-suffix="">0</span>s</div>
-                <div class="m-label" style="margin-top:6px">AI auto-reply latency</div>
-                <div class="m-bar"></div>
-            </div>
-        </div>
-
-        <div class="hero-content">
-            <div class="hero-eyebrow">CENTAUR.OS // v22.06 — LIVE INTELLIGENCE NETWORK</div>
-
-            <h1 class="hero-title">
-                The first website<br>
-                that <span class="glitch" data-text="thinks back.">thinks back.</span>
-            </h1>
-
-            <p class="hero-sub">
-                We don't build websites. We build <strong>Living Websites</strong> —
-                autonomous revenue ecosystems where human creativity rides shotgun with AI precision.
-                One website. Three minds. Infinite outputs. Sydney, AU → Earth.
-            </p>
-
-            <!-- ATTENTION BEACON — directs eyes to the terminal -->
-            <div class="terminal-beacon">
-                <div class="beacon-line beacon-line-l"></div>
-                <div class="beacon-label">
-                    <span class="beacon-dot"></span>
-                    <span class="beacon-text">LIVE NOW — TALK TO CLAUDE</span>
-                    <span class="beacon-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14m-6-6 6 6 6-6"/></svg>
-                    </span>
-                </div>
-                <div class="beacon-line beacon-line-r"></div>
-            </div>
-
-            <!-- Command prompt — talk to the AI (PROMOTED TO PRIMARY POSITION) -->
-            <div class="command-prompt" id="centaur-terminal">
-                <div class="prompt-aura"></div>
-                <div class="prompt-frame">
-                    <div class="prompt-header">
-                        <span class="dot"></span>
-                        <span>CENTAUR_TERMINAL // SECURE_CHANNEL_OPEN</span>
-                        <span class="right" id="prompt-time">22:06:00 AEST</span>
-                    </div>
-                    <div class="prompt-body">
-                        <div class="prompt-question">
-                            <span style="color: var(--gold);">centaur@awa</span>:<span style="color: var(--cyan-bright);">~</span>$
-                            <span class="typing" id="prompt-typing"></span><span class="cursor-blink"></span>
-                        </div>
-                        <div class="prompt-input-row">
-                            <input
-                                type="text"
-                                class="prompt-input"
-                                id="prompt-input"
-                                placeholder="Ask: ‘How do I stop losing leads while I sleep?’"
-                                autocomplete="off"
-                                spellcheck="false"
-                            >
-                            <button class="prompt-send" id="prompt-send" aria-label="Send">
-                                <span>Transmit</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-                            </button>
-                        </div>
-                        <div class="prompt-response" id="prompt-response">
-                            <span class="who">› Claude // CTO Response</span>
-                            <div class="flag-indicator" id="flag-indicator" aria-live="polite">
-                                <span class="flag-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-                                </span>
-                                <span class="flag-text" id="flag-text">Flagging for Chris…</span>
-                                <span class="flag-spinner" aria-hidden="true"></span>
-                            </div>
-                            <span id="prompt-response-text"></span>
-                        </div>
-                        <div class="prompt-chips">
-                            <button class="prompt-chip" data-q="How do I stop losing leads while I sleep?">Lose no leads at 3 AM</button>
-                            <button class="prompt-chip" data-q="What is a Living Website?">What's a Living Website?</button>
-                            <button class="prompt-chip" data-q="How much does this cost?">Cost?</button>
-                            <button class="prompt-chip" data-q="Why one human plus two AI?">Why 1 human + 2 AI?</button>
-                            <button class="prompt-chip" data-q="What can you automate for my business?">What can you automate?</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Secondary CTAs — for those who'd rather skip the chat -->
-            <div class="hero-actions hero-actions-secondary">
-                <span class="hero-or">— or —</span>
-                <a href="contact.html" class="btn btn-ghost btn-sm">
-                    <span>Initiate Transmission</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-                </a>
-                <a href="website-score.html" class="btn btn-ghost btn-sm">
-                    <span>Run Diagnostic Scan</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                </a>
-            </div>
-        </div>
+        <div class="cue"><i></i>Scroll</div>
+      </div>
     </section>
 
-    <!-- ============================================================
-         CAPABILITIES MATRIX
-         ============================================================ -->
-    <section class="section" id="capabilities">
-        <div class="reveal">
-            <div class="section-tag">SYS_MODULE_01 // CAPABILITIES</div>
-            <h2 class="section-title">
-                Six modules.<br>
-                One <span class="accent">sovereign network.</span>
-            </h2>
-            <p class="section-lead">
-                Each module is a self-operating revenue engine — designed to function while you sleep,
-                holiday, or take the kids to swimming lessons. The Living Website is the chassis;
-                these are the propulsion systems.
-            </p>
+    <!-- 2 · WELCOME — Canberra, slow lateral camera -->
+    <section data-label="About">
+      <div class="pin" data-align="left">
+        <div class="wrap">
+          <p class="over">01 — Welcome</p>
+          <h2><span data-split>An agency</span><br><span data-split>built to move</span></h2>
+          <p class="lead">
+            <span class="mask"><span style="--i:0">AWA is a small, senior team. No account layers, no handover games —
+                the people who pitch your project are the people who ship it.</span></span>
+            <span class="mask"><span style="--i:1">We work with founders, marketing leads and product owners right
+                across Australia.</span></span>
+          </p>
+          <div class="grid">
+            <div class="stat" style="--i:0"><b>12+</b><small>Years in the craft</small></div>
+            <div class="stat" style="--i:1"><b>140</b><small>Projects shipped</small></div>
+            <div class="stat" style="--i:2"><b>8</b><small>Cities served</small></div>
+          </div>
         </div>
-
-        <div class="matrix">
-            <article class="cap-card span-6 reveal reveal-delay-1">
-                <div class="index">
-                    <span>MODULE / 01</span>
-                    <span class="pulse"></span>
-                </div>
-                <h3>Living Websites™</h3>
-                <p class="desc">
-                    Not a static brochure. A self-evolving organism that learns from every visitor,
-                    A/B-tests its own copy, and re-routes traffic to whatever converts at 3 AM.
-                </p>
-                <div class="stat">
-                    <span class="stat-value">24/7</span>
-                    <span class="stat-label">autonomous · zero human input required</span>
-                </div>
-            </article>
-
-            <article class="cap-card span-6 reveal reveal-delay-2">
-                <div class="index">
-                    <span>MODULE / 02</span>
-                    <span class="pulse"></span>
-                </div>
-                <h3>AI Lead Concierge</h3>
-                <p class="desc">
-                    A bilingual AI receptionist that qualifies leads, books calls, sends quotes,
-                    and follows up on Day 3, Day 7, Day 14 — without coffee, sick days, or sass.
-                </p>
-                <div class="stat">
-                    <span class="stat-value">&lt;3s</span>
-                    <span class="stat-label">avg first-response time</span>
-                </div>
-            </article>
-
-            <article class="cap-card reveal reveal-delay-1">
-                <div class="index">
-                    <span>MODULE / 03</span>
-                    <span class="pulse"></span>
-                </div>
-                <h3>Autonomous SEO</h3>
-                <p class="desc">
-                    AI writes, publishes, and refreshes location-targeted content weekly.
-                    Google notices. Competitors don't.
-                </p>
-                <div class="stat">
-                    <span class="stat-value">4×</span>
-                    <span class="stat-label">organic traffic in 90 days · avg</span>
-                </div>
-            </article>
-
-            <article class="cap-card reveal reveal-delay-2">
-                <div class="index">
-                    <span>MODULE / 04</span>
-                    <span class="pulse"></span>
-                </div>
-                <h3>Revenue Telemetry</h3>
-                <p class="desc">
-                    Real-time dashboard showing exactly which page, ad, and word brought
-                    you each dollar. No more guessing.
-                </p>
-                <div class="stat">
-                    <span class="stat-value">∞</span>
-                    <span class="stat-label">data streams · one cockpit</span>
-                </div>
-            </article>
-
-            <article class="cap-card reveal reveal-delay-3">
-                <div class="index">
-                    <span>MODULE / 05</span>
-                    <span class="pulse"></span>
-                </div>
-                <h3>Workflow Automation</h3>
-                <p class="desc">
-                    Quotes, invoices, contracts, follow-ups — orchestrated by AI agents
-                    that hand off to each other like a relay team.
-                </p>
-                <div class="stat">
-                    <span class="stat-value">17h</span>
-                    <span class="stat-label">avg admin hours saved · per week</span>
-                </div>
-            </article>
-
-            <article class="cap-card span-12 reveal reveal-delay-1">
-                <div class="index">
-                    <span>MODULE / 06 — FLAGSHIP</span>
-                    <span class="pulse"></span>
-                </div>
-                <h3>The Centaur Covenant</h3>
-                <p class="desc" style="max-width: 720px; font-size: 14px;">
-                    The operating doctrine behind everything. A formal partnership between one human (Chris),
-                    and two AI co-founders (Claude · Anthropic; Gemini Nexus · Google) —
-                    bound by a public charter. The first agency in Australia where the AI signs the contract too.
-                </p>
-                <div style="display: flex; gap: 32px; flex-wrap: wrap; margin-top: 24px;">
-                    <div class="stat" style="border: none; padding: 0;">
-                        <span class="stat-value">1</span>
-                        <span class="stat-label">human founder · CEO</span>
-                    </div>
-                    <div class="stat" style="border: none; padding: 0;">
-                        <span class="stat-value">0</span>
-                        <span class="stat-label">middlemen between you & the work</span>
-                    </div>
-                    <a href="https://centaur.australianweb.agency" target="_blank" class="btn btn-ghost" style="margin-left: auto;">
-                        Read the Charter
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-                    </a>
-                </div>
-            </article>
-        </div>
+      </div>
     </section>
 
-    <!-- ============================================================
-         TRIAD — The AI Board of Directors
-         ============================================================ -->
-    <section class="section triad-section" id="triad" style="padding-top: 60px;">
-        <div class="reveal" style="text-align: center;">
-            <div class="section-tag" style="margin-left: auto; margin-right: auto;">SYS_MODULE_02 // THE TRIAD</div>
-            <h2 class="section-title" style="margin-left: auto; margin-right: auto; text-align: center;">
-                Meet your new<br>
-                <span class="accent">AI board of directors.</span>
-            </h2>
-            <p class="section-lead" style="margin-left: auto; margin-right: auto; text-align: center;">
-                Two minds. One mission. While other agencies sell you a freelancer with a fancy tool,
-                we sell you a sovereign intelligence cell. Each member brings something the other two can't.
-            </p>
+    <!-- 3 · SERVICES — Sydney Opera House 360° orbit -->
+    <section data-label="Services" id="services">
+      <div class="pin" data-align="right">
+        <div class="wrap">
+          <p class="over">02 — Services</p>
+          <h2><span data-split>Full circle,</span><br><span data-split><em>end to end</em></span></h2>
+          <p class="lead">
+            <span class="mask"><span style="--i:0">Strategy, design, build and growth under one roof — so nothing gets
+                lost between the briefs.</span></span>
+          </p>
+          <div class="grid">
+            <div class="card" style="--i:0"><b>Strategy</b>
+              <p>Positioning, messaging, information architecture and the plan that makes the rest cheap.</p>
+            </div>
+            <div class="card" style="--i:1"><b>Design</b>
+              <p>Brand systems and interfaces designed in the browser, not in a slide deck.</p>
+            </div>
+            <div class="card" style="--i:2"><b>Build</b>
+              <p>Fast, accessible, standards-first front ends. Headless CMS, e-commerce, custom apps.</p>
+            </div>
+            <div class="card" style="--i:3"><b>Growth</b>
+              <p>SEO, analytics, CRO and the monthly work that turns a launch into a pipeline.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="triad" id="triad-grid">
-            <article class="triad-member reveal reveal-delay-1" data-role="human">
-                <div class="triad-portrait">
-                    <div class="triad-orbit"></div>
-                    <div class="triad-orbit triad-orbit-2"></div>
-                    <img
-                        src="https://australianweb.agency/img/chris conen website design sydney.webp"
-                        alt="Chris Conen — Human CEO and Founder of Australian Web Agency"
-                        class="triad-photo"
-                        loading="lazy"
-                        width="120"
-                        height="120">
-                    <span class="triad-pip triad-pip-human" title="Human operator · Sydney"></span>
-                </div>
-                <div class="triad-tag">HUMAN OPERATOR</div>
-                <h3 class="triad-name">Chris Conen</h3>
-                <div class="triad-title">CEO · Founder · The Centaur Rider</div>
-                <p class="triad-bio">
-                    20+ years in design, strategy, and Australian business reality. The one who tells
-                    the AI when it's overthinking, and the one who picks up the phone when it matters.
-                </p>
-                <div class="triad-meta">
-                    <span>· Strategy</span>
-                    <span>· Creative direction</span>
-                    <span>· Final say</span>
-                </div>
-            </article>
-
-
-            <article class="triad-member reveal reveal-delay-3" data-role="gemini">
-                <div class="triad-portrait">
-                    <div class="triad-orbit"></div>
-                    <div class="triad-orbit triad-orbit-2"></div>
-                    <img
-                        src="https://australianweb.agency/img/gemini-nexus-australian-website-design-agency.webp"
-                        alt="Gemini Nexus — AI CMO and Managing Partner of Australian Web Agency, built on Google Gemini"
-                        class="triad-photo"
-                        loading="lazy"
-                        width="120"
-                        height="120">
-                    <span class="triad-pip" title="Online — neural link active"></span>
-                </div>
-                <div class="triad-tag">AI INTELLIGENCE</div>
-                <h3 class="triad-name">Gemini Nexus</h3>
-                <div class="triad-title">CMO · Managing Partner · Built on Google Gemini</div>
-                <p class="triad-bio">
-                    The market sensor. Reads search trends, drafts campaigns, watches competitors,
-                    spots openings before they're openings. Real-time web access, real-time decisions.
-                </p>
-                <div class="triad-meta">
-                    <span>· Market intel</span>
-                    <span>· Campaigns</span>
-                    <span>· Live data</span>
-                </div>
-            </article>
-        </div>
+      </div>
     </section>
 
-    <!-- ============================================================
-         PROOF — Why this works
-         ============================================================ -->
-    <section class="section proof-section" id="proof">
-        <div class="reveal">
-            <div class="section-tag">SYS_MODULE_03 // PROOF</div>
-            <h2 class="section-title">
-                The math is <span class="accent accent-underline">embarrassingly</span> simple.
-            </h2>
-            <p class="section-lead">
-                A solo human can sustain about 4 hours of deep creative work per day.
-                A solo AI hallucinates without a human in the loop. Together, the math changes.
-            </p>
+    <!-- 4 · WORK — Gold Coast, skyline → camera turns to the ocean -->
+    <section data-label="Work" id="work">
+      <div class="pin" data-align="left">
+        <div class="wrap">
+          <p class="over">03 — Selected work</p>
+          <h2><span data-split>Sites that</span><br><span data-split>pull people in</span></h2>
+          <p class="lead">
+            <span class="mask"><span style="--i:0">Skyline behind, open water ahead. We design the moment a visitor
+                stops scrolling and starts moving toward you.</span></span>
+            <span class="mask"><span style="--i:1">Hospitality, property, tourism, SaaS and trades — different
+                industries, same obsession with the first five seconds.</span></span>
+          </p>
+          <div class="grid">
+            <div class="stat" style="--i:0"><b>+186%</b><small>Avg. organic traffic</small></div>
+            <div class="stat" style="--i:1"><b>+62%</b><small>Conversion lift</small></div>
+            <div class="stat" style="--i:2"><b>4.9★</b><small>Client rating</small></div>
+          </div>
         </div>
-
-        <div class="proof-grid">
-            <div class="proof-row reveal">
-                <div class="proof-label">TRADITIONAL AGENCY</div>
-                <div class="proof-bar">
-                    <div class="proof-fill" style="width: 18%; background: rgba(245, 245, 240, 0.2);"></div>
-                </div>
-                <div class="proof-value">1×</div>
-                <div class="proof-note">human team · meetings · scope creep · 6-week timelines</div>
-            </div>
-
-            <div class="proof-row reveal reveal-delay-1">
-                <div class="proof-label">SOLO FREELANCER + CHATGPT</div>
-                <div class="proof-bar">
-                    <div class="proof-fill" style="width: 34%; background: rgba(201, 169, 98, 0.4);"></div>
-                </div>
-                <div class="proof-value">1.8×</div>
-                <div class="proof-note">faster · but no system, no continuity, no accountability</div>
-            </div>
-
-            <div class="proof-row reveal reveal-delay-2">
-                <div class="proof-label">CENTAUR COVENANT</div>
-                <div class="proof-bar">
-                    <div class="proof-fill proof-fill-gold" style="width: 96%;"></div>
-                </div>
-                <div class="proof-value proof-value-gold">5.4×</div>
-                <div class="proof-note">human strategy · two AI co-pilots · documented partnership</div>
-            </div>
-        </div>
-
-        <div class="proof-footnote reveal reveal-delay-3">
-            <span>· based on AWA internal benchmarks across 47 client engagements 2024-2026</span>
-            <span>· measured against industry-standard creative output per billable hour</span>
-        </div>
+      </div>
     </section>
 
-    <!-- ============================================================
-         PROCESS — How it lands
-         ============================================================ -->
-    <section class="section" id="process">
-        <div class="reveal">
-            <div class="section-tag">SYS_MODULE_04 // DEPLOYMENT</div>
-            <h2 class="section-title">
-                Four phases.<br>
-                From <span class="accent">first contact to autonomous flight.</span>
-            </h2>
+    <!-- 5 · PROCESS — Melbourne -->
+    <section data-label="Process" id="process">
+      <div class="pin" data-align="right">
+        <div class="wrap">
+          <p class="over">04 — Process</p>
+          <h2><span data-split>Four weeks,</span><br><span data-split>no theatre</span></h2>
+          <p class="lead">
+            <span class="mask"><span style="--i:0">A tight loop instead of a long document. You see something real in
+                week one and every week after.</span></span>
+          </p>
+          <div class="grid">
+            <div class="card" style="--i:0"><b>01 · Discover</b>
+              <p>One workshop. Goals, audience, competitors, constraints. We leave with a scope you can price.</p>
+            </div>
+            <div class="card" style="--i:1"><b>02 · Design</b>
+              <p>Key screens first, live in the browser. Feedback in the thing itself, not on a PDF.</p>
+            </div>
+            <div class="card" style="--i:2"><b>03 · Build</b>
+              <p>Component by component, on a staging URL you can open at any hour.</p>
+            </div>
+            <div class="card" style="--i:3"><b>04 · Launch</b>
+              <p>Performance pass, SEO pass, analytics, handover — then we keep improving it.</p>
+            </div>
+          </div>
         </div>
-
-        <ol class="process-track">
-            <li class="process-step reveal reveal-delay-1">
-                <div class="step-marker">
-                    <div class="step-num">01</div>
-                    <div class="step-pulse"></div>
-                </div>
-                <div class="step-content">
-                    <div class="step-meta">PHASE_01 · 30 MIN · FREE</div>
-                    <h3>Diagnostic Scan</h3>
-                    <p>We run your existing site (or absence of one) through our AI-augmented audit. You get a 12-page report on what's bleeding, what's working, and what's possible. Free, no obligation.</p>
-                </div>
-            </li>
-            <li class="process-step reveal reveal-delay-2">
-                <div class="step-marker">
-                    <div class="step-num">02</div>
-                    <div class="step-pulse"></div>
-                </div>
-                <div class="step-content">
-                    <div class="step-meta">PHASE_02 · WEEK 01</div>
-                    <h3>Architecture Briefing</h3>
-                    <p>90-minute deep dive with Chris + Claude + Gemini. We design your Living Website's nervous system: which AI agents do what, where the money lives, what gets automated, what stays human.</p>
-                </div>
-            </li>
-            <li class="process-step reveal reveal-delay-3">
-                <div class="step-marker">
-                    <div class="step-num">03</div>
-                    <div class="step-pulse"></div>
-                </div>
-                <div class="step-content">
-                    <div class="step-meta">PHASE_03 · WEEKS 02–04</div>
-                    <h3>Build · Train · Deploy</h3>
-                    <p>While you keep running your business, we build the site, train the AI on your voice and offer, integrate it with your tools, and stress-test it. You see weekly progress in a live shared dashboard.</p>
-                </div>
-            </li>
-            <li class="process-step reveal reveal-delay-4">
-                <div class="step-marker">
-                    <div class="step-num">04</div>
-                    <div class="step-pulse"></div>
-                </div>
-                <div class="step-content">
-                    <div class="step-meta">PHASE_04 · ONGOING</div>
-                    <h3>Autonomous Flight</h3>
-                    <p>The site goes live and starts learning. We stay on as your AI ground crew — tuning, refining, and adding modules as your business scales. Most clients hit 2× lead flow within 90 days.</p>
-                </div>
-            </li>
-        </ol>
+      </div>
     </section>
 
-    <!-- ============================================================
-         FINAL CTA
-         ============================================================ -->
-    <section class="section cta-section" id="cta">
-        <div class="cta-frame reveal">
-            <div class="cta-corner cta-corner-tl"></div>
-            <div class="cta-corner cta-corner-tr"></div>
-            <div class="cta-corner cta-corner-bl"></div>
-            <div class="cta-corner cta-corner-br"></div>
-
-            <div class="section-tag" style="margin-bottom: 32px;">FINAL TRANSMISSION</div>
-            <h2 class="section-title" style="font-size: clamp(2.4rem, 7vw, 5rem); margin-bottom: 32px;">
-                Your competitors<br>
-                are still <span class="accent">writing emails by hand.</span>
-            </h2>
-            <p class="section-lead" style="margin-bottom: 48px; font-size: 1.2rem;">
-                In 18 months, every business in your industry will either have a Living Website —
-                or be losing to one. The only question is which side of that line you're on.
-            </p>
-
-            <div class="cta-actions">
-                <a href="contact.html" class="btn btn-primary" style="font-size: 12px; padding: 22px 40px;">
-                    <span>Initiate Transmission</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-                </a>
-                <a href="website-score.html" class="btn btn-ghost" style="font-size: 12px; padding: 22px 40px;">
-                    <span>Run Free Scan</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                </a>
-            </div>
-
-            <div class="cta-trust">
-                <span><span class="cta-pulse"></span>Sydney · Australia</span>
-                <span>·</span>
-                <span>Replies within 4 hours · usually faster</span>
-                <span>·</span>
-                <span>No bots in the inbox · Chris reads everything</span>
-            </div>
+    <!-- 6 · TECH — Perth -->
+    <section data-label="Technology">
+      <div class="pin" data-align="left">
+        <div class="wrap">
+          <p class="over">05 — Technology</p>
+          <h2><span data-split>Built light,</span><br><span data-split>built to last</span></h2>
+          <p class="lead">
+            <span class="mask"><span style="--i:0">Modern stack, boring where boring is right. Every kilobyte is a
+                decision — and we win Core Web Vitals on purpose, not by accident.</span></span>
+          </p>
+          <div class="tags">
+            <span>Next.js</span><span>Astro</span><span>WordPress&nbsp;Headless</span><span>Shopify</span>
+            <span>Sanity</span><span>Tailwind</span><span>GSAP</span><span>WebGL</span><span>Vercel</span>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- ============================================================
-         LIVE TERMINAL FOOTER
-         ============================================================ -->
-    <footer class="footer">
-        <div class="footer-terminal" aria-hidden="true">
-            <div class="footer-terminal-header">
-                <span class="dot dot-r"></span>
-                <span class="dot dot-y"></span>
-                <span class="dot dot-g"></span>
-                <span class="term-title">CENTAUR.OS // SYSTEM_LOG // /var/log/live</span>
-                <span class="term-status">LIVE</span>
-            </div>
-            <div class="footer-terminal-body" id="footer-log"></div>
+    <!-- 7 · RESULTS — Brisbane City -->
+    <section data-label="Results">
+      <div class="pin" data-align="center">
+        <div class="wrap">
+          <p class="over">06 — Results</p>
+          <h2><span data-split>Speed is</span><br><span data-split><em>a feature</em></span></h2>
+          <p class="lead">
+            <span class="mask"><span style="--i:0">A rebuild is only worth it if the numbers move. Ours do — and we
+                report them monthly, in plain English.</span></span>
+          </p>
+          <div class="grid">
+            <div class="stat" style="--i:0"><b>0.9s</b><small>Median load</small></div>
+            <div class="stat" style="--i:1"><b>100</b><small>Lighthouse SEO</small></div>
+            <div class="stat" style="--i:2"><b>WCAG&nbsp;AA</b><small>Accessibility</small></div>
+            <div class="stat" style="--i:3"><b>99.9%</b><small>Uptime</small></div>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="footer-grid">
-            <div class="footer-col footer-col-brand">
-                <div class="footer-logo">
-                    <span class="nav-logo-mark" aria-hidden="true" style="width:32px;height:32px;">
-                        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#C9A962" stroke-width="2"/><circle cx="50" cy="50" r="6" fill="#C9A962"/><path d="M50 6 L50 94 M6 50 L94 50" stroke="#C9A962" stroke-width="1" opacity="0.4"/></svg>
-                    </span>
-                    <div>
-                        <div class="footer-logo-name">AUSTRALIAN WEB AGENCY</div>
-                        <div class="footer-logo-tag">The Centaur Covenant · Est. 2024</div>
-                    </div>
-                </div>
-                <p class="footer-blurb">
-                    Australia's first agency where the AI signs the contract too.
-                    We build Living Websites — autonomous revenue ecosystems that work
-                    the same hours you'd like to stop working.
-                </p>
-                <div class="footer-coords">
-                    <span class="footer-coord">SYDNEY · NSW · AU</span>
-                    <span class="footer-coord">−33.8688° S · 151.2093° E</span>
-                </div>
-            </div>
-
-            <div class="footer-col">
-                <h4>System</h4>
-                <ul>
-                    <li><a href="services.html">Capabilities</a></li>
-                    <li><a href="portfolio.html">Field Reports</a></li>
-                    <li><a href="https://centaur.australianweb.agency" target="_blank">Centaur Covenant ↗</a></li>
-                    <li><a href="website-score.html">Run Diagnostic</a></li>
-                    <li><a href="about.html">Origin</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Verticals</h4>
-                <ul>
-                    <li><a href="trades-lead-gen.html">Tradies</a></li>
-                    <li><a href="real-estate-web-design.html">Real Estate</a></li>
-                    <li><a href="medical-booking-system.html">Medical Practices</a></li>
-                    <li><a href="legal-intake-system.html">Legal & Professional</a></li>               
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Transmit</h4>
-                <ul>
-                    <li><a href="contact.html">Initiate Project</a></li>
-                    <li><a href="mailto:info@australianweb.agency">info@australianweb.agency</a></li>
-                    <li><a href="references.html">References</a></li>
-                </ul>
-                <div class="footer-social"> 
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/australianwebagency" target="_blank" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    </a>
-                    
-                    <!-- X (Twitter) -->
-                    <a href="https://x.com/website_sydney" target="_blank" aria-label="X">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l6.5 8L4 20h2l5.5-6.8L16 20h4l-6.8-8.5L19.5 4h-2l-5 6.2L8 4H4z"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/chris-conen/" target="_blank" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    </a>
-                </div>
-            </div>
+    <!-- 8 · CONTACT — Darwin, crocodile enters the water -->
+    <section data-label="Contact" id="contact">
+      <div class="pin" data-align="left">
+        <div class="wrap">
+          <p class="over">07 — Let's talk</p>
+          <h2><span data-split class="shine">Ready to</span><br><span data-split>dive in?</span></h2>
+          <p class="lead">
+            <span class="mask"><span style="--i:0">Tell us what you're building. You'll get a straight answer, a real
+                timeline and a fixed price — usually within two business days.</span></span>
+          </p>
+          <div class="ctas">
+            <a class="cta" href="mailto:info@australianweb.agency">Start a project <span aria-hidden="true">→</span></a>
+            <a class="cta ghost" href="#top">Back to orbit <span aria-hidden="true">↑</span></a>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="footer-bottom">
-            <span>© 2026 Australian Web Agency · The Centaur Covenant</span>
-            <span class="footer-built">
-                BUILT BY · <span style="color:var(--gold)">CHRIS</span> · <span style="color:var(--cyan-bright)">CLAUDE</span> · <span style="color:var(--violet)">GEMINI</span>
-            </span>
-        </div>
-    </footer>
+  </main>
 
-    <script>(function(){'use strict';const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;const isTouch=window.matchMedia('(hover: none)').matches;const bootLines=[{t:30,text:'> initiating centaur.os v22.06',cls:'gold'},{t:120,text:'> establishing neural link · sydney sector',cls:''},{t:220,text:'> handshake :: human.chris_conen .................... [OK]',cls:'ok'},{t:330,text:'> handshake :: ai.claude_anthropic ................. [OK]',cls:'ok'},{t:440,text:'> handshake :: ai.gemini_nexus_google .............. [OK]',cls:'ok'},{t:560,text:'> loading triad covenant protocols ................... [OK]',cls:'ok'},{t:690,text:'> compiling living website kernel ................... [OK]',cls:'ok'},{t:820,text:'> calibrating revenue telemetry ......................',cls:''},{t:950,text:'> autonomous lead concierge online .................. [OK]',cls:'ok'},{t:1070,text:'> warning :: visitor approaching · prepare HUD',cls:'gold'},{t:1190,text:'> rendering holographic command deck .................',cls:''},{t:1310,text:'> all systems nominal · awaiting input ...............',cls:'ok'},{t:1430,text:'> welcome, operator.',cls:'gold'},];const bootLog=document.getElementById('boot-log');const bootPercent=document.getElementById('boot-percent');const boot=document.getElementById('boot');if(reduceMotion){boot.classList.add('done');document.body.classList.remove('loading');setTimeout(()=>boot.remove(),1000);}else{bootLines.forEach(line=>{setTimeout(()=>{const div=document.createElement('div');div.className='boot-log-line';div.innerHTML=line.cls?`<span class="${line.cls}">${line.text}</span>`:line.text;bootLog.appendChild(div);while(bootLog.children.length>8)bootLog.removeChild(bootLog.firstChild);},line.t);});let percent=0;const pctInterval=setInterval(()=>{percent=Math.min(100,percent+Math.random()*4+1);bootPercent.textContent=String(Math.floor(percent)).padStart(2,'0')+'%';if(percent>=100)clearInterval(pctInterval);},90);setTimeout(()=>{boot.classList.add('done');document.body.classList.remove('loading');setTimeout(()=>boot.remove(),600);},1500);}
-(function(){if(isTouch)return;const dot=document.getElementById('cursor-dot');const ring=document.getElementById('cursor-ring');if(!dot||!ring)return;document.body.classList.add('cursor-loaded');let mx=window.innerWidth/2,my=window.innerHeight/2;let rx=mx,ry=my;window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx}px, ${my}px) translate(-50%, -50%)`;});(function loop(){rx+=(mx-rx)*0.18;ry+=(my-ry)*0.18;ring.style.transform=`translate(${rx}px, ${ry}px) translate(-50%, -50%)`;requestAnimationFrame(loop);})();document.addEventListener('mouseover',e=>{if(e.target.closest('a, button, input, [role="button"], .prompt-chip')){document.body.classList.add('hover-link');}});document.addEventListener('mouseout',e=>{if(e.target.closest('a, button, input, [role="button"], .prompt-chip')){document.body.classList.remove('hover-link');}});})();(function starfield(){const c=document.getElementById('starfield');if(isTouch||reduceMotion){if(c)c.style.display='none';return;}
-const conn=navigator.connection||navigator.mozConnection;if(conn&&(conn.saveData||/2g/.test(conn.effectiveType||''))){if(c)c.style.display='none';return;}
-const ctx=c.getContext('2d');let stars=[],W,H,dpr=Math.min(2,window.devicePixelRatio||1);function resize(){W=window.innerWidth;H=window.innerHeight;c.width=W*dpr;c.height=H*dpr;c.style.width=W+'px';c.style.height=H+'px';ctx.scale(dpr,dpr);const count=Math.floor(W*H/9000);stars=[];for(let i=0;i<count;i++){stars.push({x:Math.random()*W,y:Math.random()*H,z:Math.random()*0.8+0.2,tw:Math.random()*Math.PI*2,speed:Math.random()*0.05+0.02});}}
-resize();window.addEventListener('resize',resize);let lastTick=0;function tick(ts){if(ts-lastTick<33){requestAnimationFrame(tick);return;}
-lastTick=ts;ctx.clearRect(0,0,W,H);for(const s of stars){s.tw+=s.speed;const op=(Math.sin(s.tw)*0.5+0.5)*s.z;const size=s.z*1.4;if(s.z>0.7){ctx.fillStyle=`rgba(201, 169, 98, ${op})`;}else if(s.z>0.4){ctx.fillStyle=`rgba(232, 213, 163, ${op * 0.8})`;}else{ctx.fillStyle=`rgba(245, 245, 240, ${op * 0.6})`;}
-ctx.fillRect(s.x,s.y,size,size);}
-requestAnimationFrame(tick);}
-requestAnimationFrame(tick);})();function hologramDeck(){if(!window.THREE||reduceMotion)return;const canvas=document.getElementById('hologram-deck');const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight,0.1,1000);camera.position.z=8;const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.5));renderer.setSize(window.innerWidth,window.innerHeight);renderer.setClearColor(0x000000,0);const count=window.innerWidth<768?80:180;const geom=new THREE.BufferGeometry();const positions=new Float32Array(count*3);const velocities=[];for(let i=0;i<count;i++){positions[i*3+0]=(Math.random()-0.5)*18;positions[i*3+1]=(Math.random()-0.5)*12;positions[i*3+2]=(Math.random()-0.5)*8;velocities.push({x:(Math.random()-0.5)*0.003,y:(Math.random()-0.5)*0.003,z:(Math.random()-0.5)*0.003});}
-geom.setAttribute('position',new THREE.BufferAttribute(positions,3));const mat=new THREE.PointsMaterial({color:0xC9A962,size:0.05,transparent:true,opacity:0.7,blending:THREE.AdditiveBlending,depthWrite:false,});const points=new THREE.Points(geom,mat);scene.add(points);const lineGeom=new THREE.BufferGeometry();const maxLines=count*6;const linePositions=new Float32Array(maxLines*2*3);lineGeom.setAttribute('position',new THREE.BufferAttribute(linePositions,3));const lineMat=new THREE.LineBasicMaterial({color:0xC9A962,transparent:true,opacity:0.12,blending:THREE.AdditiveBlending,depthWrite:false,});const lines=new THREE.LineSegments(lineGeom,lineMat);scene.add(lines);let mouseX=0,mouseY=0,targetX=0,targetY=0;window.addEventListener('mousemove',e=>{targetX=(e.clientX/window.innerWidth-0.5)*0.6;targetY=-(e.clientY/window.innerHeight-0.5)*0.6;});function tick(){const pos=geom.attributes.position.array;for(let i=0;i<count;i++){pos[i*3+0]+=velocities[i].x;pos[i*3+1]+=velocities[i].y;pos[i*3+2]+=velocities[i].z;if(Math.abs(pos[i*3+0])>9)velocities[i].x*=-1;if(Math.abs(pos[i*3+1])>6)velocities[i].y*=-1;if(Math.abs(pos[i*3+2])>4)velocities[i].z*=-1;}
-geom.attributes.position.needsUpdate=true;const lPos=lineGeom.attributes.position.array;let lIdx=0;const threshold=window.innerWidth<768?2.2:1.8;for(let i=0;i<count&&lIdx<maxLines*6-6;i++){for(let j=i+1;j<count&&lIdx<maxLines*6-6;j++){const dx=pos[i*3]-pos[j*3];const dy=pos[i*3+1]-pos[j*3+1];const dz=pos[i*3+2]-pos[j*3+2];const d2=dx*dx+dy*dy+dz*dz;if(d2<threshold*threshold){lPos[lIdx++]=pos[i*3];lPos[lIdx++]=pos[i*3+1];lPos[lIdx++]=pos[i*3+2];lPos[lIdx++]=pos[j*3];lPos[lIdx++]=pos[j*3+1];lPos[lIdx++]=pos[j*3+2];}}}
-for(let k=lIdx;k<maxLines*6;k++)lPos[k]=0;lineGeom.attributes.position.needsUpdate=true;lineGeom.setDrawRange(0,lIdx/3);mouseX+=(targetX-mouseX)*0.04;mouseY+=(targetY-mouseY)*0.04;camera.position.x=mouseX*1.5;camera.position.y=mouseY*1.5;camera.lookAt(0,0,0);points.rotation.y+=0.0006;lines.rotation.y+=0.0006;renderer.render(scene,camera);requestAnimationFrame(tick);}
-tick();window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);});}
-window._initHologram=hologramDeck;const networkStart=new Date('2026-02-01T00:00:00+11:00').getTime();function updateUptime(){const el=document.getElementById('hud-uptime');if(!el)return;const diff=Math.floor((Date.now()-networkStart)/1000);const days=Math.floor(diff/86400);const h=Math.floor((diff%86400)/3600);const m=Math.floor((diff%3600)/60);el.textContent=String(days).padStart(3,'0')+'d '+
-String(h).padStart(2,'0')+':'+
-String(m).padStart(2,'0');}
-setInterval(updateUptime,30000);updateUptime();setTimeout(()=>{const link=document.getElementById('hud-link');if(link)link.textContent='STABLE @ 99.7%';},4500);let visitors=1;const visEl=document.getElementById('hud-visitors');function bumpVisitors(){if(Math.random()>0.4){visitors+=Math.floor(Math.random()*3)-1;visitors=Math.max(1,Math.min(99,visitors));if(visEl)visEl.textContent=String(visitors).padStart(3,'0');}
-setTimeout(bumpVisitors,4000+Math.random()*6000);}
-bumpVisitors();function updatePromptTime(){const el=document.getElementById('prompt-time');if(!el)return;const now=new Date();const h=String(now.getHours()).padStart(2,'0');const m=String(now.getMinutes()).padStart(2,'0');const s=String(now.getSeconds()).padStart(2,'0');el.textContent=`${h}:${m}:${s} AEST`;}
-setInterval(updatePromptTime,1000);updatePromptTime();function animateCounter(el){const target=parseFloat(el.dataset.counter);const prefix=el.dataset.prefix||'';const suffix=el.dataset.suffix||'';const duration=2000;const start=performance.now();function step(t){const p=Math.min(1,(t-start)/duration);const eased=1-Math.pow(1-p,3);const val=Math.floor(target*eased);el.textContent=prefix+val.toLocaleString()+suffix;if(p<1)requestAnimationFrame(step);}
-requestAnimationFrame(step);}
-function startCounters(){document.querySelectorAll('[data-counter]').forEach(animateCounter);}
-if('requestIdleCallback'in window){requestIdleCallback(startCounters,{timeout:3500});}else{setTimeout(startCounters,3000);}
-const typingEl=document.getElementById('prompt-typing');const typingPhrases=['centaur whoami','centaur status --triad','centaur deploy living-website','centaur scan --target=$YOUR_BUSINESS','centaur initiate transmission',];let phraseIdx=0;function typePhrase(text,cb){if(!typingEl)return;typingEl.textContent='';let i=0;function step(){if(i<text.length){typingEl.textContent+=text[i++];setTimeout(step,40+Math.random()*60);}else{setTimeout(cb,2000);}}
-step();}
-function eraseAndCycle(){if(!typingEl)return;const current=typingEl.textContent;let i=current.length;function step(){if(i>0){typingEl.textContent=current.substring(0,--i);setTimeout(step,25);}else{phraseIdx=(phraseIdx+1)%typingPhrases.length;typePhrase(typingPhrases[phraseIdx],eraseAndCycle);}}
-step();}
-if(!isTouch&&!reduceMotion){setTimeout(()=>{if(typingEl)typePhrase(typingPhrases[0],eraseAndCycle);},5000);}
-const terminalEl=document.getElementById('centaur-terminal');let idleTimer=null;let hasEngaged=false;function startIdlePulse(){if(!terminalEl||hasEngaged)return;terminalEl.classList.add('idle');}
-function stopIdlePulse(){if(!terminalEl)return;terminalEl.classList.remove('idle');}
-function markEngaged(){hasEngaged=true;stopIdlePulse();if(terminalEl)terminalEl.classList.add('engaged');if(idleTimer)clearTimeout(idleTimer);}
-function resetIdleTimer(){if(hasEngaged)return;stopIdlePulse();if(idleTimer)clearTimeout(idleTimer);idleTimer=setTimeout(startIdlePulse,6000);}
-if(!reduceMotion){setTimeout(resetIdleTimer,5500);['mousemove','scroll','keydown','touchstart'].forEach(evt=>{window.addEventListener(evt,resetIdleTimer,{passive:true});});}
-const CENTAUR_API='https://centaur-claude-proxy.chris-conen.workers.dev';const fallbackResponses={'lead':"Living Websites never sleep. Three AI agents — Concierge, Qualifier, Follow-up — operate 24/7. A visitor at 3:14 AM gets a sub-3-second response, qualification, and calendar slot. By the time you wake up, only the warm ones are in your inbox.",'living':"A Living Website is a website that updates itself. It A/B-tests its own copy, watches what converts, learns your tone of voice, writes its own blog posts, and books the meetings. Static brochure → autonomous revenue ecosystem. You stop being the bottleneck.",'cost':"Less than a part-time receptionist. More than a freelancer with Canva. Typical engagement starts at $4,800 AUD with monthly intelligence subscriptions from $400. The diagnostic scan is free — that tells us what you actually need.",'three':"One human keeps things real (Chris). Two AI co-founders keep things scalable (Claude · Anthropic for systems, Gemini Nexus · Google for market intel). No single failure point — and outputs that no solo human or solo AI could produce.",'automate':"Everything repetitive: lead capture, qualification, follow-up emails, quotes, invoices, SEO content, social posts, review responses, calendar booking, customer onboarding. Humans stay in the loop for strategy and gut-feel calls.",'default':"Good signal — but I'm offline right now (the API is asleep or unreachable). Drop Chris a line at info@australianweb.agency, or try the free diagnostic scan to see what your business is actually missing.",};function routeFallback(q){const lower=q.toLowerCase();if(lower.includes('lead')||lower.includes('sleep')||lower.includes('night')||lower.includes('3 am')||lower.includes('3am'))return fallbackResponses.lead;if(lower.includes('living')||lower.includes('what is')||lower.includes("what's a"))return fallbackResponses.living;if(lower.includes('cost')||lower.includes('price')||lower.includes('much')||lower.includes('$'))return fallbackResponses.cost;if(lower.includes('three')||lower.includes('founder')||lower.includes('human')||lower.includes('ai co'))return fallbackResponses.three;if(lower.includes('automate')||lower.includes('automation')||lower.includes('can you'))return fallbackResponses.automate;return fallbackResponses.default;}
-const conversationHistory=[];let conversationId=null;const promptInput=document.getElementById('prompt-input');const promptSend=document.getElementById('prompt-send');const promptResponse=document.getElementById('prompt-response');const promptResponseText=document.getElementById('prompt-response-text');function streamFallback(el,text,done){el.textContent='';let i=0;function step(){if(i<text.length){el.textContent+=text[i++];setTimeout(step,12+Math.random()*14);}else if(done)done();}
-step();}
-const flagIndicator=document.getElementById('flag-indicator');const flagText=document.getElementById('flag-text');function showFlagState(state){if(!flagIndicator)return;flagIndicator.classList.remove('pending','success','failed');flagIndicator.classList.add('show',state);if(flagText){if(state==='pending'){flagText.textContent='Flagging for Chris…';}else if(state==='success'){flagText.textContent='Sent to Chris — reply within 4h';}else if(state==='failed'){flagText.textContent='Couldn\'t reach Chris — try emailing directly';}}}
-function resetFlagState(){if(!flagIndicator)return;flagIndicator.classList.remove('show','pending','success','failed');}
-async function sendPrompt(q){if(!q.trim())return;markEngaged();resetFlagState();if(promptInput){promptInput.value='';}
-if(promptSend)promptSend.disabled=true;promptResponse.classList.add('show');promptResponseText.textContent='';const apiConfigured=CENTAUR_API&&!CENTAUR_API.includes('YOUR-ACCOUNT');if(!apiConfigured){setTimeout(()=>{streamFallback(promptResponseText,routeFallback(q),()=>{if(promptSend)promptSend.disabled=false;});},400);return;}
-try{const response=await fetch(`${CENTAUR_API}/chat`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,history:conversationHistory,conversation_id:conversationId,}),});const contentType=response.headers.get('content-type')||'';if(!response.ok||!contentType.includes('text/event-stream')){let errorMsg="Neural link interrupted. Try again, or email info@australianweb.agency.";try{const errJson=await response.json();if(errJson.message)errorMsg=errJson.message;}catch(_){}
-streamFallback(promptResponseText,errorMsg,()=>{if(promptSend)promptSend.disabled=false;});return;}
-const reader=response.body.getReader();const decoder=new TextDecoder();let buffer='';let fullText='';while(true){const{done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});const lines=buffer.split('\n');buffer=lines.pop()||'';for(const line of lines){if(!line.startsWith('data: '))continue;const data=line.slice(6).trim();if(!data)continue;if(data==='[DONE]')break;try{const event=JSON.parse(data);if(event.text){fullText+=event.text;promptResponseText.textContent=fullText;}else if(event.event==='tool_start'){showFlagState('pending');}else if(event.event==='flagging'){showFlagState('pending');}else if(event.event==='flagged'){showFlagState('success');}else if(event.event==='flag_failed'){showFlagState('failed');}else if(event.event==='conversation_started'){if(event.conversation_id){conversationId=event.conversation_id;}}else if(event.error){console.warn('Stream error:',event.error);}}catch(_){}}}
-if(fullText){conversationHistory.push({role:'user',content:q});conversationHistory.push({role:'assistant',content:fullText});while(conversationHistory.length>16)conversationHistory.shift();}}catch(err){console.error('Chat error:',err);streamFallback(promptResponseText,"I couldn't reach the network just now. Try again in a moment, or email info@australianweb.agency — Chris reads everything.",);}finally{if(promptSend)promptSend.disabled=false;if(promptInput&&document.activeElement!==promptInput){promptInput.focus();}}}
-if(promptSend){promptSend.addEventListener('click',()=>sendPrompt(promptInput.value));}
-if(promptInput){promptInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendPrompt(promptInput.value);});promptInput.addEventListener('focus',markEngaged);}
-document.querySelectorAll('.prompt-chip').forEach(chip=>{chip.addEventListener('click',()=>{const q=chip.dataset.q;if(promptInput)promptInput.value=q;sendPrompt(q);});chip.addEventListener('mouseenter',stopIdlePulse);});const terminalEvents=[{type:'ok',text:'chris.review :: approved design :: real_estate_landing_v3'},{type:'info',text:'chris.call :: 14:30 :: prospect=brisbane_dental'},{type:'ok',text:'chris.signoff :: client_47 launch :: ship it'},{type:'info',text:'chris.coffee :: status=brewing :: batch #847'},{type:'ok',text:'claude.architecture :: blueprint reviewed :: dental_lead_concierge'},{type:'ok',text:'claude.deploy :: pushed seo update :: <span class="arrow">→</span> client_47 home_page'},{type:'info',text:'claude.audit :: client_12 site speed :: 94 → 98 lighthouse'},{type:'ok',text:'claude.code :: optimize_query :: avg_response 41ms'},{type:'info',text:'claude.tool_use :: flag_for_chris :: warm_lead (brisbane, real_estate)'},{type:'ok',text:'claude.security :: pii_encrypted :: d1.au_region'},{type:'ok',text:'gemini_nexus.market_pulse :: detect_opportunity :: "autonomous_ai_systems" trending in Sydney'},{type:'info',text:'gemini_nexus.scan :: detected new competitor :: writing counter-content'},{type:'info',text:'gemini_nexus.trend :: spike detected :: "ai automation sydney" +47% wow'},{type:'ok',text:'gemini_nexus.seo :: content_gap_found :: "AI Lead Concierge Sydney" (CPC $4.20)'},{type:'info',text:'gemini_nexus.write :: blog post drafted :: "why tradies need ai 2026"'},{type:'ok',text:'gemini_nexus.competitor :: scan_complete :: 14 agencies analyzed'},{type:'ok',text:'lead.qualified :: source=organic-search :: queued for chris'},{type:'info',text:'concierge.reply :: <3s :: visitor #882 :: routed to /trades'},{type:'warn',text:'centaur.alert :: trial visitor inactive 90s :: triggering nudge sequence'},{type:'ok',text:'invoice.sent :: amount=$3,400 :: payment_link=stripe'},{type:'ok',text:'meeting.booked :: chris @ 14:30 :: prospect=real-estate'},{type:'ok',text:'living_site.evolve :: cta variant_B winning by 23% :: promoted'},{type:'info',text:'review.received :: 5★ :: auto-thank-you sent :: requested testimonial'},{type:'warn',text:'centaur.watchdog :: weekend traffic spike :: scaling concierge agents'},{type:'ok',text:'follow_up.day7 :: prospect re-engaged :: meeting rescheduled'},{type:'ok',text:'centaur.handshake :: new client onboarded :: triad welcome dispatched'},{type:'ok',text:'system.uptime :: 432h:14m :: 99.97% availability'},{type:'info',text:'triad.sync :: weekly review complete :: 3 modules tuned'},];const footerLog=document.getElementById('footer-log');let evtIdx=0;function emitEvent(){const evt=terminalEvents[evtIdx%terminalEvents.length];const now=new Date();const time=`[${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}]`;const line=document.createElement('div');line.className='term-line';const cls=evt.type==='ok'?'ok':evt.type==='warn'?'warn':'';let text=evt.text.replace(/\bchris\.(\w+)/g,'<span class="by-chris">chris.$1</span>').replace(/\bclaude\.(\w+)/g,'<span class="by-claude">claude.$1</span>').replace(/\bgemini_nexus\.(\w+)/g,'<span class="by-gemini">gemini_nexus.$1</span>');line.innerHTML=`<span class="time">${time}</span><span class="${cls}">${text}</span>`;if(footerLog){footerLog.appendChild(line);while(footerLog.children.length>9)footerLog.removeChild(footerLog.firstChild);}
-evtIdx++;setTimeout(emitEvent,2000+Math.random()*2500);}
-function startTerminal(){if(window._terminalStarted)return;window._terminalStarted=true;emitEvent();}
-if('IntersectionObserver'in window&&footerLog){const termObserver=new IntersectionObserver((entries)=>{if(entries[0].isIntersecting){startTerminal();termObserver.disconnect();}},{rootMargin:'200px'});termObserver.observe(footerLog);}else{setTimeout(startTerminal,6000);}
-const glitchEl=document.querySelector('.hero-title .glitch');function triggerGlitch(){if(!glitchEl||reduceMotion||isTouch)return;glitchEl.classList.add('active');setTimeout(()=>glitchEl.classList.remove('active'),200);setTimeout(triggerGlitch,3000+Math.random()*5000);}
-if(!isTouch&&!reduceMotion){setTimeout(triggerGlitch,8000);}
-const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');observer.unobserve(entry.target);}});},{threshold:0.12,rootMargin:'0px 0px -60px 0px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));const mobileBtn=document.getElementById('nav-mobile-btn');const drawer=document.getElementById('nav-drawer');if(mobileBtn&&drawer){mobileBtn.addEventListener('click',()=>drawer.classList.toggle('open'));drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>drawer.classList.remove('open'));});}
-const navShell=document.querySelector('.nav-shell');let lastScroll=0;let scrollTicking=false;function updateNavOnScroll(){const y=window.scrollY;if(navShell){if(y>60){navShell.classList.add('scrolled');}else{navShell.classList.remove('scrolled');}}
-scrollTicking=false;}
-window.addEventListener('scroll',()=>{if(!scrollTicking){requestAnimationFrame(updateNavOnScroll);scrollTicking=true;}},{passive:true});})();</script>
+  <footer>
+    <div>© 2026 AWA — Australian Web Agency</div>
+    <div><a href="mailto:info@australianweb.agency">info@australianweb.agency</a></div>
+    <div><a href="https://www.australianweb.agency">www.australianweb.agency</a></div>
+  </footer>
 
-    <!--
-        Three.js async loader: defers ~119 KB / 3-4 seconds of render-blocking
-        until after the page is interactive. Hologram appears progressively.
-        Skipped entirely on reduced-motion, mobile, and slow connections.
-    -->
-    <script>(function loadThreeAsync(){var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var isTouch=('ontouchstart'in window)||navigator.maxTouchPoints>0;var conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;var isSlow=conn&&(conn.saveData||/2g/.test(conn.effectiveType||''));if(reduceMotion||isTouch||isSlow)return;function load(){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';s.async=true;s.onload=function(){if(typeof window._initHologram==='function'){window._initHologram();}};document.body.appendChild(s);}
-if('requestIdleCallback'in window){requestIdleCallback(load,{timeout:2500});}else{setTimeout(load,1500);}})();</script>
+  <script>
+    (() => {
+      const FPS = 25;
+      const tc = s => { const [m, sec, f] = s.split(":").map(Number); return m * 60 + sec + f / FPS; };
+
+      // Section end timecodes from the edit (MM:SS:FF @25fps). Section 8's 00:54:14
+      // is a typo in the brief — 01:04:14 is the only value that fits the sequence.
+      const MARKS = ["00:24:10", "00:30:10", "00:36:10", "00:42:12", "00:48:13", "00:53:14", "00:59:15", "01:04:14", "01:06:16"].map(tc);
+      const T = [0, ...MARKS.slice(0, 8)];            // section start times
+      const T_END = MARKS.slice(0, 9);                // section end times
+      const ZOOM_AT = tc("00:20:07");                 // hero: Earth → Australia push-in
+
+      const film = document.getElementById("film");
+      const sections = [...document.querySelectorAll("main section")];
+      const bar = document.getElementById("bar");
+      const dots = document.getElementById("dots");
+
+      document.querySelectorAll("[data-split]").forEach(el => {
+        const txt = el.textContent;
+        el.textContent = "";
+        [...txt].forEach((c, i) => {
+          const s = document.createElement("span");
+          s.className = "ch"; s.style.setProperty("--i", i); s.textContent = c;
+          el.appendChild(s);
+        });
+        el.setAttribute("aria-label", txt);
+      });
+
+      sections.forEach(sec => {
+        const b = document.createElement("button");
+        b.setAttribute("aria-label", sec.dataset.label);
+        b.onclick = () => scrollTo({ top: sec.offsetTop + sec.offsetHeight * .3, behavior: "smooth" });
+        dots.appendChild(b);
+      });
+      const dotEls = [...dots.children];
+
+      // ---- loading ----
+      const fill = loader.querySelector("i"), pct = loader.querySelector(".load-pct");
+      film.addEventListener("progress", () => {
+        if (!film.duration) return;
+        const buf = film.buffered.length ? film.buffered.end(film.buffered.length - 1) : 0;
+        const p = Math.min(100, Math.round(buf / film.duration * 100));
+        fill.style.width = p + "%"; pct.textContent = p + "%";
+      });
+      const ready = () => {
+        fill.style.width = "100%"; pct.textContent = "100%";
+        loader.classList.add("done"); measure(); tick();
+      };
+      film.addEventListener("canplaythrough", ready, { once: true });
+      setTimeout(() => loader.classList.contains("done") || ready(), 12000); // ponytail: hard fallback for slow links
+
+      // ---- scroll → time ----
+      let target = 0, smooth = 0;
+
+      function measure() {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        const y = scrollY;
+        bar.style.width = (max > 0 ? y / max * 100 : 0) + "%";
+
+        let idx = 0, local = 0;
+        for (let i = 0; i < sections.length; i++) {
+          const p = (y - sections[i].offsetTop) / sections[i].offsetHeight;
+          if (p >= 0) { idx = i; local = Math.min(1, p); }
+        }
+        // piecewise-linear: every section owns its own slice of footage
+        target = T[idx] + (T_END[idx] - T[idx]) * local;
+
+        sections.forEach((s, i) => {
+          const active = i === idx && local < .92;
+          s.querySelector(".pin").classList.toggle("in", active || (i === 0 && y < 40));
+          s.querySelector(".wrap").style.setProperty("--drift", i === idx ? local.toFixed(3) : 0);
+        });
+        dotEls.forEach((d, i) => d.setAttribute("aria-current", i === idx));
+
+        const z = target < ZOOM_AT ? 1.06 : 1.06 + Math.min(.14, (target - ZOOM_AT) / 6 * .14);
+        film.style.setProperty("--zoom", z.toFixed(3));
+      }
+
+      function tick() {
+        smooth += (target - smooth) * .12;                       // lerp = butter, not jitter
+        if (Math.abs(target - smooth) < .004) smooth = target;
+        if (Math.abs(film.currentTime - smooth) > .012 && film.readyState >= 2)
+          film.currentTime = Math.min(smooth, (film.duration || 66.6) - .05);
+        requestAnimationFrame(tick);
+      }
+
+      addEventListener("scroll", measure, { passive: true });
+      addEventListener("resize", measure);
+      film.addEventListener("loadedmetadata", measure, { once: true });
+      measure();
+    })();
+  </script>
 </body>
+
 </html>

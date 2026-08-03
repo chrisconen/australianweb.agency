@@ -55,6 +55,16 @@
       background: #04060a
     }
 
+    #filmstill {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%) scale(var(--zoom, 1.06));
+      object-fit: cover;
+    }
+
     #film {
       position: absolute;
       top: 50%;
@@ -64,6 +74,7 @@
       transform: translate(-50%, -50%) scale(var(--zoom, 1.06));
       object-fit: cover;
       will-change: transform;
+      z-index: 1;
       /* ponytail: no transition — --zoom is rewritten every rAF, so a transition just
          fights the new value each frame and lags the push-in. The lerp is the easing. */
     }
@@ -276,9 +287,46 @@
       color: #04060a
     }
 
+    .lbl-narrow {
+      display: none
+    }
+
     @media(max-width:820px) {
       .top nav a:not(.pill) {
         display: none
+      }
+    }
+
+    @media(max-width:680px) {
+
+      header.top {
+        padding-left: .9rem;
+        padding-right: .9rem;
+        gap: .6rem;
+        flex-wrap: nowrap;
+      }
+
+      .brand span {
+        display: none
+      }
+
+      .brand b {
+        font-size: 1.25rem
+      }
+
+      .top nav a.pill {
+        font-size: .64rem;
+        letter-spacing: .1em;
+        padding: .62rem .95rem;
+        white-space: nowrap;
+      }
+
+      .lbl-wide {
+        display: none
+      }
+
+      .lbl-narrow {
+        display: inline
       }
     }
 
@@ -1032,8 +1080,9 @@
   <a class="skip" href="#main">Skip to content</a>
 
   <div id="stage">
-    <video id="film" src="media/awa-scrub.mp4" muted playsinline preload="auto" disablepictureinpicture
-      aria-hidden="true"></video>
+    <img id="filmstill" src="media/awa-poster.webp" alt="" aria-hidden="true" fetchpriority="high">
+    <video id="film" muted playsinline webkit-playsinline preload="auto" disablepictureinpicture
+      poster="media/awa-poster.webp" aria-hidden="true"></video>
   </div>
   <div id="grain"></div>
   <div id="bar"></div>
@@ -1050,7 +1099,7 @@
       <a href="#services">Services</a>
       <a href="#work">Work</a>
       <a href="#process">Process</a>
-      <a href="#contact" class="pill">Start a project</a>
+      <a href="#contact" class="pill"><span class="lbl-wide">Start a project</span><span class="lbl-narrow">Enquire</span></a>
     </nav>
   </header>
   <nav class="dots" id="dots" aria-label="Sections"></nav>
@@ -1264,6 +1313,9 @@
       const ZOOM_RAMP = MARKS[0] - ZOOM_AT;           // ramp across whatever hero is left
 
       const film = document.getElementById("film");
+      // A phone has no business downloading a 39MB backdrop.
+      film.src = matchMedia("(max-width: 820px)").matches
+        ? "media/awa-scrub-mobile.mp4" : "media/awa-scrub.mp4";
       const sections = [...document.querySelectorAll("main section")];
       const bar = document.getElementById("bar");
       const dots = document.getElementById("dots");
@@ -1306,7 +1358,8 @@
         loader.classList.add("done"); measure(); tick();
       };
       film.addEventListener("canplaythrough", ready, { once: true });
-      setTimeout(() => loader.classList.contains("done") || ready(), 12000); // ponytail: hard fallback for slow links
+      film.addEventListener("loadeddata", ready, { once: true });   // iOS often stops here
+      setTimeout(() => loader.classList.contains("done") || ready(), 6000); // ponytail: hard fallback for slow links
 
       // ---- scroll → time ----
       let target = 0, smooth = 0, dirty = true, peeking = false;
@@ -1350,6 +1403,21 @@
 
       // one frame of the source = 1/25s; never chase a delta the video can't show
       const STEP = 1 / 25;
+
+      // iOS Safari paints nothing from a video that has never played: setting
+      // currentTime on an untouched element leaves the surface blank, which is why the
+      // backdrop was missing on iPhone while it worked everywhere else. One play
+      // followed immediately by pause, inside a real gesture, unlocks the decoder.
+      let unlocked = false;
+      function unlock() {
+        if (unlocked) return;
+        unlocked = true;
+        const pr = film.play();
+        if (pr && pr.then) pr.then(() => film.pause()).catch(() => { unlocked = false; });
+        else film.pause();
+      }
+      ["touchstart", "pointerdown", "keydown"].forEach(e =>
+        addEventListener(e, unlock, { passive: true }));
 
       function tick() {
         if (dirty) measure();

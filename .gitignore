@@ -1,3 +1,5 @@
-# only the scrub-optimised backdrop ships — master + source clips stay local
+# only what the page serves ships — master and source clips stay local
 media/*
 !media/awa-scrub.mp4
+!media/awa-scrub-mobile.mp4
+!media/awa-poster.webp

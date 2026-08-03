@@ -164,9 +164,46 @@
       background: var(--gold)
     }
 
+    .lbl-narrow {
+      display: none
+    }
+
     @media(max-width:760px) {
       .top nav a:not(.pill) {
         display: none
+      }
+    }
+
+    @media(max-width:680px) {
+
+      header.top {
+        padding-left: .9rem;
+        padding-right: .9rem;
+        gap: .6rem;
+        flex-wrap: nowrap;
+      }
+
+      .brand span {
+        display: none
+      }
+
+      .brand b {
+        font-size: 1.25rem
+      }
+
+      .top nav a.pill {
+        font-size: .64rem;
+        letter-spacing: .1em;
+        padding: .62rem .95rem;
+        white-space: nowrap;
+      }
+
+      .lbl-wide {
+        display: none
+      }
+
+      .lbl-narrow {
+        display: inline
       }
     }
 
@@ -647,7 +684,7 @@
       <a href="/#services">Services</a>
       <a href="/#process">Process</a>
       <a href="/">&larr; Back to site</a>
-      <a href="/#contact" class="pill">Start a project</a>
+      <a href="/#contact" class="pill"><span class="lbl-wide">Start a project</span><span class="lbl-narrow">Enquire</span></a>
     </nav>
   </header>
 

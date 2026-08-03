@@ -8,7 +8,7 @@
   <meta name="description"
     content="AWA — Australian Web Agency. Strategy, design, build and growth for brands that need to move faster than their market.">
   <link rel="canonical" href="https://australianweb.agency/">
-  <link rel="preload" as="video" href="media/awa-scrub.mp4" type="video/mp4">
+  <link rel="preload" as="image" href="clips/hero.webp">
   <meta name="google-site-verification" content="sQ7WQ2B5FSZCiTHZG0uIDk9MoHnncVxA9-spHp9KlX8" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,7 +55,7 @@
       background: #04060a
     }
 
-    #filmstill {
+    #clips>* {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -65,7 +65,7 @@
       object-fit: cover;
     }
 
-    #film {
+    #clips video {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -74,9 +74,21 @@
       transform: translate(-50%, -50%) scale(var(--zoom, 1.06));
       object-fit: cover;
       will-change: transform;
-      z-index: 1;
-      /* ponytail: no transition — --zoom is rewritten every rAF, so a transition just
-         fights the new value each frame and lags the push-in. The lerp is the easing. */
+      opacity: 0;
+      transition: opacity .45s var(--ease);
+    }
+
+    #clips .live {
+      opacity: 1
+    }
+
+    /* the poster still under each clip, so a section is never empty while it loads */
+    #clips img {
+      z-index: 0
+    }
+
+    #clips video {
+      z-index: 1
     }
 
     /* heavy scrim — the footage is busy, the type must always win */
@@ -1080,9 +1092,7 @@
   <a class="skip" href="#main">Skip to content</a>
 
   <div id="stage">
-    <img id="filmstill" src="media/awa-poster.webp" alt="" aria-hidden="true" fetchpriority="high">
-    <video id="film" muted playsinline webkit-playsinline preload="auto" disablepictureinpicture
-      poster="media/awa-poster.webp" aria-hidden="true"></video>
+    <div id="clips"></div>
   </div>
   <div id="grain"></div>
   <div id="bar"></div>
@@ -1301,33 +1311,21 @@
 
   <script>
     (() => {
-      const FPS = 25;
-      const tc = s => { const [m, sec, f] = s.split(":").map(Number); return m * 60 + sec + f / FPS; };
+      // One clip per section, scrubbed inside its own section. The single 30s film
+      // was soft because it was generated soft; these are separate 1080p renders, and
+      // keeping them separate means a visitor only downloads the sections they reach.
+      const CLIPS = ["hero", "canberra", "sydney-opera", "gold-coast",
+        "melbourne", "perth", "brisbane-city", "darwin"];
 
-      // Section end timecodes (MM:SS:FF @25fps), measured off the cut itself: a 9s
-      // hero, then 3s per city, with the cross-dissolves centred on each boundary.
-      const MARKS = ["00:09:00", "00:12:00", "00:15:00", "00:18:00", "00:21:00", "00:24:00", "00:27:00", "00:30:10"].map(tc);
-      const T = [0, ...MARKS.slice(0, 7)];            // section start times
-      const T_END = MARKS;                            // section end times
-      const ZOOM_AT = tc("00:06:00");                 // hero: Earth → Australia push-in
-      const ZOOM_RAMP = MARKS[0] - ZOOM_AT;           // ramp across whatever hero is left
+      // On a portrait screen object-fit:cover throws away roughly three quarters of a
+      // 16:9 frame and upscales the rest — which is what made it look coarse. Portrait
+      // phones get a 9:16 cut of the same renders, framed per shot: the closing one is
+      // pushed right so the crocodile's head is in frame rather than its neck.
+      const upright = matchMedia("(max-width: 820px)").matches && innerHeight > innerWidth;
+      const suffix = upright ? "-p" : "";
 
-      const film = document.getElementById("film");
-      // A phone has no business downloading a 39MB backdrop — and on a portrait
-      // screen object-fit:cover throws away roughly three quarters of a 16:9 frame,
-      // then upscales what is left. That is why it looked so coarse. Portrait phones
-      // get a 9:16 crop instead, so the pixels land where they are actually shown.
-      // The crop follows the subject: centred, and pushed right for the closing shot
-      // so the crocodile's head is in frame rather than its neck.
-      const narrow = matchMedia("(max-width: 820px)").matches;
-      const upright = narrow && innerHeight > innerWidth;
-      film.src = upright ? "media/awa-scrub-portrait.mp4"
-        : narrow ? "media/awa-scrub-mobile.mp4"
-          : "media/awa-scrub.mp4";
-      if (upright) {
-        film.poster = "media/awa-poster-portrait.webp";
-        document.getElementById("filmstill").src = "media/awa-poster-portrait.webp";
-      }
+      const ZOOM_FROM = .62;            // hero: the push-in starts here, in section 1
+
       const sections = [...document.querySelectorAll("main section")];
       const bar = document.getElementById("bar");
       const dots = document.getElementById("dots");
@@ -1357,28 +1355,75 @@
       });
       const dotEls = [...dots.children];
 
+      // ---- clips ----
+      const clipBox = document.getElementById("clips");
+      const media = CLIPS.map((name, i) => ({ name, i, still: null, video: null, ready: false }));
+
+      function mountClip(c) {
+        if (c.still) return c;
+        c.still = document.createElement("img");
+        c.still.src = "clips/" + c.name + ".webp";
+        c.still.alt = "";
+        c.still.setAttribute("aria-hidden", "true");
+        if (c.i === 0) c.still.setAttribute("fetchpriority", "high");
+        clipBox.appendChild(c.still);
+
+        const v = document.createElement("video");
+        v.muted = true; v.defaultMuted = true; v.playsInline = true;
+        v.preload = "auto";
+        v.setAttribute("muted", "");
+        v.setAttribute("playsinline", "");
+        v.setAttribute("webkit-playsinline", "");
+        v.setAttribute("disablepictureinpicture", "");
+        v.setAttribute("aria-hidden", "true");
+        v.poster = "clips/" + c.name + ".webp";
+        v.src = "clips/" + c.name + suffix + ".mp4";
+        v.addEventListener("loadeddata", () => { c.ready = true; }, { once: true });
+        clipBox.appendChild(v);
+        c.video = v;
+        return c;
+      }
+
+      // iOS paints nothing from a video that has never played, so scrubbing an
+      // untouched element leaves the frame blank. One play/pause per clip, inside a
+      // real gesture, unlocks the decoder.
+      let unlocked = false;
+      function unlock() {
+        if (unlocked) return;
+        unlocked = true;
+        media.forEach(c => {
+          if (!c.video) return;
+          const pr = c.video.play();
+          if (pr && pr.then) pr.then(() => c.video.pause()).catch(() => { unlocked = false; });
+          else c.video.pause();
+        });
+      }
+      ["touchstart", "pointerdown", "keydown"].forEach(e =>
+        addEventListener(e, unlock, { passive: true }));
+
       // ---- loading ----
       const fill = loader.querySelector("i"), pct = loader.querySelector(".load-pct");
-      film.addEventListener("progress", () => {
-        if (!film.duration) return;
-        const buf = film.buffered.length ? film.buffered.end(film.buffered.length - 1) : 0;
-        const p = Math.min(100, Math.round(buf / film.duration * 100));
-        fill.style.width = p + "%"; pct.textContent = p + "%";
-      });
+      const first = mountClip(media[0]);
       const ready = () => {
+        if (loader.classList.contains("done")) return;
         fill.style.width = "100%"; pct.textContent = "100%";
-        loader.classList.add("done"); measure(); tick();
+        loader.classList.add("done");
+        measure(); tick();
       };
-      film.addEventListener("canplaythrough", ready, { once: true });
-      film.addEventListener("loadeddata", ready, { once: true });   // iOS often stops here
-      setTimeout(() => loader.classList.contains("done") || ready(), 6000); // ponytail: hard fallback for slow links
+      first.video.addEventListener("loadeddata", ready, { once: true });
+      first.still.addEventListener("load", () => { fill.style.width = "60%"; pct.textContent = "60%"; }, { once: true });
+      setTimeout(ready, 4000);   // ponytail: never let a slow asset hold the page
 
-      // ---- scroll → time ----
-      let target = 0, smooth = 0, dirty = true, peeking = false;
+      // ---- scroll → clip position ----
+      let dirty = true, peeking = false;
+      const smooth = new Array(CLIPS.length).fill(0);
+      const target = new Array(CLIPS.length).fill(0);
 
       // ponytail: all DOM writes happen inside the rAF loop, never in the scroll
       // handler — a scroll event that restyles 8 sections forces a sync layout on
       // every wheel notch, which is half of what made the scrub feel chunky.
+      let activeIdx = 0;
+
       function measure() {
         dirty = false;
         const max = document.documentElement.scrollHeight - innerHeight;
@@ -1393,13 +1438,20 @@
         }
         // The last section can never be scrolled through: its sticky pin holds the
         // final 100vh, and the footer sits below. Rescale to the range the page can
-        // actually reach, or the closing shot stops ~55% in.
+        // actually reach, or the closing shot stops short of its final frame.
         if (idx === last) {
           const reach = (max - sections[last].offsetTop) / sections[last].offsetHeight;
           if (reach > 0) local = Math.min(1, local / reach);
         }
-        // piecewise-linear: every section owns its own slice of footage
-        target = T[idx] + (T_END[idx] - T[idx]) * local;
+        activeIdx = idx;
+        target[idx] = local;
+        if (idx > 0) target[idx - 1] = 1;          // the one behind rests on its last frame
+        if (idx < last) target[idx + 1] = 0;
+
+        // mount what is in reach and nothing else: a visitor who stops at section two
+        // should not pay for section eight
+        media.forEach(c => { if (Math.abs(c.i - idx) <= 1) mountClip(c); });
+        media.forEach(c => { if (c.video) c.video.classList.toggle("live", c.i === idx); });
 
         sections.forEach((s, i) => {
           // the closing copy stays put — there is nothing to scroll to after it
@@ -1409,40 +1461,34 @@
         });
         dotEls.forEach((d, i) => d.setAttribute("aria-current", i === idx));
 
-        const z = target < ZOOM_AT ? 1.06 : 1.06 + Math.min(.14, (target - ZOOM_AT) / ZOOM_RAMP * .14);
-        film.style.setProperty("--zoom", z.toFixed(3));
+        // the hero push-in: Earth grows into Australia across the back of section one
+        const z = idx > 0 ? 1.2 : local < ZOOM_FROM ? 1.06
+          : 1.06 + (local - ZOOM_FROM) / (1 - ZOOM_FROM) * .14;
+        clipBox.style.setProperty("--zoom", z.toFixed(3));
       }
-
-      // one frame of the source = 1/25s; never chase a delta the video can't show
-      const STEP = 1 / 25;
-
-      // iOS Safari paints nothing from a video that has never played: setting
-      // currentTime on an untouched element leaves the surface blank, which is why the
-      // backdrop was missing on iPhone while it worked everywhere else. One play
-      // followed immediately by pause, inside a real gesture, unlocks the decoder.
-      let unlocked = false;
-      function unlock() {
-        if (unlocked) return;
-        unlocked = true;
-        const pr = film.play();
-        if (pr && pr.then) pr.then(() => film.pause()).catch(() => { unlocked = false; });
-        else film.pause();
-      }
-      ["touchstart", "pointerdown", "keydown"].forEach(e =>
-        addEventListener(e, unlock, { passive: true }));
 
       function tick() {
         if (dirty) measure();
-        smooth += (target - smooth) * .16;                       // lerp = butter, not jitter
-        if (Math.abs(target - smooth) < STEP * .4) smooth = target;
-        if (!peeking && Math.abs(film.currentTime - smooth) >= STEP * .5 && film.readyState >= 2)
-          film.currentTime = Math.min(smooth, (film.duration || 30.4) - .04);
+        if (!peeking) {
+          for (let i = Math.max(0, activeIdx - 1); i <= Math.min(CLIPS.length - 1, activeIdx + 1); i++) {
+            const c = media[i];
+            if (!c || !c.video || c.video.readyState < 2) continue;
+            const dur = c.video.duration || 6.04;
+            const step = 1 / 15;                    // the clips are 15fps
+            smooth[i] += (target[i] - smooth[i]) * .16;   // lerp = butter, not jitter
+            if (Math.abs(target[i] - smooth[i]) < .004) smooth[i] = target[i];
+            const t = Math.min(smooth[i] * dur, dur - .04);
+            if (Math.abs(c.video.currentTime - t) >= step * .5) c.video.currentTime = t;
+          }
+        }
         requestAnimationFrame(tick);
       }
 
       addEventListener("scroll", () => { dirty = true; }, { passive: true });
       addEventListener("resize", () => { dirty = true; });
-      film.addEventListener("loadedmetadata", measure, { once: true });
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") dirty = true;
+      });
       measure();
 
       // ---- live demo previews ----

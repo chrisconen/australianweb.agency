@@ -1,7 +1,2 @@
-# only what the page serves ships — master and source clips stay local
-media/*
-!media/awa-scrub.mp4
-!media/awa-scrub-mobile.mp4
-!media/awa-scrub-portrait.mp4
-!media/awa-poster.webp
-!media/awa-poster-portrait.webp
+# only the web-ready clips ship — the 1080p renders stay local
+media/

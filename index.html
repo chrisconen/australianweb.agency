@@ -944,12 +944,13 @@
       const FPS = 25;
       const tc = s => { const [m, sec, f] = s.split(":").map(Number); return m * 60 + sec + f / FPS; };
 
-      // Section end timecodes from the edit (MM:SS:FF @25fps). Section 8's 00:54:14
-      // is a typo in the brief — 01:04:14 is the only value that fits the sequence.
-      const MARKS = ["00:24:10", "00:30:10", "00:36:10", "00:42:12", "00:48:13", "00:53:14", "00:59:15", "01:04:14", "01:06:16"].map(tc);
-      const T = [0, ...MARKS.slice(0, 8)];            // section start times
-      const T_END = MARKS.slice(0, 9);                // section end times
-      const ZOOM_AT = tc("00:20:07");                 // hero: Earth → Australia push-in
+      // Section end timecodes (MM:SS:FF @25fps), measured off the cut itself: a 9s
+      // hero, then 3s per city, with the cross-dissolves centred on each boundary.
+      const MARKS = ["00:09:00", "00:12:00", "00:15:00", "00:18:00", "00:21:00", "00:24:00", "00:27:00", "00:30:10"].map(tc);
+      const T = [0, ...MARKS.slice(0, 7)];            // section start times
+      const T_END = MARKS;                            // section end times
+      const ZOOM_AT = tc("00:06:00");                 // hero: Earth → Australia push-in
+      const ZOOM_RAMP = MARKS[0] - ZOOM_AT;           // ramp across whatever hero is left
 
       const film = document.getElementById("film");
       const sections = [...document.querySelectorAll("main section")];
@@ -1017,19 +1018,19 @@
         });
         dotEls.forEach((d, i) => d.setAttribute("aria-current", i === idx));
 
-        const z = target < ZOOM_AT ? 1.06 : 1.06 + Math.min(.14, (target - ZOOM_AT) / 6 * .14);
+        const z = target < ZOOM_AT ? 1.06 : 1.06 + Math.min(.14, (target - ZOOM_AT) / ZOOM_RAMP * .14);
         film.style.setProperty("--zoom", z.toFixed(3));
       }
 
-      // one frame of the source = 1/15s; never chase a delta the video can't show
-      const STEP = 1 / 15;
+      // one frame of the source = 1/25s; never chase a delta the video can't show
+      const STEP = 1 / 25;
 
       function tick() {
         if (dirty) measure();
         smooth += (target - smooth) * .16;                       // lerp = butter, not jitter
         if (Math.abs(target - smooth) < STEP * .4) smooth = target;
         if (Math.abs(film.currentTime - smooth) >= STEP * .5 && film.readyState >= 2)
-          film.currentTime = Math.min(smooth, (film.duration || 66.66) - .04);
+          film.currentTime = Math.min(smooth, (film.duration || 30.4) - .04);
         requestAnimationFrame(tick);
       }
 

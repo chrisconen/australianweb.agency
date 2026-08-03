@@ -8,7 +8,7 @@
   <meta name="description"
     content="AWA — Australian Web Agency. Strategy, design, build and growth for brands that need to move faster than their market.">
   <link rel="canonical" href="https://australianweb.agency/">
-  <link rel="preload" as="video" href="media/awa.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="media/awa-scrub.mp4" type="video/mp4">
   <meta name="google-site-verification" content="sQ7WQ2B5FSZCiTHZG0uIDk9MoHnncVxA9-spHp9KlX8" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,7 +64,8 @@
       transform: translate(-50%, -50%) scale(var(--zoom, 1.06));
       object-fit: cover;
       will-change: transform;
-      transition: transform .6s var(--ease);
+      /* ponytail: no transition — --zoom is rewritten every rAF, so a transition just
+         fights the new value each frame and lags the push-in. The lerp is the easing. */
     }
 
     /* heavy scrim — the footage is busy, the type must always win */
@@ -736,7 +737,7 @@
 <body>
 
   <div id="stage">
-    <video id="film" src="media/awa.mp4" muted playsinline preload="auto" disablepictureinpicture></video>
+    <video id="film" src="media/awa-scrub.mp4" muted playsinline preload="auto" disablepictureinpicture></video>
   </div>
   <div id="grain"></div>
   <div id="bar"></div>
@@ -990,9 +991,13 @@
       setTimeout(() => loader.classList.contains("done") || ready(), 12000); // ponytail: hard fallback for slow links
 
       // ---- scroll → time ----
-      let target = 0, smooth = 0;
+      let target = 0, smooth = 0, dirty = true;
 
+      // ponytail: all DOM writes happen inside the rAF loop, never in the scroll
+      // handler — a scroll event that restyles 8 sections forces a sync layout on
+      // every wheel notch, which is half of what made the scrub feel chunky.
       function measure() {
+        dirty = false;
         const max = document.documentElement.scrollHeight - innerHeight;
         const y = scrollY;
         bar.style.width = (max > 0 ? y / max * 100 : 0) + "%";
@@ -1016,16 +1021,20 @@
         film.style.setProperty("--zoom", z.toFixed(3));
       }
 
+      // one frame of the source = 1/15s; never chase a delta the video can't show
+      const STEP = 1 / 15;
+
       function tick() {
-        smooth += (target - smooth) * .12;                       // lerp = butter, not jitter
-        if (Math.abs(target - smooth) < .004) smooth = target;
-        if (Math.abs(film.currentTime - smooth) > .012 && film.readyState >= 2)
-          film.currentTime = Math.min(smooth, (film.duration || 66.6) - .05);
+        if (dirty) measure();
+        smooth += (target - smooth) * .16;                       // lerp = butter, not jitter
+        if (Math.abs(target - smooth) < STEP * .4) smooth = target;
+        if (Math.abs(film.currentTime - smooth) >= STEP * .5 && film.readyState >= 2)
+          film.currentTime = Math.min(smooth, (film.duration || 66.66) - .04);
         requestAnimationFrame(tick);
       }
 
-      addEventListener("scroll", measure, { passive: true });
-      addEventListener("resize", measure);
+      addEventListener("scroll", () => { dirty = true; }, { passive: true });
+      addEventListener("resize", () => { dirty = true; });
       film.addEventListener("loadedmetadata", measure, { once: true });
       measure();
     })();

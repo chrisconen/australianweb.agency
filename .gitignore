@@ -2,4 +2,6 @@
 media/*
 !media/awa-scrub.mp4
 !media/awa-scrub-mobile.mp4
+!media/awa-scrub-portrait.mp4
 !media/awa-poster.webp
+!media/awa-poster-portrait.webp

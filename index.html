@@ -1313,9 +1313,21 @@
       const ZOOM_RAMP = MARKS[0] - ZOOM_AT;           // ramp across whatever hero is left
 
       const film = document.getElementById("film");
-      // A phone has no business downloading a 39MB backdrop.
-      film.src = matchMedia("(max-width: 820px)").matches
-        ? "media/awa-scrub-mobile.mp4" : "media/awa-scrub.mp4";
+      // A phone has no business downloading a 39MB backdrop — and on a portrait
+      // screen object-fit:cover throws away roughly three quarters of a 16:9 frame,
+      // then upscales what is left. That is why it looked so coarse. Portrait phones
+      // get a 9:16 crop instead, so the pixels land where they are actually shown.
+      // The crop follows the subject: centred, and pushed right for the closing shot
+      // so the crocodile's head is in frame rather than its neck.
+      const narrow = matchMedia("(max-width: 820px)").matches;
+      const upright = narrow && innerHeight > innerWidth;
+      film.src = upright ? "media/awa-scrub-portrait.mp4"
+        : narrow ? "media/awa-scrub-mobile.mp4"
+          : "media/awa-scrub.mp4";
+      if (upright) {
+        film.poster = "media/awa-poster-portrait.webp";
+        document.getElementById("filmstill").src = "media/awa-poster-portrait.webp";
+      }
       const sections = [...document.querySelectorAll("main section")];
       const bar = document.getElementById("bar");
       const dots = document.getElementById("dots");

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Work — AWA, Australian Web Agency</title>
   <meta name="description"
-    content="Forty-five live demo builds from AWA — 3D motion, landing pages, SaaS and brand sites. Every one runs in the browser.">
+    content="Forty-six live demo builds from AWA — 3D motion, landing pages, SaaS and brand sites. Every one runs in the browser.">
   <link rel="canonical" href="https://australianweb.agency/work.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -380,6 +380,17 @@
         #0a0e14;
     }
 
+    /* Still frame for cards that ship one. It sits under the iframe, so the
+       live preview simply cross-fades over it on hover — and on touch, where
+       no iframe is ever mounted, the card still has something to look at. */
+    .item__thumb {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .item__ph {
       position: absolute;
       inset: 0;
@@ -668,7 +679,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://australianweb.agency/work.html">
   <meta property="og:title" content="Work — AWA, Australian Web Agency">
-  <meta property="og:description" content="Forty-five live demo builds. Every one runs in the browser.">
+  <meta property="og:description" content="Forty-six live demo builds. Every one runs in the browser.">
   <meta property="og:locale" content="en_AU">
   <meta property="og:site_name" content="AWA">
   <meta name="twitter:card" content="summary_large_image">
@@ -691,7 +702,7 @@
   <main id="content">
     <div class="head">
       <p class="over">The full archive</p>
-      <h1>Forty-five<br><em>live builds</em></h1>
+      <h1>Forty-six<br><em>live builds</em></h1>
       <p class="lead">Every one of these runs in the browser — no mockups, no screenshots.
         <strong>Hover a card to see it move, click to open it full screen.</strong>
         Scroll-scrubbed film, WebGL, canvas orbits, kinetic type — the techniques behind them are the
@@ -710,7 +721,17 @@
     </div>
 
     <div class="items" id="items">
-        <article class="item" data-cat="landing" style="--i:0">
+        <article class="item" data-cat="3d" style="--i:0">
+          <button class="item__hit" data-demo="lucius-burger" aria-label="Preview LUCIUS BURGER — 3D MOTION">
+            <span class="item__frame"><img class="item__thumb" src="clips/lucius-burger.webp" alt="" width="960" height="600" loading="lazy" decoding="async"></span>
+            <span class="item__meta">
+              <b>LUCIUS BURGER</b>
+              <em>3D Motion</em>
+            </span>
+            <span class="item__desc">A premium BBQ house where the hero is not a video — 145 separate frames assemble the burger as you scroll. The ordering runs all the way through (cart, delivery or pick-up, postcode zones, time slots) and the table booking happens on a live floor plan of the room.</span>
+          </button>
+        </article>
+        <article class="item" data-cat="landing" style="--i:1">
           <button class="item__hit" data-demo="nxtgen" aria-label="Preview NXTGEN — WEBSHOP">
             <span class="item__frame"><span class="item__ph">NXTGEN — WEBSHOP</span></span>
             <span class="item__meta">
@@ -721,7 +742,7 @@
           </button>
         </article>
 
-        <article class="item" data-cat="3d" style="--i:1">
+        <article class="item" data-cat="3d" style="--i:2">
           <button class="item__hit" data-demo="aurum-noir" aria-label="Preview AURUM &amp; NOIR — ECLIPSE">
             <span class="item__frame"><span class="item__ph">AURUM &amp; NOIR — ECLIPSE</span></span>
             <span class="item__meta">
@@ -731,7 +752,7 @@
             <span class="item__desc">Cinematic 3D scroll site for a fictional Swiss luxury watch maison — scrolling spins the tourbillon chronograph through a 144-frame canvas orbit, while AI-generated macro and exploded-assembly films scrub frame-perfectly with the scroll.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:2">
+        <article class="item" data-cat="landing" style="--i:3">
           <button class="item__hit" data-demo="atelier-ai" aria-label="Preview ATELIER AI">
             <span class="item__frame"><span class="item__ph">ATELIER AI</span></span>
             <span class="item__meta">
@@ -741,7 +762,7 @@
             <span class="item__desc">Premium AI interior design studio landing page with gorgeous layouts, high-end typography, before/after slider comparison, pricing interactive toggles, and smooth scroll animations.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:3">
+        <article class="item" data-cat="landing" style="--i:4">
           <button class="item__hit" data-demo="elysian" aria-label="Preview ELYSIAN">
             <span class="item__frame"><span class="item__ph">ELYSIAN</span></span>
             <span class="item__meta">
@@ -751,7 +772,7 @@
             <span class="item__desc">Luxury editorial architecture and interior design portfolio template with custom WebGL grain background, GSAP-driven horizontal slide-ins, and elegant responsive grid galleries.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:4">
+        <article class="item" data-cat="landing" style="--i:5">
           <button class="item__hit" data-demo="fit4fun" aria-label="Preview FIT 4 FUN">
             <span class="item__frame"><span class="item__ph">FIT 4 FUN</span></span>
             <span class="item__meta">
@@ -761,7 +782,7 @@
             <span class="item__desc">Fitness landing built in vanilla JS where the hero video is scrubbed frame-accurate by scroll with lerp smoothing — headline characters dissolve on descent while sections stack sticky beneath each other.</span>
           </button>
         </article>
-        <article class="item" data-cat="3d" style="--i:5">
+        <article class="item" data-cat="3d" style="--i:6">
           <button class="item__hit" data-demo="aetheris" aria-label="Preview AETHERIS VOYAGE">
             <span class="item__frame"><span class="item__ph">AETHERIS VOYAGE</span></span>
             <span class="item__meta">
@@ -771,7 +792,7 @@
             <span class="item__desc">Cinematic space-travel hero in React — layered 3D depth, blur-text entrances and liquid-glass panels, every beat choreographed in Framer Motion.</span>
           </button>
         </article>
-        <article class="item" data-cat="saas" style="--i:6">
+        <article class="item" data-cat="saas" style="--i:7">
           <button class="item__hit" data-demo="veldara" aria-label="Preview VELDARA">
             <span class="item__frame"><span class="item__ph">VELDARA</span></span>
             <span class="item__meta">
@@ -781,7 +802,7 @@
             <span class="item__desc">Developer-framework landing where the hero video is decomposed into canvas frames and scrubbed by scroll — particle fields and mask reveals carry the rest of the page.</span>
           </button>
         </article>
-        <article class="item" data-cat="brand" style="--i:7">
+        <article class="item" data-cat="brand" style="--i:8">
           <button class="item__hit" data-demo="asme" aria-label="Preview ASME">
             <span class="item__frame"><span class="item__ph">ASME</span></span>
             <span class="item__meta">
@@ -791,7 +812,7 @@
             <span class="item__desc">Luxury-minimal agency site in React + Framer Motion — liquid-glass surfaces floating over full-bleed video sections, with restraint doing the heavy lifting.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:8">
+        <article class="item" data-cat="hero" style="--i:9">
           <button class="item__hit" data-demo="toonhub" aria-label="Preview TOONHUB">
             <span class="item__frame"><span class="item__ph">TOONHUB</span></span>
             <span class="item__meta">
@@ -801,7 +822,7 @@
             <span class="item__desc">Collectible-figure hero in React where a 3D character carousel spins vinyl toys into the spotlight — toy-store energy with razor-sharp Tailwind layout.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:9">
+        <article class="item" data-cat="hero" style="--i:10">
           <button class="item__hit" data-demo="aethera" aria-label="Preview AETHERA STUDIO">
             <span class="item__frame"><span class="item__ph">AETHERA STUDIO</span></span>
             <span class="item__meta">
@@ -811,7 +832,7 @@
             <span class="item__desc">Cinematic fullscreen hero with a looping video background and Instrument Serif display type — a studio opener built on quiet confidence.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:10">
+        <article class="item" data-cat="hero" style="--i:11">
           <button class="item__hit" data-demo="asme-hero" aria-label="Preview ASME — HERO CUT">
             <span class="item__frame"><span class="item__ph">ASME — HERO CUT</span></span>
             <span class="item__meta">
@@ -821,7 +842,7 @@
             <span class="item__desc">The Asme identity distilled into a single viewport — liquid-glass UI floating over a full-screen looping video, dark and cinematic.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:11">
+        <article class="item" data-cat="hero" style="--i:12">
           <button class="item__hit" data-demo="codenest" aria-label="Preview CODENEST">
             <span class="item__frame"><span class="item__ph">CODENEST</span></span>
             <span class="item__meta">
@@ -831,7 +852,7 @@
             <span class="item__desc">Coding-education hero streaming its background video over HLS — dark theme, self-hosted fonts, React running straight from vendor bundles.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:12">
+        <article class="item" data-cat="hero" style="--i:13">
           <button class="item__hit" data-demo="cozypaws" aria-label="Preview COZYPAWS">
             <span class="item__frame"><span class="item__ph">COZYPAWS</span></span>
             <span class="item__meta">
@@ -841,7 +862,7 @@
             <span class="item__desc">Pet-store hero locked to a single viewport — no scroll, three fully rethought responsive breakpoints instead of one squeezed layout.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:1">
+        <article class="item" data-cat="hero" style="--i:14">
           <button class="item__hit" data-demo="vex" aria-label="Preview VEX">
             <span class="item__frame"><span class="item__ph">VEX</span></span>
             <span class="item__meta">
@@ -851,7 +872,7 @@
             <span class="item__desc">Future-city hero riding a full-bleed video of a neon metropolis — typography and UI kept minimal so the motion does the talking.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:2">
+        <article class="item" data-cat="hero" style="--i:15">
           <button class="item__hit" data-demo="atelier" aria-label="Preview ATELIER">
             <span class="item__frame"><span class="item__ph">ATELIER</span></span>
             <span class="item__meta">
@@ -861,7 +882,7 @@
             <span class="item__desc">Design-agency hero with self-hosted Instrument Serif and Inter, plus a fully animated hamburger menu — mobile treated as a first-class layout.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:3">
+        <article class="item" data-cat="hero" style="--i:16">
           <button class="item__hit" data-demo="mentality" aria-label="Preview MĖNTALITY">
             <span class="item__frame"><span class="item__ph">MĖNTALITY</span></span>
             <span class="item__meta">
@@ -871,7 +892,7 @@
             <span class="item__desc">Light-mode hero on a porcelain #EDEEF5 base with brand-green accents — glassmorphic navbar and Motion-driven entrances, polished to a shine.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:4">
+        <article class="item" data-cat="hero" style="--i:17">
           <button class="item__hit" data-demo="lithos" aria-label="Preview LITHOS">
             <span class="item__frame"><span class="item__ph">LITHOS</span></span>
             <span class="item__meta">
@@ -881,7 +902,7 @@
             <span class="item__desc">Geology-brand hero where a cursor-following spotlight reveals a second image through a soft circular mask — the page literally responds to your hand.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:5">
+        <article class="item" data-cat="hero" style="--i:18">
           <button class="item__hit" data-demo="synthetic-nature" aria-label="Preview SYNTHETIC NATURE">
             <span class="item__frame"><span class="item__ph">SYNTHETIC NATURE</span></span>
             <span class="item__meta">
@@ -891,7 +912,7 @@
             <span class="item__desc">Organic-odyssey hero blending a cinematic nature loop with Framer Motion entrances — lush, slow and deliberate.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:6">
+        <article class="item" data-cat="hero" style="--i:19">
           <button class="item__hit" data-demo="portal" aria-label="Preview PORTAL">
             <span class="item__frame"><span class="item__ph">PORTAL</span></span>
             <span class="item__meta">
@@ -901,7 +922,7 @@
             <span class="item__desc">Full-viewport cinematic hero — “Step Through. Work Smarter.” — every element entering on staggered blur-fade-up delays.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:7">
+        <article class="item" data-cat="hero" style="--i:20">
           <button class="item__hit" data-demo="rivr" aria-label="Preview RIVR">
             <span class="item__frame"><span class="item__ph">RIVR</span></span>
             <span class="item__meta">
@@ -911,7 +932,7 @@
             <span class="item__desc">DeFi dashboard hero in sleek glassmorphism — frosted panels, Motion micro-animations and a premium fintech sheen.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:8">
+        <article class="item" data-cat="hero" style="--i:21">
           <button class="item__hit" data-demo="stellar" aria-label="Preview STELLAR.AI">
             <span class="item__frame"><span class="item__ph">STELLAR.AI</span></span>
             <span class="item__meta">
@@ -921,7 +942,7 @@
             <span class="item__desc">Clean white AI-product hero — Inter typography, centered max-width layout and custom CSS keyframe animations, no dark-mode crutch.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:9">
+        <article class="item" data-cat="hero" style="--i:22">
           <button class="item__hit" data-demo="velorah" aria-label="Preview VELORAH">
             <span class="item__frame"><span class="item__ph">VELORAH</span></span>
             <span class="item__meta">
@@ -931,7 +952,7 @@
             <span class="item__desc">Fullscreen looping video hero with a glassmorphic nav and cinematic typography — built on shadcn/ui primitives without looking like it.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:10">
+        <article class="item" data-cat="hero" style="--i:23">
           <button class="item__hit" data-demo="viktor" aria-label="Preview VIKTOR.">
             <span class="item__frame"><span class="item__ph">VIKTOR.</span></span>
             <span class="item__meta">
@@ -941,7 +962,7 @@
             <span class="item__desc">Personal-brand hero built around 200px display type with tight negative tracking — the name is the layout, revealed line by line.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:11">
+        <article class="item" data-cat="hero" style="--i:24">
           <button class="item__hit" data-demo="terraelix" aria-label="Preview TERRAELIX">
             <span class="item__frame"><span class="item__ph">TERRAELIX</span></span>
             <span class="item__meta">
@@ -951,7 +972,7 @@
             <span class="item__desc">Wellness-supplement hero with word-by-word headline reveals over a botanical backdrop, closing on a three-panel footer strip.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:12">
+        <article class="item" data-cat="hero" style="--i:25">
           <button class="item__hit" data-demo="aurai" aria-label="Preview AURAI">
             <span class="item__frame"><span class="item__ph">AURAI</span></span>
             <span class="item__meta">
@@ -961,7 +982,7 @@
             <span class="item__desc">Always-on AI wellness companion introduced in a single breathing viewport — looping ambient video beneath calm, minimal UI.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:1">
+        <article class="item" data-cat="landing" style="--i:26">
           <button class="item__hit" data-demo="jack" aria-label="Preview JACK — 3D CREATOR">
             <span class="item__frame"><span class="item__ph">JACK — 3D CREATOR</span></span>
             <span class="item__meta">
@@ -971,7 +992,7 @@
             <span class="item__desc">Dark Kanit-typeset portfolio for a 3D artist — a wall of animated project marquees scrolling in opposite directions, driven by Framer Motion.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:2">
+        <article class="item" data-cat="landing" style="--i:27">
           <button class="item__hit" data-demo="prisma" aria-label="Preview PRISMA">
             <span class="item__frame"><span class="item__ph">PRISMA</span></span>
             <span class="item__meta">
@@ -981,7 +1002,7 @@
             <span class="item__desc">Creative-studio landing in three acts — hero, about, features — dark and moody with a warm cream palette and Framer Motion pacing.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:3">
+        <article class="item" data-cat="landing" style="--i:28">
           <button class="item__hit" data-demo="skyelite" aria-label="Preview SKYELITE">
             <span class="item__frame"><span class="item__ph">SKYELITE</span></span>
             <span class="item__meta">
@@ -991,7 +1012,7 @@
             <span class="item__desc">Private-jet landing exported statically from Next.js — full-viewport video, muted luxury type and charter-grade restraint.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:4">
+        <article class="item" data-cat="landing" style="--i:29">
           <button class="item__hit" data-demo="dentalhealth" aria-label="Preview DENTAL HEALTH">
             <span class="item__frame"><span class="item__ph">DENTAL HEALTH</span></span>
             <span class="item__meta">
@@ -1001,7 +1022,7 @@
             <span class="item__desc">Dental-clinic landing — splash screen, fixed navbar and three full-screen sections, everything hand-rolled in one App.tsx with zero UI libraries.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:5">
+        <article class="item" data-cat="landing" style="--i:30">
           <button class="item__hit" data-demo="axion" aria-label="Preview AXION STUDIO">
             <span class="item__frame"><span class="item__ph">AXION STUDIO</span></span>
             <span class="item__meta">
@@ -1011,7 +1032,7 @@
             <span class="item__desc">Design-agency landing whose hero background is a live GPU shader — three sections of generative color running beneath crisp agency copy.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:6">
+        <article class="item" data-cat="landing" style="--i:31">
           <button class="item__hit" data-demo="asme-ii" aria-label="Preview ASME — EDITION II">
             <span class="item__frame"><span class="item__ph">ASME — EDITION II</span></span>
             <span class="item__meta">
@@ -1021,7 +1042,7 @@
             <span class="item__desc">The Asme brand rebuilt as a full black one-pager — Instrument Serif italics, philosophy and about chapters, Framer Motion holding the rhythm.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:7">
+        <article class="item" data-cat="landing" style="--i:32">
           <button class="item__hit" data-demo="synapsex" aria-label="Preview SYNAPSEX">
             <span class="item__frame"><span class="item__ph">SYNAPSEX</span></span>
             <span class="item__meta">
@@ -1031,7 +1052,7 @@
             <span class="item__desc">Neural-AI interface landing set entirely in Space Mono — black screen, white text, full-viewport video sections and a watermark display face.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:8">
+        <article class="item" data-cat="landing" style="--i:33">
           <button class="item__hit" data-demo="orbis" aria-label="Preview ORBIS.NFT">
             <span class="item__frame"><span class="item__ph">ORBIS.NFT</span></span>
             <span class="item__meta">
@@ -1041,7 +1062,7 @@
             <span class="item__desc">NFT drop site in four sections of deep-space video — liquid-glass panels, Anton display type and self-hosted everything.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:9">
+        <article class="item" data-cat="landing" style="--i:34">
           <button class="item__hit" data-demo="michael-smith" aria-label="Preview MICHAEL SMITH">
             <span class="item__frame"><span class="item__ph">MICHAEL SMITH</span></span>
             <span class="item__meta">
@@ -1051,7 +1072,7 @@
             <span class="item__desc">Dark personal portfolio mixing GSAP scroll choreography with Framer Motion micro-moves and HLS-streamed video — three motion systems, one voice.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:10">
+        <article class="item" data-cat="landing" style="--i:35">
           <button class="item__hit" data-demo="mindloop" aria-label="Preview MINDLOOP">
             <span class="item__frame"><span class="item__ph">MINDLOOP</span></span>
             <span class="item__meta">
@@ -1061,7 +1082,7 @@
             <span class="item__desc">Newsletter platform in strict monochrome — pure black, white foreground, Instrument Serif italics as the only ornament allowed in.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:11">
+        <article class="item" data-cat="landing" style="--i:36">
           <button class="item__hit" data-demo="questly" aria-label="Preview QUESTLY">
             <span class="item__frame"><span class="item__ph">QUESTLY</span></span>
             <span class="item__meta">
@@ -1071,7 +1092,7 @@
             <span class="item__desc">SaaS hero for a citation tool — “Get cited. Effortlessly.” — full-viewport, icon-precise and lean enough to load instantly.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:12">
+        <article class="item" data-cat="landing" style="--i:37">
           <button class="item__hit" data-demo="studio-a" aria-label="Preview STUDIO A">
             <span class="item__frame"><span class="item__ph">STUDIO A</span></span>
             <span class="item__meta">
@@ -1081,7 +1102,7 @@
             <span class="item__desc">Web-design agency landing in two full-screen movements — liquid-glass surfaces, blur/fade choreography and digital experiences built to outlast trends.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:1">
+        <article class="item" data-cat="hero" style="--i:38">
           <button class="item__hit" data-demo="bloom" aria-label="Preview BLOOM">
             <span class="item__frame"><span class="item__ph">BLOOM</span></span>
             <span class="item__meta">
@@ -1091,7 +1112,7 @@
             <span class="item__desc">AI plant-design product hero on a bright base — Poppins UI paired with Source Serif italics, a looping botanical video breathing behind the copy.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:2">
+        <article class="item" data-cat="hero" style="--i:39">
           <button class="item__hit" data-demo="buildwithus" aria-label="Preview BUILDWITHUS">
             <span class="item__frame"><span class="item__ph">BUILDWITHUS</span></span>
             <span class="item__meta">
@@ -1101,7 +1122,7 @@
             <span class="item__desc">Studio hero pairing Instrument Serif display italics with Inter over a full-bleed looping video — warm, confident and quietly premium.</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:3">
+        <article class="item" data-cat="hero" style="--i:40">
           <button class="item__hit" data-demo="designpro" aria-label="Preview DESIGNPRO">
             <span class="item__frame"><span class="item__ph">DESIGNPRO</span></span>
             <span class="item__meta">
@@ -1111,7 +1132,7 @@
             <span class="item__desc">Minimal design-studio hero with self-hosted Inter and a looping showreel video — restraint carrying the whole viewport.</span>
           </button>
         </article>
-        <article class="item" data-cat="saas" style="--i:4">
+        <article class="item" data-cat="saas" style="--i:41">
           <button class="item__hit" data-demo="nexora" aria-label="Preview NEXORA">
             <span class="item__frame"><span class="item__ph">NEXORA</span></span>
             <span class="item__meta">
@@ -1121,7 +1142,7 @@
             <span class="item__desc">Automation-SaaS landing where Instrument Serif accents float over Inter body copy and a full-bleed workflow video — smarter automation, sold on calm.</span>
           </button>
         </article>
-        <article class="item" data-cat="brand" style="--i:5">
+        <article class="item" data-cat="brand" style="--i:42">
           <button class="item__hit" data-demo="mainframe" aria-label="Preview MAINFRAME">
             <span class="item__frame"><span class="item__ph">MAINFRAME</span></span>
             <span class="item__meta">
@@ -1131,7 +1152,7 @@
             <span class="item__desc">Retro-futurist creative-agency site set in self-hosted Helvetica Now — analog warmth and grid discipline over a looping video backdrop.</span>
           </button>
         </article>
-        <article class="item" data-cat="landing" style="--i:6">
+        <article class="item" data-cat="landing" style="--i:43">
           <button class="item__hit" data-demo="lumora" aria-label="Preview LUMORA">
             <span class="item__frame"><span class="item__ph">LUMORA</span></span>
             <span class="item__meta">
@@ -1141,7 +1162,7 @@
             <span class="item__desc">Meditation-app landing across four full-screen video movements — Instrument Serif italics carrying “clarity in an endlessly noisy universe.”</span>
           </button>
         </article>
-        <article class="item" data-cat="hero" style="--i:7">
+        <article class="item" data-cat="hero" style="--i:44">
           <button class="item__hit" data-demo="orbital" aria-label="Preview ORBITAL">
             <span class="item__frame"><span class="item__ph">ORBITAL</span></span>
             <span class="item__meta">
@@ -1151,7 +1172,7 @@
             <span class="item__desc">Light-mode space-exploration hero with a live typewriter telemetry feed and mask-clipped rise-in headlines — React and Framer Motion compiled in the browser.</span>
           </button>
         </article>
-        <article class="item" data-cat="saas" style="--i:8">
+        <article class="item" data-cat="saas" style="--i:45">
           <button class="item__hit" data-demo="transformdata" aria-label="Preview TRANSFORM DATA">
             <span class="item__frame"><span class="item__ph">TRANSFORM DATA</span></span>
             <span class="item__meta">
@@ -1209,7 +1230,7 @@
       apply("all");
 
       // ---- hover preview ----
-      // ponytail: one live iframe for the whole grid. Forty-five demos, each with its
+      // ponytail: one live iframe for the whole grid. Forty-six demos, each with its
       // own video, would be hundreds of megabytes of autoplay if they all mounted.
       const fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
       let hot = null, timer = 0;

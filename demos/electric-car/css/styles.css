@@ -4498,94 +4498,6 @@ body.is-pointer .cursor-glow {
   border-top: 1px solid rgba(237, 232, 223, 0.08);
 }
 
-/* Hungarian copy needs a wider editorial measure than the terse English source. */
-html:lang(hu) .exploded-copy,
-html:lang(hu) .drive-copy,
-html:lang(hu) .brakes-copy,
-html:lang(hu) .wheels-copy {
-  max-width: min(100%, 34rem);
-}
-
-html:lang(hu) .energy-copy,
-html:lang(hu) .paint-copy,
-html:lang(hu) .carbon-copy {
-  max-width: min(100% - var(--page-pad) * 2, 38rem);
-}
-
-html:lang(hu) .craft-copy {
-  max-width: min(100%, 42rem);
-}
-
-html:lang(hu) .seat-copy {
-  max-width: min(100%, 30rem);
-}
-
-html:lang(hu) .exploded-title,
-html:lang(hu) .energy-title,
-html:lang(hu) .drive-title,
-html:lang(hu) .brakes-title,
-html:lang(hu) .wheels-title,
-html:lang(hu) .paint-title,
-html:lang(hu) .carbon-title,
-html:lang(hu) .craft-title,
-html:lang(hu) .seat-title,
-html:lang(hu) .final-cta-title {
-  max-width: none;
-}
-
-html:lang(hu) .exploded-title,
-html:lang(hu) .energy-title,
-html:lang(hu) .drive-title,
-html:lang(hu) .wheels-title {
-  font-size: clamp(2.5rem, 6.2vw, 4.6rem);
-}
-
-html:lang(hu) .brakes-title,
-html:lang(hu) .paint-title,
-html:lang(hu) .craft-title,
-html:lang(hu) .seat-title {
-  font-size: clamp(2.45rem, 6vw, 4.4rem);
-}
-
-html:lang(hu) .carbon-title {
-  font-size: clamp(2.6rem, 6.4vw, 4.8rem);
-}
-
-html:lang(hu) .rear-signature-copy {
-  max-width: min(calc(100% - var(--page-pad) * 2), 52rem);
-}
-
-html:lang(hu) .rear-signature-title {
-  font-size: clamp(2.45rem, 5.2vw, 4.45rem);
-}
-
-html:lang(hu) .rear-aero-copy {
-  max-width: min(calc(100% - var(--page-pad) * 2), 40rem);
-}
-
-html:lang(hu) .rear-aero-title {
-  font-size: clamp(2.55rem, 6.6vw, 4.7rem);
-}
-
-html:lang(hu) .open-road-title {
-  max-width: none;
-  font-size: clamp(3rem, 6vw, 5.2rem);
-}
-
-html:lang(hu) .final-cta-title {
-  font-size: clamp(3.4rem, 7.8vw, 6.8rem);
-}
-
-@media (min-width: 768px) {
-  html:lang(hu) .cockpit-copy {
-    max-width: min(46vw, 40rem);
-  }
-
-  html:lang(hu) .cockpit-title {
-    font-size: clamp(3.25rem, 5.3vw, 4.8rem);
-  }
-}
-
 @media (max-width: 639px) {
   .final-story-video {
     object-position: 50% 50%;
@@ -4616,25 +4528,6 @@ html:lang(hu) .final-cta-title {
 
   .final-cta-title {
     font-size: clamp(3rem, 16vw, 4.6rem);
-  }
-
-  html:lang(hu) .rear-signature-title,
-  html:lang(hu) .rear-aero-title,
-  html:lang(hu) .open-road-title,
-  html:lang(hu) .final-cta-title {
-    font-size: clamp(2.35rem, 11vw, 3.45rem);
-  }
-
-  html:lang(hu) .rear-signature-title {
-    max-width: none;
-    font-size: clamp(2rem, 9.3vw, 3rem);
-  }
-
-  html:lang(hu) .rear-signature-title span,
-  html:lang(hu) .rear-aero-title span,
-  html:lang(hu) .open-road-title span,
-  html:lang(hu) .final-cta-title span {
-    white-space: normal;
   }
 
   .final-cta-actions {

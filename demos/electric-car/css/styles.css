@@ -1,0 +1,5522 @@
+/* =========================================================
+   AUREON PRIME — Foundation + approved hero
+   Visual language: carbon black · graphite · dark titanium
+   copper-orange metallic · off-white · editorial restraint
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   DESIGN TOKENS
+   Hero-facing variables keep their original values so the
+   approved hero does not shift. Extended tokens support
+   upcoming editorial sections.
+   --------------------------------------------------------- */
+:root {
+  /* Core surfaces */
+  --void: #0a0908;
+  --velvet: #131110;
+  --panel: #1a1714;
+  --panel-2: #221e1a;
+
+  /* Extended surfaces (alias + range for new sections) */
+  --carbon: #0a0908;
+  --graphite: #161412;
+  --titanium: #2a2622;
+  --titanium-soft: #3a3530;
+
+  /* Typography colors */
+  --cream: #ede8df;
+  --cream-dim: #b8b0a4;
+  --dim: #6e675c;
+  --off-white: #ede8df;
+  --off-white-muted: #b8b0a4;
+
+  /* Accents — copper-orange metallic family */
+  --champagne: #c9ae81;
+  --champagne-bright: #e0c99a;
+  --copper: #b87333;
+  --copper-metal: #c47a3a;
+  --copper-bright: #d9924f;
+  --copper-deep: #8a5224;
+
+  /* Lines / structure */
+  --line: rgba(237, 232, 223, 0.1);
+  --line-strong: rgba(237, 232, 223, 0.18);
+  --hairline: rgba(237, 232, 223, 0.12);
+  --hairline-strong: rgba(201, 174, 129, 0.28);
+  --hairline-copper: rgba(196, 122, 58, 0.35);
+
+  /* Glass (header only — avoid generic glassmorphism elsewhere) */
+  --glass: rgba(19, 17, 16, 0.55);
+
+  /* Radii — restrained; prefer hard edges for editorial blocks */
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+  --radius-media: 2px;
+
+  /* Layout */
+  --page-pad: clamp(1.25rem, 4vw, 3.5rem);
+  --header-h: 72px;
+  --max: 1280px;
+  --max-wide: 1440px;
+  --max-narrow: 720px;
+  --section-y: clamp(5.5rem, 12vw, 9.5rem);
+  --section-y-tight: clamp(3.5rem, 8vw, 6rem);
+
+  /* Motion — heavy, smooth, expensive */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-heavy: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-editorial: cubic-bezier(0.19, 1, 0.22, 1);
+  --dur-reveal: 1.1s;
+  --dur-reveal-slow: 1.4s;
+  --stagger: 0.09s;
+
+  /* Type */
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Outfit", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--champagne) var(--void);
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--cream);
+  background: var(--void);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: min(100% - var(--page-pad) * 2, var(--max));
+  margin-inline: auto;
+}
+
+.container--wide {
+  width: min(100% - var(--page-pad) * 2, var(--max-wide));
+  margin-inline: auto;
+}
+
+.container--narrow {
+  width: min(100% - var(--page-pad) * 2, var(--max-narrow));
+  margin-inline: auto;
+}
+
+/* Noise + cursor glow */
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(201, 174, 129, 0.08) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  mix-blend-mode: screen;
+}
+
+body.is-pointer .cursor-glow {
+  opacity: 1;
+}
+
+/* ========== HEADER ========== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  height: var(--header-h);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 var(--page-pad);
+  transition: background 0.5s var(--ease-out), backdrop-filter 0.5s var(--ease-out), border-color 0.5s;
+  border-bottom: 1px solid transparent;
+}
+
+.site-header.is-scrolled {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-bottom-color: var(--line);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-self: start;
+}
+
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  color: var(--champagne);
+}
+
+.logo-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo-text strong {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+  letter-spacing: 0.18em;
+}
+
+.logo-text small {
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  color: var(--cream-dim);
+  text-transform: uppercase;
+}
+
+.nav-desktop {
+  display: none;
+  gap: 2rem;
+}
+
+.nav-desktop a {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  transition: color 0.3s var(--ease-out);
+}
+
+.nav-desktop a:hover,
+.nav-desktop a:focus-visible {
+  color: var(--champagne-bright);
+}
+
+.header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.menu-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+  gap: 5px;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: var(--cream);
+  transition: transform 0.4s var(--ease-soft), opacity 0.3s;
+  transform-origin: center;
+}
+
+.menu-toggle[aria-expanded="true"] span:first-child {
+  transform: translateY(3.25px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:last-child {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+.menu-toggle:hover {
+  border-color: var(--champagne);
+  background: rgba(201, 174, 129, 0.08);
+}
+
+/* Buttons */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 0.75rem 0.7rem 1.35rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.35s var(--ease-soft), background 0.35s, border-color 0.35s, color 0.35s;
+}
+
+.btn-pill:active {
+  transform: scale(0.98);
+}
+
+.btn-pill--solid {
+  background: var(--cream);
+  color: var(--void);
+}
+
+.btn-pill--solid:hover {
+  background: var(--champagne-bright);
+}
+
+.btn-pill--ghost {
+  border: 1px solid var(--line-strong);
+  color: var(--cream);
+  padding-inline: 1.2rem;
+}
+
+.btn-pill--ghost:hover {
+  border-color: var(--champagne);
+  color: var(--champagne-bright);
+}
+
+.btn-pill--full {
+  width: 100%;
+  justify-content: center;
+  padding: 1rem 1.25rem;
+}
+
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 9, 8, 0.12);
+  transition: transform 0.4s var(--ease-soft);
+}
+
+.btn-pill:hover .btn-icon {
+  transform: translateX(2px);
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(10, 9, 8, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease-out);
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu[hidden] {
+  display: none;
+}
+
+.mobile-menu.is-open[hidden] {
+  display: grid;
+}
+
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out), color 0.3s;
+}
+
+.mobile-menu.is-open a {
+  opacity: 1;
+  transform: none;
+}
+
+.mobile-menu a:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.mobile-menu a:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.mobile-menu a:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+.mobile-menu a:nth-child(4) {
+  transition-delay: 0.2s;
+}
+
+.mobile-menu a:nth-child(5) {
+  transition-delay: 0.25s;
+}
+
+.mobile-menu a:nth-child(6) {
+  transition-delay: 0.3s;
+}
+
+.mobile-menu a:nth-child(7) {
+  transition-delay: 0.35s;
+}
+
+.mobile-menu a:nth-child(8) {
+  transition-delay: 0.4s;
+}
+
+.mobile-menu a:nth-child(9) {
+  transition-delay: 0.45s;
+}
+
+.mobile-menu a:hover {
+  color: var(--champagne);
+}
+
+.mobile-cta {
+  margin-top: 1rem;
+  font-family: var(--font-body) !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--champagne) !important;
+}
+
+/* ========== HERO (minta-aligned) — DO NOT MODIFY ========== */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(10, 9, 8, 0.72) 0%,
+      rgba(10, 9, 8, 0.18) 22%,
+      transparent 40%,
+      transparent 52%,
+      rgba(10, 9, 8, 0.55) 72%,
+      rgba(10, 9, 8, 0.92) 100%),
+    linear-gradient(90deg,
+      rgba(10, 9, 8, 0.7) 0%,
+      rgba(10, 9, 8, 0.2) 22%,
+      transparent 38%,
+      transparent 62%,
+      rgba(10, 9, 8, 0.25) 78%,
+      rgba(10, 9, 8, 0.65) 100%);
+  pointer-events: none;
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 140px 50px rgba(10, 9, 8, 0.6);
+  pointer-events: none;
+}
+
+.hero-stage {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+  width: 100%;
+  min-height: 100dvh;
+  padding:
+    calc(var(--header-h) + 0.75rem) var(--page-pad) 1.25rem;
+}
+
+/* Center title block — top, like minta */
+.hero-center {
+  grid-row: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: 920px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.hero-kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--champagne-bright);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 9.5vw, 5.75rem);
+  line-height: 0.95;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.35),
+    0 12px 48px rgba(0, 0, 0, 0.55);
+}
+
+.hero-title-line {
+  display: block;
+  overflow: clip;
+}
+
+.hero-title-line>span {
+  display: inline-block;
+}
+
+.hero-cta-wrap {
+  margin-top: 0.15rem;
+}
+
+/* Minta-style outlined CTA */
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.7rem 1.1rem 0.7rem 1.5rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(237, 232, 223, 0.55);
+  background: rgba(10, 9, 8, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream);
+  transition:
+    background 0.4s var(--ease-soft),
+    border-color 0.4s,
+    transform 0.35s var(--ease-soft),
+    color 0.3s;
+}
+
+.btn-hero:hover {
+  background: rgba(237, 232, 223, 0.12);
+  border-color: var(--champagne);
+  color: var(--champagne-bright);
+}
+
+.btn-hero:active {
+  transform: scale(0.98);
+}
+
+.btn-hero-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(237, 232, 223, 0.25);
+  display: grid;
+  place-items: center;
+  transition: transform 0.4s var(--ease-soft), border-color 0.3s, background 0.3s;
+}
+
+.btn-hero:hover .btn-hero-arrow {
+  transform: translateX(3px);
+  border-color: var(--champagne);
+  background: rgba(201, 174, 129, 0.12);
+}
+
+/* Side rails */
+.hero-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  z-index: 5;
+}
+
+.hero-rail--left {
+  grid-row: 2;
+  justify-self: start;
+  align-self: end;
+  width: min(100%, 220px);
+}
+
+.hero-rail--right {
+  grid-row: 3;
+  justify-self: end;
+  align-self: stretch;
+  width: min(100%, 100%);
+}
+
+.hero-lede {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(237, 232, 223, 0.78);
+  max-width: 32ch;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
+}
+
+/* Stats: single column, one under another */
+.stat-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+/* Nearly transparent champagne-border stat cards */
+.stat-card {
+  position: relative;
+  width: 100%;
+  padding: 0.7rem 0.9rem 0.65rem;
+  border-radius: 12px;
+  background: rgba(10, 9, 8, 0.1);
+  border: 1px solid rgba(201, 174, 129, 0.55);
+  box-shadow: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: border-color 0.35s, background 0.35s;
+}
+
+.stat-card:hover {
+  border-color: rgba(224, 201, 154, 0.85);
+  background: rgba(10, 9, 8, 0.16);
+}
+
+.stat-card-value {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 3.2vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(237, 232, 223, 0.95);
+  display: flex;
+  align-items: baseline;
+  gap: 0.12em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+}
+
+.stat-card-value small {
+  font-size: 0.48em;
+  color: var(--champagne-bright);
+  letter-spacing: 0.04em;
+}
+
+.stat-card-label {
+  position: relative;
+  margin-top: 0.3rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(237, 232, 223, 0.72);
+}
+
+/* Right: brake / wheel / battery — image + text below, no cards */
+.hero-highlights {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1rem 1.25rem;
+  width: 100%;
+  height: 100%;
+}
+
+.highlight-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.55rem;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: 120px;
+}
+
+.highlight-item img {
+  width: 112px;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0;
+  display: block;
+  background: transparent;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.55));
+  transition: transform 0.5s var(--ease-soft);
+}
+
+.highlight-item:hover img {
+  transform: scale(1.06);
+}
+
+.highlight-item h3 {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  line-height: 1.3;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+  max-width: 16ch;
+}
+
+.highlight-item p {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: rgba(237, 232, 223, 0.75);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  max-width: 18ch;
+}
+
+/* ========== PAGE BODY (empty mount for progressive sections) ========== */
+.page-body {
+  position: relative;
+  background: var(--void);
+  min-height: 0;
+}
+
+/* =========================================================
+   SHARED VISUAL SYSTEM — upcoming sections
+   Editorial · technical · restrained luxury
+   ========================================================= */
+
+/* --- Section shell --- */
+.section {
+  position: relative;
+  padding: var(--section-y) 0;
+  background: var(--void);
+}
+
+.section--tight {
+  padding: var(--section-y-tight) 0;
+}
+
+.section--graphite {
+  background: var(--graphite);
+}
+
+.section--panel {
+  background: var(--panel);
+}
+
+.section--bleed {
+  padding-inline: 0;
+}
+
+.section-inner {
+  width: min(100% - var(--page-pad) * 2, var(--max));
+  margin-inline: auto;
+}
+
+.section-inner--wide {
+  width: min(100% - var(--page-pad) * 2, var(--max-wide));
+  margin-inline: auto;
+}
+
+/* --- Section labels (eyebrow / kicker) --- */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--champagne-bright);
+  line-height: 1;
+}
+
+.section-label::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: var(--hairline-copper);
+  flex-shrink: 0;
+}
+
+.section-label--plain::before {
+  display: none;
+}
+
+.section-label--copper {
+  color: var(--copper-metal);
+}
+
+/* --- Editorial headlines --- */
+.editorial-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  color: var(--off-white);
+  max-width: 16ch;
+}
+
+.editorial-headline--wide {
+  max-width: 22ch;
+}
+
+.editorial-headline--massive {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.editorial-headline em,
+.editorial-headline i {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--champagne-bright);
+}
+
+.editorial-lede {
+  margin-top: 1.25rem;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--cream-dim);
+  max-width: 46ch;
+}
+
+.editorial-pull {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--cream);
+  max-width: 28ch;
+  border-left: 1px solid var(--hairline-copper);
+  padding-left: 1.25rem;
+}
+
+/* --- Technical micro labels --- */
+.tech-label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: white;
+  line-height: 2;
+}
+
+.tech-label--accent {
+  color: var(--champagne);
+}
+
+.tech-label--live {
+  color: var(--copper-metal);
+}
+
+.tech-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.25rem;
+}
+
+.tech-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.tech-meta-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--cream);
+  letter-spacing: 0.02em;
+}
+
+.tech-meta-value small {
+  font-size: 0.45em;
+  color: var(--champagne-bright);
+  margin-left: 0.1em;
+}
+
+/* --- Technical hairlines --- */
+.hairline {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background: var(--hairline);
+  margin: 0;
+}
+
+.hairline--strong {
+  background: var(--hairline-strong);
+}
+
+.hairline--copper {
+  background: var(--hairline-copper);
+}
+
+.hairline--short {
+  width: 3rem;
+}
+
+.hairline--vertical {
+  width: 1px;
+  height: 100%;
+  min-height: 2rem;
+  align-self: stretch;
+}
+
+.hairline-frame {
+  position: relative;
+}
+
+.hairline-frame::before,
+.hairline-frame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--hairline);
+  pointer-events: none;
+}
+
+.hairline-frame::before {
+  top: 0;
+}
+
+.hairline-frame::after {
+  bottom: 0;
+}
+
+.hairline-inset {
+  border: 1px solid var(--hairline);
+}
+
+.hairline-inset--copper {
+  border-color: var(--hairline-copper);
+}
+
+/* Corner ticks for technical framing */
+.tech-frame {
+  position: relative;
+}
+
+.tech-frame::before,
+.tech-frame::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tech-frame::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--hairline-strong);
+  border-left: 1px solid var(--hairline-strong);
+}
+
+.tech-frame::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid var(--hairline-strong);
+  border-right: 1px solid var(--hairline-strong);
+}
+
+/* --- Image masking --- */
+.media-mask {
+  position: relative;
+  overflow: hidden;
+  background: var(--panel);
+  isolation: isolate;
+}
+
+.media-mask>img,
+.media-mask>video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Clip / shape utilities */
+.media-mask--rect {
+  border-radius: 0;
+}
+
+.media-mask--soft {
+  border-radius: var(--radius-media);
+}
+
+.media-mask--cinematic {
+  aspect-ratio: 16 / 9;
+}
+
+.media-mask--wide {
+  aspect-ratio: 21 / 9;
+}
+
+.media-mask--portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.media-mask--square {
+  aspect-ratio: 1 / 1;
+}
+
+.media-mask--hero-crop {
+  aspect-ratio: 16 / 10;
+}
+
+/* Scale-safe media inside mask (for reveal / parallax children) */
+.media-mask__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.media-mask--parallax {
+  overflow: hidden;
+}
+
+.media-mask--parallax .media-mask__media {
+  scale: 1.12;
+  height: 115%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Subtle scrims for text-over-image */
+.media-mask__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(180deg,
+      transparent 40%,
+      rgba(10, 9, 8, 0.72) 100%);
+}
+
+.media-mask__scrim--left {
+  background: linear-gradient(90deg,
+      rgba(10, 9, 8, 0.75) 0%,
+      transparent 55%);
+}
+
+.media-mask__scrim--radial {
+  background: radial-gradient(ellipse at center,
+      transparent 30%,
+      rgba(10, 9, 8, 0.55) 100%);
+}
+
+/* --- Video sections --- */
+.video-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--carbon);
+}
+
+.video-section__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--void);
+}
+
+.video-section__frame--full {
+  aspect-ratio: auto;
+  min-height: 70dvh;
+  height: min(85dvh, 900px);
+}
+
+.video-section__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-section__caption {
+  position: absolute;
+  left: var(--page-pad);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 2;
+  max-width: 36ch;
+}
+
+.video-section__caption .tech-label {
+  margin-bottom: 0.5rem;
+}
+
+.video-section__caption p {
+  font-size: 0.92rem;
+  color: rgba(237, 232, 223, 0.82);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+}
+
+/* --- Scroll reveals (CSS baseline; GSAP enhances) --- */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+  transition:
+    opacity var(--dur-reveal) var(--ease-editorial),
+    transform var(--dur-reveal) var(--ease-editorial);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal="fade"] {
+  transform: none;
+}
+
+[data-reveal="up"] {
+  transform: translate3d(0, 40px, 0);
+}
+
+[data-reveal="left"] {
+  transform: translate3d(-32px, 0, 0);
+}
+
+[data-reveal="right"] {
+  transform: translate3d(32px, 0, 0);
+}
+
+[data-reveal="scale"] {
+  transform: scale(1.04);
+  transform-origin: center center;
+}
+
+/* Stagger children via data-reveal-stagger parent */
+[data-reveal-stagger]>[data-reveal] {
+  transition-delay: calc(var(--reveal-i, 0) * var(--stagger));
+}
+
+/* Clip reveal for headlines */
+[data-reveal-clip] {
+  overflow: clip;
+}
+
+[data-reveal-clip]>span {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 110%, 0);
+  transition:
+    opacity var(--dur-reveal-slow) var(--ease-heavy),
+    transform var(--dur-reveal-slow) var(--ease-heavy);
+}
+
+[data-reveal-clip].is-in>span {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero reveal initial state (GSAP owns motion) */
+.reveal-hero {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Parallax helpers — transform only; JS drives --py / --px */
+[data-parallax] {
+  will-change: transform;
+  transform: translate3d(0, var(--py, 0px), 0);
+}
+
+[data-parallax-x] {
+  will-change: transform;
+  transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
+}
+
+/* Utility: editorial spacing rhythm */
+.stack-y {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.stack-y--loose {
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+
+.stack-y--tight {
+  gap: 0.75rem;
+}
+
+/* Utility: split editorial header */
+.section-head {
+  max-width: 640px;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.section-head--split {
+  max-width: none;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section-head .section-label {
+  margin-bottom: 1rem;
+}
+
+.section-head .editorial-headline {
+  margin: 0;
+}
+
+.section-head .editorial-lede {
+  margin-top: 1rem;
+}
+
+/* Display title alias (compat for progressive builds) */
+.display-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5.5vw, 4.25rem);
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  color: var(--cream);
+}
+
+/* =========================================================
+   SECTION 01 — THE SILHOUETTE
+   Controlled light reveal · horizontal mask · no cards
+   ========================================================= */
+.silhouette {
+  padding: 0;
+  background: var(--void);
+  color: var(--cream);
+  /* Scroll runway for pin + reveal */
+  min-height: 100dvh;
+}
+
+.silhouette-pin {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--void);
+}
+
+.silhouette-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+.silhouette-stage {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding:
+    calc(var(--header-h) + clamp(1.5rem, 4vw, 2.75rem)) var(--page-pad) clamp(2rem, 5vw, 3.5rem);
+}
+
+.silhouette-copy {
+  position: relative;
+  z-index: 5;
+  max-width: min(100%, 520px);
+}
+
+.silhouette-label {
+  margin-bottom: 1.15rem;
+}
+
+.silhouette-title {
+  max-width: 12ch;
+  font-size: clamp(2.75rem, 7.5vw, 5.25rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.silhouette-title-line {
+  display: block;
+}
+
+.silhouette-lede {
+  margin-top: 1.35rem;
+  max-width: 32ch;
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  color: white;
+}
+
+.silhouette-media {
+  position: relative;
+  width: 100%;
+  align-self: end;
+  /* Near-fullscreen cinematic crop */
+  min-height: clamp(42vh, 52vw, 68vh);
+}
+
+.silhouette-mask {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  overflow: hidden;
+  /* Start fully dark — light opens left → right */
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+  background: var(--void);
+}
+
+.silhouette-img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  object-position: 50% 55%;
+  display: block;
+  /* Slight scale so crop feels intentional, not letterboxed */
+  transform: scale(1.04);
+  transform-origin: 45% 50%;
+  filter: saturate(1.05) contrast(1.04);
+}
+
+/* Soft edge so the wipe feels like light, not a hard shutter */
+.silhouette-mask::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(18vw, 140px);
+  pointer-events: none;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(10, 9, 8, 0.55) 100%);
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+}
+
+/* Technical annotations */
+.silhouette-tech {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.silhouette-anno {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.silhouette-anno .tech-label {
+  color: rgba(237, 232, 223, 0.55);
+  letter-spacing: 0.26em;
+  font-size: 0.58rem;
+}
+
+.silhouette-anno-line {
+  display: block;
+  height: 1px;
+  background: var(--hairline-strong);
+  flex-shrink: 0;
+}
+
+.silhouette-anno--profile {
+  top: 8%;
+  left: 0;
+}
+
+.silhouette-anno--profile .silhouette-anno-line {
+  width: clamp(2.5rem, 8vw, 5.5rem);
+}
+
+.silhouette-anno--surface {
+  top: 42%;
+  right: 0;
+  flex-direction: row-reverse;
+}
+
+.silhouette-anno--surface .silhouette-anno-line {
+  width: clamp(3rem, 10vw, 7rem);
+  background: var(--hairline-copper);
+}
+
+.silhouette-anno--stance {
+  bottom: 10%;
+  left: 12%;
+}
+
+.silhouette-anno--stance .silhouette-anno-line {
+  width: clamp(2rem, 6vw, 4rem);
+}
+
+/* Crosshair axes — barely there */
+.silhouette-axis {
+  position: absolute;
+  background: var(--hairline);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.silhouette-axis--h {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.silhouette-axis--v {
+  top: 0;
+  bottom: 0;
+  left: 22%;
+  width: 1px;
+  transform: scaleY(0);
+  transform-origin: center top;
+}
+
+/* Seamless bridge into airflow — shared void, no hard seam */
+.silhouette::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(4rem, 12vw, 8rem);
+  background: linear-gradient(180deg, transparent, var(--void));
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* =========================================================
+   SECTION 02 — AIR HAS A SHAPE
+   Dominant video · expand 75vw → 100vw · free tech labels
+   ========================================================= */
+.airflow {
+  /* Pull slightly into silhouette fade for a continuous void */
+  margin-top: clamp(-3rem, -6vw, -1.5rem);
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(4rem, 10vw, 7.5rem);
+  background: var(--void);
+  overflow: visible;
+}
+
+.airflow-inner {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+.airflow-copy {
+  position: relative;
+  z-index: 4;
+  width: min(100% - var(--page-pad) * 2, var(--max));
+  margin-inline: auto;
+  margin-bottom: clamp(1.75rem, 4vw, 3rem);
+  max-width: 520px;
+  will-change: transform;
+}
+
+.airflow-label {
+  margin-bottom: 1.1rem;
+}
+
+.airflow-title {
+  max-width: 10ch;
+  font-size: clamp(2.75rem, 7.5vw, 5.25rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.airflow-title-line {
+  display: block;
+}
+
+.airflow-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* Safe zone for labels above/below the video */
+  padding:
+    clamp(1.75rem, 3.5vw, 2.75rem) var(--page-pad) clamp(1.75rem, 3.5vw, 2.75rem);
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.airflow-frame {
+  position: relative;
+  /* Desktop starts ~75vw; never wider than stage content box */
+  width: min(100%, 92vw);
+  max-width: 100%;
+  will-change: width;
+  overflow: visible;
+}
+
+.airflow-mask {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--carbon);
+  /* Subtle masked reveal edge */
+  clip-path: inset(4% 3% 4% 3%);
+  will-change: clip-path;
+}
+
+.airflow-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  /* Keep effects minimal — video is the hero */
+  filter: contrast(1.02) saturate(1.04);
+  transform: scale(1.02);
+  transform-origin: center;
+  will-change: transform;
+}
+
+/*
+  Technical annotations — sit in the stage padding band
+  around the media, never off-screen / never clipped.
+*/
+.airflow-tech {
+  position: absolute;
+  /* Stretch slightly past the video into the stage padding */
+  inset: clamp(-1.65rem, -3.2vw, -1.25rem) 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.airflow-anno {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: calc(50% - 0.5rem);
+  opacity: 0;
+}
+
+.airflow-anno .tech-label {
+  color: rgba(237, 232, 223, 0.62);
+  letter-spacing: 0.2em;
+  font-size: clamp(0.52rem, 1.1vw, 0.62rem);
+  white-space: nowrap;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
+}
+
+.airflow-anno-line {
+  display: block;
+  height: 1px;
+  background: var(--hairline-strong);
+  flex-shrink: 0;
+}
+
+/* Top edge — inside horizontal bounds of the frame */
+.airflow-anno--laminar {
+  top: 0;
+  left: 0;
+}
+
+.airflow-anno--laminar .airflow-anno-line {
+  width: clamp(1.75rem, 5vw, 3.5rem);
+  background: var(--hairline-copper);
+}
+
+/* Top-right of media, pulled slightly into frame */
+.airflow-anno--pressure {
+  top: clamp(1.85rem, 4vw, 2.75rem);
+  right: clamp(0.65rem, 1.5vw, 1.1rem);
+  flex-direction: row-reverse;
+  max-width: 42%;
+}
+
+.airflow-anno--pressure .airflow-anno-line {
+  width: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+/* Bottom-left of media */
+.airflow-anno--velocity {
+  bottom: clamp(1.85rem, 4vw, 2.75rem);
+  left: clamp(0.65rem, 1.5vw, 1.1rem);
+  max-width: 42%;
+}
+
+.airflow-anno--velocity .airflow-anno-line {
+  width: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+/* Bottom edge */
+.airflow-anno--drag {
+  bottom: 0;
+  right: 0;
+  flex-direction: row-reverse;
+}
+
+.airflow-anno--drag .airflow-anno-line {
+  width: clamp(1.75rem, 5vw, 3.5rem);
+  background: var(--hairline-copper);
+}
+
+/* =========================================================
+   SECTION 03 — BENEATH THE SURFACE (X-RAY)
+   Vertical mask: EXTERIOR → ENGINEERING · micro callouts
+   ========================================================= */
+.xray {
+  padding: 0;
+  background: #000;
+  color: var(--cream);
+  min-height: 100dvh;
+}
+
+.xray-pin {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #000;
+}
+
+.xray-stage {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0;
+  padding:
+    calc(var(--header-h) + clamp(0.75rem, 2vw, 1.25rem)) 0 clamp(1.25rem, 3vw, 2rem);
+}
+
+.xray-copy {
+  position: relative;
+  z-index: 6;
+  max-width: min(100% - var(--page-pad) * 2, 480px);
+  margin-inline: var(--page-pad);
+  margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+  /* Soft scrim so type stays readable over the car */
+  padding: 0.15rem 0 0.5rem;
+}
+
+.xray-label {
+  margin-bottom: 1.1rem;
+}
+
+.xray-title {
+  max-width: 12ch;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.xray-title-line {
+  display: block;
+}
+
+.xray-lede {
+  margin-top: 1.25rem;
+  max-width: 28ch;
+  color: var(--cream-dim);
+  font-size: clamp(0.95rem, 1.35vw, 1.05rem);
+}
+
+/* Compare stage — near-fullscreen cinematic frame */
+.xray-compare {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  /* Fill remaining viewport under the header/copy */
+  flex: 1 1 auto;
+  min-height: clamp(48vh, 58vw, 78vh);
+  height: auto;
+  aspect-ratio: auto;
+  background: #000;
+  isolation: isolate;
+}
+
+.xray-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.xray-layer--exterior {
+  z-index: 1;
+}
+
+.xray-layer--engineering {
+  z-index: 2;
+  /* Start fully masked — vertical edge at left */
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+}
+
+.xray-img {
+  width: 100%;
+  height: 100%;
+  /*
+    contain = full vehicle visible + both 1672×941 layers stay aligned.
+    Size comes from the full-viewport stage, not a 1100px cap.
+  */
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Vertical sweep divider */
+.xray-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  width: 1px;
+  pointer-events: none;
+  transform: translateX(0);
+  will-change: transform;
+}
+
+.xray-divider-line {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(201, 174, 129, 0.15) 12%,
+      rgba(224, 201, 154, 0.85) 50%,
+      rgba(201, 174, 129, 0.15) 88%,
+      transparent 100%);
+  box-shadow: 0 0 12px rgba(196, 122, 58, 0.25);
+}
+
+.xray-divider::before,
+.xray-divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border: 1px solid rgba(224, 201, 154, 0.7);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: #000;
+}
+
+.xray-divider::before {
+  top: 8%;
+}
+
+.xray-divider::after {
+  bottom: 8%;
+}
+
+/* Mode legend */
+.xray-modes {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(0.5rem, 2vw, 1rem);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  pointer-events: none;
+}
+
+.xray-mode {
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(237, 232, 223, 0.35);
+  transition: color 0.4s var(--ease-out);
+}
+
+.xray-mode.is-active {
+  color: var(--champagne-bright);
+}
+
+.xray-mode-sep {
+  font-size: 0.55rem;
+  color: rgba(201, 174, 129, 0.4);
+  letter-spacing: 0;
+}
+
+/* Micro callouts — no boxes */
+.xray-callouts {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.xray-callout {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.xray-callout .tech-label {
+  font-size: 0.54rem;
+  letter-spacing: 0.22em;
+  color: rgba(237, 232, 223, 0.55);
+  white-space: nowrap;
+}
+
+.xray-callout-line {
+  display: block;
+  height: 1px;
+  width: clamp(1.25rem, 4vw, 2.75rem);
+  background: var(--hairline-copper);
+  flex-shrink: 0;
+}
+
+/* Positions relative to vehicle engineering layout (side view) */
+.xray-callout--front {
+  top: 48%;
+  left: 4%;
+}
+
+.xray-callout--battery {
+  bottom: 18%;
+  left: 38%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.xray-callout--battery .xray-callout-line {
+  width: 1px;
+  height: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.xray-callout--power {
+  top: 36%;
+  right: 28%;
+  flex-direction: row-reverse;
+}
+
+.xray-callout--rear {
+  top: 50%;
+  right: 6%;
+  flex-direction: row-reverse;
+}
+
+.xray-callout--suspension {
+  bottom: 22%;
+  right: 14%;
+  flex-direction: row-reverse;
+}
+
+/* =========================================================
+   SECTION 04 — EXPLODED ARCHITECTURE
+   Museum index · subtle layer depth · black void
+   Near-fullscreen media — no small capped frame
+   ========================================================= */
+.exploded {
+  padding: 0;
+  background: #000;
+  color: var(--cream);
+  min-height: 100dvh;
+}
+
+.exploded-pin {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background: #000;
+}
+
+.exploded-stage {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding:
+    calc(var(--header-h) + clamp(0.75rem, 2vw, 1.25rem)) 0 clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.exploded-copy {
+  position: relative;
+  z-index: 5;
+  max-width: min(100% - var(--page-pad) * 2, 480px);
+  margin-inline: var(--page-pad);
+  margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.exploded-label {
+  margin-bottom: 1.1rem;
+}
+
+.exploded-title {
+  max-width: 12ch;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.exploded-title-line {
+  display: block;
+}
+
+.exploded-layout {
+  position: relative;
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  align-items: stretch;
+  min-height: 0;
+  width: 100%;
+}
+
+/* Vertical index — engineering museum */
+.exploded-index {
+  position: relative;
+  z-index: 5;
+  margin-inline: var(--page-pad);
+  width: fit-content;
+}
+
+.exploded-index-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  border-left: 1px solid var(--hairline);
+  padding-left: 0;
+  list-style: none;
+}
+
+.exploded-index-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 14px auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0 0.55rem 0.85rem;
+  cursor: default;
+  transition: color 0.45s var(--ease-out);
+  color: rgba(237, 232, 223, 0.28);
+}
+
+.exploded-index-marker {
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  width: 1px;
+  height: 0;
+  background: var(--copper-metal);
+  box-shadow: 0 0 8px rgba(196, 122, 58, 0.45);
+  transform: translateY(-50%);
+  transition: height 0.45s var(--ease-heavy), background 0.35s;
+}
+
+.exploded-index-num {
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.exploded-index-name {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.exploded-index-item.is-active {
+  color: var(--cream);
+}
+
+.exploded-index-item.is-active .exploded-index-marker {
+  height: 70%;
+  background: var(--champagne-bright);
+}
+
+.exploded-index-item.is-active .exploded-index-num {
+  color: var(--champagne-bright);
+}
+
+.exploded-index-item.is-passed {
+  color: rgba(237, 232, 223, 0.42);
+}
+
+.exploded-index-item.is-passed .exploded-index-marker {
+  height: 40%;
+  background: rgba(196, 122, 58, 0.45);
+}
+
+/* Media — fill remaining stage; no small max-width cap */
+.exploded-media {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  min-height: clamp(50vh, 62vw, 78vh);
+  height: 100%;
+  aspect-ratio: auto;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.exploded-figure {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.exploded-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.55));
+  user-select: none;
+  pointer-events: none;
+  transform: scale(1.04);
+  transform-origin: center center;
+}
+
+/* Soft depth planes — ambient only, not fake cutouts */
+.exploded-depth {
+  position: absolute;
+  inset: 6% 4%;
+  pointer-events: none;
+  border: 1px solid transparent;
+  will-change: transform, opacity;
+}
+
+.exploded-depth--back {
+  z-index: 0;
+  inset: 2% 1%;
+  border-color: rgba(237, 232, 223, 0.04);
+  opacity: 0.5;
+}
+
+.exploded-depth--mid {
+  z-index: 1;
+  inset: 4% 2.5%;
+  border-color: rgba(196, 122, 58, 0.08);
+  opacity: 0.65;
+}
+
+.exploded-depth--front {
+  z-index: 3;
+  inset: 8% 6%;
+  border-color: rgba(201, 174, 129, 0.06);
+  opacity: 0.4;
+}
+
+/* =========================================================
+   SECTION 05 — ENERGY CORE
+   Oversized battery pan · detail callouts · copper current
+   ========================================================= */
+.energy {
+  padding: 0;
+  background: #000;
+  color: var(--cream);
+  position: relative;
+  overflow: visible;
+}
+
+.energy-pin {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background: #000;
+}
+
+.energy-stage {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding:
+    calc(var(--header-h) + clamp(0.75rem, 2vw, 1.25rem)) 0 clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.energy-copy {
+  position: relative;
+  z-index: 5;
+  max-width: min(100% - var(--page-pad) * 2, 520px);
+  margin-inline: var(--page-pad);
+  margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.energy-label {
+  margin-bottom: 1.1rem;
+}
+
+.energy-title {
+  max-width: 14ch;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.energy-title-line {
+  display: block;
+}
+
+/* Oversized media — pan across architecture */
+.energy-media {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: clamp(52vh, 68vw, 82vh);
+  width: 100%;
+  overflow: hidden;
+  background: #050403;
+}
+
+.energy-pan {
+  position: absolute;
+  /* Larger than viewport so edges bleed out */
+  width: 148%;
+  height: 128%;
+  left: -18%;
+  top: -12%;
+  will-change: transform;
+}
+
+.energy-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 40% 45%;
+  display: block;
+  filter: saturate(1.04) contrast(1.03);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Detail callouts */
+.energy-callouts {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.energy-callout {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: min(46%, 16rem);
+  opacity: 0;
+}
+
+.energy-callout .tech-label {
+  font-size: clamp(0.52rem, 1.1vw, 0.62rem);
+  letter-spacing: 0.2em;
+  color: rgba(237, 232, 223, 0.68);
+  white-space: nowrap;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.65);
+}
+
+.energy-callout-line {
+  display: block;
+  height: 1px;
+  width: clamp(1.5rem, 4vw, 2.75rem);
+  background: var(--hairline-copper);
+  flex-shrink: 0;
+}
+
+.energy-callout--structural {
+  top: 18%;
+  left: var(--page-pad);
+}
+
+.energy-callout--thermal {
+  top: 48%;
+  right: var(--page-pad);
+  flex-direction: row-reverse;
+}
+
+.energy-callout--cog {
+  bottom: 16%;
+  left: clamp(12%, 22vw, 28%);
+}
+
+/* SVG current path through the battery */
+.energy-current {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.energy-current-path {
+  stroke: rgba(196, 122, 58, 0.72);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 3px rgba(196, 122, 58, 0.35));
+  /* Drawn by stroke-dashoffset in JS */
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.9;
+}
+
+/* Bridge line continuing into §06 */
+.energy-bridge {
+  position: relative;
+  height: clamp(3.5rem, 8vw, 5.5rem);
+  background: #000;
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  z-index: 2;
+}
+
+.energy-bridge-line {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg,
+      rgba(196, 122, 58, 0.55) 0%,
+      rgba(201, 174, 129, 0.45) 55%,
+      rgba(196, 122, 58, 0.65) 100%);
+  box-shadow: 0 0 6px rgba(196, 122, 58, 0.25);
+  transform-origin: top center;
+  transform: scaleY(0);
+}
+
+/* =========================================================
+   SECTION 06 — ELECTRIC HEART
+   Full-bleed electric-motor.mp4 · scroll-scrubbed playback
+   ========================================================= */
+.drive {
+  position: relative;
+  /* Stable viewport + video scrub runway; independent from metadata timing. */
+  height: calc(100vh + max(180vh, 3600px));
+  height: calc(100dvh + max(180dvh, 3600px));
+  padding: 0;
+  background: #000;
+  color: var(--cream);
+  overflow: visible;
+}
+
+.drive-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.drive-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #000;
+}
+
+.drive-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  pointer-events: none;
+}
+
+.drive-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.12) 28%,
+      rgba(0, 0, 0, 0.08) 55%,
+      rgba(0, 0, 0, 0.55) 100%),
+    linear-gradient(90deg,
+      rgba(0, 0, 0, 0.45) 0%,
+      transparent 38%,
+      transparent 62%,
+      rgba(0, 0, 0, 0.35) 100%);
+}
+
+.drive-stage {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding:
+    calc(var(--header-h) + clamp(1rem, 2.5vw, 2rem)) var(--page-pad) clamp(2rem, 5vw, 3.5rem);
+  box-sizing: border-box;
+}
+
+/* Current entering from above (continuation of §05) */
+.drive-current-in {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 4;
+  width: 1px;
+  height: clamp(3rem, 10vw, 6.5rem);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.drive-current-line {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg,
+      rgba(196, 122, 58, 0.7) 0%,
+      rgba(196, 122, 58, 0.35) 70%,
+      transparent 100%);
+  box-shadow: 0 0 6px rgba(196, 122, 58, 0.22);
+  transform-origin: top center;
+  transform: scaleY(0);
+}
+
+.drive-copy {
+  position: relative;
+  z-index: 5;
+  max-width: min(100%, 480px);
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.7);
+}
+
+.drive-label {
+  margin-bottom: 1.1rem;
+}
+
+.drive-title {
+  max-width: 12ch;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.drive-title-line {
+  display: block;
+}
+
+/* Soft engineering arcs — industrial, not HUD */
+.drive-geometry {
+  position: absolute;
+  inset: 12% 8% 18% 8%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.drive-arc {
+  position: absolute;
+  border: 1px solid rgba(201, 174, 129, 0.12);
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.drive-arc--1 {
+  inset: 6% 4%;
+  border-color: rgba(196, 122, 58, 0.14);
+}
+
+.drive-arc--2 {
+  inset: 16% 12%;
+  border-color: rgba(201, 174, 129, 0.1);
+}
+
+.drive-arc--3 {
+  inset: 26% 20%;
+  border-color: rgba(196, 122, 58, 0.08);
+}
+
+.drive-radial {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 1px;
+  height: 42%;
+  background: linear-gradient(180deg,
+      rgba(201, 174, 129, 0.18),
+      transparent 85%);
+  transform-origin: top center;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.drive-radial--1 {
+  transform: translateX(-50%) rotate(-28deg);
+}
+
+.drive-radial--2 {
+  transform: translateX(-50%) rotate(34deg);
+  height: 36%;
+}
+
+/* Minimal technical list — no cards, no specs */
+.drive-tech {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  z-index: 3;
+  align-self: flex-start;
+}
+
+.drive-tech-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  transform: translateX(12px);
+}
+
+.drive-tech-line {
+  display: block;
+  width: clamp(1.75rem, 4vw, 2.75rem);
+  height: 1px;
+  background: var(--hairline-copper);
+  flex-shrink: 0;
+}
+
+.drive-tech-item .tech-label {
+  font-size: clamp(0.58rem, 1.15vw, 0.68rem);
+  letter-spacing: 0.22em;
+  color: rgba(237, 232, 223, 0.72);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+}
+
+/* =========================================================
+   07 + 08 SCENE — pin panel; wheels slides from right over brakes
+   ========================================================= */
+.bw-scene {
+  position: relative;
+  width: 100%;
+  /* One viewport + 125vh horizontal reveal runway. */
+  height: 225vh;
+  height: 225dvh;
+  background: #000;
+}
+
+.bw-pin {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: #000;
+  /* Avoid transform here — pin uses transform; nested transforms break pins */
+}
+
+/* Both panels fill the pinned viewport — never leave document flow height */
+.bw-pin>.brakes,
+.bw-pin>.wheels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.bw-pin>.brakes {
+  z-index: 1;
+}
+
+.bw-pin>.wheels {
+  z-index: 2;
+  /* Transform owned only by GSAP (xPercent) — do not set CSS transform */
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* =========================================================
+   SECTION 07 — STOPPING POWER
+   Full-bleed brake-colored.png · 100vh · full width
+   ========================================================= */
+.brakes {
+  position: relative;
+  padding: 0;
+  background: #000;
+  color: var(--cream);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.brakes-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.brakes-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.brakes-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.35) 32%,
+      rgba(0, 0, 0, 0.08) 58%,
+      transparent 78%),
+    linear-gradient(180deg,
+      rgba(0, 0, 0, 0.35) 0%,
+      transparent 28%,
+      transparent 70%,
+      rgba(0, 0, 0, 0.4) 100%);
+}
+
+.brakes-stage {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding:
+    calc(var(--header-h) + clamp(1rem, 2.5vw, 2rem)) var(--page-pad) clamp(2rem, 5vw, 3.5rem);
+  box-sizing: border-box;
+}
+
+.brakes-copy {
+  position: relative;
+  z-index: 3;
+  max-width: min(100%, 420px);
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.65);
+}
+
+.brakes-label {
+  margin-bottom: 1.1rem;
+}
+
+.brakes-title {
+  max-width: 12ch;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.brakes-title-line {
+  display: block;
+}
+
+.brakes-materials {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
+  padding: 0;
+}
+
+.brakes-mat {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  opacity: 1;
+}
+
+.brakes-mat-line {
+  display: block;
+  width: clamp(1.25rem, 3vw, 2rem);
+  height: 1px;
+  background: var(--hairline-copper);
+  flex-shrink: 0;
+}
+
+.brakes-mat .tech-label {
+  font-size: clamp(0.52rem, 1.1vw, 0.62rem);
+  letter-spacing: 0.22em;
+  color: rgba(237, 232, 223, 0.72);
+}
+
+/* =========================================================
+   SECTION 08 — WHEEL CONFIGURATOR
+   Full-bleed wheels.png bg · slides over brakes
+   ========================================================= */
+.wheels {
+  position: relative;
+  padding: 0;
+  background: #000;
+  color: var(--cream);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.wheels-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wheels-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.wheels-bg-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.22) 28%,
+      rgba(0, 0, 0, 0.18) 55%,
+      rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(90deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(0, 0, 0, 0.3) 100%);
+}
+
+.wheels-stage {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding:
+    calc(var(--header-h) + clamp(1rem, 2.5vw, 2rem)) var(--page-pad) clamp(2.5rem, 5vw, 4rem);
+  box-sizing: border-box;
+}
+
+.wheels-copy {
+  position: relative;
+  z-index: 4;
+  max-width: min(100%, 420px);
+  margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.wheels-label {
+  margin-bottom: 1.1rem;
+}
+
+.wheels-title {
+  max-width: 12ch;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.wheels-title-line {
+  display: block;
+}
+
+.wheels-config {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  min-height: 0;
+  touch-action: pan-y;
+}
+
+.wheels-hero {
+  position: relative;
+  width: min(88vw, 78vh, 720px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  /* Soft stage glow — not a card */
+  isolation: isolate;
+}
+
+.wheels-hero::before {
+  content: "";
+  position: absolute;
+  inset: 12% 8%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 55%,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(10, 9, 8, 0) 68%);
+  pointer-events: none;
+  filter: blur(10px);
+}
+
+.wheels-figure {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96) rotate(-6deg);
+  transition:
+    opacity 0.85s var(--ease-heavy),
+    transform 0.95s var(--ease-heavy),
+    visibility 0.85s;
+  will-change: opacity, transform;
+  z-index: 1;
+}
+
+.wheels-figure.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) rotate(0deg);
+  z-index: 2;
+}
+
+.wheels-figure.is-exit {
+  opacity: 0;
+  visibility: visible;
+  transform: scale(0.97) rotate(10deg);
+  z-index: 1;
+}
+
+.wheels-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 32px 56px rgba(0, 0, 0, 0.55));
+}
+
+.wheels-controls {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  width: 100%;
+  max-width: 420px;
+}
+
+.wheels-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding: 0.15rem 0;
+}
+
+.wheels-tab {
+  position: relative;
+  padding: 0.85rem 1.35rem;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(237, 232, 223, 0.38);
+  transition: color 0.4s var(--ease-out);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.wheels-tab::after {
+  content: "";
+  position: absolute;
+  left: 1.35rem;
+  right: 1.35rem;
+  bottom: 0.35rem;
+  height: 1px;
+  background: var(--copper-metal);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.45s var(--ease-heavy);
+}
+
+.wheels-tab:hover,
+.wheels-tab:focus-visible {
+  color: rgba(237, 232, 223, 0.85);
+}
+
+.wheels-tab.is-active {
+  color: var(--cream);
+}
+
+.wheels-tab.is-active::after {
+  transform: scaleX(1);
+}
+
+.wheels-descriptors {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.85rem, 2.5vw, 1.75rem);
+  margin: 0;
+  padding: 0;
+}
+
+.wheels-desc {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.wheels-desc-line {
+  display: block;
+  width: 1.25rem;
+  height: 1px;
+  background: var(--hairline-copper);
+  flex-shrink: 0;
+}
+
+.wheels-desc .tech-label {
+  font-size: clamp(0.52rem, 1.05vw, 0.6rem);
+  letter-spacing: 0.2em;
+  color: rgba(237, 232, 223, 0.55);
+}
+
+/* =========================================================
+   SECTION 09 — PAINT
+   Oversized macro video · COPPER word · subtle light evolution
+   ========================================================= */
+.paint {
+  position: relative;
+  padding: 0;
+  background: #0a0705;
+  color: var(--cream);
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.paint-bg-word {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.paint-bg-word-text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(6rem, 28vw, 22rem);
+  line-height: 0.85;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(196, 122, 58, 0.07);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.paint-media {
+  position: absolute;
+  /* Oversized — bleeds past viewport edges */
+  inset: -8% -12%;
+  z-index: 0;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+.paint-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  /* Preserve real paint texture — no heavy recolor */
+  filter: contrast(1.02) saturate(1.03);
+  transform: scale(1.08);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Lighting evolution: dark burnt copper → brighter metallic (opacity only) */
+.paint-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 30% 40%,
+      rgba(80, 42, 18, 0.45) 0%,
+      transparent 65%),
+    linear-gradient(125deg,
+      rgba(10, 6, 4, 0.55) 0%,
+      transparent 45%,
+      rgba(224, 201, 154, 0.08) 100%);
+  opacity: 1;
+  mix-blend-mode: multiply;
+  will-change: opacity, background;
+}
+
+.paint-light::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 45% at 68% 35%,
+      rgba(255, 230, 190, 0.14) 0%,
+      transparent 70%);
+  opacity: var(--paint-sheen, 0);
+  mix-blend-mode: soft-light;
+  will-change: opacity;
+}
+
+.paint-stage {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-end;
+  padding:
+    calc(var(--header-h) + clamp(1.5rem, 4vw, 2.5rem)) var(--page-pad) clamp(2.5rem, 6vw, 4.5rem);
+  box-sizing: border-box;
+  /* Soft scrim only where type sits */
+  background: linear-gradient(90deg,
+      rgba(10, 7, 5, 0.55) 0%,
+      rgba(10, 7, 5, 0.2) 28%,
+      transparent 52%);
+}
+
+.paint-copy {
+  max-width: min(100%, 28rem);
+}
+
+.paint-label {
+  margin-bottom: 1.1rem;
+}
+
+.paint-title {
+  max-width: 10ch;
+  font-size: clamp(2.75rem, 7.5vw, 5.5rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.paint-title-line {
+  display: block;
+}
+
+.paint-lede {
+  margin-top: 1.35rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.35;
+  color: rgba(237, 232, 223, 0.78);
+  max-width: 16ch;
+}
+
+/* =========================================================
+   SECTION 10 — CARBON
+   Texture dominates · micro specular · fade to black
+   ========================================================= */
+.carbon {
+  position: relative;
+  padding: 0;
+  background: #000;
+  color: var(--cream);
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.carbon-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.carbon-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  /* Keep weave readable */
+  filter: contrast(1.04) brightness(0.96);
+  transform: scale(1.04);
+  will-change: transform;
+}
+
+/* Extremely subtle specular — desktop only via JS */
+.carbon-specular {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle 18vmax at var(--spec-x, 50%) var(--spec-y, 45%),
+      rgba(255, 255, 255, 0.07) 0%,
+      rgba(255, 255, 255, 0.025) 28%,
+      transparent 58%);
+  mix-blend-mode: soft-light;
+  transition: opacity 0.4s var(--ease-out);
+  will-change: background, opacity;
+}
+
+.carbon.has-specular .carbon-specular {
+  opacity: 1;
+}
+
+/* Natural dissolve into black void below */
+.carbon-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(28%, 35vh, 42%);
+  pointer-events: none;
+  background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.35) 40%,
+      rgba(0, 0, 0, 0.82) 78%,
+      #000 100%);
+  z-index: 1;
+}
+
+.carbon-stage {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-start;
+  padding:
+    calc(var(--header-h) + clamp(1.5rem, 4vw, 2.75rem)) var(--page-pad) clamp(2.5rem, 6vw, 4rem);
+  box-sizing: border-box;
+}
+
+.carbon-copy {
+  max-width: min(100%, 28rem);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.65);
+}
+
+.carbon-label {
+  margin-bottom: 1.1rem;
+}
+
+.carbon-title {
+  max-width: 12ch;
+  font-size: clamp(2.75rem, 7.5vw, 5.5rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.carbon-title-line {
+  display: block;
+}
+
+.carbon-tech {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
+  padding: 0;
+}
+
+.carbon-tech-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.carbon-tech-line {
+  display: block;
+  width: clamp(1.25rem, 3vw, 2.25rem);
+  height: 1px;
+  background: var(--hairline-copper);
+  flex-shrink: 0;
+}
+
+.carbon-tech-item .tech-label {
+  font-size: clamp(0.54rem, 1.1vw, 0.64rem);
+  letter-spacing: 0.22em;
+  color: rgba(237, 232, 223, 0.62);
+}
+
+/* =========================================================
+   SECTION 11 — CRAFTED TOUCH
+   Door panel video · progressive material words · hairlines
+   ========================================================= */
+.craft {
+  position: relative;
+  padding: 0;
+  background: #050403;
+  color: var(--cream);
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.craft-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.craft-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  filter: contrast(1.03) saturate(1.02);
+  transform: scale(1.04);
+  will-change: transform;
+}
+
+.craft-stage {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding:
+    calc(var(--header-h) + clamp(1.25rem, 3vw, 2.25rem)) var(--page-pad) clamp(2rem, 5vw, 3.5rem);
+  box-sizing: border-box;
+  /* Soft type legibility without cards */
+  background: linear-gradient(180deg,
+      rgba(5, 4, 3, 0.45) 0%,
+      transparent 28%,
+      transparent 62%,
+      rgba(5, 4, 3, 0.35) 100%);
+}
+
+.craft-copy {
+  position: relative;
+  z-index: 3;
+  max-width: min(100%, 28rem);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+}
+
+.craft-label {
+  margin-bottom: 1.1rem;
+}
+
+.craft-title {
+  max-width: 12ch;
+  font-size: clamp(2.6rem, 7vw, 5.25rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.craft-title-line {
+  display: block;
+}
+
+/* Free-floating callouts — no boxes */
+.craft-callouts {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.craft-callout {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.craft-callout .tech-label {
+  font-size: clamp(0.54rem, 1.15vw, 0.66rem);
+  letter-spacing: 0.24em;
+  color: rgba(237, 232, 223, 0.7);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
+  white-space: nowrap;
+}
+
+.craft-callout-line {
+  display: block;
+  height: 1px;
+  width: clamp(1.75rem, 5vw, 3.25rem);
+  background: var(--hairline-copper);
+  flex-shrink: 0;
+}
+
+/* Positions approximate material zones in the door-panel frame */
+.craft-callout--leather {
+  top: 28%;
+  left: var(--page-pad);
+}
+
+.craft-callout--carbon {
+  top: 46%;
+  right: var(--page-pad);
+  flex-direction: row-reverse;
+}
+
+.craft-callout--metal {
+  bottom: 32%;
+  left: clamp(18%, 28vw, 36%);
+}
+
+.craft-callout--light {
+  bottom: 18%;
+  right: clamp(10%, 18vw, 24%);
+  flex-direction: row-reverse;
+}
+
+.craft-callout--light .craft-callout-line {
+  background: rgba(224, 201, 154, 0.55);
+}
+
+/* =========================================================
+   SECTION 12 — SEAT / HUMAN INTERFACE
+   Asymmetric editorial · overlapping layers · soft parallax
+   ========================================================= */
+.seat {
+  position: relative;
+  padding: clamp(4rem, 10vw, 7rem) 0 clamp(4.5rem, 11vw, 8rem);
+  background: #000;
+  color: var(--cream);
+  overflow: hidden;
+  /* Mechanical → human craft mood */
+  background:
+    radial-gradient(ellipse 55% 50% at 75% 45%, rgba(40, 28, 20, 0.45) 0%, transparent 70%),
+    #000;
+}
+
+.seat-stage {
+  position: relative;
+  width: min(100% - var(--page-pad) * 2, var(--max-wide));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+.seat-copy {
+  position: relative;
+  z-index: 3;
+  max-width: min(100%, 26rem);
+}
+
+.seat-label {
+  margin-bottom: 1.1rem;
+}
+
+.seat-title {
+  max-width: 10ch;
+  font-size: clamp(2.6rem, 7vw, 5.25rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+}
+
+.seat-title-line {
+  display: block;
+}
+
+.seat-labels {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: clamp(1.75rem, 3.5vw, 2.5rem) 0 0;
+  padding: 0;
+}
+
+.seat-label-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.seat-label-line {
+  display: block;
+  width: clamp(1.5rem, 3.5vw, 2.5rem);
+  height: 1px;
+  background: var(--hairline-copper);
+  flex-shrink: 0;
+}
+
+.seat-label-item .tech-label {
+  font-size: clamp(0.54rem, 1.1vw, 0.64rem);
+  letter-spacing: 0.2em;
+  color: rgba(237, 232, 223, 0.62);
+}
+
+.seat-media {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: min(100%, 720px);
+  margin-inline: auto;
+  aspect-ratio: 4 / 5;
+  isolation: isolate;
+}
+
+.seat-figure {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.seat-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: drop-shadow(0 28px 60px rgba(0, 0, 0, 0.5));
+  will-change: transform;
+}
+
+/* Overlapping depth frames — editorial, not cards */
+.seat-layer {
+  position: absolute;
+  pointer-events: none;
+  border: 1px solid rgba(237, 232, 223, 0.08);
+  will-change: transform;
+}
+
+.seat-layer--back {
+  z-index: 0;
+  inset: -4% 6% 8% -3%;
+  border-color: rgba(196, 122, 58, 0.12);
+}
+
+.seat-layer--front {
+  z-index: 3;
+  inset: 10% -4% -5% 12%;
+  border-color: rgba(237, 232, 223, 0.06);
+  /* Soft hairline corner ticks */
+  background:
+    linear-gradient(var(--hairline-copper), var(--hairline-copper)) top left / 18px 1px no-repeat,
+    linear-gradient(var(--hairline-copper), var(--hairline-copper)) top left / 1px 18px no-repeat,
+    linear-gradient(var(--hairline-copper), var(--hairline-copper)) bottom right / 18px 1px no-repeat,
+    linear-gradient(var(--hairline-copper), var(--hairline-copper)) bottom right / 1px 18px no-repeat;
+}
+
+/* =========================================================
+   SECTION 13 — COCKPIT
+   Pinned full-cabin story · scale-only image progression
+   ========================================================= */
+.cockpit-scene {
+  position: relative;
+  width: 100%;
+  /* One viewport + 170vh day story + 120vh day-to-night transition. */
+  height: 390vh;
+  height: 390dvh;
+  padding: 0;
+  background: #020202;
+  color: var(--cream);
+}
+
+.cockpit-pin {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #020202;
+}
+
+.cockpit-media,
+.night-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #020202;
+}
+
+.cockpit-img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 42% center;
+  user-select: none;
+  pointer-events: none;
+  transform: scale(1);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.cockpit-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, transparent 25%, transparent 73%, rgba(0, 0, 0, 0.42) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, transparent 44%);
+}
+
+.cockpit-stage {
+  position: relative;
+  z-index: 4;
+  /* Final night frame is the no-JS baseline; GSAP reveals the day story. */
+  opacity: 0;
+  height: 100%;
+  padding:
+    calc(var(--header-h) + clamp(1rem, 3vw, 2.5rem)) var(--page-pad) clamp(2rem, 5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.cockpit-copy {
+  max-width: min(100%, 31rem);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.78);
+  will-change: transform, opacity;
+}
+
+.cockpit-label,
+.night-label {
+  margin-bottom: 1.05rem;
+}
+
+.cockpit-title {
+  max-width: 12ch;
+  font-size: clamp(2.65rem, 10vw, 5.5rem);
+  line-height: 0.94;
+  letter-spacing: 0.015em;
+}
+
+.cockpit-title-line,
+.night-title-line {
+  display: block;
+}
+
+.cockpit-state {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.cockpit-focus {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 24% 20% at var(--focus-x) var(--focus-y),
+      transparent 0%,
+      rgba(0, 0, 0, 0.02) 45%,
+      rgba(0, 0, 0, 0.28) 100%);
+}
+
+.cockpit-callout {
+  position: absolute;
+  top: var(--callout-y);
+  left: var(--callout-x);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.85);
+}
+
+.cockpit-callout-line {
+  display: block;
+  width: clamp(2rem, 6vw, 4.5rem);
+  height: 1px;
+  background: rgba(210, 137, 71, 0.68);
+}
+
+.cockpit-callout .tech-label {
+  color: rgba(237, 232, 223, 0.88);
+  font-size: clamp(0.58rem, 1.35vw, 0.7rem);
+  letter-spacing: 0.25em;
+  white-space: nowrap;
+}
+
+.cockpit-state--information {
+  --focus-x: 56%;
+  --focus-y: 55%;
+  --callout-x: 65%;
+  --callout-y: 53%;
+}
+
+.cockpit-state--control {
+  --focus-x: 53%;
+  --focus-y: 76%;
+  --callout-x: 62%;
+  --callout-y: 74%;
+}
+
+.cockpit-state--connection {
+  --focus-x: 40%;
+  --focus-y: 40%;
+  --callout-x: 28%;
+  --callout-y: 39%;
+}
+
+.cockpit-index {
+  list-style: none;
+  align-self: flex-end;
+  display: flex;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+}
+
+.cockpit-index-item {
+  position: relative;
+  min-width: 1.75rem;
+  padding-top: 0.45rem;
+  font-size: 0.58rem;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  color: rgba(237, 232, 223, 0.28);
+  transition: color 0.2s linear;
+}
+
+.cockpit-index-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+}
+
+.cockpit-index-item.is-active {
+  color: var(--champagne-bright);
+}
+
+/* =========================================================
+   SECTION 14 — AFTER DARK
+   Day-to-night crossfade · restrained copper ambience
+   ========================================================= */
+.night-scene {
+  position: absolute;
+  z-index: 0;
+  top: 170vh;
+  top: 170dvh;
+  left: 0;
+  width: 100%;
+  /* 100vh viewport + 120vh day-to-night transition runway */
+  height: 220vh;
+  height: 220dvh;
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.night-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: opacity;
+}
+
+.night-layer--after-dark {
+  z-index: 5;
+  opacity: 1;
+}
+
+.night-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 42% center;
+  user-select: none;
+  pointer-events: none;
+  transform: scale(1.05);
+  transform-origin: center center;
+}
+
+.night-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(ellipse 40% 7% at 56% 59%, rgba(210, 101, 32, 0.18), transparent 72%),
+    radial-gradient(ellipse 18% 10% at 31% 56%, rgba(196, 86, 24, 0.12), transparent 74%);
+  will-change: opacity;
+}
+
+.night-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.48) 0%, transparent 30%, transparent 61%, rgba(0, 0, 0, 0.68) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.46) 0%, transparent 48%);
+}
+
+.night-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  padding:
+    calc(var(--header-h) + clamp(1rem, 3vw, 2.5rem)) var(--page-pad) clamp(2.25rem, 6vw, 4.5rem);
+  display: grid;
+  pointer-events: none;
+}
+
+.night-copy {
+  grid-area: 1 / 1;
+  align-self: end;
+  max-width: min(100%, 49rem);
+  text-shadow: 0 2px 32px rgba(0, 0, 0, 0.9);
+  will-change: transform, opacity;
+}
+
+.night-copy--day {
+  align-self: start;
+  max-width: min(100%, 38rem);
+  opacity: 0;
+}
+
+.night-copy--after-dark {
+  opacity: 1;
+}
+
+.night-day-title {
+  max-width: 12ch;
+}
+
+.night-title {
+  max-width: 15ch;
+  font-size: clamp(2.45rem, 8.5vw, 5.8rem);
+  line-height: 0.94;
+  letter-spacing: 0.012em;
+}
+
+/* =========================================================
+   SECTION 15 — REAR SIGNATURE
+   Light-first reveal · quiet body and wet-road emergence
+   ========================================================= */
+.rear-signature {
+  position: relative;
+  width: 100%;
+  height: 240vh;
+  height: 240dvh;
+  padding: 0;
+  background: #000;
+  color: var(--cream);
+}
+
+.rear-signature-pin {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #000;
+}
+
+.rear-signature-media,
+.rear-aero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.rear-signature-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 50%;
+  user-select: none;
+  pointer-events: none;
+  transform: scale(1);
+  transform-origin: center center;
+}
+
+.rear-signature-img--body {
+  z-index: 0;
+  will-change: transform, filter;
+}
+
+.rear-signature-light {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  clip-path: inset(53% 0 35% 0);
+  -webkit-mask-image: linear-gradient(180deg,
+      transparent 0%,
+      transparent 53%,
+      #000 56%,
+      #000 61%,
+      transparent 64%,
+      transparent 100%);
+  mask-image: linear-gradient(180deg,
+      transparent 0%,
+      transparent 53%,
+      #000 56%,
+      #000 61%,
+      transparent 64%,
+      transparent 100%);
+  pointer-events: none;
+}
+
+.rear-signature-img--led {
+  filter: brightness(1.13) saturate(1.12) drop-shadow(0 0 10px rgba(255, 52, 20, 0.64));
+}
+
+.rear-signature-road {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  clip-path: inset(63% 0 0 0);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, transparent 63%, #000 70%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, transparent 63%, #000 70%, #000 100%);
+  opacity: 1;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.rear-signature-img--reflection {
+  filter: brightness(1.04) saturate(1.05);
+}
+
+.rear-signature-darkness {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0.2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 37% 11% at 50% 59%, rgba(0, 0, 0, 0.36) 0%, rgba(0, 0, 0, 0.74) 68%, rgba(0, 0, 0, 0.9) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.78) 58%, rgba(0, 0, 0, 0.7) 100%);
+  will-change: opacity;
+}
+
+.rear-signature-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.68) 0%, transparent 43%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.38) 0%, transparent 34%, transparent 72%, rgba(0, 0, 0, 0.28) 100%);
+}
+
+.rear-signature-copy {
+  position: absolute;
+  z-index: 7;
+  top: calc(var(--header-h) + clamp(1.25rem, 4vw, 3rem));
+  left: var(--page-pad);
+  max-width: min(calc(100% - var(--page-pad) * 2), 47rem);
+  text-shadow: 0 2px 34px rgba(0, 0, 0, 0.92);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.rear-signature-edition {
+  position: absolute;
+  z-index: 7;
+  right: var(--page-pad);
+  bottom: clamp(2rem, 6vh, 4.75rem);
+  width: min(28vw, 23rem);
+  text-align: right;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.96);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.rear-signature-edition::before {
+  content: "";
+  display: block;
+  width: clamp(3rem, 7vw, 6rem);
+  height: 1px;
+  margin: 0 0 0.9rem auto;
+  background: linear-gradient(90deg, transparent, rgba(216, 177, 113, 0.75));
+}
+
+.rear-signature-edition p {
+  margin-bottom: 0.48rem;
+  color: var(--champagne);
+  font-size: clamp(0.58rem, 0.72vw, 0.7rem);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+}
+
+.rear-signature-edition h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 3.55rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: 0.025em;
+}
+
+.rear-signature-label,
+.rear-aero-label {
+  margin-bottom: 1.05rem;
+}
+
+.rear-signature-title {
+  max-width: none;
+  font-size: clamp(2.5rem, 6vw, 5.25rem);
+  line-height: 0.94;
+  letter-spacing: 0.012em;
+}
+
+.rear-signature-title span,
+.rear-aero-title span {
+  display: block;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   SECTION 16 — REAR AERODYNAMICS
+   Extreme low angle · near-subliminal qualitative airflow
+   ========================================================= */
+.rear-aero {
+  position: relative;
+  width: 100%;
+  height: 190vh;
+  height: 190dvh;
+  padding: 0;
+  background: #010101;
+  color: var(--cream);
+}
+
+.rear-aero-pin {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #010101;
+}
+
+.rear-aero-img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 56% 67%;
+  user-select: none;
+  pointer-events: none;
+  transform: scale(1);
+  transform-origin: 56% 72%;
+  will-change: transform;
+}
+
+.rear-aero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, transparent 38%, transparent 68%, rgba(0, 0, 0, 0.42) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, transparent 48%);
+}
+
+.rear-aero-flow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.rear-aero-flow path {
+  fill: none;
+  stroke: url(#rearFlowGradient);
+  stroke-width: 0.7;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  opacity: 0.22;
+  filter: drop-shadow(0 0 2px rgba(210, 137, 71, 0.24));
+  will-change: stroke-dashoffset, opacity;
+}
+
+.rear-aero-copy {
+  position: absolute;
+  z-index: 4;
+  top: calc(var(--header-h) + clamp(1.25rem, 4vw, 3rem));
+  left: var(--page-pad);
+  max-width: min(calc(100% - var(--page-pad) * 2), 36rem);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.rear-aero-title {
+  max-width: 12ch;
+  font-size: clamp(2.65rem, 8.5vw, 5.8rem);
+  line-height: 0.94;
+  letter-spacing: 0.014em;
+}
+
+.rear-aero-labels {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.rear-aero-edition {
+  position: absolute;
+  z-index: 5;
+  right: var(--page-pad);
+  bottom: clamp(2rem, 5.5vh, 4.25rem);
+  width: min(28vw, 23rem);
+  text-align: right;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.96);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.rear-aero-edition::before {
+  content: "";
+  display: block;
+  width: clamp(3rem, 7vw, 6rem);
+  height: 1px;
+  margin: 0 0 0.9rem auto;
+  background: linear-gradient(90deg, transparent, rgba(216, 177, 113, 0.75));
+}
+
+.rear-aero-edition p {
+  margin-bottom: 0.48rem;
+  color: var(--champagne);
+  font-size: clamp(0.58rem, 0.72vw, 0.7rem);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+}
+
+.rear-aero-edition h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 3.55rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: 0.025em;
+}
+
+.rear-aero-tech {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: rgba(237, 232, 223, 0.48);
+  font-size: clamp(0.52rem, 1vw, 0.64rem);
+  letter-spacing: 0.24em;
+  line-height: 1;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.95);
+  opacity: 0.62;
+  will-change: opacity, transform;
+}
+
+.rear-aero-tech::before {
+  content: "";
+  display: block;
+  width: clamp(1.7rem, 4vw, 3rem);
+  height: 1px;
+  background: rgba(201, 174, 129, 0.3);
+}
+
+.rear-aero-tech--venturi {
+  left: 11%;
+  bottom: 13%;
+}
+
+.rear-aero-tech--diffuser {
+  left: 46%;
+  bottom: 8.5%;
+}
+
+.rear-aero-tech--management {
+  right: 7%;
+  bottom: 25%;
+}
+
+@media (max-width: 639px) {
+  .rear-signature-img {
+    object-position: 50% 50%;
+  }
+
+  .rear-signature-light {
+    clip-path: inset(53% 0 35% 0);
+  }
+
+  .rear-signature-title {
+    max-width: 11ch;
+    font-size: clamp(2.35rem, 11.5vw, 3.6rem);
+  }
+
+  .rear-signature-title span {
+    white-space: normal;
+  }
+
+  .rear-signature-edition {
+    right: var(--page-pad);
+    bottom: clamp(1.4rem, 4vh, 2.4rem);
+    width: min(50vw, 12rem);
+  }
+
+  .rear-signature-edition p {
+    font-size: 0.48rem;
+    letter-spacing: 0.2em;
+  }
+
+  .rear-signature-edition h3 {
+    font-size: clamp(1.35rem, 7vw, 2rem);
+  }
+
+  .rear-aero-img {
+    object-position: 58% 68%;
+  }
+
+  .rear-aero-title {
+    font-size: clamp(2.45rem, 12vw, 3.8rem);
+  }
+
+  .rear-aero-edition {
+    right: var(--page-pad);
+    bottom: clamp(1.4rem, 4vh, 2.4rem);
+    width: min(50vw, 12rem);
+  }
+
+  .rear-aero-edition p {
+    font-size: 0.48rem;
+    letter-spacing: 0.2em;
+  }
+
+  .rear-aero-edition h3 {
+    font-size: clamp(1.35rem, 7vw, 2rem);
+  }
+
+  .rear-aero-tech {
+    font-size: 0.5rem;
+    letter-spacing: 0.16em;
+  }
+
+  .rear-aero-tech--venturi {
+    left: 5%;
+    bottom: 17%;
+  }
+
+  .rear-aero-tech--diffuser {
+    left: 37%;
+    bottom: 9%;
+  }
+
+  .rear-aero-tech--management {
+    right: 3%;
+    bottom: 28%;
+  }
+}
+
+/* =========================================================
+   SECTIONS 17 + 18 — FINAL VIDEO STORY
+   One sticky frame: drone → cockpit → dissolve → rear distance
+   ========================================================= */
+.open-road {
+  position: relative;
+  width: 100%;
+  height: 520vh;
+  height: 520dvh;
+  padding: 0;
+  color: var(--cream);
+  background: #060403;
+}
+
+.final-story-chapter-marker {
+  position: absolute;
+  top: 360vh;
+  top: 360dvh;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.open-road-pin {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #060403;
+}
+
+.open-road-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #060403;
+}
+
+.final-story-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 50%;
+  transform: translateZ(0);
+  user-select: none;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.final-story-video--drone {
+  z-index: 0;
+}
+
+.final-story-video--rear {
+  z-index: 1;
+  opacity: 0;
+}
+
+.open-road-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, transparent 31%, transparent 62%, rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.57) 0%, transparent 38%, transparent 78%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+.open-road-copy {
+  position: absolute;
+  z-index: 4;
+  top: calc(var(--header-h) + clamp(1.4rem, 5vw, 4.2rem));
+  left: var(--page-pad);
+  width: min(42rem, calc(100% - var(--page-pad) * 2));
+  text-shadow: 0 2px 34px rgba(0, 0, 0, 0.92);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.open-road-label {
+  margin-bottom: 1.05rem;
+}
+
+.open-road-title {
+  max-width: 9ch;
+  font-size: clamp(3.2rem, 7.5vw, 6.6rem);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+}
+
+.open-road-title span {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Section 18 is an addressable overlay inside the shared sticky frame. */
+.final-cta {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  overflow: visible;
+  color: var(--cream);
+  background: transparent;
+  pointer-events: none;
+}
+
+.section-anchor {
+  position: absolute;
+  top: 0;
+}
+
+.final-cta-content {
+  position: absolute;
+  z-index: 2;
+  left: var(--page-pad);
+  bottom: clamp(2.75rem, 7vh, 5.75rem);
+  width: min(40rem, calc(100% - var(--page-pad) * 2));
+  text-shadow: 0 2px 34px rgba(0, 0, 0, 0.94);
+  will-change: opacity, transform;
+}
+
+.final-cta-label {
+  margin-bottom: 1rem;
+}
+
+.final-cta-title {
+  max-width: 8ch;
+  font-size: clamp(3.5rem, 8.5vw, 7.5rem);
+  line-height: 0.86;
+  letter-spacing: 0.008em;
+}
+
+.final-cta-title span {
+  display: block;
+  white-space: nowrap;
+}
+
+.final-cta-support {
+  margin-top: clamp(1.3rem, 2.7vh, 2.2rem);
+  color: rgba(237, 232, 223, 0.78);
+  font-size: clamp(0.9rem, 1.25vw, 1.08rem);
+  letter-spacing: 0.025em;
+}
+
+.final-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.25rem);
+  margin-top: clamp(1.6rem, 3.5vh, 2.7rem);
+}
+
+.final-cta-link {
+  display: grid;
+  grid-template-columns: auto minmax(2.8rem, 6.5rem) auto;
+  align-items: center;
+  gap: 0.8rem;
+  color: rgba(237, 232, 223, 0.76);
+  font-size: clamp(0.62rem, 0.76vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  line-height: 1.2;
+  text-shadow: none;
+  transition: color 360ms var(--ease-soft);
+}
+
+.final-cta-link > span:first-child {
+  white-space: nowrap;
+}
+
+.final-cta-link--primary {
+  color: var(--cream);
+}
+
+.final-cta-link-line {
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+  transform: scaleX(0.64);
+  transform-origin: left center;
+  transition: transform 420ms var(--ease-soft), opacity 420ms var(--ease-soft);
+}
+
+.final-cta-arrow {
+  font-size: 0.95rem;
+  line-height: 1;
+  transition: transform 420ms var(--ease-soft);
+}
+
+.final-cta-link:hover,
+.final-cta-link:focus-visible {
+  color: var(--champagne-bright);
+}
+
+.final-cta-link:hover .final-cta-link-line,
+.final-cta-link:focus-visible .final-cta-link-line {
+  opacity: 0.8;
+  transform: scaleX(1);
+}
+
+.final-cta-link:hover .final-cta-arrow,
+.final-cta-link:focus-visible .final-cta-arrow {
+  transform: translate(4px, -2px);
+}
+
+.final-cta-link:focus-visible {
+  outline: 1px solid rgba(224, 201, 154, 0.58);
+  outline-offset: 0.65rem;
+}
+
+/* =========================================================
+   FOOTER — quiet continuation of the final frame
+   ========================================================= */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  padding: clamp(3.5rem, 7vw, 6.5rem) var(--page-pad) clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--cream);
+  background: #080706;
+  border-top: 1px solid rgba(237, 232, 223, 0.1);
+}
+
+.site-footer-main,
+.site-footer-meta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: var(--max-wide);
+  margin-inline: auto;
+}
+
+.site-footer-brand {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.site-footer-brand span {
+  font-family: var(--font-display);
+  font-size: clamp(2.7rem, 6vw, 5.2rem);
+  font-weight: 400;
+  letter-spacing: 0.13em;
+}
+
+.site-footer-brand small {
+  margin-top: 0.38rem;
+  color: var(--champagne);
+  font-size: 0.63rem;
+  letter-spacing: 0.46em;
+}
+
+.site-footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.8rem clamp(1.25rem, 3vw, 2.6rem);
+}
+
+.site-footer-nav a,
+.site-footer-meta {
+  color: rgba(237, 232, 223, 0.52);
+  font-size: 0.61rem;
+  letter-spacing: 0.2em;
+}
+
+.site-footer-nav a {
+  transition: color 300ms ease;
+}
+
+.site-footer-nav a:hover,
+.site-footer-nav a:focus-visible {
+  color: var(--champagne-bright);
+}
+
+.site-footer-nav a:focus-visible {
+  outline: 1px solid rgba(224, 201, 154, 0.58);
+  outline-offset: 0.45rem;
+}
+
+.site-footer-meta {
+  align-items: center;
+  margin-top: clamp(3rem, 7vw, 6rem);
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(237, 232, 223, 0.08);
+}
+
+@media (max-width: 639px) {
+  .final-story-video {
+    object-position: 50% 50%;
+  }
+
+  .open-road-copy {
+    top: calc(var(--header-h) + 2rem);
+  }
+
+  .open-road-title {
+    max-width: 8ch;
+    font-size: clamp(2.75rem, 14vw, 4.1rem);
+  }
+
+  .open-road-title span {
+    white-space: normal;
+  }
+
+  .open-road-scrim {
+    background:
+      linear-gradient(180deg, rgba(3, 2, 1, 0.36) 0%, transparent 30%, transparent 53%, rgba(3, 2, 1, 0.82) 100%),
+      linear-gradient(90deg, rgba(3, 2, 1, 0.42) 0%, transparent 74%);
+  }
+
+  .final-cta-content {
+    bottom: clamp(1.6rem, 4vh, 2.5rem);
+  }
+
+  .final-cta-title {
+    font-size: clamp(3rem, 16vw, 4.6rem);
+  }
+
+  .final-cta-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .final-cta-link {
+    grid-template-columns: auto minmax(2.5rem, 1fr) auto;
+    width: 100%;
+  }
+
+  .site-footer-main,
+  .site-footer-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-footer-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: start;
+    width: 100%;
+  }
+
+  .site-footer-meta {
+    gap: 0.5rem;
+  }
+}
+
+/* ========== RESPONSIVE — hero desktop composition (unchanged) ========== */
+@media (min-width: 640px) {
+  .hero-rail--left {
+    width: min(100%, 220px);
+  }
+
+  .hero-rail--right {
+    width: auto;
+  }
+
+  .highlight-item {
+    width: 140px;
+  }
+
+  .highlight-item img {
+    width: 128px;
+    height: auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .nav-desktop {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .header-actions .btn-pill--ghost {
+    display: inline-flex;
+  }
+
+  /* Desktop hero = minta composition */
+  .hero-stage {
+    display: block;
+    position: relative;
+    padding-bottom: 1.5rem;
+  }
+
+  .hero-center {
+    position: absolute;
+    top: calc(var(--header-h) + clamp(0.5rem, 2vh, 1.5rem));
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92%, 900px);
+    z-index: 4;
+  }
+
+  .hero-title {
+    font-size: clamp(3.8rem, 7.2vw, 6.2rem);
+    letter-spacing: 0.08em;
+  }
+
+  /* Left stats: lower mid, single column */
+  .hero-rail--left {
+    position: absolute;
+    left: var(--page-pad);
+    top: auto;
+    bottom: clamp(2.5rem, 8vh, 5rem);
+    transform: none;
+    width: min(200px, 18vw);
+    max-width: 210px;
+    gap: 0.85rem;
+    z-index: 6;
+  }
+
+  .hero-lede {
+    font-size: 0.86rem;
+    max-width: 26ch;
+  }
+
+  .stat-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .stat-card {
+    width: 100%;
+    padding: 0.65rem 0.8rem 0.6rem;
+    background: rgba(10, 9, 8, 0.08);
+    border: 1px solid rgba(201, 174, 129, 0.5);
+  }
+
+  .stat-card-value {
+    font-size: clamp(1.7rem, 2vw, 2rem);
+  }
+
+  /* Right highlights: evenly spaced across full viewport height */
+  .hero-rail--right {
+    position: absolute;
+    right: var(--page-pad);
+    top: 0;
+    bottom: 0;
+    transform: none;
+    width: min(200px, 18vw);
+    max-width: 220px;
+    height: 100%;
+    min-height: 100dvh;
+    padding-top: calc(var(--header-h) + 1.25rem);
+    padding-bottom: 1.5rem;
+    z-index: 6;
+    box-sizing: border-box;
+  }
+
+  .hero-highlights {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 100%;
+    min-height: calc(100dvh - var(--header-h) - 2.75rem);
+    gap: 0;
+  }
+
+  .highlight-item {
+    width: 100%;
+    max-width: 180px;
+    align-items: flex-end;
+    text-align: right;
+    gap: 0.65rem;
+  }
+
+  .highlight-item img {
+    width: min(160px, 14vw);
+    height: auto;
+  }
+
+  .highlight-item h3 {
+    font-size: 0.88rem;
+    letter-spacing: 0.12em;
+    max-width: 16ch;
+    margin-left: auto;
+  }
+
+  .highlight-item p {
+    font-size: 0.9rem;
+    max-width: 18ch;
+    margin-left: auto;
+  }
+
+  .section-head--split {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: end;
+  }
+
+  .section-head--split .editorial-lede,
+  .section-head--split .section-lede {
+    margin-top: 0;
+  }
+
+  /* --- Silhouette desktop: near-fullscreen media, copy overlaid --- */
+  .silhouette-stage {
+    display: block;
+    position: relative;
+    min-height: 100dvh;
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .silhouette-copy {
+    position: absolute;
+    top: calc(var(--header-h) + clamp(1.5rem, 3.5vw, 2.75rem));
+    left: var(--page-pad);
+    z-index: 5;
+    max-width: min(42vw, 480px);
+  }
+
+  .silhouette-media {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: clamp(18%, 22vh, 28%);
+    min-height: 0;
+    height: auto;
+  }
+
+  .silhouette-mask,
+  .silhouette-img {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .silhouette-img {
+    object-position: 48% 52%;
+  }
+
+  /* --- Airflow desktop: start 70–80vw --- */
+  .airflow-stage {
+    padding-inline: max(var(--page-pad), calc((100vw - 75vw) / 2));
+  }
+
+  .airflow-frame {
+    width: 75vw;
+  }
+
+  .airflow-mask {
+    clip-path: inset(6% 5% 6% 5%);
+  }
+
+  .airflow-tech {
+    inset: clamp(-2rem, -2.5vw, -1.5rem) 0;
+  }
+
+  .airflow-anno--pressure {
+    top: clamp(2.25rem, 3.5vw, 3rem);
+    right: clamp(0.85rem, 1.5vw, 1.25rem);
+  }
+
+  .airflow-anno--velocity {
+    bottom: clamp(2.25rem, 3.5vw, 3rem);
+    left: clamp(0.85rem, 1.5vw, 1.25rem);
+  }
+
+  .airflow-copy {
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  /* --- X-ray desktop: full-bleed media, copy overlaid --- */
+  .xray-stage {
+    display: block;
+    position: relative;
+    min-height: 100dvh;
+    padding: 0;
+  }
+
+  .xray-copy {
+    position: absolute;
+    top: calc(var(--header-h) + clamp(1rem, 2.5vw, 2rem));
+    left: var(--page-pad);
+    z-index: 6;
+    max-width: min(34vw, 420px);
+    margin: 0;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.65);
+  }
+
+  .xray-lede {
+    color: rgba(237, 232, 223, 0.78);
+  }
+
+  .xray-compare {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100dvh;
+    max-width: none;
+    flex: none;
+  }
+
+  .xray-img {
+    object-fit: contain;
+    object-position: center center;
+    /* Slight scale so the car reads larger without breaking alignment */
+    transform: scale(1.06);
+    transform-origin: center center;
+  }
+
+  .xray-modes {
+    bottom: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  /* --- Exploded desktop: full-viewport media, index overlaid --- */
+  .exploded-stage {
+    display: block;
+    position: relative;
+    min-height: 100dvh;
+    padding: 0;
+  }
+
+  .exploded-copy {
+    position: absolute;
+    top: calc(var(--header-h) + clamp(1rem, 2.5vw, 2rem));
+    left: var(--page-pad);
+    z-index: 6;
+    max-width: min(32vw, 400px);
+    margin: 0;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.7);
+  }
+
+  .exploded-layout {
+    position: absolute;
+    inset: 0;
+    display: block;
+    min-height: 100dvh;
+    width: 100%;
+    gap: 0;
+  }
+
+  .exploded-index {
+    position: absolute;
+    left: var(--page-pad);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    margin: 0;
+    width: auto;
+  }
+
+  .exploded-index-list {
+    gap: 0.2rem;
+  }
+
+  .exploded-index-item {
+    padding: 0.7rem 0 0.7rem 1rem;
+  }
+
+  .exploded-index-name {
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+  }
+
+  .exploded-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100dvh;
+    max-width: none;
+    /* Leave a thin rail for the left index so art can run wide */
+    padding-left: clamp(7.5rem, 12vw, 11rem);
+    padding-right: clamp(1rem, 2vw, 2rem);
+    padding-block: clamp(4.5rem, 10vh, 7rem);
+    box-sizing: border-box;
+  }
+
+  .exploded-figure {
+    inset: 0;
+  }
+
+  .exploded-img {
+    /* Use nearly the full remaining viewport */
+    transform: scale(1.08);
+    transform-origin: center center;
+  }
+
+  /* --- Energy desktop: full-bleed oversized pan --- */
+  .energy-stage {
+    display: block;
+    position: relative;
+    min-height: 100dvh;
+    padding: 0;
+  }
+
+  .energy-copy {
+    position: absolute;
+    top: calc(var(--header-h) + clamp(1rem, 2.5vw, 2rem));
+    left: var(--page-pad);
+    z-index: 6;
+    margin: 0;
+    max-width: min(34vw, 440px);
+    text-shadow: 0 2px 28px rgba(0, 0, 0, 0.75);
+  }
+
+  .energy-media {
+    position: absolute;
+    inset: 0;
+    min-height: 100dvh;
+    height: 100%;
+  }
+
+  .energy-pan {
+    width: 155%;
+    height: 130%;
+    left: -22%;
+    top: -12%;
+  }
+
+  .energy-callout--structural {
+    top: 28%;
+    left: var(--page-pad);
+  }
+
+  .energy-callout--thermal {
+    top: 42%;
+    right: var(--page-pad);
+  }
+
+  .energy-callout--cog {
+    bottom: 14%;
+    left: 30%;
+  }
+
+  /* --- Drive desktop: video bg + editorial overlays --- */
+  .drive-stage {
+    min-height: 100dvh;
+  }
+
+  .drive-copy {
+    max-width: min(34vw, 420px);
+  }
+
+  .drive-tech {
+    align-self: flex-end;
+  }
+
+  .drive-tech-item {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .drive-geometry {
+    inset: 10% 12% 16% 18%;
+  }
+
+  /* --- Brakes desktop: copy over full-bleed media --- */
+  .brakes-stage {
+    justify-content: center;
+  }
+
+  .brakes-copy {
+    max-width: min(34vw, 440px);
+  }
+
+  /* --- Wheels desktop: overlay on full-bleed bg --- */
+  .wheels-stage {
+    display: grid;
+    grid-template-columns: minmax(200px, 0.75fr) 1.5fr;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    height: 100%;
+  }
+
+  .wheels-copy {
+    margin-bottom: 0;
+    align-self: start;
+    margin-top: clamp(1.5rem, 6vh, 4rem);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.65);
+  }
+
+  .wheels-config {
+    min-height: 0;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .wheels-hero {
+    width: min(48vw, 62vh, 580px);
+  }
+
+  .wheels-controls {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: min(48vw, 580px);
+  }
+
+  .wheels-descriptors {
+    justify-content: flex-end;
+  }
+
+  /* --- Paint desktop --- */
+  .paint-stage {
+    align-items: center;
+    background: linear-gradient(90deg,
+        rgba(10, 7, 5, 0.5) 0%,
+        rgba(10, 7, 5, 0.15) 32%,
+        transparent 55%);
+  }
+
+  .paint-media {
+    inset: -10% -14%;
+  }
+
+  .paint-bg-word-text {
+    letter-spacing: 0.06em;
+  }
+
+  /* --- Carbon desktop --- */
+  .carbon-stage {
+    align-items: center;
+  }
+
+  .carbon-video {
+    transform: scale(1.06);
+  }
+
+  /* --- Craft desktop --- */
+  .craft-callout--leather {
+    top: 32%;
+    left: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .craft-callout--carbon {
+    top: 42%;
+    right: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  .craft-callout--metal {
+    bottom: 28%;
+    left: 22%;
+  }
+
+  .craft-callout--light {
+    bottom: 16%;
+    right: 14%;
+  }
+
+  /* --- Seat desktop: asymmetric editorial --- */
+  .seat-stage {
+    grid-template-columns: minmax(240px, 0.85fr) 1.25fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+    min-height: min(88vh, 820px);
+  }
+
+  .seat-copy {
+    padding-block: clamp(1rem, 4vh, 3rem);
+  }
+
+  .seat-media {
+    max-width: none;
+    width: 100%;
+    aspect-ratio: 5 / 6;
+    /* Overlap into negative space toward copy */
+    margin-left: -4%;
+    width: 108%;
+  }
+
+  .seat-figure {
+    /* Slight offset for editorial tension */
+    transform: translate(2%, -1%);
+  }
+
+  /* --- Cockpit desktop: full-width cabin, restrained overlays --- */
+  .cockpit-img,
+  .night-img {
+    object-position: center center;
+  }
+
+  .cockpit-copy {
+    max-width: min(38vw, 34rem);
+  }
+
+  .cockpit-title {
+    font-size: clamp(3.6rem, 6.3vw, 5.8rem);
+  }
+
+  .cockpit-state--information {
+    --focus-x: 53%;
+    --focus-y: 56%;
+    --callout-x: 61%;
+    --callout-y: 54%;
+  }
+
+  .cockpit-state--control {
+    --focus-x: 52%;
+    --focus-y: 78%;
+    --callout-x: 59%;
+    --callout-y: 75%;
+  }
+
+  .cockpit-state--connection {
+    --focus-x: 39%;
+    --focus-y: 43%;
+    --callout-x: 28%;
+    --callout-y: 41%;
+  }
+
+  .night-copy {
+    max-width: min(58vw, 52rem);
+  }
+
+  .night-title {
+    font-size: clamp(3.6rem, 6vw, 5.9rem);
+  }
+}
+
+@media (min-width: 1100px) {
+  .hero-rail--left {
+    width: 200px;
+    left: clamp(1.25rem, 2.8vw, 2.75rem);
+    bottom: clamp(3rem, 10vh, 6rem);
+  }
+
+  .hero-rail--right {
+    width: 210px;
+    right: clamp(1.25rem, 2.8vw, 2.75rem);
+  }
+
+  .highlight-item img {
+    width: min(180px, 12vw);
+  }
+
+  .highlight-item h3 {
+    font-size: 0.95rem;
+  }
+
+  .highlight-item p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .hero-rail--left {
+    left: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .hero-rail--right {
+    right: clamp(1.5rem, 3vw, 3rem);
+    width: 230px;
+  }
+
+  .highlight-item img {
+    width: 200px;
+  }
+
+  .highlight-item h3 {
+    font-size: 1rem;
+  }
+
+  .highlight-item p {
+    font-size: 1rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal],
+  [data-reveal-clip]>span,
+  .reveal-hero {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  [data-parallax],
+  [data-parallax-x],
+  .media-mask__media {
+    transform: none !important;
+  }
+
+  /* Silhouette + airflow: final state, no scrub */
+  .silhouette-mask {
+    clip-path: inset(0 0% 0 0) !important;
+  }
+
+  .silhouette-anno,
+  .silhouette-axis,
+  .airflow-anno {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .silhouette-axis--h,
+  .silhouette-axis--v {
+    transform: none !important;
+  }
+
+  .airflow-frame {
+    width: 100% !important;
+  }
+
+  .airflow-mask {
+    clip-path: inset(0 0 0 0) !important;
+  }
+
+  .airflow-copy,
+  .airflow-video {
+    transform: none !important;
+  }
+
+  /* X-ray + exploded: settled state */
+  .xray-layer--engineering {
+    clip-path: inset(0 0% 0 0) !important;
+  }
+
+  .xray-divider {
+    left: 100% !important;
+    transform: none !important;
+    opacity: 0 !important;
+  }
+
+  .xray-callout,
+  .xray-mode {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .xray-mode--eng {
+    color: var(--champagne-bright) !important;
+  }
+
+  .exploded-index-item {
+    color: rgba(237, 232, 223, 0.42) !important;
+  }
+
+  .exploded-index-item.is-active,
+  .exploded-index-item:last-child {
+    color: var(--cream) !important;
+  }
+
+  .exploded-figure,
+  .exploded-depth {
+    transform: none !important;
+  }
+
+  .energy-pan {
+    transform: none !important;
+  }
+
+  .energy-callout,
+  .drive-tech-item,
+  .drive-arc,
+  .drive-radial {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .energy-current-path {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .energy-bridge-line,
+  .drive-current-line {
+    transform: scaleY(1) !important;
+  }
+
+  .drive-radial--1 {
+    transform: translateX(-50%) rotate(-28deg) !important;
+  }
+
+  .drive-radial--2 {
+    transform: translateX(-50%) rotate(34deg) !important;
+  }
+
+  .drive-video {
+    /* Reduced motion: static poster frame, no scrub pin */
+  }
+
+  .drive {
+    height: auto !important;
+    overflow: hidden !important;
+  }
+
+  .drive-pin {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+  }
+
+  .brakes-mat,
+  .wheels-desc {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Scene: stack becomes normal vertical flow without slide */
+  .bw-scene,
+  .bw-pin {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .bw-pin {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  .bw-pin>.brakes,
+  .bw-pin>.wheels {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    transform: none !important;
+  }
+
+  .wheels-figure {
+    transition: opacity 0.25s ease !important;
+    transform: none !important;
+  }
+
+  .wheels-figure.is-active {
+    transform: none !important;
+  }
+
+  .paint-video,
+  .carbon-video,
+  .paint-light,
+  .paint-light::after {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .carbon-specular {
+    display: none !important;
+  }
+
+  .craft-callout {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .seat-figure,
+  .seat-img,
+  .seat-layer {
+    transform: none !important;
+  }
+
+  .cockpit-img {
+    transform: none !important;
+  }
+
+  .cockpit-scene {
+    height: auto !important;
+  }
+
+  .cockpit-pin {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  .night-scene {
+    display: none !important;
+  }
+
+  .cockpit-state {
+    opacity: 0 !important;
+  }
+
+  .cockpit-copy,
+  .night-copy {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .night-copy--day {
+    opacity: 0 !important;
+  }
+
+  .night-layer--after-dark,
+  .night-ambient {
+    opacity: 1 !important;
+  }
+
+  .rear-signature,
+  .rear-aero {
+    height: auto !important;
+  }
+
+  .rear-signature-pin,
+  .rear-aero-pin {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  .rear-signature-img,
+  .rear-aero-img,
+  .rear-signature-copy,
+  .rear-signature-edition,
+  .rear-aero-copy,
+  .rear-aero-edition,
+  .rear-aero-tech {
+    transform: none !important;
+  }
+
+  .rear-signature-darkness {
+    opacity: 0.2 !important;
+  }
+
+  .rear-signature-road,
+  .rear-signature-copy,
+  .rear-signature-edition {
+    opacity: 1 !important;
+  }
+
+  .rear-aero-flow path {
+    stroke-dashoffset: 0 !important;
+    opacity: 0.22 !important;
+  }
+
+  .rear-aero-copy,
+  .rear-aero-edition,
+  .rear-aero-tech {
+    opacity: 1 !important;
+  }
+
+  .open-road {
+    height: auto !important;
+  }
+
+  .final-story-chapter-marker {
+    top: 0 !important;
+  }
+
+  .open-road-pin {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  .final-story-video,
+  .open-road-copy,
+  [data-final-cta-content],
+  [data-final-cta-item] {
+    transform: none !important;
+  }
+
+  .final-story-video--drone {
+    display: none !important;
+  }
+
+  .final-story-video--rear {
+    opacity: 1 !important;
+  }
+
+  .open-road-copy {
+    opacity: 0 !important;
+  }
+
+  [data-final-cta-content],
+  [data-final-cta-item] {
+    opacity: 1 !important;
+  }
+
+  [data-final-cta-content] {
+    pointer-events: auto !important;
+  }
+
+  .final-cta-link-line,
+  .final-cta-arrow {
+    transition: none !important;
+  }
+
+  .cursor-glow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+
+  .site-header.is-scrolled,
+  .mobile-menu {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--velvet);
+  }
+
+  .stat-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(19, 17, 16, 0.72);
+  }
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--champagne);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(201, 174, 129, 0.35);
+  color: var(--cream);
+}

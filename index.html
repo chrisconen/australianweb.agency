@@ -1193,6 +1193,10 @@
                   live.</strong></span></span>
           </p>
           <div class="work" id="workGrid">
+            <button class="tile" style="--i:0" data-demo="electric-car"
+              data-url="/demos/electric-car/" data-cat="Landing">Aureon Prime</button>
+            <button class="tile" style="--i:0" data-demo="general-construction"
+              data-url="/demos/general-construction/" data-cat="Landing">CONSTRUX Construction</button>
             <button class="tile" style="--i:0" data-demo="lucius-burger" data-cat="3D Motion">Lucius Burger</button>
             <button class="tile" style="--i:1" data-demo="nxtgen" data-cat="Landing">NxtGEN Webshop</button>
             <button class="tile" style="--i:2" data-demo="aurum-noir" data-cat="3D Motion">Aurum &amp; Noir</button>
@@ -1204,7 +1208,7 @@
             <button class="tile" style="--i:8" data-demo="asme" data-cat="Brand">ASME</button>
             <button class="tile" style="--i:9" data-demo="toonhub" data-cat="Hero">Toonhub</button>
           </div>
-          <a class="cta ghost" href="work.html">View all 46 <span aria-hidden="true">→</span></a>
+          <a class="cta ghost" href="work.html">View all 48 <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -1507,7 +1511,7 @@
       let opener = null, teardown = 0;
 
       function openPeek(tile) {
-        const url = BASE + tile.dataset.demo + "/";
+        const url = tile.dataset.url || (BASE + tile.dataset.demo + "/");
         opener = tile;
         clearTimeout(teardown);
         peekTitle.textContent = tile.textContent.trim();

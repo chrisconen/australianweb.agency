@@ -1,0 +1,2388 @@
+/* ============================================================
+   VELORA — HERO
+   Color values and type pairing per /master-brand-design.md
+   ============================================================ */
+
+:root {
+  --obsidian: #080808;
+  --ivory: #EEEAE2;
+  --copper: #A86438;
+  --gold: #D3A45D;
+
+  --font-display: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --porcelain: #F7F4EE;
+
+  --hero-side-inset: 7vw;
+
+  /* Editorial ink. Only the Signature Collection moves between bright and
+     dark product worlds; everywhere else the site stays ivory-on-obsidian. */
+  --ink: var(--ivory);
+  --ink-rule: rgba(238, 234, 226, 0.4);
+}
+
+/* --ink is driven per-frame by collection.js while that chapter is on
+   screen, so the change follows the scroll rather than a fixed timer. A
+   CSS transition cannot be used here: ScrollTrigger rewrites the pinned
+   stage's inline styles continuously, which restarts the transition every
+   frame and it never arrives. */
+
+/* HOUSE is uniformly dark. Its state class intentionally outranks the
+   Collection's scroll-written inline value when a long jump crosses several
+   pins in one frame; otherwise the bright Collection ink can leak forward. */
+html.house-tone {
+  --ink: var(--ivory) !important;
+  --ink-rule: rgba(238, 234, 226, 0.4) !important;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--obsidian); }
+
+body {
+  margin: 0;
+  background: var(--obsidian);
+  color: var(--ivory);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  background: var(--ivory);
+  color: var(--obsidian);
+  padding: 0.75em 1.25em;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 1px solid var(--copper);
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  padding: clamp(1.25rem, 3vw, 2rem) var(--hero-side-inset);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  letter-spacing: 0.14em;
+  color: var(--ink);
+}
+
+.wordmark__o { color: var(--copper); }
+
+.primary-nav ul {
+  list-style: none;
+  display: flex;
+  gap: clamp(1.5rem, 2.5vw, 2.75rem);
+  margin: 0;
+  padding: 0;
+}
+
+.primary-nav a,
+.shop-link {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.primary-nav a:hover,
+.shop-link:hover { opacity: 1; }
+
+@media (max-width: 860px) {
+  .primary-nav { display: none; }
+}
+
+/* ============================================================
+   HERO — base / static / no-JS / reduced-motion state
+   ============================================================
+   Default: a single self-sufficient viewport with HERO-02 as a
+   full-bleed background and all copy immediately visible. This
+   is the state used when JS never runs, GSAP fails to load, or
+   the visitor prefers reduced motion — never an empty section.
+*/
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--obsidian) url('../assets/images/hero-02.png') center 38% / cover no-repeat;
+}
+
+.hero-stage {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-media__img,
+.hero-media__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  opacity: 0;
+}
+
+/* Static fallback shows nothing from this layer — the .hero
+   background image above already carries HERO-02. */
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 62%, rgba(0,0,0,0.28) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.16) 0%, transparent 18%, transparent 82%, rgba(0,0,0,0.22) 100%);
+  pointer-events: none;
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------------- content ---------------- */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--hero-side-inset);
+}
+
+.hero-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.75;
+  margin: 0 0 1.5rem;
+}
+
+.hero-headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  /* Capped well below the width where "FROM ORIGIN" would wrap inside
+     its mask — each line must render as a single line for the reveal
+     to read correctly. */
+  font-size: clamp(2.75rem, 7vw, 7.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  color: var(--ivory);
+}
+
+.line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.line-text {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero-support {
+  max-width: 440px;
+  margin: 1.75rem 0 0;
+  font-family: var(--font-ui);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--ivory);
+  opacity: 0.82;
+}
+
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid rgba(238, 234, 226, 0.4);
+  transition: letter-spacing 0.3s ease, border-color 0.3s ease;
+}
+
+.cta-primary__arrow {
+  transition: transform 0.3s ease;
+}
+
+.cta-primary:hover,
+.cta-primary:focus-visible {
+  letter-spacing: 0.16em;
+  border-color: var(--ivory);
+}
+
+.cta-primary:hover .cta-primary__arrow,
+.cta-primary:focus-visible .cta-primary__arrow {
+  transform: translateX(4px);
+}
+
+.cta-secondary {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.cta-secondary:hover,
+.cta-secondary:focus-visible { opacity: 0.9; }
+
+/* ---------------- bottom metadata ---------------- */
+
+.hero-meta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(1.5rem, 3vw, 2.25rem);
+  z-index: 2;
+  padding: 0 var(--hero-side-inset);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-family: var(--font-ui);
+}
+
+.hero-meta__item {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.55;
+}
+
+.hero-meta__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+.scroll-indicator__label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.scroll-indicator__line {
+  width: 1px;
+  height: 34px;
+  background: rgba(238, 234, 226, 0.3);
+  transform-origin: top;
+}
+
+@media (max-width: 480px) {
+  .hero-meta__left,
+  .hero-meta__center { display: none; }
+  .hero-meta { justify-content: flex-end; }
+}
+
+/* ============================================================
+   CINEMATIC state — added by hero.js once GSAP/ScrollTrigger
+   are available and the visitor has not requested reduced motion
+   ============================================================ */
+
+.hero--cinematic {
+  background: var(--obsidian);
+  --hero-vh: 350;
+  height: calc(var(--hero-vh) * 1vh);
+
+  /* Chapters are pulled up under each other and would otherwise slide over
+     the pinned stage as they enter normal flow (later in the DOM wins).
+     Each chapter sits above the next until it actually hands off:
+     hero 6 > origin 5 > transformation 4 > roast 3 > collection 2 >
+     extraction 1. */
+  z-index: 6;
+}
+
+/* The moment a chapter's pin releases, the next chapter's pin takes the
+   viewport on the very next frame with a matching frame. Dropping the
+   outgoing chapter here hands off without either appearing to move.
+   Compound selectors so these win regardless of source order against the
+   `--cinematic` rules that set the base layer. */
+.hero--cinematic.hero--handed-off,
+.origin--cinematic.origin--handed-off,
+.transformation--cinematic.transformation--handed-off,
+.roast--cinematic.roast--handed-off,
+.collection--cinematic.collection--handed-off,
+.extraction--cinematic.extraction--handed-off,
+.house--cinematic.house--handed-off,
+.shop--cinematic.shop--handed-off { z-index: 0; }
+
+.hero--cinematic .hero-media__img,
+.hero--cinematic .hero-media__video {
+  will-change: transform, opacity;
+}
+
+.hero--cinematic .hero-media__img[data-frame="1"] { opacity: 1; }
+
+.js-hero-pending .hero-eyebrow,
+.js-hero-pending .hero-support,
+.js-hero-pending .hero-cta,
+.hero--cinematic .hero-eyebrow,
+.hero--cinematic .hero-support,
+.hero--cinematic .hero-cta {
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: transform, opacity;
+}
+
+.js-hero-pending .line-text,
+.hero--cinematic .line-text {
+  opacity: 0;
+  transform: translateY(100%);
+  will-change: transform, opacity;
+}
+
+.hero--cinematic .scroll-indicator { will-change: opacity; }
+
+@media (max-width: 1024px) {
+  .hero--cinematic { --hero-vh: 300; }
+}
+
+@media (max-width: 640px) {
+  .hero--cinematic { --hero-vh: 260; }
+  .hero-support { max-width: 85vw; }
+  .hero-cta { gap: 1.75rem; }
+
+  /* Narrow/tall crops need the focal point shifted toward the bean
+     (right side of the source frame) to keep it dominant in-frame. */
+  .hero { background-position: 78% 38%; }
+  .hero-media__img,
+  .hero-media__video { object-position: 78% 38%; }
+}
+
+/* ============================================================
+   ORIGIN — Chapter 01
+   ============================================================
+   Default (no JS / reduced motion): a readable stacked chapter —
+   the three stills in normal flow with all copy after the
+   landscape. `.origin--cinematic` upgrades it to the pinned,
+   scroll-scrubbed sequence.
+*/
+
+.origin {
+  position: relative;
+  background: var(--obsidian);
+}
+
+.origin-media { position: relative; }
+
+.origin-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* No JS means no scrubbing, so the video layers carry nothing. */
+.origin-media__video { display: none; }
+
+.origin-contrast { display: none; }
+
+.origin-copy {
+  padding: clamp(3rem, 8vh, 6rem) var(--hero-side-inset);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.origin-chapter,
+.origin-meta {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.6;
+}
+
+.origin-place { margin: 0; }
+
+.origin-place__primary {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--ivory);
+}
+
+.origin-place__secondary {
+  margin: 0.6rem 0 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.72;
+}
+
+.origin-statement,
+.origin-support {
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--font-ui);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--ivory);
+  opacity: 0.82;
+}
+
+.origin-altitude {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.12em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3.5rem, 11vw, 11rem);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  color: var(--ivory);
+}
+
+.origin-altitude__unit {
+  font-size: 0.32em;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+/* ---------------- cinematic (pinned) mode ---------------- */
+
+.origin--cinematic {
+  --origin-vh: 550;
+  height: calc(var(--origin-vh) * 1vh);
+
+  /* The hero's pin releases one viewport before its section ends, so its
+     stage spends that viewport scrolling up and out. Pulling Origin up by
+     exactly that amount makes its pin begin on the frame the hero pin
+     ended — no dead zone, no section visibly sliding in underneath. */
+  margin-top: -100vh;
+
+  /* Below the hero until the hero hands off (see .hero--handed-off). */
+  z-index: 5;
+}
+
+.origin--cinematic .origin-stage {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  /* Opaque: the hero's released stage scrolls up behind this one. */
+  background: var(--obsidian);
+}
+
+.origin--cinematic .origin-media {
+  position: absolute;
+  inset: 0;
+}
+
+.origin--cinematic .origin-frame,
+.origin--cinematic .origin-media__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* Per-state framing: each movement has its own subject to protect. */
+.origin--cinematic .origin-frame[data-oframe="1"],
+.origin--cinematic .origin-media__video[data-ovideo="a"] { object-position: 50% 50%; }
+.origin--cinematic .origin-frame[data-oframe="2"],
+.origin--cinematic .origin-media__video[data-ovideo="b"] { object-position: 50% 45%; }
+/* The cherry sits right of centre — keep it, not the empty left bokeh. */
+.origin--cinematic .origin-frame[data-oframe="3"],
+.origin--cinematic .origin-media__video[data-ovideo="c"] { object-position: 58% 50%; }
+
+/* Localised contrast only — the landscape keeps its own shadows. */
+.origin--cinematic .origin-contrast {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.14) 26%, transparent 52%),
+    /* Origin's dawn sky sits directly behind the header — without this the
+       copper O in the wordmark drops out against the bright mist. */
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.16) 9%, transparent 20%);
+}
+
+.origin--cinematic .origin-copy {
+  position: absolute;
+  inset: 0;
+  display: block;
+  padding: 0;
+  z-index: 2;
+}
+
+.origin--cinematic .origin-copy > * {
+  position: absolute;
+  left: var(--hero-side-inset);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.origin--cinematic .origin-chapter { top: clamp(6rem, 15vh, 10rem); }
+
+/* Positioning wrapper only — its two children are animated individually,
+   so it must not inherit the hidden default from `.origin-copy > *`. */
+.origin--cinematic .origin-place { top: 36vh; opacity: 1; }
+.origin--cinematic .origin-statement { top: 58vh; }
+.origin--cinematic .origin-altitude { bottom: 26vh; }
+.origin--cinematic .origin-support { bottom: 14vh; }
+.origin--cinematic .origin-meta { bottom: 6vh; }
+
+.origin--cinematic .line-mask { display: block; overflow: hidden; }
+.origin--cinematic .line-text { display: block; white-space: nowrap; }
+
+@media (max-width: 1024px) {
+  .origin--cinematic { --origin-vh: 420; }
+}
+
+@media (max-width: 640px) {
+  .origin--cinematic { --origin-vh: 340; }
+
+  .origin--cinematic .origin-place { top: 30vh; }
+  .origin--cinematic .origin-statement { top: 50vh; }
+  .origin--cinematic .origin-altitude { bottom: 30vh; }
+  .origin--cinematic .origin-support { bottom: 16vh; }
+
+  /* Portrait crops lose the sides — bias each frame toward its subject. */
+  .origin--cinematic .origin-frame[data-oframe="1"],
+  .origin--cinematic .origin-media__video[data-ovideo="a"] { object-position: 55% 50%; }
+  .origin--cinematic .origin-frame[data-oframe="3"],
+  .origin--cinematic .origin-media__video[data-ovideo="c"] { object-position: 62% 48%; }
+
+  .origin--cinematic .origin-statement,
+  .origin--cinematic .origin-meta { display: none; }
+
+  .origin--cinematic .origin-support { max-width: 78vw; }
+}
+
+/* ============================================================
+   TRANSFORMATION — Chapter 02, from cherry to bean
+   ============================================================
+   Default (no JS / reduced motion): a readable stacked chapter —
+   the stills in normal flow with all copy after the anatomy.
+   `.transformation--cinematic` upgrades it to the pinned,
+   scroll-scrubbed sequence.
+*/
+
+.transformation {
+  position: relative;
+  background: var(--obsidian);
+}
+
+/* Static order follows the narrative rather than DOM order: cherry ->
+   cross-section -> copy and layer names -> anatomy -> bean. Applies to both
+   the no-JS and the reduced-motion reading. */
+.transformation-stage {
+  display: flex;
+  flex-direction: column;
+}
+
+.transformation-media { display: contents; }
+
+/* tframe 0 only exists to open the pinned sequence on Origin's closing
+   frame — in flow it would just repeat the previous chapter. */
+.transformation-frame[data-tframe="0"] { display: none; }
+.transformation-frame[data-tframe="1"] { order: 1; }
+.transformation-frame[data-tframe="2"] { order: 2; }
+.transformation-copy { order: 3; }
+.transformation-frame[data-tframe="3"] { order: 4; }
+.transformation-frame[data-tframe="4"] { order: 5; }
+
+.transformation-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.transformation-media__video { display: none; }
+.transformation-contrast { display: none; }
+
+.transformation-copy {
+  padding: clamp(3rem, 8vh, 6rem) var(--hero-side-inset);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.transformation-chapter,
+.transformation-specimen__line {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.6;
+}
+
+.transformation-headline,
+.transformation-closing {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  color: var(--ivory);
+}
+
+/* Sized so the longest line ("WHAT WE CALL A BEAN") stays inside its
+   max-width — the lines are nowrap inside clipping masks, so anything
+   wider is silently cut off rather than wrapped. */
+.transformation-headline { font-size: clamp(1.9rem, 4.1vw, 4.1rem); }
+.transformation-closing { font-size: clamp(1.9rem, 4.2vw, 4.2rem); }
+
+.transformation-support {
+  margin: 0;
+  max-width: 36ch;
+  font-family: var(--font-ui);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--ivory);
+  opacity: 0.82;
+}
+
+.transformation-specimen { margin: 0; }
+
+.transformation-specimen__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+  line-height: 1;
+  color: var(--ivory);
+}
+
+/* Botanical layer list — editorial, never a diagram legend. */
+.transformation-layers {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.transformation-layer {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.transformation-layer__num {
+  opacity: 0.5;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------- cinematic (pinned) mode ---------------- */
+
+.transformation--cinematic {
+  --transformation-vh: 600;
+  height: calc(var(--transformation-vh) * 1vh);
+
+  /* Pulled up so its pin begins on the frame Origin's pin ended. */
+  margin-top: -100vh;
+  z-index: 4;
+}
+
+.transformation--cinematic .transformation-stage {
+  display: block;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--obsidian);
+}
+
+.transformation--cinematic .transformation-media {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+/* The opening frame is needed again once the sequence is pinned. */
+.transformation--cinematic .transformation-frame[data-tframe="0"] { display: block; }
+
+.transformation--cinematic .transformation-frame,
+.transformation--cinematic .transformation-media__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* The green bean sits right of centre and must never be cropped out. */
+.transformation--cinematic .transformation-frame[data-tframe="4"],
+.transformation--cinematic .transformation-media__video[data-tvideo="d"] {
+  object-position: 60% 50%;
+}
+
+/* Localised contrast only — these frames are already mostly obsidian. */
+.transformation--cinematic .transformation-contrast {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.18) 30%, transparent 56%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, transparent 15%);
+}
+
+.transformation--cinematic .transformation-copy {
+  position: absolute;
+  inset: 0;
+  display: block;
+  padding: 0;
+  z-index: 2;
+}
+
+.transformation--cinematic .transformation-copy > * {
+  position: absolute;
+  left: var(--hero-side-inset);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.transformation--cinematic .transformation-chapter { top: clamp(6rem, 15vh, 10rem); }
+.transformation--cinematic .transformation-headline { top: 34vh; max-width: 52vw; }
+.transformation--cinematic .transformation-support { top: 62vh; max-width: 32vw; }
+.transformation--cinematic .transformation-specimen { bottom: 16vh; }
+.transformation--cinematic .transformation-layers { top: 30vh; }
+.transformation--cinematic .transformation-closing { top: 32vh; }
+
+.transformation--cinematic .line-mask { display: block; overflow: hidden; }
+.transformation--cinematic .line-text { display: block; white-space: nowrap; }
+
+/* Positioning wrappers only — their children carry the reveal, so they must
+   not inherit the hidden default from `.transformation-copy > *`. */
+.transformation--cinematic .transformation-layers,
+.transformation--cinematic .transformation-headline,
+.transformation--cinematic .transformation-closing { opacity: 1; }
+
+.transformation--cinematic .transformation-layer { opacity: 0; }
+
+@media (max-width: 1024px) {
+  .transformation--cinematic { --transformation-vh: 480; }
+  .transformation--cinematic .transformation-headline { max-width: 62vw; }
+  .transformation--cinematic .transformation-support { max-width: 52vw; }
+}
+
+@media (max-width: 640px) {
+  .transformation--cinematic { --transformation-vh: 400; }
+
+  .transformation--cinematic .transformation-headline {
+    top: 30vh;
+    max-width: 84vw;
+    font-size: clamp(1.75rem, 8vw, 2.6rem);
+  }
+  .transformation--cinematic .transformation-support {
+    top: 58vh;
+    max-width: 80vw;
+  }
+  .transformation--cinematic .transformation-closing {
+    top: 26vh;
+    font-size: clamp(1.6rem, 7.4vw, 2.4rem);
+  }
+  .transformation--cinematic .transformation-specimen { bottom: 12vh; }
+
+  /* A portrait crop of the wide exploded anatomy cuts the layer sequence
+     down to one or two pieces, which destroys the whole point of the shot.
+     These frames sit on pure obsidian, so containing them letterboxes
+     against a background of the same colour — invisible, and the sequence
+     survives. Applied from the explosion onward so the scale change lands
+     inside the existing crossfade rather than mid-movement. */
+  .transformation--cinematic .transformation-frame[data-tframe="3"],
+  .transformation--cinematic .transformation-frame[data-tframe="4"],
+  .transformation--cinematic .transformation-media__video[data-tvideo="c"],
+  .transformation--cinematic .transformation-media__video[data-tvideo="d"] {
+    object-fit: contain;
+    object-position: center;
+  }
+
+  /* Not enough width for a six-item list beside the anatomy: show only the
+     layer the scroll is currently on, as a single line at lower-left. */
+  .transformation--cinematic .transformation-layers {
+    top: auto;
+    bottom: 12vh;
+  }
+  .transformation--cinematic .transformation-layer { display: none; }
+  .transformation--cinematic .transformation-layer.is-active {
+    display: flex;
+    opacity: 1 !important;
+  }
+}
+
+/* ============================================================
+   THE ROAST — Chapter 03
+   ============================================================
+   Default (no JS / reduced motion): a readable stacked chapter
+   in narrative order. `.roast--cinematic` upgrades it to the
+   pinned, scroll-scrubbed sequence.
+*/
+
+.roast {
+  position: relative;
+  background: var(--obsidian);
+}
+
+.roast-stage {
+  display: flex;
+  flex-direction: column;
+}
+
+.roast-media { display: contents; }
+
+/* rframe 0 only opens the pinned sequence on Transformation's closing
+   frame — in flow it would just repeat the previous chapter. */
+.roast-frame[data-rframe="0"] { display: none; }
+.roast-frame[data-rframe="1"] { order: 1; }
+.roast-frame[data-rframe="2"] { order: 2; }
+.roast-copy { order: 3; }
+.roast-frame[data-rframe="3"] { order: 4; }
+.roast-frame[data-rframe="4"] { order: 5; }
+.roast-frame[data-rframe="5"] { order: 6; }
+
+.roast-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.roast-media__video { display: none; }
+.roast-contrast { display: none; }
+
+.roast-copy {
+  padding: clamp(3rem, 8vh, 6rem) var(--hero-side-inset);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.roast-chapter,
+.roast-material,
+.roast-closing__place,
+.roast-closing__atelier {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.6;
+}
+
+.roast-closing__atelier { margin-top: 0.55rem; opacity: 0.4; }
+
+.roast-headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  /* Sized so "THE INGREDIENT." stays inside its max-width — the lines are
+     nowrap inside clipping masks, so anything wider is cut, not wrapped. */
+  font-size: clamp(1.9rem, 4.1vw, 4.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  color: var(--ivory);
+}
+
+.roast-support {
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--font-ui);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--ivory);
+  opacity: 0.82;
+}
+
+/* Stage metadata — editorial typography, never instrumentation. */
+.roast-stages { position: relative; }
+
+.roast-stage-label {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.roast-stage__temp {
+  min-width: 4.5em;
+  opacity: 0.55;
+  font-variant-numeric: tabular-nums;
+}
+
+.roast-crack { margin: 0; }
+
+.roast-crack__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3.4vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--ivory);
+}
+
+.roast-crack__temp {
+  margin: 0.6rem 0 0;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--ivory);
+  opacity: 0.62;
+}
+
+/* ---------------- cinematic (pinned) mode ---------------- */
+
+.roast--cinematic {
+  --roast-vh: 700;
+  height: calc(var(--roast-vh) * 1vh);
+
+  /* Pulled up so its pin begins on the frame Transformation's pin ended. */
+  margin-top: -100vh;
+  z-index: 3;
+}
+
+.roast--cinematic .roast-stage {
+  display: block;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--obsidian);
+}
+
+.roast--cinematic .roast-media {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+/* The opening frame is needed again once the sequence is pinned. */
+.roast--cinematic .roast-frame[data-rframe="0"] { display: block; }
+
+.roast--cinematic .roast-frame,
+.roast--cinematic .roast-media__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* The bean sits right of centre through the material stages; the atelier
+   reveal is a wide architectural frame that must stay centred. */
+.roast--cinematic .roast-frame[data-rframe="0"],
+.roast--cinematic .roast-frame[data-rframe="1"],
+.roast--cinematic .roast-frame[data-rframe="2"],
+.roast--cinematic .roast-media__video[data-rvideo="a"],
+.roast--cinematic .roast-media__video[data-rvideo="b"] {
+  object-position: 60% 50%;
+}
+
+/* Localised contrast only — these frames carry their own thermal grade. */
+.roast--cinematic .roast-contrast {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.2) 30%, transparent 58%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, transparent 15%);
+}
+
+.roast--cinematic .roast-copy {
+  position: absolute;
+  inset: 0;
+  display: block;
+  padding: 0;
+  z-index: 2;
+}
+
+.roast--cinematic .roast-copy > * {
+  position: absolute;
+  left: var(--hero-side-inset);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Positioning wrappers only — their children carry the reveal, so they must
+   not inherit the hidden default from `.roast-copy > *`. */
+.roast--cinematic .roast-headline,
+.roast--cinematic .roast-stages { opacity: 1; }
+
+.roast--cinematic .roast-stage-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.roast--cinematic .roast-chapter { top: clamp(6rem, 15vh, 10rem); }
+.roast--cinematic .roast-headline { top: 32vh; max-width: 52vw; }
+.roast--cinematic .roast-support { top: 66vh; max-width: 30vw; }
+.roast--cinematic .roast-stages { bottom: 14vh; }
+.roast--cinematic .roast-crack { bottom: 22vh; }
+.roast--cinematic .roast-material { bottom: 14vh; }
+.roast--cinematic .roast-closing { bottom: 14vh; }
+
+.roast--cinematic .line-mask { display: block; overflow: hidden; }
+.roast--cinematic .line-text { display: block; white-space: nowrap; }
+
+@media (max-width: 1024px) {
+  .roast--cinematic { --roast-vh: 560; }
+  .roast--cinematic .roast-headline { max-width: 66vw; }
+  .roast--cinematic .roast-support { max-width: 52vw; }
+}
+
+@media (max-width: 640px) {
+  .roast--cinematic { --roast-vh: 470; }
+
+  .roast--cinematic .roast-headline {
+    top: 28vh;
+    max-width: 86vw;
+    font-size: clamp(1.7rem, 7.6vw, 2.5rem);
+  }
+  .roast--cinematic .roast-support {
+    top: 60vh;
+    max-width: 80vw;
+  }
+  .roast--cinematic .roast-crack { bottom: 24vh; }
+
+  /* The atelier is a wide architectural frame, and a portrait crop of its
+     centre would land on empty wall. Bias each toward the roaster, which is
+     the subject of the reveal — the still is framed wider than the video's
+     closing frame, so they need different anchors. */
+  .roast--cinematic .roast-media__video[data-rvideo="e"] { object-position: 62% 50%; }
+  .roast--cinematic .roast-frame[data-rframe="5"] { object-position: 79% 50%; }
+
+  /* One changing line only; the supporting copy would crowd it. */
+  .roast--cinematic .roast-support { display: none; }
+}
+
+/* ============================================================
+   SIGNATURE COLLECTION — Chapter 04
+   ============================================================
+   The first chapter whose worlds are not uniformly dark: LUMEN
+   and TERRA are bright travertine sets, so the editorial ink and
+   the stage background follow a document-level tone.
+*/
+
+.collection {
+  position: relative;
+  background: var(--obsidian);
+}
+
+.collection-stage {
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-media { display: contents; }
+
+/* cframe 0 only opens the pinned sequence on the Roast atelier — in flow it
+   would just repeat the previous chapter. */
+.collection-frame[data-cframe="0"] { display: none; }
+.collection-frame[data-cframe="1"] { order: 1; }
+.collection-frame[data-cframe="2"] { order: 2; }
+.collection-copy { order: 3; }
+.collection-frame[data-cframe="3"] { order: 4; }
+.collection-frame[data-cframe="4"] { order: 5; }
+.collection-frame[data-cframe="5"] { order: 6; }
+
+.collection-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.collection-media__video { display: none; }
+.collection-contrast { display: none; }
+.collection-scrim { display: none; }
+.collection-veil { display: none; }
+
+.collection-copy {
+  padding: clamp(3rem, 8vh, 6rem) var(--hero-side-inset);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+  color: var(--ink);
+}
+
+.collection-chapter,
+.collection-product__origin,
+.collection-product__notes,
+.collection-product__roast,
+.collection-final__label {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.6;
+}
+
+.collection-headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  /* Sized so "THREE EXPRESSIONS." stays inside its max-width — the lines are
+     nowrap inside clipping masks, so anything wider is cut, not wrapped. */
+  font-size: clamp(1.85rem, 3.9vw, 3.9rem);
+  line-height: 1.04;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.collection-support {
+  margin: 0;
+  max-width: 36ch;
+  font-family: var(--font-ui);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--ink);
+  opacity: 0.82;
+}
+
+.collection-product { margin: 0; }
+
+.collection-product__id {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2.6rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.collection-product__origin { opacity: 0.72; }
+.collection-product__notes { margin-top: 0.5rem; opacity: 0.52; }
+.collection-product__roast { margin-top: 0.5rem; opacity: 0.4; }
+
+.collection-final { margin: 0; }
+
+.collection-final__names {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.4vw, 2.4rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.collection-final__cta {
+  margin-top: 1.6rem;
+  color: var(--ink);
+  border-bottom-color: var(--ink-rule);
+}
+
+.collection-final__cta:hover,
+.collection-final__cta:focus-visible { border-bottom-color: var(--ink); }
+
+/* ---------------- cinematic (pinned) mode ---------------- */
+
+.collection--cinematic {
+  --collection-vh: 700;
+  height: calc(var(--collection-vh) * 1vh);
+
+  /* Pulled up so its pin begins on the frame the Roast pin ended. */
+  margin-top: -100vh;
+  z-index: 2;
+}
+
+.collection--cinematic .collection-stage {
+  display: block;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--obsidian);
+}
+
+.collection--cinematic .collection-media {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.collection--cinematic .collection-frame[data-cframe="0"] { display: block; }
+
+/* Porcelain plate behind the media. Its opacity is the chapter's tone, so a
+   seam between two bright sets dips through light instead of black. */
+.collection--cinematic .collection-scrim {
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: var(--porcelain);
+  opacity: 0;
+  will-change: opacity;
+}
+
+.collection--cinematic .collection-frame,
+.collection--cinematic .collection-media__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* Localised contrast behind the editorial column only, and only while the
+   world is dark — over the bright sets it would dirty the travertine. */
+.collection--cinematic .collection-contrast {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 1;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.18) 30%, transparent 56%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.32) 0%, transparent 15%);
+}
+
+/* The bright counterpart. LUMEN and TERRA are lit sets with dark recesses
+   behind the editorial column, so obsidian ink needs a porcelain lift there
+   exactly as ivory ink needs a shadow over the dark chapters. */
+.collection--cinematic .collection-veil {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity;
+  background:
+    linear-gradient(90deg, rgba(247, 244, 238, 0.88) 0%, rgba(247, 244, 238, 0.5) 26%, transparent 52%),
+    linear-gradient(180deg, rgba(247, 244, 238, 0.5) 0%, transparent 14%);
+}
+
+.collection--cinematic .collection-copy {
+  position: absolute;
+  inset: 0;
+  display: block;
+  padding: 0;
+  z-index: 2;
+}
+
+.collection--cinematic .collection-copy > * {
+  position: absolute;
+  left: var(--hero-side-inset);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Positioning wrapper only — its lines carry the reveal. */
+.collection--cinematic .collection-headline { opacity: 1; }
+
+.collection--cinematic .collection-chapter { top: clamp(6rem, 15vh, 10rem); }
+.collection--cinematic .collection-headline { top: 34vh; max-width: 46vw; }
+.collection--cinematic .collection-support { top: 60vh; max-width: 30vw; }
+.collection--cinematic .collection-product { top: 38vh; max-width: 34vw; }
+.collection--cinematic .collection-final { top: 36vh; max-width: 40vw; }
+
+.collection--cinematic .line-mask { display: block; overflow: hidden; }
+.collection--cinematic .line-text { display: block; white-space: nowrap; }
+
+@media (max-width: 1024px) {
+  .collection--cinematic { --collection-vh: 560; }
+  .collection--cinematic .collection-headline { max-width: 64vw; }
+  .collection--cinematic .collection-support { max-width: 52vw; }
+  .collection--cinematic .collection-product { max-width: 52vw; }
+}
+
+@media (max-width: 640px) {
+  .collection--cinematic { --collection-vh: 470; }
+
+  .collection--cinematic .collection-headline {
+    top: 26vh;
+    max-width: 86vw;
+    font-size: clamp(1.6rem, 7.2vw, 2.4rem);
+  }
+  .collection--cinematic .collection-support {
+    top: 52vh;
+    max-width: 80vw;
+  }
+  .collection--cinematic .collection-product {
+    top: auto;
+    bottom: 14vh;
+    max-width: 80vw;
+  }
+  .collection--cinematic .collection-final {
+    top: auto;
+    bottom: 12vh;
+    max-width: 84vw;
+  }
+
+  /* The packages carry the chapter — long tasting lists crowd them out on a
+     phone, and the full notes belong on the future product page anyway. */
+  .collection--cinematic .collection-product__notes,
+  .collection--cinematic .collection-product__roast { display: none; }
+
+  /* The campaign frame holds all three packages across its width; a portrait
+     crop of it would cut NOCTURNE off entirely. Containing it letterboxes
+     against the porcelain stage, which reads as part of the set. */
+  .collection--cinematic .collection-frame[data-cframe="5"],
+  .collection--cinematic .collection-media__video[data-cvideo="e"] {
+    object-fit: contain;
+  }
+}
+
+/* ============================================================
+   EXTRACTION — Chapter 05, the ritual
+   ============================================================
+   Default (no JS / reduced motion): a readable stacked chapter
+   in narrative order. `.extraction--cinematic` upgrades it to
+   the pinned, scroll-scrubbed sequence.
+*/
+
+.extraction {
+  position: relative;
+  background: var(--obsidian);
+}
+
+.extraction-stage {
+  display: flex;
+  flex-direction: column;
+}
+
+.extraction-media { display: contents; }
+
+/* eframe 0 only opens the pinned sequence on the Collection frame — in flow
+   it would just repeat the previous chapter. */
+.extraction-frame[data-eframe="0"] { display: none; }
+.extraction-frame[data-eframe="1"] { order: 1; }
+.extraction-frame[data-eframe="2"] { order: 2; }
+.extraction-copy { order: 3; }
+.extraction-frame[data-eframe="3"] { order: 4; }
+.extraction-frame[data-eframe="4"] { order: 5; }
+.extraction-frame[data-eframe="5"] { order: 6; }
+
+.extraction-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.extraction-media__video { display: none; }
+.extraction-contrast { display: none; }
+
+.extraction-copy {
+  padding: clamp(3rem, 8vh, 6rem) var(--hero-side-inset);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+}
+
+.extraction-chapter {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.6;
+}
+
+.extraction-headline,
+.extraction-final {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.03;
+  letter-spacing: -0.005em;
+  color: var(--ivory);
+}
+
+/* Sized so the longest line stays inside its max-width — the lines are
+   nowrap inside clipping masks, so anything wider is cut, not wrapped. */
+.extraction-headline { font-size: clamp(2rem, 4.4vw, 4.4rem); }
+.extraction-final { font-size: clamp(1.6rem, 3.2vw, 3.2rem); }
+
+.extraction-support {
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--font-ui);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--ivory);
+  opacity: 0.82;
+}
+
+/* Technical annotation — editorial, never instrumentation. */
+.extraction-data { position: relative; }
+
+.extraction-metric {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.extraction-metric__value {
+  min-width: 5em;
+  font-variant-numeric: tabular-nums;
+}
+
+.extraction-metric__label { opacity: 0.5; }
+
+/* ---------------- cinematic (pinned) mode ---------------- */
+
+.extraction--cinematic {
+  --extraction-vh: 780;
+  height: calc(var(--extraction-vh) * 1vh);
+
+  /* Pulled up so its pin begins on the frame the Collection pin ended. */
+  margin-top: -100vh;
+  z-index: 1;
+}
+
+.extraction--cinematic .extraction-stage {
+  display: block;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--obsidian);
+}
+
+.extraction--cinematic .extraction-media {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.extraction--cinematic .extraction-frame[data-eframe="0"] { display: block; }
+
+.extraction--cinematic .extraction-frame,
+.extraction--cinematic .extraction-media__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* Localised contrast for the editorial column only — these frames carry
+   their own lighting and must not be flattened. */
+.extraction--cinematic .extraction-contrast {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.18) 30%, transparent 56%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.32) 0%, transparent 15%);
+}
+
+.extraction--cinematic .extraction-copy {
+  position: absolute;
+  inset: 0;
+  display: block;
+  padding: 0;
+  z-index: 2;
+}
+
+.extraction--cinematic .extraction-copy > * {
+  position: absolute;
+  left: var(--hero-side-inset);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Positioning wrappers only — their lines carry the reveal. */
+.extraction--cinematic .extraction-headline,
+.extraction--cinematic .extraction-final,
+.extraction--cinematic .extraction-data { opacity: 1; }
+
+.extraction--cinematic .extraction-metric {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.extraction--cinematic .extraction-chapter { top: clamp(6rem, 15vh, 10rem); }
+.extraction--cinematic .extraction-headline { top: 32vh; max-width: 46vw; }
+.extraction--cinematic .extraction-support { top: 66vh; max-width: 30vw; }
+.extraction--cinematic .extraction-data { bottom: 14vh; }
+.extraction--cinematic .extraction-final { top: 36vh; max-width: 52vw; }
+
+.extraction--cinematic .line-mask { display: block; overflow: hidden; }
+.extraction--cinematic .line-text { display: block; white-space: nowrap; }
+
+@media (max-width: 1024px) {
+  .extraction--cinematic { --extraction-vh: 620; }
+  .extraction--cinematic .extraction-headline { max-width: 64vw; }
+  .extraction--cinematic .extraction-support { max-width: 52vw; }
+  .extraction--cinematic .extraction-final { max-width: 70vw; }
+}
+
+@media (max-width: 640px) {
+  .extraction--cinematic { --extraction-vh: 520; }
+
+  .extraction--cinematic .extraction-headline {
+    top: 26vh;
+    max-width: 86vw;
+    font-size: clamp(1.75rem, 7.6vw, 2.6rem);
+  }
+  .extraction--cinematic .extraction-support {
+    top: 58vh;
+    max-width: 80vw;
+  }
+  .extraction--cinematic .extraction-final {
+    top: 28vh;
+    max-width: 88vw;
+    font-size: clamp(1.4rem, 6.4vw, 2.1rem);
+  }
+  .extraction--cinematic .extraction-data { bottom: 12vh; }
+
+  /* The dose, the group head and the streams are all centred subjects that a
+     portrait crop must not shave. */
+
+  /* One reading is enough on a phone; the supporting line would crowd it. */
+  .extraction--cinematic .extraction-support { display: none; }
+}
+
+/* ============================================================
+   VELORA HOUSE — Chapter 06, Budapest
+   ============================================================
+   Default (no JS / reduced motion): six architectural stills in a natural
+   editorial sequence. `.house--cinematic` upgrades the same content to the
+   pinned, scroll-controlled flagship film.
+*/
+
+.house {
+  position: relative;
+  background: var(--obsidian);
+}
+
+.house-stage {
+  display: flex;
+  flex-direction: column;
+}
+
+.house-media,
+.house-copy { display: contents; }
+
+/* The opening frame belongs only to the pinned Extraction handoff. */
+.house-frame[data-hframe="0"] { display: none; }
+.house-frame[data-hframe="1"] { order: 1; }
+.house-intro { order: 2; }
+.house-frame[data-hframe="2"] { order: 3; }
+.house-room { order: 4; }
+.house-frame[data-hframe="3"] { order: 5; }
+.house-lab { order: 6; }
+.house-frame[data-hframe="4"] { order: 7; }
+.house-lounge { order: 8; }
+.house-frame[data-hframe="5"] { order: 9; }
+.house-craft { order: 10; }
+.house-frame[data-hframe="6"] { order: 11; }
+.house-final { order: 12; }
+
+.house-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.house-media__video,
+.house-contrast { display: none; }
+
+.house-intro,
+.house-room,
+.house-lab,
+.house-lounge,
+.house-craft,
+.house-final {
+  margin: 0;
+  padding: clamp(3.5rem, 9vh, 7rem) var(--hero-side-inset);
+  background: var(--obsidian);
+  color: var(--ivory);
+}
+
+.house-chapter,
+.house-room,
+.house-final__city {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.64;
+}
+
+.house-headline,
+.house-lab,
+.house-craft,
+.house-final__identity {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.008em;
+  color: var(--ivory);
+}
+
+.house-headline {
+  margin-top: 2rem;
+  font-size: clamp(2rem, 4.4vw, 4.4rem);
+}
+
+.house-lab { font-size: clamp(1.8rem, 3.5vw, 3.5rem); }
+.house-craft { font-size: clamp(2rem, 4vw, 4rem); }
+
+.house-support,
+.house-lounge {
+  margin: 1.75rem 0 0;
+  font-family: var(--font-ui);
+  font-size: clamp(0.9rem, 1vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--ivory);
+}
+
+.house-support { max-width: 36ch; opacity: 0.78; }
+
+.house-lounge {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  opacity: 0.76;
+}
+
+.house-final {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.house-final__identity {
+  font-size: clamp(2rem, 3.8vw, 3.8rem);
+}
+
+.house-final__city { margin-top: 0.75rem; }
+
+.house-final__cta {
+  margin-top: 2rem;
+  color: var(--ivory);
+}
+
+/* ---------------- cinematic (pinned) mode ---------------- */
+
+.house--cinematic {
+  --house-vh: 760;
+  height: calc(var(--house-vh) * 1vh);
+
+  /* Begins on Extraction's exact closing poster. Extraction remains above
+     it until its own pin releases, then both z-indexes are zero and the
+     later HOUSE section takes the frame without sliding through. */
+  margin-top: -100vh;
+  z-index: 0;
+}
+
+.house--cinematic .house-stage {
+  display: block;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--obsidian);
+}
+
+.house--cinematic .house-media {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.house--cinematic .house-frame[data-hframe="0"] { display: block; }
+
+.house--cinematic .house-frame,
+.house--cinematic .house-media__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* The HOUSE imagery is already carefully graded. Contrast is confined to
+   the left editorial field and the header edge so stone, glass and bronze
+   retain their own light rather than receiving a full-screen wash. */
+.house--cinematic .house-contrast {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.18) 31%, transparent 57%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.08) 13%, transparent 24%);
+}
+
+.house--cinematic .house-copy {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.house--cinematic .house-copy > * {
+  position: absolute;
+  left: var(--hero-side-inset);
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  opacity: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* These wrappers only position content; their children carry the reveal. */
+.house--cinematic .house-intro,
+.house--cinematic .house-lab,
+.house--cinematic .house-craft,
+.house--cinematic .house-final { opacity: 1; }
+
+.house--cinematic .house-chapter,
+.house--cinematic .house-headline .line-text,
+.house--cinematic .house-support,
+.house--cinematic .house-lab .line-text,
+.house--cinematic .house-craft .line-text,
+.house--cinematic .house-final > * {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.house--cinematic .house-intro {
+  top: clamp(6rem, 15vh, 10rem);
+  max-width: 54vw;
+}
+
+.house--cinematic .house-headline {
+  margin-top: clamp(5rem, 15vh, 9rem);
+}
+
+.house--cinematic .house-support { margin-top: 1.75rem; }
+.house--cinematic .house-room { bottom: 10vh; }
+.house--cinematic .house-lab { top: 32vh; max-width: 46vw; }
+.house--cinematic .house-lounge { bottom: 16vh; }
+.house--cinematic .house-craft { top: 34vh; max-width: 48vw; }
+
+.house--cinematic .house-final {
+  top: auto;
+  bottom: 16vh;
+  left: auto;
+  right: var(--hero-side-inset);
+  align-items: flex-end;
+  text-align: right;
+}
+
+.house--cinematic .house-final__cta.is-live { pointer-events: auto; }
+
+.house--cinematic .line-mask { display: block; overflow: hidden; }
+.house--cinematic .line-text { display: block; white-space: nowrap; }
+
+@media (max-width: 1024px) {
+  .house--cinematic { --house-vh: 650; }
+  .house--cinematic .house-intro { max-width: 70vw; }
+  .house--cinematic .house-lab { max-width: 72vw; }
+}
+
+@media (max-width: 640px) {
+  .house--cinematic { --house-vh: 520; }
+
+  .house--cinematic .house-intro {
+    top: clamp(5.5rem, 13vh, 7rem);
+    max-width: 88vw;
+  }
+
+  .house--cinematic .house-headline {
+    margin-top: 11vh;
+    font-size: clamp(1.65rem, 7.2vw, 2.35rem);
+  }
+
+  .house--cinematic .house-lab {
+    top: 30vh;
+    max-width: 88vw;
+    font-size: clamp(1.55rem, 6.8vw, 2.2rem);
+  }
+
+  .house--cinematic .house-lounge { bottom: 12vh; }
+
+  .house--cinematic .house-craft {
+    top: 30vh;
+    max-width: 88vw;
+    font-size: clamp(1.75rem, 7.5vw, 2.45rem);
+  }
+
+  .house--cinematic .house-final {
+    top: auto;
+    bottom: 14vh;
+    max-width: 82vw;
+  }
+
+  .house--cinematic .house-final__identity {
+    font-size: clamp(1.9rem, 8.4vw, 2.8rem);
+  }
+
+  /* Copy is deliberately reduced while the room is visually dense. */
+  .house--cinematic .house-support,
+  .house--cinematic .house-room { display: none; }
+
+  /* Each portrait crop protects the narrative subject of that movement:
+     bar/cup, room and bar, roaster, lounge, hand/cup, then facade. */
+  .house--cinematic .house-frame[data-hframe="0"],
+  .house--cinematic .house-media__video[data-hvideo="a"] { object-position: 59% 50%; }
+
+  .house--cinematic .house-frame[data-hframe="1"],
+  .house--cinematic .house-media__video[data-hvideo="b"] { object-position: 62% 50%; }
+
+  .house--cinematic .house-frame[data-hframe="2"],
+  .house--cinematic .house-media__video[data-hvideo="c"] { object-position: 66% 50%; }
+
+  .house--cinematic .house-frame[data-hframe="3"],
+  .house--cinematic .house-media__video[data-hvideo="d"] { object-position: 61% 50%; }
+
+  .house--cinematic .house-frame[data-hframe="4"],
+  .house--cinematic .house-media__video[data-hvideo="e"] { object-position: 57% 50%; }
+
+  .house--cinematic .house-frame[data-hframe="5"] { object-position: 55% 50%; }
+  .house--cinematic .house-media__video[data-hvideo="f"] { object-position: 58% 50%; }
+  .house--cinematic .house-frame[data-hframe="6"] { object-position: 61% 50%; }
+}
+
+/* ============================================================
+   THE SHOP — Chapter 07
+   ============================================================
+   Default (no JS / reduced motion): six stills in a natural editorial
+   sequence. `.shop--cinematic` upgrades the same markup to the pinned film.
+*/
+
+.shop {
+  position: relative;
+  background: var(--obsidian);
+}
+
+.shop-stage {
+  display: flex;
+  flex-direction: column;
+}
+
+.shop-media,
+.shop-copy { display: contents; }
+
+.shop-frame[data-sframe="0"] { display: none; }
+.shop-frame[data-sframe="1"] { order: 1; }
+.shop-intro { order: 2; }
+.shop-frame[data-sframe="2"] { order: 3; }
+.shop-category[data-cat="coffee"] { order: 4; }
+.shop-frame[data-sframe="3"] { order: 5; }
+.shop-category[data-cat="ceramics"] { order: 6; }
+.shop-frame[data-sframe="4"] { order: 7; }
+.shop-category[data-cat="brewing"] { order: 8; }
+.shop-frame[data-sframe="5"] { order: 9; }
+.shop-category[data-cat="ritual"] { order: 10; }
+.shop-frame[data-sframe="6"] { order: 11; }
+.shop-final { order: 12; }
+
+.shop-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.shop-media__video,
+.shop-contrast,
+.shop-scrim,
+.shop-veil { display: none; }
+
+.shop-intro,
+.shop-category,
+.shop-final {
+  margin: 0;
+  padding: clamp(3.5rem, 9vh, 7rem) var(--hero-side-inset);
+  background: var(--obsidian);
+  color: var(--ivory);
+}
+
+.shop-chapter,
+.shop-category__name,
+.shop-category__meta,
+.shop-final__line {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.shop-chapter,
+.shop-category__meta,
+.shop-final__line { opacity: 0.64; }
+
+.shop-category__name { opacity: 0.88; }
+
+.shop-headline,
+.shop-final__headline {
+  margin: 2rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 4.4vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.008em;
+  color: var(--ivory);
+}
+
+.shop-support {
+  margin: 1.75rem 0 0;
+  max-width: 36ch;
+  font-family: var(--font-ui);
+  font-size: clamp(0.9rem, 1vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--ivory);
+  opacity: 0.78;
+}
+
+.shop-category__name {
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  letter-spacing: 0.28em;
+}
+
+.shop-category__meta { margin-top: 0.85rem; }
+
+.shop-category__cta {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.25rem;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.72;
+  border-bottom: 1px solid rgba(238, 234, 226, 0.28);
+  padding-bottom: 0.3em;
+  transition: letter-spacing 0.3s ease, opacity 0.3s ease;
+}
+
+.shop-category__cta:hover,
+.shop-category__cta:focus-visible {
+  opacity: 1;
+  letter-spacing: 0.2em;
+}
+
+.shop-final {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.shop-final__headline { margin-top: 0; }
+.shop-final__line { margin-top: 1rem; }
+.shop-final__cta { margin-top: 2rem; color: var(--ivory); }
+
+/* ---------------- cinematic (pinned) mode ---------------- */
+
+.shop--cinematic {
+  --shop-vh: 740;
+  height: calc(var(--shop-vh) * 1vh);
+  margin-top: -100vh;
+  /* Sits under HOUSE until HOUSE hands off, then shop--raised lifts it. */
+  z-index: -1;
+}
+
+.shop--cinematic.shop--raised { z-index: 0; }
+
+.shop--cinematic .shop-stage {
+  display: block;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--obsidian);
+}
+
+.shop--cinematic .shop-media {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.shop--cinematic .shop-frame[data-sframe="0"] { display: block; }
+
+.shop--cinematic .shop-frame,
+.shop--cinematic .shop-media__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.shop--cinematic .shop-scrim {
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: var(--porcelain);
+  opacity: 0;
+  will-change: opacity;
+}
+
+.shop--cinematic .shop-contrast {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.48) 0%, rgba(0, 0, 0, 0.16) 28%, transparent 52%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0.06) 12%, transparent 22%);
+}
+
+.shop--cinematic .shop-veil {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity;
+  background:
+    linear-gradient(90deg, rgba(247, 244, 238, 0.72) 0%, rgba(247, 244, 238, 0.28) 22%, transparent 46%),
+    linear-gradient(180deg, rgba(247, 244, 238, 0.42) 0%, transparent 12%);
+}
+
+.shop--cinematic .shop-copy {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.shop--cinematic .shop-copy > * {
+  position: absolute;
+  left: var(--hero-side-inset);
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  opacity: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
+  color: var(--ink);
+}
+
+.shop--cinematic .shop-category__name,
+.shop--cinematic .shop-category__meta,
+.shop--cinematic .shop-category__cta,
+.shop--cinematic .shop-headline,
+.shop--cinematic .shop-support,
+.shop--cinematic .shop-final__headline,
+.shop--cinematic .shop-final__line {
+  color: var(--ink);
+}
+
+.shop--cinematic .shop-intro,
+.shop--cinematic .shop-final { opacity: 1; }
+
+.shop--cinematic .shop-chapter,
+.shop--cinematic .shop-headline .line-text,
+.shop--cinematic .shop-support,
+.shop--cinematic .shop-final__headline .line-text,
+.shop--cinematic .shop-final__line,
+.shop--cinematic .shop-final__cta {
+  opacity: 0;
+  will-change: transform, opacity;
+  color: var(--ink);
+}
+
+.shop--cinematic .shop-intro {
+  top: clamp(6rem, 15vh, 10rem);
+  max-width: 48vw;
+}
+
+.shop--cinematic .shop-headline { margin-top: clamp(5.5rem, 14vh, 8.5rem); }
+.shop--cinematic .shop-support { margin-top: 1.75rem; }
+
+.shop--cinematic .shop-category[data-cat="coffee"],
+.shop--cinematic .shop-category[data-cat="ceramics"] {
+  top: clamp(6.5rem, 16vh, 10rem);
+}
+
+.shop--cinematic .shop-category[data-cat="brewing"] {
+  top: 28vh;
+  max-width: 28vw;
+}
+
+.shop--cinematic .shop-category[data-cat="ritual"] {
+  top: clamp(6.5rem, 14vh, 9rem);
+}
+
+.shop--cinematic .shop-final {
+  top: clamp(6.5rem, 14vh, 9rem);
+  max-width: 42vw;
+}
+
+.shop--cinematic .shop-category__cta,
+.shop--cinematic .shop-final__cta,
+.shop--cinematic .shop-final__cta .cta-primary__label {
+  color: var(--ink);
+  border-color: var(--ink-rule);
+}
+
+.shop--cinematic .shop-category__cta.is-live,
+.shop--cinematic .shop-final__cta.is-live { pointer-events: auto; }
+
+.shop--cinematic .line-mask { display: block; overflow: hidden; }
+.shop--cinematic .line-text { display: block; white-space: nowrap; }
+
+@media (max-width: 1024px) {
+  .shop--cinematic { --shop-vh: 640; }
+  .shop--cinematic .shop-intro,
+  .shop--cinematic .shop-final { max-width: 70vw; }
+  .shop--cinematic .shop-category[data-cat="brewing"] { max-width: 56vw; }
+}
+
+@media (max-width: 640px) {
+  .shop--cinematic { --shop-vh: 480; }
+
+  .shop--cinematic .shop-intro {
+    top: clamp(5.5rem, 13vh, 7rem);
+    max-width: 88vw;
+  }
+
+  .shop--cinematic .shop-headline {
+    margin-top: 10vh;
+    font-size: clamp(1.65rem, 7.2vw, 2.35rem);
+  }
+
+  .shop--cinematic .shop-category[data-cat="coffee"],
+  .shop--cinematic .shop-category[data-cat="ceramics"],
+  .shop--cinematic .shop-category[data-cat="ritual"],
+  .shop--cinematic .shop-final {
+    top: clamp(5.5rem, 13vh, 7rem);
+    max-width: 88vw;
+  }
+
+  .shop--cinematic .shop-category[data-cat="brewing"] {
+    top: 18vh;
+    max-width: 42vw;
+  }
+
+  .shop--cinematic .shop-final__headline {
+    font-size: clamp(1.65rem, 7.2vw, 2.35rem);
+  }
+
+  .shop--cinematic .shop-support,
+  .shop--cinematic .shop-category__meta { display: none; }
+
+  .shop--cinematic .shop-frame[data-sframe="0"],
+  .shop--cinematic .shop-media__video[data-svideo="a"] { object-position: 72% 50%; }
+
+  .shop--cinematic .shop-frame[data-sframe="1"],
+  .shop--cinematic .shop-media__video[data-svideo="b"] { object-position: 68% 50%; }
+
+  .shop--cinematic .shop-frame[data-sframe="2"],
+  .shop--cinematic .shop-media__video[data-svideo="c"] { object-position: 50% 55%; }
+
+  .shop--cinematic .shop-frame[data-sframe="3"],
+  .shop--cinematic .shop-media__video[data-svideo="d"] { object-position: 42% 70%; }
+
+  .shop--cinematic .shop-frame[data-sframe="4"],
+  .shop--cinematic .shop-media__video[data-svideo="e"] { object-position: 78% 50%; }
+
+  .shop--cinematic .shop-frame[data-sframe="5"] { object-position: 38% 50%; }
+  .shop--cinematic .shop-media__video[data-svideo="f"] { object-position: 42% 55%; }
+  .shop--cinematic .shop-frame[data-sframe="6"] { object-position: 48% 62%; }
+}
+
+/* ============================================================
+   TRANSITION BOUNDARY — hand-off to the next chapter
+   ============================================================ */
+
+.section-boundary {
+  background: var(--obsidian);
+  min-height: 50vh;
+}
+
+/* ============================================================
+   Reduced motion — never force the cinematic sequence
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero--cinematic .hero-eyebrow,
+  .hero--cinematic .hero-support,
+  .hero--cinematic .hero-cta,
+  .hero--cinematic .line-text {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* origin.js bails out before adding .origin--cinematic, so the stacked
+     default already applies. These rules only re-order it into the
+     narrative sequence: ravine -> highlands -> copy -> cherry. */
+  .origin-stage {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .origin-media { display: contents; }
+
+  .origin-frame[data-oframe="1"] { order: 1; }
+  .origin-frame[data-oframe="2"] { order: 2; }
+  .origin-copy { order: 3; }
+  .origin-frame[data-oframe="3"] { order: 4; }
+
+  /* Transformation's static order already lives in the base styles, so
+     reduced motion inherits the narrative sequence with nothing to add. */
+}

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VELORA — Coffee Atelier | From Origin to Ritual</title>
+<meta name="description" content="VELORA Coffee Atelier — coffee shaped by place, perfected by precision, completed in the cup." />
+<meta name="theme-color" content="#080808" />
+
+<!-- Prevents any white flash before the stylesheet paints -->
+<style>html,body{background:#080808;margin:0}</style>
+
+<!-- Runs before first paint, independent of the GSAP CDN fetch: marks the
+     hero copy hidden immediately so it never flashes visible-then-hidden
+     while hero.js is still loading. Self-clears if hero.js never manages
+     to start the cinematic sequence, so the fallback stays reachable. -->
+<script>
+(function () {
+  var html = document.documentElement;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  html.classList.add('js-hero-pending');
+  setTimeout(function () {
+    var hero = document.getElementById('hero');
+    if (!hero || !hero.classList.contains('hero--cinematic')) {
+      html.classList.remove('js-hero-pending');
+    }
+  }, 3000);
+})();
+</script>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23080808'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23EEEAE2' stroke-width='3' stroke-dasharray='118 8' stroke-dashoffset='4'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="preload" as="image" href="assets/images/hero-01.png" fetchpriority="high" />
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#origin">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="#" class="wordmark" aria-label="VELORA — Coffee Atelier, back to top">
+      VEL<span class="wordmark__o">O</span>RA
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#origin">Origin</a></li>
+        <li><a href="#coffee">Coffee</a></li>
+        <li><a href="#house">House</a></li>
+        <li><a href="#journal">Journal</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#shop" class="shop-link">Shop</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="hero" aria-label="VELORA — From origin to ritual">
+  <div class="hero-stage">
+
+    <div class="hero-media" aria-hidden="true">
+      <img class="hero-media__img" data-frame="1" src="assets/images/hero-01.png" alt="" fetchpriority="high" decoding="async" />
+      <img class="hero-media__img" data-frame="2" src="assets/images/hero-02.png" alt="" decoding="async" />
+      <img class="hero-media__img" data-frame="3" src="assets/images/hero-03.png" alt="" decoding="async" />
+
+      <video class="hero-media__video" data-video="reveal" muted playsinline preload="auto" poster="assets/images/hero-01.png">
+        <source src="assets/video/hero-reveal.mp4" type="video/mp4" />
+      </video>
+
+      <video class="hero-media__video" data-video="groove" muted playsinline preload="auto" poster="assets/images/hero-02.png">
+        <source src="assets/video/hero-enter-groove.mp4" type="video/mp4" />
+      </video>
+
+      <div class="hero-vignette"></div>
+      <div class="hero-grain"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">VELORA / COFFEE ATELIER</p>
+
+      <h1 class="hero-headline">
+        <span class="line-mask"><span class="line-text">FROM ORIGIN</span></span>
+        <span class="line-mask"><span class="line-text">TO RITUAL.</span></span>
+      </h1>
+
+      <p class="hero-support">Coffee shaped by place, perfected by precision, completed in the cup.</p>
+
+      <div class="hero-cta">
+        <a href="#coffee" class="cta-primary">
+          <span class="cta-primary__label">DISCOVER VELORA</span>
+          <span class="cta-primary__arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="#shop" class="cta-secondary">SHOP COFFEE</a>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <span class="hero-meta__item hero-meta__left" aria-hidden="true">SPECIALTY ROASTED</span>
+      <span class="hero-meta__item hero-meta__center" aria-hidden="true">BUDAPEST / 2026</span>
+      <div class="hero-meta__right scroll-indicator">
+        <span class="scroll-indicator__label">SCROLL TO ORIGIN ↓</span>
+        <span class="scroll-indicator__line"></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="origin" id="origin" aria-labelledby="origin-heading">
+  <h2 class="visually-hidden" id="origin-heading">The Origin</h2>
+
+  <div class="origin-stage">
+
+    <div class="origin-media" aria-hidden="true">
+      <!-- oframe 0 is the chapter's opening state (the hero's closing frame);
+           1-3 are the end state of each movement. Together they let the
+           no-video fallback tell the same story instead of jumping ahead. -->
+      <img class="origin-frame" data-oframe="0" src="assets/images/hero-03.png" alt="" decoding="async" loading="lazy" />
+      <img class="origin-frame" data-oframe="1" src="assets/images/origin-01.png" alt="" decoding="async" loading="lazy" />
+      <img class="origin-frame" data-oframe="2" src="assets/images/origin-02.png" alt="" decoding="async" loading="lazy" />
+      <img class="origin-frame" data-oframe="3" src="assets/images/origin-03.png" alt="" decoding="async" loading="lazy" />
+
+      <!-- Each poster is the video's own opening frame, so a not-yet-buffered
+           layer still shows the right picture instead of black. -->
+      <video class="origin-media__video" data-ovideo="a" muted playsinline preload="none" poster="assets/images/hero-03.png">
+        <source src="assets/video/origin-01.mp4" type="video/mp4" />
+      </video>
+      <video class="origin-media__video" data-ovideo="b" muted playsinline preload="none" poster="assets/images/origin-01.png">
+        <source src="assets/video/origin-02.mp4" type="video/mp4" />
+      </video>
+      <video class="origin-media__video" data-ovideo="c" muted playsinline preload="none" poster="assets/images/origin-02.png">
+        <source src="assets/video/origin-03.mp4" type="video/mp4" />
+      </video>
+
+      <div class="origin-contrast"></div>
+    </div>
+
+    <div class="origin-copy">
+      <p class="origin-chapter">01 / ORIGIN</p>
+
+      <div class="origin-place">
+        <p class="origin-place__primary"><span class="line-mask"><span class="line-text">ETHIOPIA</span></span></p>
+        <p class="origin-place__secondary">YIRGACHEFFE</p>
+      </div>
+
+      <p class="origin-statement">Every coffee begins with a place.</p>
+
+      <p class="origin-altitude"><span class="origin-altitude__value">1,980</span><span class="origin-altitude__unit">M</span></p>
+
+      <p class="origin-support">Altitude, climate and soil shape the possibility long before roasting begins.</p>
+
+      <p class="origin-meta">HEIRLOOM VARIETIES · WASHED PROCESS · 1,980 M</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="transformation" id="transformation" aria-labelledby="transformation-heading">
+  <h2 class="visually-hidden" id="transformation-heading">From Cherry to Bean</h2>
+
+  <div class="transformation-stage">
+
+    <div class="transformation-media" aria-hidden="true">
+      <!-- tframe 0 is the chapter's opening state (Origin's closing frame);
+           1-4 are the end state of each movement, so the no-video fallback
+           still travels cherry -> section -> anatomy -> bean. -->
+      <img class="transformation-frame" data-tframe="0" src="assets/images/origin-03.png" alt="" decoding="async" loading="lazy" />
+      <img class="transformation-frame" data-tframe="1" src="assets/images/cherry-01.png" alt="" decoding="async" loading="lazy" />
+      <img class="transformation-frame" data-tframe="2" src="assets/images/cherry-02.png" alt="" decoding="async" loading="lazy" />
+      <img class="transformation-frame" data-tframe="3" src="assets/images/cherry-03.png" alt="" decoding="async" loading="lazy" />
+      <img class="transformation-frame" data-tframe="4" src="assets/images/cherry-04.png" alt="" decoding="async" loading="lazy" />
+
+      <video class="transformation-media__video" data-tvideo="a" muted playsinline preload="none" poster="assets/images/origin-03.png">
+        <source src="assets/video/cherry-01.mp4" type="video/mp4" />
+      </video>
+      <video class="transformation-media__video" data-tvideo="b" muted playsinline preload="none" poster="assets/images/cherry-01.png">
+        <source src="assets/video/cherry-02.mp4" type="video/mp4" />
+      </video>
+      <video class="transformation-media__video" data-tvideo="c" muted playsinline preload="none" poster="assets/images/cherry-02.png">
+        <source src="assets/video/cherry-03.mp4" type="video/mp4" />
+      </video>
+      <video class="transformation-media__video" data-tvideo="d" muted playsinline preload="none" poster="assets/images/cherry-03.png">
+        <source src="assets/video/cherry-04.mp4" type="video/mp4" />
+      </video>
+
+      <div class="transformation-contrast"></div>
+    </div>
+
+    <div class="transformation-copy">
+      <p class="transformation-chapter">02 / TRANSFORMATION</p>
+
+      <p class="transformation-headline">
+        <span class="line-mask"><span class="line-text">WHAT WE CALL A BEAN</span></span>
+        <span class="line-mask"><span class="line-text">BEGINS AS A FRUIT.</span></span>
+      </p>
+
+      <p class="transformation-support">Inside every cherry, layers of biology protect the seed that eventually becomes coffee.</p>
+
+      <div class="transformation-specimen">
+        <p class="transformation-specimen__title">THE FRUIT</p>
+        <p class="transformation-specimen__line">FRUIT / SEED / STRUCTURE</p>
+      </div>
+
+      <ol class="transformation-layers">
+        <li class="transformation-layer"><span class="transformation-layer__num">01</span><span class="transformation-layer__name">SKIN</span></li>
+        <li class="transformation-layer"><span class="transformation-layer__num">02</span><span class="transformation-layer__name">PULP</span></li>
+        <li class="transformation-layer"><span class="transformation-layer__num">03</span><span class="transformation-layer__name">MUCILAGE</span></li>
+        <li class="transformation-layer"><span class="transformation-layer__num">04</span><span class="transformation-layer__name">PARCHMENT</span></li>
+        <li class="transformation-layer"><span class="transformation-layer__num">05</span><span class="transformation-layer__name">SILVERSKIN</span></li>
+        <li class="transformation-layer"><span class="transformation-layer__num">06</span><span class="transformation-layer__name">SEED</span></li>
+      </ol>
+
+      <p class="transformation-closing">
+        <span class="line-mask"><span class="line-text">ONE FRUIT.</span></span>
+        <span class="line-mask"><span class="line-text">TWO SEEDS.</span></span>
+        <span class="line-mask"><span class="line-text">ENDLESS VARIABLES.</span></span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="roast" id="the-roast" aria-labelledby="roast-heading">
+  <h2 class="visually-hidden" id="roast-heading">The Roast</h2>
+
+  <div class="roast-stage">
+
+    <div class="roast-media" aria-hidden="true">
+      <!-- rframe 0 is the chapter's opening state (Transformation's closing
+           frame); 1-5 are the end state of each movement. -->
+      <img class="roast-frame" data-rframe="0" src="assets/images/cherry-04.png" alt="" decoding="async" loading="lazy" />
+      <img class="roast-frame" data-rframe="1" src="assets/images/roast-01.png" alt="" decoding="async" loading="lazy" />
+      <img class="roast-frame" data-rframe="2" src="assets/images/roast-02.png" alt="" decoding="async" loading="lazy" />
+      <img class="roast-frame" data-rframe="3" src="assets/images/roast-03.png" alt="" decoding="async" loading="lazy" />
+      <img class="roast-frame" data-rframe="4" src="assets/images/roast-04.png" alt="" decoding="async" loading="lazy" />
+      <img class="roast-frame" data-rframe="5" src="assets/images/roast-05.png" alt="" decoding="async" loading="lazy" />
+
+      <video class="roast-media__video" data-rvideo="a" muted playsinline preload="none" poster="assets/images/cherry-04.png">
+        <source src="assets/video/roast-01.mp4" type="video/mp4" />
+      </video>
+      <video class="roast-media__video" data-rvideo="b" muted playsinline preload="none" poster="assets/images/roast-01.png">
+        <source src="assets/video/roast-02.mp4" type="video/mp4" />
+      </video>
+      <video class="roast-media__video" data-rvideo="c" muted playsinline preload="none" poster="assets/images/roast-02.png">
+        <source src="assets/video/roast-03.mp4" type="video/mp4" />
+      </video>
+      <video class="roast-media__video" data-rvideo="d" muted playsinline preload="none" poster="assets/images/roast-03.png">
+        <source src="assets/video/roast-04.mp4" type="video/mp4" />
+      </video>
+      <video class="roast-media__video" data-rvideo="e" muted playsinline preload="none" poster="assets/images/roast-04.png">
+        <source src="assets/video/roast-05.mp4" type="video/mp4" />
+      </video>
+
+      <div class="roast-contrast"></div>
+    </div>
+
+    <div class="roast-copy">
+      <p class="roast-chapter">03 / THE ROAST</p>
+
+      <p class="roast-headline">
+        <span class="line-mask"><span class="line-text">FIRE IS NOT</span></span>
+        <span class="line-mask"><span class="line-text">THE INGREDIENT.</span></span>
+        <span class="line-mask"><span class="line-text">CONTROL IS.</span></span>
+      </p>
+
+      <p class="roast-support">Roasting is the controlled transformation of structure, chemistry and time.</p>
+
+      <!-- One changing line rather than a stack of readouts: only the stage
+           the scroll is currently in is ever visible. -->
+      <div class="roast-stages">
+        <p class="roast-stage-label" data-stage="drying"><span class="roast-stage__temp">160°C</span><span class="roast-stage__name">DRYING</span></p>
+        <p class="roast-stage-label" data-stage="yellowing"><span class="roast-stage__temp">185°C</span><span class="roast-stage__name">YELLOWING</span></p>
+        <p class="roast-stage-label" data-stage="development"><span class="roast-stage__temp">210°C</span><span class="roast-stage__name">DEVELOPMENT</span></p>
+        <p class="roast-stage-label" data-stage="drop"><span class="roast-stage__temp">DROP</span><span class="roast-stage__name">END OF ROAST</span></p>
+      </div>
+
+      <div class="roast-crack">
+        <p class="roast-crack__title"><span class="line-mask"><span class="line-text">FIRST CRACK</span></span></p>
+        <p class="roast-crack__temp">200°C</p>
+      </div>
+
+      <p class="roast-material">GREEN → YELLOW → CINNAMON → ROASTED</p>
+
+      <div class="roast-closing">
+        <p class="roast-closing__place">ROASTED IN BUDAPEST</p>
+        <p class="roast-closing__atelier">VELORA / ROASTING ATELIER</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="collection" id="signature-collection" aria-labelledby="collection-heading">
+  <h2 class="visually-hidden" id="collection-heading">Signature Collection</h2>
+
+  <div class="collection-stage">
+
+    <div class="collection-media" aria-hidden="true">
+      <!-- Sits behind the media so seams dip through the world's own tone:
+           porcelain between the bright sets, obsidian between the dark ones. -->
+      <div class="collection-scrim"></div>
+
+      <!-- cframe 0 is the chapter's opening state (the Roast atelier);
+           1-5 are the end state of each movement. -->
+      <img class="collection-frame" data-cframe="0" src="assets/images/roast-05.png" alt="" decoding="async" loading="lazy" />
+      <img class="collection-frame" data-cframe="1" src="assets/images/collection-01.png" alt="" decoding="async" loading="lazy" />
+      <img class="collection-frame" data-cframe="2" src="assets/images/collection-02.png" alt="" decoding="async" loading="lazy" />
+      <img class="collection-frame" data-cframe="3" src="assets/images/collection-03.png" alt="" decoding="async" loading="lazy" />
+      <img class="collection-frame" data-cframe="4" src="assets/images/collection-04.png" alt="" decoding="async" loading="lazy" />
+      <img class="collection-frame" data-cframe="5" src="assets/images/collection-05.png" alt="" decoding="async" loading="lazy" />
+
+      <video class="collection-media__video" data-cvideo="a" muted playsinline preload="none" poster="assets/images/roast-05.png">
+        <source src="assets/video/collection-01.mp4" type="video/mp4" />
+      </video>
+      <video class="collection-media__video" data-cvideo="b" muted playsinline preload="none" poster="assets/images/collection-01.png">
+        <source src="assets/video/collection-02.mp4" type="video/mp4" />
+      </video>
+      <video class="collection-media__video" data-cvideo="c" muted playsinline preload="none" poster="assets/images/collection-02.png">
+        <source src="assets/video/collection-03.mp4" type="video/mp4" />
+      </video>
+      <video class="collection-media__video" data-cvideo="d" muted playsinline preload="none" poster="assets/images/collection-03.png">
+        <source src="assets/video/collection-04.mp4" type="video/mp4" />
+      </video>
+      <video class="collection-media__video" data-cvideo="e" muted playsinline preload="none" poster="assets/images/collection-04.png">
+        <source src="assets/video/collection-05.mp4" type="video/mp4" />
+      </video>
+
+      <!-- Two localised washes for the editorial column, crossfaded by tone:
+           the bright sets contain dark architectural recesses exactly where
+           the copy sits, so each world needs the opposite one. -->
+      <div class="collection-contrast"></div>
+      <div class="collection-veil"></div>
+    </div>
+
+    <div class="collection-copy">
+      <p class="collection-chapter">04 / SIGNATURE COLLECTION</p>
+
+      <p class="collection-headline">
+        <span class="line-mask"><span class="line-text">THREE EXPRESSIONS.</span></span>
+        <span class="line-mask"><span class="line-text">ONE STANDARD.</span></span>
+      </p>
+
+      <p class="collection-support">Three coffees. Three personalities. One approach to origin, roast and precision.</p>
+
+      <div class="collection-product" data-product="lumen">
+        <p class="collection-product__id">Nº01 / LUMEN</p>
+        <p class="collection-product__origin">ETHIOPIA / YIRGACHEFFE</p>
+        <p class="collection-product__notes">JASMINE · BERGAMOT · WHITE PEACH</p>
+        <p class="collection-product__roast">LIGHT ROAST</p>
+      </div>
+
+      <div class="collection-product" data-product="terra">
+        <p class="collection-product__id">Nº02 / TERRA</p>
+        <p class="collection-product__origin">COLOMBIA / HUILA</p>
+        <p class="collection-product__notes">RED APPLE · CARAMEL · CACAO</p>
+        <p class="collection-product__roast">MEDIUM ROAST</p>
+      </div>
+
+      <div class="collection-product" data-product="nocturne">
+        <p class="collection-product__id">Nº03 / NOCTURNE</p>
+        <p class="collection-product__origin">SIGNATURE ESPRESSO</p>
+        <p class="collection-product__notes">DARK CHOCOLATE · HAZELNUT · BLACK CHERRY</p>
+      </div>
+
+      <div class="collection-final">
+        <p class="collection-final__names">LUMEN / TERRA / NOCTURNE</p>
+        <p class="collection-final__label">THE SIGNATURE COLLECTION</p>
+        <a href="#experience" class="cta-primary collection-final__cta">
+          <span class="cta-primary__label">VIEW THE COLLECTION</span>
+          <span class="cta-primary__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="extraction" id="experience" aria-labelledby="extraction-heading">
+  <h2 class="visually-hidden" id="extraction-heading">Extraction — The Ritual</h2>
+
+  <div class="extraction-stage">
+
+    <div class="extraction-media" aria-hidden="true">
+      <!-- eframe 0 is the chapter's opening state (the Collection campaign
+           frame); 1-5 are the end state of each movement. The chapter
+           closes on the cup — HOUSE continues from that same frame. -->
+      <img class="extraction-frame" data-eframe="0" src="assets/images/collection-05.png" alt="" decoding="async" loading="lazy" />
+      <img class="extraction-frame" data-eframe="1" src="assets/images/extraction-01.png" alt="" decoding="async" loading="lazy" />
+      <img class="extraction-frame" data-eframe="2" src="assets/images/extraction-02.png" alt="" decoding="async" loading="lazy" />
+      <img class="extraction-frame" data-eframe="3" src="assets/images/extraction-03.png" alt="" decoding="async" loading="lazy" />
+      <img class="extraction-frame" data-eframe="4" src="assets/images/extraction-04.png" alt="" decoding="async" loading="lazy" />
+      <img class="extraction-frame" data-eframe="5" src="assets/images/extraction-05.png" alt="" decoding="async" loading="lazy" />
+
+      <video class="extraction-media__video" data-evideo="a" muted playsinline preload="none" poster="assets/images/collection-05.png">
+        <source src="assets/video/extraction-01.mp4" type="video/mp4" />
+      </video>
+      <video class="extraction-media__video" data-evideo="b" muted playsinline preload="none" poster="assets/images/extraction-01.png">
+        <source src="assets/video/extraction-02.mp4" type="video/mp4" />
+      </video>
+      <video class="extraction-media__video" data-evideo="c" muted playsinline preload="none" poster="assets/images/extraction-02.png">
+        <source src="assets/video/extraction-03.mp4" type="video/mp4" />
+      </video>
+      <video class="extraction-media__video" data-evideo="d" muted playsinline preload="none" poster="assets/images/extraction-03.png">
+        <source src="assets/video/extraction-04.mp4" type="video/mp4" />
+      </video>
+      <video class="extraction-media__video" data-evideo="e" muted playsinline preload="none" poster="assets/images/extraction-04.png">
+        <source src="assets/video/extraction-05.mp4" type="video/mp4" />
+      </video>
+
+      <div class="extraction-contrast"></div>
+    </div>
+
+    <div class="extraction-copy">
+      <p class="extraction-chapter">05 / EXTRACTION</p>
+
+      <p class="extraction-headline">
+        <span class="line-mask"><span class="line-text">18 GRAMS.</span></span>
+        <span class="line-mask"><span class="line-text">28 SECONDS.</span></span>
+        <span class="line-mask"><span class="line-text">ONE MOMENT.</span></span>
+      </p>
+
+      <p class="extraction-support">Precision becomes ritual at the moment water meets coffee.</p>
+
+      <!-- One reading at a time: each fades up as its own beat opens and back
+           down as it closes, so the data reads as annotation, not a panel. -->
+      <div class="extraction-data">
+        <p class="extraction-metric" data-metric="dose"><span class="extraction-metric__value">18.0 G</span><span class="extraction-metric__label">DOSE</span></p>
+        <p class="extraction-metric" data-metric="water"><span class="extraction-metric__value">93°C</span><span class="extraction-metric__label">WATER</span></p>
+        <p class="extraction-metric" data-metric="pressure"><span class="extraction-metric__value">9 BAR</span><span class="extraction-metric__label">PRE-INFUSION</span></p>
+        <p class="extraction-metric" data-metric="time"><span class="extraction-metric__value">28 SEC</span><span class="extraction-metric__label">EXTRACTION</span></p>
+      </div>
+
+      <p class="extraction-final">
+        <span class="line-mask"><span class="line-text">EVERYTHING BEFORE THIS</span></span>
+        <span class="line-mask"><span class="line-text">WAS FOR THIS MOMENT.</span></span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="house" id="house" aria-labelledby="house-heading">
+  <h2 class="visually-hidden" id="house-heading">Velora House — Budapest</h2>
+
+  <div class="house-stage">
+
+    <div class="house-media" aria-hidden="true">
+      <!-- hframe 0 is the exact closing poster from Extraction. HOUSE 01–06
+           are the stable endpoint, loading and reduced-motion states. -->
+      <img class="house-frame" data-hframe="0" src="assets/images/extraction-05.png" alt="" decoding="async" loading="lazy" />
+      <img class="house-frame" data-hframe="1" src="assets/images/house-01.png" alt="" decoding="async" loading="lazy" />
+      <img class="house-frame" data-hframe="2" src="assets/images/house-02.png" alt="" decoding="async" loading="lazy" />
+      <img class="house-frame" data-hframe="3" src="assets/images/house-03.png" alt="" decoding="async" loading="lazy" />
+      <img class="house-frame" data-hframe="4" src="assets/images/house-04.png" alt="" decoding="async" loading="lazy" />
+      <img class="house-frame" data-hframe="5" src="assets/images/house-05.png" alt="" decoding="async" loading="lazy" />
+      <img class="house-frame" data-hframe="6" src="assets/images/house-06.png" alt="" decoding="async" loading="lazy" />
+
+      <video class="house-media__video" data-hvideo="a" muted playsinline preload="none" poster="assets/images/extraction-05.png">
+        <source src="assets/video/house-01.mp4" type="video/mp4" />
+      </video>
+      <video class="house-media__video" data-hvideo="b" muted playsinline preload="none" poster="assets/images/house-01.png">
+        <source src="assets/video/house-02.mp4" type="video/mp4" />
+      </video>
+      <video class="house-media__video" data-hvideo="c" muted playsinline preload="none" poster="assets/images/house-02.png">
+        <source src="assets/video/house-03.mp4" type="video/mp4" />
+      </video>
+      <video class="house-media__video" data-hvideo="d" muted playsinline preload="none" poster="assets/images/house-03.png">
+        <source src="assets/video/house-04.mp4" type="video/mp4" />
+      </video>
+      <video class="house-media__video" data-hvideo="e" muted playsinline preload="none" poster="assets/images/house-04.png">
+        <source src="assets/video/house-05.mp4" type="video/mp4" />
+      </video>
+      <video class="house-media__video" data-hvideo="f" muted playsinline preload="none" poster="assets/images/house-05.png">
+        <source src="assets/video/house-06.mp4" type="video/mp4" />
+      </video>
+
+      <div class="house-contrast"></div>
+    </div>
+
+    <div class="house-copy">
+      <div class="house-intro">
+        <p class="house-chapter">06 / VELORA HOUSE</p>
+
+        <p class="house-headline">
+          <span class="line-mask"><span class="line-text">NOT A COFFEE SHOP.</span></span>
+          <span class="line-mask"><span class="line-text">A PLACE BUILT</span></span>
+          <span class="line-mask"><span class="line-text">AROUND COFFEE.</span></span>
+        </p>
+
+        <p class="house-support">Roasted here. Extracted here. Served here.</p>
+      </div>
+
+      <p class="house-room">BUDAPEST</p>
+
+      <p class="house-lab">
+        <span class="line-mask"><span class="line-text">ROASTED HERE.</span></span>
+        <span class="line-mask"><span class="line-text">SERVED METRES AWAY.</span></span>
+      </p>
+
+      <p class="house-lounge">STAY A LITTLE LONGER.</p>
+
+      <p class="house-craft">
+        <span class="line-mask"><span class="line-text">CRAFT IS HUMAN.</span></span>
+      </p>
+
+      <div class="house-final">
+        <p class="house-final__identity">VELORA HOUSE</p>
+        <p class="house-final__city">BUDAPEST</p>
+        <a href="#shop" class="cta-primary house-final__cta">
+          <span class="cta-primary__label">ENTER THE HOUSE</span>
+          <span class="cta-primary__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="shop" id="shop" aria-labelledby="shop-heading">
+  <h2 class="visually-hidden" id="shop-heading">The Shop</h2>
+
+  <div class="shop-stage">
+
+    <div class="shop-media" aria-hidden="true">
+      <div class="shop-scrim"></div>
+
+      <img class="shop-frame" data-sframe="0" src="assets/images/house-06.png" alt="" decoding="async" loading="lazy" />
+      <img class="shop-frame" data-sframe="1" src="assets/images/shop-01.png" alt="" decoding="async" loading="lazy" />
+      <img class="shop-frame" data-sframe="2" src="assets/images/shop-02.png" alt="" decoding="async" loading="lazy" />
+      <img class="shop-frame" data-sframe="3" src="assets/images/shop-03.png" alt="" decoding="async" loading="lazy" />
+      <img class="shop-frame" data-sframe="4" src="assets/images/shop-04.png" alt="" decoding="async" loading="lazy" />
+      <img class="shop-frame" data-sframe="5" src="assets/images/shop-05.png" alt="" decoding="async" loading="lazy" />
+      <img class="shop-frame" data-sframe="6" src="assets/images/shop-06.png" alt="" decoding="async" loading="lazy" />
+
+      <video class="shop-media__video" data-svideo="a" muted playsinline preload="none" poster="assets/images/house-06.png">
+        <source src="assets/video/shop-01.mp4" type="video/mp4" />
+      </video>
+      <video class="shop-media__video" data-svideo="b" muted playsinline preload="none" poster="assets/images/shop-01.png">
+        <source src="assets/video/shop-02.mp4" type="video/mp4" />
+      </video>
+      <video class="shop-media__video" data-svideo="c" muted playsinline preload="none" poster="assets/images/shop-02.png">
+        <source src="assets/video/shop-03.mp4" type="video/mp4" />
+      </video>
+      <video class="shop-media__video" data-svideo="d" muted playsinline preload="none" poster="assets/images/shop-03.png">
+        <source src="assets/video/shop-04.mp4" type="video/mp4" />
+      </video>
+      <video class="shop-media__video" data-svideo="e" muted playsinline preload="none" poster="assets/images/shop-04.png">
+        <source src="assets/video/shop-05.mp4" type="video/mp4" />
+      </video>
+      <video class="shop-media__video" data-svideo="f" muted playsinline preload="none" poster="assets/images/shop-05.png">
+        <source src="assets/video/shop-06.mp4" type="video/mp4" />
+      </video>
+
+      <div class="shop-contrast"></div>
+      <div class="shop-veil"></div>
+    </div>
+
+    <div class="shop-copy">
+      <div class="shop-intro">
+        <p class="shop-chapter">07 / THE SHOP</p>
+
+        <p class="shop-headline">
+          <span class="line-mask"><span class="line-text">TAKE THE RITUAL HOME.</span></span>
+        </p>
+
+        <p class="shop-support">Coffee. Objects. Tools for a ritual worth repeating.</p>
+      </div>
+
+      <div class="shop-category" data-cat="coffee">
+        <p class="shop-category__name">COFFEE</p>
+        <p class="shop-category__meta">LUMEN / TERRA / NOCTURNE</p>
+        <a href="#circle" class="shop-category__cta">
+          <span>DISCOVER THE COLLECTION</span>
+          <span aria-hidden="true"> →</span>
+        </a>
+      </div>
+
+      <div class="shop-category" data-cat="ceramics">
+        <p class="shop-category__name">CERAMICS</p>
+        <p class="shop-category__meta">MADE FOR THE RITUAL.</p>
+        <a href="#circle" class="shop-category__cta">
+          <span>VIEW OBJECTS</span>
+          <span aria-hidden="true"> →</span>
+        </a>
+      </div>
+
+      <div class="shop-category" data-cat="brewing">
+        <p class="shop-category__name">BREWING</p>
+        <p class="shop-category__meta">PRECISION, WITHOUT COMPLEXITY.</p>
+      </div>
+
+      <div class="shop-category" data-cat="ritual">
+        <p class="shop-category__name">THE HOME RITUAL</p>
+        <p class="shop-category__meta">A COMPLETE VELORA RITUAL, DESIGNED FOR HOME.</p>
+      </div>
+
+      <div class="shop-final">
+        <p class="shop-final__headline">
+          <span class="line-mask"><span class="line-text">TAKE THE RITUAL HOME.</span></span>
+        </p>
+        <p class="shop-final__line">COFFEE · BREWING · CERAMICS · GIFTS</p>
+        <a href="#circle" class="cta-primary shop-final__cta">
+          <span class="cta-primary__label">SHOP VELORA</span>
+          <span class="cta-primary__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div id="circle" class="section-boundary" data-next-section="circle" aria-hidden="true"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="js/cinematic.js" defer></script>
+<script src="js/hero.js" defer></script>
+<script src="js/origin.js" defer></script>
+<script src="js/transformation.js" defer></script>
+<script src="js/roast.js" defer></script>
+<script src="js/collection.js" defer></script>
+<script src="js/extraction.js" defer></script>
+<script src="js/house.js" defer></script>
+<script src="js/shop.js" defer></script>
+</body>
+</html>

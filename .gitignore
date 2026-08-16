@@ -1,3 +1,14 @@
 # only the web-ready clips ship — the 1080p renders stay local
 # gyökérre horgonyozva: a demók saját media/ mappáját ne nyelje le
 /media/
+
+# A demó-videók Cloudflare R2-ben élnek, nem a repóban — így a Pages a
+# 1 GB-os limit alatt marad. A HTML/JS a cdn.australianweb.agency-re hivatkozik.
+# Új videó feltöltése (a kulcs = a demos/ alatti útvonal):
+#   wrangler r2 object put "awa-media/<demo>/<utvonal>.mp4" \
+#     --file="demos/<demo>/<utvonal>.mp4" --content-type=video/mp4 \
+#     --cache-control="public, max-age=31536000, immutable" --remote
+demos/**/*.mp4
+demos/**/*.webm
+
+.wrangler/

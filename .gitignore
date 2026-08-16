@@ -1,2 +1,3 @@
 # only the web-ready clips ship — the 1080p renders stay local
-media/
+# gyökérre horgonyozva: a demók saját media/ mappáját ne nyelje le
+/media/

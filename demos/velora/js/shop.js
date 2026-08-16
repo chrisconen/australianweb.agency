@@ -180,21 +180,19 @@
     return c;
   }
 
+  var writeInk = VELORA.createInkWriter(section);
+
   function applyTone(p) {
     var tone = toneAt(p);
     var ink = inkAt(tone);
     if (scrim) gsap.set(scrim, { opacity: tone });
     if (contrast) gsap.set(contrast, { opacity: 1 - tone });
     if (veil) gsap.set(veil, { opacity: tone });
-    document.documentElement.style.setProperty('--ink', 'rgb(' + ink.join(',') + ')');
-    document.documentElement.style.setProperty(
-      '--ink-rule', 'rgba(' + ink.join(',') + ',0.4)'
-    );
+    writeInk(ink);
   }
 
   function clearTone() {
-    document.documentElement.style.removeProperty('--ink');
-    document.documentElement.style.removeProperty('--ink-rule');
+    writeInk.clear();
   }
 
   function setCtaLive(el, live) {

@@ -178,24 +178,22 @@
   /**
    * One tone value drives everything the brightness affects: the porcelain
    * plate the seams dip through, the contrast wash that would dirty a bright
-   * set, and the ink (on :root, so the global header adapts with the copy).
+   * set, and the ink (on this section and the header, so both adapt with the copy).
    */
+  var writeInk = VELORA.createInkWriter(section);
+
   function applyTone(p) {
     var tone = toneAt(p);
     var ink = inkAt(tone);
     gsap.set(scrim, { opacity: tone });
     gsap.set(contrast, { opacity: 1 - tone });
     gsap.set(veil, { opacity: tone });
-    document.documentElement.style.setProperty('--ink', 'rgb(' + ink.join(',') + ')');
-    document.documentElement.style.setProperty(
-      '--ink-rule', 'rgba(' + ink.join(',') + ',0.4)'
-    );
+    writeInk(ink);
   }
 
   /** The rest of the site is ivory-on-obsidian; never leak this chapter's ink. */
   function clearTone() {
-    document.documentElement.style.removeProperty('--ink');
-    document.documentElement.style.removeProperty('--ink-rule');
+    writeInk.clear();
   }
 
   function updateCopy(p) {

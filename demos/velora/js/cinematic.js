@@ -209,8 +209,46 @@
     };
   }
 
+  /**
+   * Writes the editorial ink custom properties.
+   *
+   * Setting them on <html> invalidates style for every element on the page.
+   * Measured on the live SHOP chapter that costs ~12ms per frame — most of a
+   * 60fps budget — and reads as scroll jitter through the two tone ramps.
+   * Only the chapter subtree and the site header ever read --ink, so the
+   * write goes to those two roots instead (~2ms), and is skipped entirely
+   * while the value has not changed.
+   */
+  function createInkWriter(section) {
+    var header = document.querySelector('.site-header');
+    var targets = header ? [section, header] : [section];
+    var last = null;
+
+    function write(rgb) {
+      var value = 'rgb(' + rgb.join(',') + ')';
+      if (value === last) return;
+      last = value;
+      var rule = 'rgba(' + rgb.join(',') + ',0.4)';
+      for (var i = 0; i < targets.length; i++) {
+        targets[i].style.setProperty('--ink', value);
+        targets[i].style.setProperty('--ink-rule', rule);
+      }
+    }
+
+    write.clear = function () {
+      last = null;
+      for (var i = 0; i < targets.length; i++) {
+        targets[i].style.removeProperty('--ink');
+        targets[i].style.removeProperty('--ink-rule');
+      }
+    };
+
+    return write;
+  }
+
   global.VELORA = {
     seamWeights: seamWeights,
+    createInkWriter: createInkWriter,
     createMediaSequence: createMediaSequence,
     videoBroken: videoBroken,
     clamp01: clamp01,

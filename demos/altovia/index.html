@@ -1,0 +1,1252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#080A0C" />
+    <meta name="color-scheme" content="dark" />
+    <meta
+      name="description"
+      content="ALTOVIA Private Charter. Move without friction. Air, land, and sea arranged as one journey around you."
+    />
+    <title>ALTOVIA — Private Charter</title>
+    <link rel="preload" href="./fonts/outfit-300.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./media/web/poster.jpg" as="image" />
+    <link rel="preload" href="./media/web/logo-lockup.png" as="image" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./css/tokens.css" />
+    <link rel="stylesheet" href="./css/altovia.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#hero">Skip to content</a>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="masthead" data-header>
+      <a class="logo-link" href="#hero" aria-label="ALTOVIA Private Charter, home">
+        <img
+          class="logo"
+          src="./media/web/logo-lockup.png"
+          alt="ALTOVIA Private Charter"
+          width="1100"
+          height="360"
+        />
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#fleet">Fleet</a>
+        <a href="#experience">Experience</a>
+      </nav>
+
+      <a class="plan-link" href="#plan">Plan a journey</a>
+
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
+        <span class="sr-only">Menu</span>
+        <b></b>
+        <b></b>
+      </button>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" data-menu hidden>
+      <nav aria-label="Mobile">
+        <a href="#services" data-menu-close>Services</a>
+        <a href="#fleet" data-menu-close>Fleet</a>
+        <a href="#experience" data-menu-close>Experience</a>
+        <a href="#plan" data-menu-close>Plan your journey</a>
+      </nav>
+    </div>
+
+    <main>
+      <section class="hero" id="hero" data-hero>
+        <div class="hero-stage">
+          <img
+            class="hero-poster"
+            src="./media/web/poster.jpg"
+            alt=""
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+            data-poster
+          />
+          <img
+            class="hero-fallback"
+            src="./media/web/hero-still.png"
+            alt="A principal boarding a private jet at dawn, with limousine and terminal beyond"
+            width="1920"
+            height="1080"
+            hidden
+            data-fallback
+          />
+          <video
+            class="hero-video"
+            data-hero-video
+            muted
+            playsinline
+            preload="auto"
+            poster="./media/web/poster.jpg"
+            src="./media/web/hero-desktop.mp4"
+            aria-hidden="true"
+          ></video>
+
+          <div class="hero-scrim" aria-hidden="true"></div>
+          <div class="hero-handoff" aria-hidden="true" data-handoff></div>
+
+          <p class="timestamp" data-layer="micro" data-in="0" data-out="0.48">05:47 / Departure</p>
+
+          <div class="hero-copy">
+            <p class="brand-lock" data-layer="micro" data-in="0.08" data-out="1">Altovia / Private Charter</p>
+            <h1 data-layer="headline" data-in="0.32" data-out="1">
+              <span class="line"><span>Move without</span></span>
+              <span class="line"><span>friction.</span></span>
+            </h1>
+            <p class="lede" data-layer="micro" data-in="0.52" data-out="1">
+              Air. Land. Sea. One journey, entirely arranged around you.
+            </p>
+            <a class="journey" href="#plan" data-layer="cta" data-in="0.62" data-out="1">
+              <span>Plan your journey</span>
+              <i aria-hidden="true"></i>
+            </a>
+            <p class="modes" data-layer="micro" data-in="0.16" data-out="1">
+              <span>Air</span>
+              <span>Land</span>
+              <span>Sea</span>
+            </p>
+          </div>
+
+          <div class="route" aria-hidden="true" data-route>
+            <span class="route-line"></span>
+            <p class="route-marks">
+              <span data-in="0.22">Ground</span>
+              <span data-in="0.42">Access</span>
+              <span data-in="0.58">Air</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <span id="services" class="anchor"></span>
+      <section class="transfer" id="transfer" aria-labelledby="transfer-title">
+        <!-- runway becomes road: the hero's apron darkness resolves into wet
+             asphalt and smoked glass, the route line carries through -->
+        <div class="tr-approach" aria-hidden="true">
+          <span class="tr-approach-sheen"></span>
+        </div>
+
+        <!-- LEVEL 1 — READY / TRANSFER-01 -->
+        <div class="tr-open" data-rv>
+          <p class="tr-eyebrow"><span>01</span> / The Transfer</p>
+          <h2 class="tr-title" id="transfer-title">
+            <span class="tr-line"><span>The journey</span></span>
+            <span class="tr-line"><span>starts on the ground.</span></span>
+          </h2>
+          <p class="tr-support">
+            Chauffeured executive mobility, coordinated around every departure, arrival
+            and appointment.
+          </p>
+          <p class="tr-micro">Ground / Executive / Chauffeured</p>
+          <span class="tr-datum" data-datum="short" aria-hidden="true"></span>
+        </div>
+
+        <figure class="tr-fig tr-fig--open" data-rv>
+          <img
+            src="./media/web/transfer-01-1600.jpg"
+            srcset="./media/web/transfer-01-900.jpg 900w, ./media/web/transfer-01-1600.jpg 1600w"
+            sizes="(max-width: 767px) 100vw, 78vw"
+            width="1600"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            alt="Black executive limousine waiting outside a contemporary office building."
+          />
+          <figcaption class="tr-state">
+            <span class="tr-state-key">Ready</span>
+            <span class="tr-state-line">Ready before you are.</span>
+          </figcaption>
+        </figure>
+
+        <!-- LEVEL 2 — ARRIVE / TRANSFER-02 -->
+        <div class="tr-block tr-block--arrive">
+          <figure class="tr-fig tr-fig--arrive" data-rv>
+            <img
+              src="./media/web/transfer-02-1600.jpg"
+              srcset="./media/web/transfer-02-900.jpg 900w, ./media/web/transfer-02-1600.jpg 1600w"
+              sizes="(max-width: 767px) 100vw, 64vw"
+              width="1600"
+              height="900"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman stepping from a chauffeured limousine outside an executive destination."
+            />
+          </figure>
+          <div class="tr-aside" data-rv>
+            <span class="tr-state-key">Arrive</span>
+            <p class="tr-statement">Service without ceremony.</p>
+            <span class="tr-datum" data-datum="short" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <!-- LEVEL 3 — ENTER / TRANSFER-03, the material punctuation -->
+        <div class="tr-block tr-block--enter">
+          <div class="tr-aside tr-aside--lead" data-rv>
+            <span class="tr-state-key">Enter</span>
+            <p class="tr-statement tr-statement--sm">
+              Between outside<br />and private space.
+            </p>
+          </div>
+          <figure class="tr-fig tr-fig--detail" data-rv>
+            <img
+              src="./media/web/transfer-03-1600.jpg"
+              srcset="./media/web/transfer-03-900.jpg 900w, ./media/web/transfer-03-1600.jpg 1600w"
+              sizes="(max-width: 767px) 100vw, 42vw"
+              width="1600"
+              height="900"
+              loading="lazy"
+              decoding="async"
+              alt="Open rear limousine door revealing the warm executive cabin."
+            />
+          </figure>
+        </div>
+
+        <!-- LEVEL 2 — the cabin / TRANSFER-04 -->
+        <div class="tr-block tr-block--cabin">
+          <figure class="tr-fig tr-fig--cabin" data-rv>
+            <img
+              src="./media/web/transfer-04-1600.jpg"
+              srcset="./media/web/transfer-04-900.jpg 900w, ./media/web/transfer-04-1600.jpg 1600w"
+              sizes="(max-width: 767px) 100vw, 54vw"
+              width="1600"
+              height="900"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman seated in the rear cabin of the limousine."
+            />
+          </figure>
+          <div class="tr-void" data-rv>
+            <p class="tr-statement tr-statement--lg">Time returned.</p>
+            <span class="tr-datum" data-datum="short" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <!-- LEVEL 1 — MOVE / TRANSFER-05, the single motion moment -->
+        <div class="tr-motion" data-rv>
+          <figure class="tr-fig tr-fig--motion">
+            <video
+              class="tr-video"
+              data-tr-video
+              data-src-desktop="./media/web/transfer-desktop.mp4"
+              data-src-mobile="./media/web/transfer-mobile.mp4"
+              poster="./media/web/transfer-05-1600.jpg"
+              muted
+              playsinline
+              preload="none"
+              aria-hidden="true"
+            ></video>
+            <img
+              class="tr-video-still"
+              src="./media/web/transfer-05-1600.jpg"
+              srcset="./media/web/transfer-05-900.jpg 900w, ./media/web/transfer-05-1600.jpg 1600w"
+              sizes="(max-width: 767px) 100vw, 92vw"
+              width="1600"
+              height="900"
+              loading="lazy"
+              decoding="async"
+              alt="Black executive limousine moving through a modern business district."
+            />
+            <div class="tr-motion-scrim" aria-hidden="true"></div>
+            <figcaption class="tr-motion-copy">
+              <span class="tr-state-key">Move</span>
+              <p class="tr-statement tr-statement--lg">
+                The city moves.<br />You don't have to.
+              </p>
+            </figcaption>
+          </figure>
+          <span class="tr-datum" data-datum="long" aria-hidden="true"></span>
+        </div>
+
+        <!-- LEVEL 2 — ON TIME / TRANSFER-06 -->
+        <div class="tr-block tr-block--ontime">
+          <figure class="tr-fig tr-fig--ontime" data-rv>
+            <img
+              src="./media/web/transfer-06-1600.jpg"
+              srcset="./media/web/transfer-06-900.jpg 900w, ./media/web/transfer-06-1600.jpg 1600w"
+              sizes="(max-width: 767px) 100vw, 62vw"
+              width="1600"
+              height="900"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman arriving at an executive building after ground transfer."
+            />
+          </figure>
+          <div class="tr-aside" data-rv>
+            <span class="tr-state-key">On time</span>
+            <p class="tr-statement tr-statement--sm">
+              Measured to the<br />minute, not the hour.
+            </p>
+          </div>
+        </div>
+
+        <!-- LEVEL 1 — closing master / TRANSFER-07 -->
+        <div class="tr-close" data-rv>
+          <figure class="tr-fig tr-fig--close">
+            <img
+              src="./media/web/transfer-07-1600.jpg"
+              srcset="./media/web/transfer-07-900.jpg 900w, ./media/web/transfer-07-1600.jpg 1600w"
+              sizes="(max-width: 767px) 100vw, 100vw"
+              width="1600"
+              height="900"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman walking toward an executive destination as the limousine waits behind her."
+            />
+            <div class="tr-close-scrim" aria-hidden="true"></div>
+          </figure>
+          <div class="tr-close-copy">
+            <h3 class="tr-close-title">
+              <span class="tr-line"><span>Every minute</span></span>
+              <span class="tr-line"><span>already accounted for.</span></span>
+            </h3>
+            <p class="tr-support">
+              From first pickup to final arrival, every transfer moves as one continuous
+              journey.
+            </p>
+            <span class="tr-datum" data-datum="settle" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <!-- road becomes access: charcoal opens toward dawn, ahead of 02 -->
+        <div class="tr-egress" aria-hidden="true"></div>
+      </section>
+
+      <section class="access" id="access" aria-labelledby="access-title" data-access>
+        <!-- road becomes access: the Transfer charcoal opens through smoked
+             glass into a longer, cleaner architectural datum -->
+        <div class="ac-approach" aria-hidden="true">
+          <span class="ac-approach-plane"></span>
+          <span class="ac-approach-line"></span>
+          <p class="ac-route-marks">
+            <span>Road</span>
+            <span>Access</span>
+            <span>Runway</span>
+          </p>
+        </div>
+
+        <!-- LEVEL 1 — ARRIVE / ACCESS-01 -->
+        <div class="ac-open" data-rv>
+          <figure class="ac-fig ac-fig--open">
+            <img
+              src="./media/access-01.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="A businesswoman arriving by black limousine at a private terminal entrance before dawn."
+            />
+            <div class="ac-open-scrim" aria-hidden="true"></div>
+            <figcaption class="ac-open-copy">
+              <p class="ac-eyebrow"><span>02</span> / Private Access</p>
+              <h2 class="ac-title" id="access-title">
+                <span class="ac-line"><span>No queue.</span></span>
+                <span class="ac-line"><span>No terminal</span></span>
+                <span class="ac-line"><span>noise.</span></span>
+              </h2>
+              <p class="ac-support">Private aviation without the airport around it.</p>
+              <span class="ac-state">Arrive</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- LEVEL 2 — ENTER / ACCESS-02 -->
+        <div class="ac-block ac-block--enter" data-rv>
+          <div class="ac-copy ac-copy--threshold">
+            <span class="ac-state">Enter</span>
+            <p class="ac-statement">One door.<br />A different system.</p>
+            <span class="ac-rule" data-ac-rule="threshold" aria-hidden="true"></span>
+          </div>
+          <figure class="ac-fig ac-fig--enter">
+            <img
+              src="./media/access-02.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="A private host opening a smoked-glass terminal door as the client enters."
+            />
+          </figure>
+        </div>
+
+        <!-- LEVEL 2 — EXPECTED / ACCESS-03 -->
+        <div class="ac-block ac-block--expected" data-rv>
+          <figure class="ac-fig ac-fig--expected">
+            <img
+              src="./media/access-03.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="The client walking through the terminal with a host who has her journey prepared."
+            />
+          </figure>
+          <div class="ac-copy ac-copy--expected">
+            <span class="ac-state">Expected</span>
+            <p class="ac-statement">The journey<br />is already known.</p>
+            <span class="ac-rule" data-ac-rule="service" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <!-- LEVEL 1 — PREPARED / ACCESS-04 -->
+        <div class="ac-prepared" data-rv>
+          <div class="ac-copy ac-copy--prepared">
+            <span class="ac-state">Prepared</span>
+            <p class="ac-statement ac-statement--hero">Nothing<br />to wait for.</p>
+          </div>
+          <figure class="ac-fig ac-fig--prepared">
+            <img
+              src="./media/access-04.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="The client seated quietly beside glass with her private jet waiting directly outside."
+            />
+          </figure>
+          <span class="ac-rule ac-rule--wide" data-ac-rule="runway" aria-hidden="true"></span>
+        </div>
+
+        <!-- LEVEL 3 — HANDLED / ACCESS-05 -->
+        <div class="ac-block ac-block--handled" data-rv>
+          <div class="ac-copy ac-copy--handled">
+            <span class="ac-state">Handled / 02</span>
+            <p class="ac-statement ac-statement--compact">The details move<br />without you.</p>
+            <span class="ac-rule" data-ac-rule="detail" aria-hidden="true"></span>
+          </div>
+          <figure class="ac-fig ac-fig--handled">
+            <img
+              src="./media/access-05.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="A private service host transferring the client's bag while she walks toward the waiting jet."
+            />
+          </figure>
+        </div>
+
+        <!-- LEVEL 1 — BOARD / ACCESS-06, the chapter's only motion -->
+        <div class="ac-motion" data-rv>
+          <div class="ac-motion-heading">
+            <span class="ac-state">Board</span>
+            <p class="ac-statement ac-statement--board">
+              The distance is<br />meters, not terminals.
+            </p>
+          </div>
+          <figure class="ac-fig ac-fig--motion">
+            <img
+              class="ac-video-still"
+              src="./media/access-06.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="The client walking directly from the private terminal to the waiting aircraft stairs."
+            />
+            <video
+              class="ac-video"
+              data-access-video
+              data-src="./media/access.mp4"
+              poster="./media/access-06.png"
+              muted
+              playsinline
+              preload="none"
+              aria-hidden="true"
+            ></video>
+          </figure>
+        </div>
+
+        <!-- LEVEL 1 — master closing / ACCESS-07 -->
+        <div class="ac-close" data-rv>
+          <figure class="ac-fig ac-fig--close">
+            <img
+              src="./media/access-07.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="The client at the aircraft stairs with the private terminal and morning apron behind her."
+            />
+            <div class="ac-close-scrim" aria-hidden="true"></div>
+            <figcaption class="ac-close-copy">
+              <h3 class="ac-close-title">
+                <span class="ac-line"><span>From arrival</span></span>
+                <span class="ac-line"><span>to airborne.</span></span>
+              </h3>
+              <p class="ac-support">
+                One discreet point of access. Everything beyond it already arranged.
+              </p>
+            </figcaption>
+          </figure>
+          <span class="ac-rule ac-rule--closing" data-ac-rule="flight" aria-hidden="true"></span>
+        </div>
+
+        <!-- Access -> altitude: architecture recedes, the flight datum remains. -->
+        <div class="ac-egress" aria-hidden="true"></div>
+      </section>
+
+      <section class="air" id="air" aria-labelledby="air-title" data-air>
+        <!-- RUNWAY -> FLIGHT: the Access silver-blue field opens into sky. -->
+        <div class="air-approach" aria-hidden="true">
+          <span class="air-approach-surface"></span>
+          <span class="air-route-line"></span>
+          <p class="air-route-marks">
+            <span>Runway</span>
+            <span>Flight</span>
+            <span>Transfer</span>
+            <span>Final approach</span>
+          </p>
+        </div>
+
+        <!-- LEVEL 1 — JET / AIR-01 -->
+        <div class="air-open" data-rv>
+          <figure class="air-fig air-fig--open">
+            <img
+              src="./media/air-01.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Private jet waiting on a quiet executive aviation apron in clean morning light."
+            />
+            <div class="air-open-scrim" aria-hidden="true"></div>
+          </figure>
+          <div class="air-open-copy">
+            <p class="air-eyebrow"><span>03</span> / Air</p>
+            <h2 class="air-title" id="air-title">
+              <span class="air-line"><span>Above</span></span>
+              <span class="air-line"><span>schedule.</span></span>
+            </h2>
+            <p class="air-support">
+              Private aviation shaped around where you need to be — not around the timetable.
+            </p>
+          </div>
+          <span class="air-state air-open-state">Jet</span>
+        </div>
+
+        <!-- LEVEL 2 — CABIN / AIR-02 -->
+        <div class="air-block air-block--jet-cabin" data-rv>
+          <figure class="air-fig air-fig--jet-cabin">
+            <img
+              src="./media/air-02.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman seated inside a private jet cabin, working quietly during flight."
+            />
+          </figure>
+          <div class="air-copy air-copy--jet-cabin">
+            <span class="air-state">Cabin</span>
+            <p class="air-statement">Your time<br />remains yours.</p>
+            <span class="air-rule" data-air-rule="cabin" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <!-- LEVEL 1 — AIRBORNE / AIR-03, motion moment one -->
+        <div class="air-motion air-motion--jet" data-rv>
+          <div class="air-motion-copy air-motion-copy--jet">
+            <span class="air-state">Airborne</span>
+            <p class="air-statement air-statement--cinematic">The world<br />falls away.</p>
+          </div>
+          <figure class="air-fig air-fig--jet-motion">
+            <img
+              class="air-video-still"
+              src="./media/air-03.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Private jet flying above a layered cloudscape."
+            />
+            <video
+              class="air-video"
+              data-air-video="jet"
+              data-src="./media/air-03.mp4"
+              poster="./media/air-03.png"
+              muted
+              playsinline
+              preload="none"
+              aria-hidden="true"
+            ></video>
+          </figure>
+        </div>
+
+        <div class="air-breath" aria-hidden="true">
+          <span class="air-rule air-rule--flight"></span>
+        </div>
+
+        <!-- LEVEL 1 — TRANSFER / AIR-04 -->
+        <div class="air-transfer" data-rv>
+          <figure class="air-fig air-fig--transfer">
+            <img
+              src="./media/air-04.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman walking from a private jet toward a graphite executive helicopter."
+            />
+            <div class="air-transfer-scrim" aria-hidden="true"></div>
+          </figure>
+          <div class="air-transfer-copy">
+            <span class="air-state">Transfer</span>
+            <p class="air-statement">The journey<br />doesn't stop at the runway.</p>
+          </div>
+          <span class="air-rule air-rule--transfer" data-air-rule="transfer" aria-hidden="true"></span>
+        </div>
+
+        <!-- LEVEL 2 — FINAL LEG / AIR-06 -->
+        <div class="air-block air-block--heli-cabin" data-rv>
+          <figure class="air-fig air-fig--heli-cabin">
+            <img
+              src="./media/air-06.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman seated inside an executive helicopter cabin, looking toward the destination."
+            />
+          </figure>
+          <div class="air-copy air-copy--heli-cabin">
+            <span class="air-state">Final leg</span>
+            <p class="air-statement">The final leg,<br />without interruption.</p>
+            <span class="air-rule" data-air-rule="final-leg" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <!-- LEVEL 1 — FINAL APPROACH / AIR-07, motion moment two -->
+        <div class="air-motion air-motion--helicopter" data-rv>
+          <figure class="air-fig air-fig--heli-motion">
+            <img
+              class="air-video-still"
+              src="./media/air-07.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Executive helicopter approaching an urban business destination."
+            />
+            <video
+              class="air-video"
+              data-air-video="helicopter"
+              data-src="./media/air-07.mp4"
+              poster="./media/air-07.png"
+              muted
+              playsinline
+              preload="none"
+              aria-hidden="true"
+            ></video>
+          </figure>
+          <div class="air-motion-copy air-motion-copy--helicopter">
+            <span class="air-state">Final approach</span>
+            <p class="air-statement air-statement--cinematic">Closer than<br />the airport.</p>
+          </div>
+        </div>
+
+        <!-- LEVEL 2 — ARRIVE / AIR-08 -->
+        <div class="air-block air-block--arrive" data-rv>
+          <div class="air-copy air-copy--arrive">
+            <span class="air-state">Arrive</span>
+            <p class="air-statement air-statement--compact">Where the day<br />actually happens.</p>
+            <span class="air-rule" data-air-rule="arrive" aria-hidden="true"></span>
+          </div>
+          <figure class="air-fig air-fig--arrive">
+            <img
+              src="./media/air-08.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Executive helicopter completing its arrival beside an urban business building."
+            />
+          </figure>
+        </div>
+
+        <!-- LEVEL 1 — master closing / AIR-09 -->
+        <div class="air-close" data-rv>
+          <figure class="air-fig air-fig--close">
+            <img
+              src="./media/air-09.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman walking from a helicopter toward an executive building."
+            />
+            <div class="air-close-scrim" aria-hidden="true"></div>
+            <figcaption class="air-close-copy">
+              <h3 class="air-close-title">
+                <span class="air-line"><span>Distance becomes</span></span>
+                <span class="air-line"><span>time returned.</span></span>
+              </h3>
+              <p class="air-support">
+                From intercity flight to final approach, every aircraft serves the same journey.
+              </p>
+            </figcaption>
+          </figure>
+          <span class="air-rule air-rule--closing" data-air-rule="business" aria-hidden="true"></span>
+        </div>
+
+        <!-- ARRIVAL -> PURPOSE: the flight datum becomes architectural. -->
+        <div class="air-egress" aria-label="Next chapter: 04 / Business. Precision in motion.">
+          <p><span>04 / Business</span><b>Precision in motion.</b></p>
+        </div>
+      </section>
+
+      <section class="business" id="business" aria-labelledby="business-title" data-business>
+        <div class="business-stage" data-business-stage>
+          <article class="business-panel business-panel--01" data-business-panel data-business-name="Arrive" aria-current="step">
+            <figure class="business-media business-media--full">
+              <img
+                src="./media/business-01.png"
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+                alt="Businesswoman approaching a contemporary executive headquarters."
+              />
+              <span class="business-scrim" aria-hidden="true"></span>
+            </figure>
+            <div class="business-copy business-copy--01">
+              <p class="business-eyebrow"><span>04</span> / Business</p>
+              <h2 class="business-title" id="business-title">
+                <span>Precision</span>
+                <span>in motion.</span>
+              </h2>
+              <p class="business-support">
+                When every movement is arranged, attention stays where it belongs.
+              </p>
+              <p class="business-state">Arrive</p>
+            </div>
+          </article>
+
+          <article class="business-panel business-panel--02" data-business-panel data-business-name="Enter">
+            <figure class="business-media business-media--full">
+              <img
+                src="./media/business-02.png"
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+                alt="Businesswoman walking through a quiet architectural executive lobby."
+              />
+              <span class="business-scrim" aria-hidden="true"></span>
+            </figure>
+            <div class="business-copy business-copy--02">
+              <p class="business-state">Enter</p>
+              <h3 class="business-statement"><span>The world</span><span>becomes quieter.</span></h3>
+            </div>
+          </article>
+
+          <article class="business-panel business-panel--03" data-business-panel data-business-name="Prepare">
+            <figure class="business-media business-media--editorial">
+              <img
+                src="./media/business-03.png"
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+                alt="Businesswoman reviewing a document before an executive meeting."
+              />
+              <span class="business-scrim" aria-hidden="true"></span>
+            </figure>
+            <div class="business-copy business-copy--03">
+              <p class="business-state">Prepare</p>
+              <h3 class="business-statement"><span>One moment</span><span>before the room.</span></h3>
+            </div>
+          </article>
+
+          <article class="business-panel business-panel--04" data-business-panel data-business-name="Decide">
+            <figure class="business-media business-media--full">
+              <img
+                src="./media/business-04.png"
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+                alt="Businesswoman participating in a focused boardroom meeting."
+              />
+              <span class="business-scrim" aria-hidden="true"></span>
+            </figure>
+            <div class="business-copy business-copy--04">
+              <p class="business-state">Decide</p>
+              <h3 class="business-statement"><span>When everything</span><span>else disappears.</span></h3>
+            </div>
+          </article>
+
+          <article class="business-panel business-panel--05" data-business-panel data-business-name="The moment that matters">
+            <figure class="business-media business-media--detail">
+              <img
+                src="./media/business-05.png"
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+                alt="Businesswoman continuing through a refined executive corridor after the meeting."
+              />
+            </figure>
+            <div class="business-copy business-copy--05">
+              <p class="business-statement business-statement--quiet">The moment that matters.</p>
+              <span class="business-copy-rule" aria-hidden="true"></span>
+            </div>
+          </article>
+
+          <article class="business-panel business-panel--06" data-business-panel data-business-name="Resolved">
+            <figure class="business-media business-media--full">
+              <img
+                src="./media/business-06.png"
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+                alt="Businesswoman leaving the executive building toward a waiting chauffeured limousine."
+              />
+              <span class="business-scrim" aria-hidden="true"></span>
+            </figure>
+            <div class="business-copy business-copy--06">
+              <p class="business-state">Resolved</p>
+              <h3 class="business-statement"><span>The objective</span><span>is complete.</span></h3>
+            </div>
+          </article>
+
+          <article class="business-panel business-panel--07" data-business-panel data-business-name="Depart">
+            <figure class="business-media business-media--depart">
+              <img
+                src="./media/business-07.png"
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+                alt="Businesswoman leaving the building toward a waiting chauffeured limousine."
+              />
+              <span class="business-scrim" aria-hidden="true"></span>
+            </figure>
+            <div class="business-copy business-copy--07">
+              <p class="business-state">Depart</p>
+              <h3 class="business-statement"><span>Already</span><span>waiting.</span></h3>
+            </div>
+          </article>
+
+          <article class="business-panel business-panel--08" data-business-panel data-business-name="The day moves forward">
+            <figure class="business-media business-media--full">
+              <img
+                src="./media/business-08.png"
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+                alt="Businesswoman approaching her waiting limousine after completing the meeting."
+              />
+              <span class="business-scrim" aria-hidden="true"></span>
+            </figure>
+            <div class="business-copy business-copy--08">
+              <h3 class="business-closing"><span>The day moves forward.</span><span>So do you.</span></h3>
+              <p class="business-support">
+                From arrival to departure, ALTOVIA keeps the space around the objective effortless.
+              </p>
+            </div>
+          </article>
+
+          <aside class="business-index" aria-hidden="true">
+            <p><span>04 / Business</span><span data-business-count>01 / 08</span></p>
+            <span data-business-state>Arrive</span>
+          </aside>
+
+          <div class="business-route" aria-hidden="true">
+            <span class="business-route-track"><i></i></span>
+            <p class="business-route-labels">
+              <span>Arrive</span>
+              <span>Enter</span>
+              <span>Prepare</span>
+              <span>Decide</span>
+              <span>Resolved</span>
+              <span>Depart</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="business-egress" aria-label="Next chapter: 05 / Sea. When the day opens up.">
+        <p><span>Next / 05 / Sea</span></p>
+      </div>
+
+      <section class="sea" id="sea" aria-labelledby="sea-title" data-sea data-sea-route="marina edge">
+        <div class="sea-route" aria-hidden="true">
+          <span class="sea-route-track"><i></i></span>
+          <p><span>05 / Sea</span><b data-sea-route-label>Marina edge</b></p>
+        </div>
+
+        <article class="sea-scene sea-scene--01" data-sea-scene data-sea-route-state="marina edge">
+          <figure class="sea-media sea-media--01">
+            <img
+              src="./media/sea-01.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman arriving by chauffeured limousine at a private waterfront marina."
+            />
+            <span class="sea-scrim" aria-hidden="true"></span>
+          </figure>
+          <div class="sea-copy sea-copy--01">
+            <p class="sea-eyebrow"><span>05</span> / Sea</p>
+            <h2 class="sea-title" id="sea-title"><span>When the day</span><span>opens up.</span></h2>
+            <p class="sea-support">When the objective is complete, the journey doesn't have to end.</p>
+            <p class="sea-state">Arrive</p>
+          </div>
+        </article>
+
+        <article class="sea-scene sea-scene--02" data-sea-scene data-sea-route-state="marina edge">
+          <figure class="sea-media sea-media--02">
+            <img
+              src="./media/sea-02.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Contemporary private motor yacht moored at a quiet marina."
+            />
+          </figure>
+          <div class="sea-copy sea-copy--02">
+            <p class="sea-state">Ready</p>
+            <h3 class="sea-statement sea-statement--quiet"><span>Waiting,</span><span>like everything else.</span></h3>
+          </div>
+        </article>
+
+        <article class="sea-scene sea-scene--03" data-sea-scene data-sea-route-state="deck datum">
+          <div class="sea-copy sea-copy--03">
+            <p class="sea-state">Board</p>
+            <h3 class="sea-statement"><span>From pavement</span><span>to teak.</span></h3>
+          </div>
+          <figure class="sea-media sea-media--03">
+            <img
+              src="./media/sea-03.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman boarding a private yacht from a marina berth."
+            />
+          </figure>
+        </article>
+
+        <article class="sea-scene sea-scene--04" data-sea-scene data-sea-route-state="deck datum">
+          <figure class="sea-media sea-media--04">
+            <img
+              src="./media/sea-04.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman standing inside a yacht salon overlooking the water."
+            />
+          </figure>
+          <div class="sea-copy sea-copy--04">
+            <p class="sea-state">Release</p>
+            <h3 class="sea-statement"><span>The formality</span><span>falls away.</span></h3>
+          </div>
+        </article>
+
+        <article class="sea-scene sea-scene--05" data-sea-scene data-sea-route-state="open water">
+          <figure class="sea-media sea-media--05">
+            <img
+              src="./media/sea-05.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Private yacht cruising through open coastal water."
+            />
+            <span class="sea-scrim" aria-hidden="true"></span>
+          </figure>
+          <div class="sea-copy sea-copy--05">
+            <p class="sea-state">Open water</p>
+            <h3 class="sea-statement sea-statement--large"><span>The city</span><span>falls behind.</span></h3>
+          </div>
+        </article>
+
+        <article class="sea-scene sea-scene--06" data-sea-scene data-sea-route-state="open water">
+          <div class="sea-copy sea-copy--06">
+            <p class="sea-state">Breathe</p>
+            <h3 class="sea-statement"><span>Nothing requires</span><span>her attention.</span></h3>
+          </div>
+          <figure class="sea-media sea-media--06">
+            <img
+              src="./media/sea-06.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman relaxing on the yacht deck facing the sea."
+            />
+          </figure>
+        </article>
+
+        <article class="sea-scene sea-scene--07" data-sea-scene data-sea-route-state="horizon">
+          <figure class="sea-media sea-media--07">
+            <img
+              src="./media/sea-07.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Private yacht on calm water during late golden hour."
+            />
+            <span class="sea-scrim" aria-hidden="true"></span>
+          </figure>
+          <div class="sea-copy sea-copy--07">
+            <p class="sea-state">Stay</p>
+            <h3 class="sea-statement sea-statement--large"><span>Time,</span><span>unscheduled.</span></h3>
+          </div>
+        </article>
+
+        <article class="sea-scene sea-scene--08" data-sea-scene data-sea-route-state="horizon">
+          <figure class="sea-media sea-media--08">
+            <img
+              src="./media/sea-08.png"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              alt="Businesswoman resting aboard a private yacht at sunset."
+            />
+            <span class="sea-scrim" aria-hidden="true"></span>
+          </figure>
+          <div class="sea-copy sea-copy--08">
+            <h3 class="sea-closing"><span>Nothing left</span><span>to manage.</span></h3>
+            <p class="sea-support">Private time, already waiting when the work is done.</p>
+          </div>
+        </article>
+      </section>
+
+      <div class="sea-egress" aria-label="Next chapter: 06 / Return. The journey closes the way it began.">
+        <p><span>Next / 06 / Return</span><b>The journey closes the way it began.</b></p>
+      </div>
+
+      <section class="return" id="return" aria-labelledby="return-title" data-return>
+        <div class="return-stage" data-return-stage>
+          <div class="return-index" aria-hidden="true">
+            <p><span>06 / Return</span><b data-return-count>01 / 06</b></p>
+          </div>
+
+          <div class="return-stack">
+            <article class="return-scene return-scene--01" data-return-scene data-return-label="Leave">
+              <figure class="return-media">
+                <img
+                  src="./media/return-01.png"
+                  width="1672"
+                  height="941"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Businesswoman standing aboard a private yacht at blue hour before departing."
+                />
+                <video
+                  muted
+                  playsinline
+                  preload="none"
+                  poster="./media/return-01.png"
+                  data-return-video
+                  data-src="./media/return-01.mp4"
+                  aria-hidden="true"
+                ></video>
+                <span class="return-scrim" aria-hidden="true"></span>
+              </figure>
+              <div class="return-copy">
+                <p class="return-eyebrow"><span class="return-eyebrow-chapter">06 / Return</span><span class="return-eyebrow-state">Leave</span></p>
+                <h2 class="return-title" id="return-title"><span>The journey closes</span><span>the way it began.</span></h2>
+                <p class="return-support">Every connection is already in place whenever you choose to leave.</p>
+              </div>
+            </article>
+
+            <article class="return-scene return-scene--02" data-return-scene data-return-label="Transfer">
+              <figure class="return-media">
+                <img
+                  src="./media/return-02.png"
+                  width="1672"
+                  height="941"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Businesswoman walking from the waterfront toward a waiting private helicopter."
+                />
+                <video
+                  muted
+                  playsinline
+                  preload="none"
+                  poster="./media/return-02.png"
+                  data-return-video
+                  data-src="./media/return-02.mp4"
+                  aria-hidden="true"
+                ></video>
+                <span class="return-scrim" aria-hidden="true"></span>
+              </figure>
+              <div class="return-copy">
+                <p class="return-state">Transfer</p>
+                <h3 class="return-statement"><span>Ready</span><span>when you are.</span></h3>
+              </div>
+            </article>
+
+            <article class="return-scene return-scene--03" data-return-scene data-return-label="Lift">
+              <figure class="return-media">
+                <img
+                  src="./media/return-03.png"
+                  width="1672"
+                  height="941"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Piano Black helicopter flying above the coast at blue hour."
+                />
+                <video
+                  muted
+                  playsinline
+                  preload="none"
+                  poster="./media/return-03.png"
+                  data-return-video
+                  data-src="./media/return-03.mp4"
+                  aria-hidden="true"
+                ></video>
+                <span class="return-scrim" aria-hidden="true"></span>
+              </figure>
+              <div class="return-copy">
+                <p class="return-state">Lift</p>
+                <h3 class="return-statement return-statement--wide"><span>Every connection,</span><span>already in place.</span></h3>
+              </div>
+            </article>
+
+            <article class="return-scene return-scene--04" data-return-scene data-return-label="Depart">
+              <figure class="return-media">
+                <img
+                  src="./media/return-04.png"
+                  width="1672"
+                  height="941"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Businesswoman walking toward a waiting private jet at dusk."
+                />
+                <video
+                  muted
+                  playsinline
+                  preload="none"
+                  poster="./media/return-04.png"
+                  data-return-video
+                  data-src="./media/return-04.mp4"
+                  aria-hidden="true"
+                ></video>
+                <span class="return-scrim" aria-hidden="true"></span>
+              </figure>
+              <div class="return-copy">
+                <p class="return-state">Depart</p>
+                <h3 class="return-statement"><span>Distance</span><span>disappears.</span></h3>
+              </div>
+            </article>
+
+            <article class="return-scene return-scene--05" data-return-scene data-return-label="Homeward">
+              <figure class="return-media">
+                <img
+                  src="./media/return-05.png"
+                  width="1672"
+                  height="941"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Businesswoman seated quietly inside a private jet cabin at night."
+                />
+                <video
+                  muted
+                  playsinline
+                  preload="none"
+                  poster="./media/return-05.png"
+                  data-return-video
+                  data-src="./media/return-05.mp4"
+                  aria-hidden="true"
+                ></video>
+                <span class="return-scrim" aria-hidden="true"></span>
+              </figure>
+              <div class="return-copy">
+                <p class="return-state">Homeward</p>
+                <h3 class="return-statement"><span>The world falls</span><span>quiet again.</span></h3>
+              </div>
+            </article>
+
+            <article class="return-scene return-scene--06" data-return-scene data-return-label="Arrive">
+              <figure class="return-media">
+                <img
+                  src="./media/return-06.png"
+                  width="1672"
+                  height="941"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Businesswoman arriving at her final destination beside a chauffeured limousine at night."
+                />
+                <video
+                  muted
+                  playsinline
+                  preload="none"
+                  poster="./media/return-06.png"
+                  data-return-video
+                  data-src="./media/return-06.mp4"
+                  aria-hidden="true"
+                ></video>
+                <span class="return-scrim" aria-hidden="true"></span>
+              </figure>
+              <div class="return-copy return-copy--closing">
+                <p class="return-state">Arrive</p>
+                <h3 class="return-statement"><span>Exactly where</span><span>you need to be.</span></h3>
+                <p class="return-support">Time returns to you. The journey completes itself.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="return-route" aria-hidden="true">
+            <span><i></i></span>
+            <p><b>Stillness</b><b>Readiness</b><b>Return</b></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta" id="plan" aria-labelledby="final-cta-title">
+        <div class="final-cta-line" aria-hidden="true"><span></span></div>
+        <p class="final-cta-eyebrow">ALTOVIA / Private Charter</p>
+        <h2 id="final-cta-title"><span>Wherever next begins.</span><span>ALTOVIA is already there.</span></h2>
+        <p class="final-cta-support">One private journey. Every connection arranged around you.</p>
+        <a
+          class="final-cta-action"
+          href="mailto:concierge@altovia.com?subject=Private%20journey%20enquiry"
+          aria-label="Plan a private journey with ALTOVIA"
+        >
+          <span>Plan a private journey</span><b aria-hidden="true">↗</b>
+        </a>
+      </section>
+
+      <footer class="site-footer" aria-label="ALTOVIA footer">
+        <div class="site-footer-brand">
+          <strong>ALTOVIA</strong>
+          <span>Private Charter</span>
+        </div>
+        <nav class="site-footer-nav" aria-label="Footer navigation">
+          <a href="#services">Services</a>
+          <a href="#business">Business</a>
+          <a href="#sea">Sea</a>
+          <a href="#return">Return</a>
+          <a href="#hero">Back to top</a>
+        </nav>
+        <div class="site-footer-meta">
+          <p>Private mobility, arranged as one continuous journey.</p>
+          <p>© 2026 ALTOVIA</p>
+        </div>
+      </footer>
+
+      <div class="after-air after-business after-sea after-return" aria-label="End of ALTOVIA journey">
+        <span id="fleet" class="anchor"></span>
+        <span id="experience" class="anchor"></span>
+      </div>
+    </main>
+
+    <script src="./js/altovia.js" defer></script>
+  </body>
+</html>

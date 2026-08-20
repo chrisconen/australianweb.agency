@@ -1,0 +1,74 @@
+@font-face {
+  font-family: Outfit;
+  src: url("../fonts/outfit-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Outfit;
+  src: url("../fonts/outfit-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Outfit;
+  src: url("../fonts/outfit-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../fonts/ibm-plex-mono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --piano: #080a0c;
+  --navy: #0d151d;
+  --glass: #24292d;
+  --titanium: #8c9297;
+  --ivory: #f2efe8;
+  --champagne: #a68d69;
+  --runway: #c28b4e;
+
+  --bg: var(--piano);
+  --text: var(--ivory);
+  --text-dim: var(--titanium);
+  --hairline: color-mix(in srgb, var(--ivory) 16%, transparent);
+  --line: color-mix(in srgb, var(--ivory) 72%, transparent);
+  --line-metal: color-mix(in srgb, var(--champagne) 55%, transparent);
+  --runway-point: color-mix(in srgb, var(--runway) 70%, transparent);
+
+  --font-display: Outfit, "Segoe UI", sans-serif;
+  --font-body: Outfit, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --page-x: clamp(1.2rem, 4.4vw, 4.5rem);
+  --nav-h: 72px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --z-media: 0;
+  --z-scrim: 1;
+  --z-handoff: 2;
+  --z-route: 3;
+  --z-copy: 4;
+  --z-nav: 20;
+  --z-grain: 25;
+  --z-menu: 40;
+  --z-skip: 60;
+
+  --p: 0;
+  --route: 0.18;
+  --scrim: 0.42;
+  --handoff: 0;
+}

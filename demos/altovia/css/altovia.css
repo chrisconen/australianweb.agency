@@ -1,0 +1,4916 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color-scheme: dark;
+  scroll-behavior: auto;
+  scroll-padding-top: var(--nav-h);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow-x: clip;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+p,
+h1 {
+  margin: 0;
+}
+
+::selection {
+  background: var(--ivory);
+  color: var(--piano);
+}
+
+:focus-visible {
+  outline: 1px solid var(--ivory);
+  outline-offset: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: var(--z-skip);
+  top: 12px;
+  left: 12px;
+  padding: 12px 16px;
+  background: var(--ivory);
+  color: var(--piano);
+  font-size: 13px;
+  font-weight: 500;
+  transform: translateY(-160%);
+  transition: transform 220ms var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.grain {
+  position: fixed;
+  z-index: var(--z-grain);
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Header */
+.masthead {
+  position: fixed;
+  z-index: var(--z-nav);
+  top: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: var(--nav-h);
+  padding: 0 var(--page-x);
+  pointer-events: none;
+}
+
+.masthead > * {
+  pointer-events: auto;
+}
+
+.logo-link {
+  width: max-content;
+}
+
+.logo {
+  height: 42px;
+  width: auto;
+}
+
+.primary-nav {
+  display: flex;
+  gap: 2.4rem;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ivory) 55%, var(--titanium));
+  opacity: 0.55;
+  transition: opacity 700ms var(--ease-out), color 700ms var(--ease-out);
+}
+
+.masthead.is-active .primary-nav {
+  opacity: 1;
+  color: var(--ivory);
+}
+
+.primary-nav a {
+  position: relative;
+}
+
+.primary-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: var(--line);
+  transition: width 420ms var(--ease-out);
+}
+
+.primary-nav a:hover::after {
+  width: 100%;
+}
+
+.plan-link {
+  justify-self: end;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.plan-link::after {
+  content: "";
+  display: block;
+  width: 42%;
+  height: 1px;
+  margin-top: 7px;
+  background: var(--line);
+  transform-origin: left;
+  transition: width 420ms var(--ease-out);
+}
+
+.plan-link:hover::after {
+  width: 100%;
+}
+
+.menu-toggle {
+  display: none;
+  justify-self: end;
+  width: 44px;
+  height: 44px;
+  position: relative;
+}
+
+.menu-toggle b {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background: var(--ivory);
+  transition: transform 380ms var(--ease-out), top 380ms var(--ease-out);
+}
+
+.menu-toggle b:first-of-type {
+  top: 19px;
+}
+
+.menu-toggle b:last-of-type {
+  top: 25px;
+}
+
+.menu-toggle.is-open b:first-of-type {
+  top: 22px;
+  transform: rotate(45deg);
+}
+
+.menu-toggle.is-open b:last-of-type {
+  top: 22px;
+  transform: rotate(-45deg);
+}
+
+.mobile-menu {
+  position: fixed;
+  z-index: var(--z-menu);
+  inset: 0;
+  display: grid;
+  place-content: center;
+  background: var(--piano);
+}
+
+.mobile-menu[hidden] {
+  display: none;
+}
+
+.mobile-menu nav {
+  display: grid;
+  gap: 28px;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* Hero */
+.hero {
+  height: 850vh;
+  background: var(--piano);
+}
+
+.hero-stage {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-poster,
+.hero-video,
+.hero-fallback {
+  position: absolute;
+  z-index: var(--z-media);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.hero-video {
+  opacity: 0;
+}
+
+.hero-video.is-ready {
+  opacity: 1;
+}
+
+.hero-fallback[hidden] {
+  display: none;
+}
+
+.hero-scrim {
+  position: absolute;
+  z-index: var(--z-scrim);
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(8, 10, 12, calc(var(--scrim) * 0.72)) 0%,
+      rgba(8, 10, 12, calc(var(--scrim) * 0.22)) 34%,
+      transparent 58%
+    ),
+    linear-gradient(180deg, rgba(8, 10, 12, 0.22) 0%, transparent 18%, transparent 72%, rgba(8, 10, 12, 0.38) 100%);
+}
+
+.hero-handoff {
+  position: absolute;
+  z-index: var(--z-handoff);
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--handoff);
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(13, 21, 29, 0.28) 38%, rgba(8, 10, 12, 0.82) 78%, var(--piano) 100%),
+    linear-gradient(105deg, transparent 40%, rgba(36, 41, 45, 0.22) 58%, transparent 76%);
+}
+
+.hero-handoff::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 0;
+  height: 34%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 72px,
+    rgba(242, 239, 232, 0.028) 72px 73px
+  );
+  mask-image: linear-gradient(180deg, transparent, #000 50%);
+}
+
+.timestamp {
+  position: absolute;
+  z-index: var(--z-copy);
+  left: var(--page-x);
+  top: calc(var(--nav-h) + 22px);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--titanium);
+  transform: translate3d(0, calc(var(--p) * -8px), 0);
+}
+
+.hero-copy {
+  position: absolute;
+  z-index: var(--z-copy);
+  left: var(--page-x);
+  bottom: clamp(5.5rem, 12vh, 8.5rem);
+  width: min(78vw, 1100px);
+}
+
+.brand-lock {
+  margin-bottom: 18px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  transform: translate3d(0, calc(var(--p) * -8px), 0);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 6.6vw, 8.2rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  transform: translate3d(0, calc(var(--p) * -14px), 0);
+}
+
+.hero h1 .line {
+  display: block;
+  overflow: clip;
+  width: max-content;
+  max-width: 100%;
+}
+
+.hero h1 .line > span {
+  display: block;
+  transform: translate3d(0, 110%, 0);
+  transition: transform 900ms var(--ease-out);
+}
+
+.hero h1.is-on .line > span {
+  transform: none;
+}
+
+.hero h1.is-on .line:nth-child(2) > span {
+  transition-delay: 90ms;
+}
+
+.lede {
+  max-width: 34rem;
+  width: min(540px, 100%);
+  margin-top: 22px;
+  color: color-mix(in srgb, var(--ivory) 82%, var(--titanium));
+  font-size: clamp(0.98rem, 1.15vw, 1.12rem);
+  line-height: 1.55;
+  transform: translate3d(0, calc(var(--p) * -8px), 0);
+}
+
+.journey {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.journey i {
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: var(--line);
+  position: relative;
+  transition: width 420ms var(--ease-out), transform 420ms var(--ease-out);
+}
+
+.journey i::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.journey:hover i {
+  width: 34px;
+  transform: translateX(5px);
+}
+
+.route {
+  position: absolute;
+  z-index: var(--z-route);
+  left: var(--page-x);
+  right: var(--page-x);
+  bottom: 2.4rem;
+  display: grid;
+  gap: 10px;
+}
+
+.route-line {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--line) 0%,
+    var(--line-metal) 62%,
+    var(--runway-point) 100%
+  );
+  transform: scaleX(var(--route));
+  transform-origin: left;
+}
+
+.route-marks {
+  display: flex;
+  gap: 1.6rem;
+  margin: 0;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--titanium);
+}
+
+.modes {
+  display: flex;
+  margin-top: 26px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--titanium);
+  transform: translate3d(0, calc(var(--p) * -6px), 0);
+}
+
+.modes span + span::before {
+  content: "/";
+  margin: 0 0.75em;
+  color: color-mix(in srgb, var(--champagne) 50%, transparent);
+}
+
+[data-in] {
+  opacity: 0;
+}
+
+[data-in].is-on {
+  opacity: 1;
+}
+
+/* ============================================================
+   01 / THE TRANSFER
+   Hybrid editorial chapter. Scale varies by hierarchy level:
+   L1 open / motion / close, L2 arrive / cabin / on-time, L3 detail.
+   ============================================================ */
+
+.transfer {
+  position: relative;
+  /* charcoal at the road, opening toward executive neutral by the close */
+  background:
+    linear-gradient(180deg, var(--piano) 0%, #0b0e11 22%, #101418 62%, #161b20 100%);
+  padding-bottom: 4vh;
+}
+
+/* --- HERO handoff: runway becomes road ------------------------------- */
+.tr-approach {
+  position: relative;
+  height: 9vh;
+  min-height: 70px;
+  overflow: hidden;
+  /* piano black resolving downward into wet asphalt, no hard edge */
+  background:
+    linear-gradient(180deg, var(--piano) 0%, rgba(11, 14, 17, 0.86) 46%, #0b0e11 100%),
+    linear-gradient(102deg, transparent 34%, rgba(36, 41, 45, 0.5) 58%, transparent 78%);
+}
+
+/* smoked-glass sheen: the apron's light becoming a reflection on the road */
+.tr-approach-sheen {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64%;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--champagne) 7%, transparent) 58%,
+      transparent 100%
+    ),
+    repeating-linear-gradient(90deg, transparent 0 96px, rgba(242, 239, 232, 0.02) 96px 97px);
+  mask-image: linear-gradient(180deg, transparent, #000 42%, transparent);
+}
+
+/* --- shared type ------------------------------------------------------ */
+.tr-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--titanium);
+}
+
+.tr-eyebrow span {
+  color: var(--champagne);
+}
+
+.tr-title,
+.tr-close-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.tr-title {
+  margin-top: 18px;
+  font-size: clamp(4rem, 7vw, 8rem);
+}
+
+.tr-close-title {
+  font-size: clamp(3.7rem, 6.4vw, 7.2rem);
+}
+
+.tr-line {
+  display: block;
+  overflow: clip;
+  width: max-content;
+  max-width: 100%;
+}
+
+.tr-line > span {
+  display: block;
+  transform: translate3d(0, 108%, 0);
+  transition: transform 1000ms var(--ease-out);
+}
+
+[data-rv].is-in .tr-line > span {
+  transform: none;
+}
+
+[data-rv].is-in .tr-line:nth-child(2) > span {
+  transition-delay: 110ms;
+}
+
+.tr-support {
+  max-width: 30rem;
+  margin: 18px 0 0;
+  font-size: clamp(0.98rem, 1.05vw, 1.1rem);
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--ivory) 76%, var(--titanium));
+}
+
+.tr-micro {
+  margin: 20px 0 0;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--titanium);
+}
+
+.tr-state-key {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--champagne);
+}
+
+.tr-statement {
+  margin: 12px 0 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  font-size: clamp(1.6rem, 2.4vw, 2.6rem);
+}
+
+.tr-statement--sm {
+  font-size: clamp(1.35rem, 1.9vw, 2rem);
+  letter-spacing: -0.012em;
+}
+
+.tr-statement--lg {
+  font-size: clamp(3.5rem, 6vw, 7rem);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+}
+
+/* --- route line continuity: a datum, never a tracker ------------------ */
+.tr-datum {
+  display: block;
+  height: 1px;
+  margin-top: 22px;
+  background: linear-gradient(90deg, var(--line) 0%, var(--line-metal) 68%, transparent 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1100ms var(--ease-soft);
+}
+
+.tr-datum[data-datum="short"] {
+  width: min(190px, 38%);
+}
+
+.tr-datum[data-datum="long"] {
+  width: min(420px, 62%);
+}
+
+.tr-datum[data-datum="settle"] {
+  width: min(280px, 46%);
+  background: linear-gradient(90deg, var(--line) 0%, var(--line-metal) 52%, var(--runway-point) 100%);
+}
+
+[data-rv].is-in .tr-datum {
+  transform: scaleX(1);
+}
+
+/* --- reveal primitive ------------------------------------------------- */
+[data-rv] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 900ms var(--ease-out), transform 900ms var(--ease-out);
+}
+
+[data-rv].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- figures ---------------------------------------------------------- */
+.tr-fig {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--piano);
+}
+
+.tr-fig img,
+.tr-video,
+.tr-video-still {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* clip reveal: the frame opens, the picture inside never fakes a camera move */
+.tr-fig::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--piano);
+  transform-origin: bottom;
+  transition: transform 1100ms var(--ease-soft);
+  pointer-events: none;
+}
+
+[data-rv].is-in .tr-fig::after,
+[data-rv].tr-fig.is-in::after {
+  transform: scaleY(0);
+}
+
+/* --- opening block ---------------------------------------------------- */
+.tr-open {
+  padding: 3.4vh var(--page-x) 2.2vh;
+}
+
+/* ponytail: level-1 fields are sized in vh, not aspect-ratio. The chapter has a
+   290-360vh budget across nine visual blocks, and object-fit + the per-asset
+   object-position below already own the crop, so height is the free variable. */
+.tr-fig--open {
+  /* asymmetric field: inset from the left, bleeding off the right edge */
+  margin-left: var(--page-x);
+  width: calc(100% - var(--page-x));
+  height: 24vh;
+  min-height: 180px;
+}
+
+.tr-state {
+  position: absolute;
+  left: clamp(1.4rem, 3vw, 3rem);
+  bottom: clamp(1.4rem, 3vw, 2.6rem);
+  z-index: 2;
+}
+
+.tr-state-line {
+  display: block;
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ivory) 84%, var(--titanium));
+}
+
+/* --- two-part editorial blocks ---------------------------------------- */
+.tr-block {
+  display: grid;
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4.5rem);
+  padding: 3vh var(--page-x);
+  --fig: 22vh;
+}
+
+.tr-block--arrive {
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.42fr);
+}
+
+.tr-fig--arrive {
+  height: var(--fig);
+  min-height: 220px;
+}
+
+/* detail punctuation: deliberately the smallest field in the chapter */
+.tr-block--enter {
+  grid-template-columns: minmax(14rem, 0.44fr) minmax(0, 0.72fr);
+  justify-content: start;
+}
+
+.tr-fig--detail {
+  height: 15vh;
+  min-height: 125px;
+}
+
+.tr-block--cabin {
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.58fr);
+}
+
+.tr-fig--cabin {
+  height: 34vh;
+  min-height: 240px;
+}
+
+/* the dark field the cabin copy floats in */
+.tr-void {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.tr-block--ontime {
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.4fr);
+}
+
+.tr-fig--ontime {
+  height: 21vh;
+  min-height: 165px;
+}
+
+.tr-aside--lead {
+  order: -1;
+}
+
+/* --- the single motion moment ----------------------------------------- */
+.tr-motion {
+  padding: 3vh var(--page-x);
+}
+
+.tr-fig--motion {
+  height: 56vh;
+  min-height: 340px;
+  width: 100%;
+}
+
+/* no transform of any kind on the video element - it is never zoomed,
+   scaled, parallaxed or object-position animated */
+.tr-video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 700ms var(--ease-out);
+}
+
+.tr-video.is-playing {
+  opacity: 1;
+}
+
+.tr-motion-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  /* only the top band, where every frame of the clip is free of the vehicle */
+  background: linear-gradient(
+    180deg,
+    rgba(8, 10, 12, 0.72) 0%,
+    rgba(8, 10, 12, 0.44) 26%,
+    rgba(8, 10, 12, 0.1) 48%,
+    transparent 64%
+  );
+}
+
+.tr-motion-copy {
+  position: absolute;
+  z-index: 2;
+  left: clamp(1.4rem, 3.4vw, 3.4rem);
+  top: clamp(1.6rem, 4vw, 3.4rem);
+  right: clamp(1.4rem, 3.4vw, 3.4rem);
+  /* the line breaks are authored; never let the box re-wrap them */
+  white-space: nowrap;
+}
+
+.tr-motion-copy .tr-statement {
+  margin-top: 16px;
+}
+
+/* --- closing master --------------------------------------------------- */
+.tr-close {
+  position: relative;
+  padding-top: 2vh;
+}
+
+.tr-fig--close {
+  height: 30vh;
+  min-height: 225px;
+  width: 100%;
+}
+
+.tr-close-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 44%,
+    rgba(8, 10, 12, 0.55) 76%,
+    rgba(8, 10, 12, 0.92) 100%
+  );
+}
+
+.tr-close-copy {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(-4rem, -3.2vw, -1.5rem);
+  padding: 0 var(--page-x);
+}
+
+/* --- TRANSFER -> PRIVATE ACCESS handoff -------------------------------- */
+/* charcoal yielding upward to open dawn: road resolving into apron space */
+.tr-egress {
+  height: 10vh;
+  min-height: 80px;
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(29, 37, 45, 0.55) 55%, rgba(38, 47, 56, 0.7) 100%),
+    linear-gradient(180deg, #161b20 0%, #1b232a 100%);
+}
+
+/* --- per-asset crops: each frame protects a different subject ---------- */
+.tr-fig--open img      { object-position: 62% 58%; } /* vehicle stance + reflections */
+.tr-fig--arrive img    { object-position: 56% 25%; } /* full heads + open rear door */
+.tr-fig--detail img    { object-position: 42% 50%; } /* threshold + warm cabin */
+.tr-fig--cabin img     { object-position: 64% 15%; } /* client + cabin depth */
+.tr-fig--motion img,
+.tr-fig--motion video  { object-position: 56% 53%; } /* side profile, tracking clarity */
+.tr-fig--ontime img    { object-position: 58% 28%; } /* full client + chauffeur + destination */
+.tr-fig--close img     { object-position: 50% 28%; } /* client head + limousine + architecture */
+
+/* --- tablet ------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .tr-title {
+    font-size: clamp(3rem, 6.2vw, 5rem);
+  }
+
+  .tr-close-title {
+    font-size: clamp(2.8rem, 5.8vw, 4.6rem);
+  }
+
+  .tr-statement--lg {
+    font-size: clamp(2.4rem, 5.2vw, 4rem);
+  }
+
+  /* relax the asymmetry rather than shrinking desktop proportions */
+  .tr-block--arrive,
+  .tr-block--cabin,
+  .tr-block--ontime {
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.5fr);
+    gap: clamp(1.6rem, 3vw, 2.6rem);
+  }
+
+  .tr-block--enter {
+    grid-template-columns: minmax(11rem, 0.5fr) minmax(0, 1fr);
+  }
+
+  .tr-motion-copy {
+    max-width: 76%;
+  }
+
+  .tr-block {
+    --fig: 21vh;
+  }
+
+  .tr-fig--open   { height: 22vh; }
+  .tr-fig--detail { height: 16vh; }
+  .tr-fig--cabin  { height: 30vh; }
+  .tr-fig--ontime { height: 19vh; }
+  .tr-fig--motion { height: 44vh; }
+  .tr-fig--close  { height: 30vh; }
+}
+
+@media (max-width: 820px) {
+  /* below this the two-part blocks stop earning their asymmetry */
+  .tr-block {
+    grid-template-columns: 1fr !important;
+    gap: clamp(1.4rem, 4vw, 2.4rem);
+    padding-block: clamp(3rem, 8vh, 5.5rem);
+  }
+
+  .tr-aside--lead {
+    order: 0;
+  }
+
+  .tr-fig--open {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* --- mobile: intentional editorial flow, taller crops ------------------ */
+@media (max-width: 767px) {
+  .transfer {
+    padding-bottom: clamp(3.5rem, 9vh, 6rem);
+  }
+
+  .tr-open {
+    padding-top: clamp(2rem, 6vh, 4rem);
+  }
+
+  .tr-title {
+    font-size: clamp(2.4rem, 10.5vw, 3.2rem);
+    letter-spacing: -0.022em;
+  }
+
+  .tr-close-title {
+    font-size: clamp(2.3rem, 10vw, 3rem);
+    letter-spacing: -0.022em;
+  }
+
+  .tr-statement--lg {
+    font-size: clamp(2rem, 8.6vw, 2.7rem);
+    letter-spacing: -0.02em;
+  }
+
+  .tr-statement {
+    font-size: clamp(1.3rem, 5.6vw, 1.7rem);
+  }
+
+  .tr-statement--sm {
+    font-size: clamp(1.15rem, 5vw, 1.5rem);
+  }
+
+  /* the copy stacks under each field here, so the fields themselves carry
+     less height than on desktop while staying portrait-leaning */
+  .tr-block {
+    --fig: 19vh;
+    padding-block: 1.6vh;
+    gap: 1.1rem;
+  }
+
+  .tr-fig--open   { height: 20vh; min-height: 150px; }
+  .tr-fig--detail { height: 15vh; min-height: 118px; }
+  .tr-fig--cabin  { height: 26vh; min-height: 195px; }
+  .tr-fig--ontime { height: 18vh; min-height: 138px; }
+  .tr-fig--motion { height: 32vh; min-height: 225px; }
+  .tr-fig--close  { height: 21vh; min-height: 165px; }
+
+  .tr-approach { height: 7vh; }
+  .tr-egress   { height: 8vh; }
+
+  .tr-open {
+    padding-block: 3vh 1.6vh;
+  }
+
+  .tr-motion {
+    padding-block: 2vh;
+  }
+
+  .tr-support {
+    max-width: 22rem;
+    margin-top: 12px;
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  .tr-micro,
+  .tr-datum {
+    margin-top: 14px;
+  }
+
+  .tr-void {
+    padding-block: 0.6rem;
+  }
+
+  /* recentred for the tall crop, per asset */
+  .tr-fig--open img      { object-position: 70% 60%; }
+  .tr-fig--arrive img    { object-position: 58% 55%; }
+  .tr-fig--detail img    { object-position: 40% 52%; }
+  .tr-fig--cabin img     { object-position: 66% 20%; }
+  .tr-fig--motion img,
+  .tr-fig--motion video  { object-position: 58% 52%; }
+  .tr-fig--ontime img    { object-position: 60% 55%; }
+  .tr-fig--close img     { object-position: 56% 58%; }
+
+  .tr-motion-copy {
+    max-width: 88%;
+  }
+
+  .tr-motion-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 10, 12, 0.72) 0%,
+      rgba(8, 10, 12, 0.3) 40%,
+      transparent 66%
+    );
+  }
+
+  .tr-close-copy {
+    margin-top: clamp(-3rem, -8vw, -1.5rem);
+  }
+
+  .tr-datum[data-datum="long"] {
+    width: min(240px, 70%);
+  }
+}
+
+/* --- reduced motion: the still replaces the clip, narrative intact ----- */
+@media (prefers-reduced-motion: reduce) {
+  [data-rv],
+  .tr-line > span,
+  .tr-datum {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .tr-fig::after {
+    display: none;
+  }
+
+  .tr-video {
+    display: none;
+  }
+
+  .tr-approach-sheen {
+    display: none;
+  }
+}
+
+/* ============================================================
+   02 / PRIVATE ACCESS
+   Architectural editorial chapter. The hierarchy is intentionally uneven:
+   L1 arrival / prepared / motion / close, L2 threshold / expected, L3 detail.
+   ============================================================ */
+
+.access {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background:
+    linear-gradient(
+      180deg,
+      #202932 0%,
+      #111820 13%,
+      #101315 46%,
+      #17191a 67%,
+      #d3d0c8 100%
+    );
+}
+
+/* One stable chapter-level header state. It protects the lockup across both
+   dark glass and bright apron frames without per-image tone flicker. */
+.masthead {
+  transition: background 700ms var(--ease-out);
+}
+
+.masthead.is-access {
+  background: linear-gradient(180deg, rgba(8, 10, 12, 0.68) 0%, rgba(8, 10, 12, 0.18) 64%, transparent 100%);
+}
+
+/* --- TRANSFER -> ACCESS: smoked glass and a horizontal datum --------- */
+.ac-approach {
+  position: relative;
+  height: 10vh;
+  min-height: 76px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #202932 0%, rgba(24, 32, 40, 0.92) 52%, #111820 100%),
+    linear-gradient(94deg, transparent 0 18%, rgba(242, 239, 232, 0.055) 18% 19%, transparent 19% 100%);
+}
+
+.ac-approach-plane {
+  position: absolute;
+  inset: 0 0 0 42%;
+  background: linear-gradient(104deg, transparent 0%, rgba(140, 146, 151, 0.08) 48%, transparent 76%);
+  clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.ac-approach-line {
+  position: absolute;
+  left: var(--page-x);
+  right: var(--page-x);
+  bottom: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--line) 0%, var(--line-metal) 72%, var(--runway-point) 100%);
+}
+
+.ac-route-marks {
+  position: absolute;
+  left: var(--page-x);
+  right: var(--page-x);
+  bottom: 8px;
+  display: flex;
+  gap: 1.8rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ivory) 48%, var(--titanium));
+}
+
+/* --- shared language -------------------------------------------------- */
+.ac-eyebrow,
+.ac-state {
+  display: block;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--runway) 78%, var(--ivory));
+}
+
+.ac-eyebrow span {
+  color: var(--ivory);
+}
+
+.ac-title,
+.ac-close-title,
+.ac-statement {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.ac-title {
+  margin-top: 15px;
+  font-size: clamp(4.3rem, 6.55vw, 8.2rem);
+  line-height: 0.88;
+  letter-spacing: -0.043em;
+}
+
+.ac-close-title {
+  font-size: clamp(4rem, 6.3vw, 7.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.042em;
+}
+
+.ac-line {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: clip;
+}
+
+.ac-line > span {
+  display: block;
+  transform: translate3d(0, 108%, 0);
+  transition: transform 1000ms var(--ease-out);
+}
+
+[data-rv].is-in .ac-line > span {
+  transform: none;
+}
+
+[data-rv].is-in .ac-line:nth-child(2) > span {
+  transition-delay: 100ms;
+}
+
+[data-rv].is-in .ac-line:nth-child(3) > span {
+  transition-delay: 180ms;
+}
+
+.ac-support {
+  max-width: 31rem;
+  margin: 18px 0 0;
+  font-size: clamp(0.96rem, 1.05vw, 1.1rem);
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--ivory) 80%, var(--titanium));
+}
+
+.ac-statement {
+  margin-top: 13px;
+  font-size: clamp(2rem, 3.5vw, 4.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.ac-statement--hero {
+  font-size: clamp(3.5rem, 6vw, 6.8rem);
+  line-height: 0.91;
+  letter-spacing: -0.04em;
+}
+
+.ac-statement--compact {
+  font-size: clamp(1.65rem, 2.65vw, 3.1rem);
+}
+
+.ac-statement--board {
+  font-size: clamp(2rem, 3.3vw, 4rem);
+}
+
+.ac-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.ac-rule {
+  display: block;
+  width: min(260px, 64%);
+  height: 1px;
+  margin-top: 24px;
+  background: linear-gradient(90deg, var(--line) 0%, var(--line-metal) 78%, transparent 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1100ms var(--ease-soft);
+}
+
+[data-rv].is-in .ac-rule {
+  transform: scaleX(1);
+}
+
+/* --- figures: a mask reveals the frame; the image itself does not zoom */
+.ac-fig {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--piano);
+}
+
+.ac-fig > img:not(.ac-video-still) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ac-fig::after {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+  background: #10151a;
+  transform-origin: bottom;
+  transition: transform 1100ms var(--ease-soft);
+}
+
+[data-rv].is-in .ac-fig::after {
+  transform: scaleY(0);
+}
+
+/* --- ARRIVE: copy occupies the terminal's actual dark negative space -- */
+.ac-open {
+  padding-bottom: 2vh;
+}
+
+.ac-fig--open {
+  width: calc(100% - var(--page-x));
+  height: 45vh;
+  min-height: 360px;
+  margin-left: var(--page-x);
+}
+
+.ac-open-scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(8, 10, 12, 0.84) 0%, rgba(8, 10, 12, 0.58) 38%, transparent 69%),
+    linear-gradient(180deg, rgba(8, 10, 12, 0.28) 0%, transparent 42%, rgba(8, 10, 12, 0.46) 100%);
+}
+
+.ac-open-copy {
+  position: absolute;
+  z-index: 2;
+  left: clamp(1.5rem, 3.5vw, 3.8rem);
+  top: clamp(1.6rem, 4.2vh, 3.5rem);
+  right: clamp(1.5rem, 3.5vw, 3.8rem);
+}
+
+.ac-open-copy .ac-state {
+  margin-top: clamp(1.2rem, 2.5vh, 2.2rem);
+}
+
+/* --- ENTER / EXPECTED: opposing architectural spreads ---------------- */
+.ac-block {
+  display: grid;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 6rem);
+  padding: 2vh var(--page-x);
+}
+
+.ac-block--enter {
+  grid-template-columns: minmax(15rem, 0.42fr) minmax(0, 1fr);
+  padding-right: 0;
+}
+
+.ac-fig--enter {
+  height: 35vh;
+  min-height: 280px;
+}
+
+.ac-copy--threshold {
+  padding-left: clamp(0rem, 2vw, 2rem);
+}
+
+.ac-block--expected {
+  grid-template-columns: minmax(0, 0.98fr) minmax(16rem, 0.46fr);
+  padding-left: 0;
+}
+
+.ac-fig--expected {
+  height: 33vh;
+  min-height: 265px;
+}
+
+.ac-copy--expected {
+  padding-right: clamp(0rem, 2vw, 2rem);
+}
+
+/* --- PREPARED: one quiet, wide time-ownership composition ------------- */
+.ac-prepared {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.38fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3.2rem);
+  padding: 2vh 0 2vh var(--page-x);
+}
+
+.ac-fig--prepared {
+  height: 43vh;
+  min-height: 340px;
+}
+
+.ac-copy--prepared {
+  padding-left: clamp(0rem, 2vw, 2rem);
+}
+
+.ac-rule--wide {
+  position: absolute;
+  z-index: 3;
+  left: var(--page-x);
+  right: var(--page-x);
+  bottom: calc(2vh + 18px);
+  width: auto;
+  margin: 0;
+  background: linear-gradient(90deg, var(--line) 0%, var(--line-metal) 70%, var(--runway-point) 100%);
+}
+
+/* --- HANDLED: deliberate scale compression ---------------------------- */
+.ac-block--handled {
+  grid-template-columns: minmax(16rem, 0.58fr) minmax(0, 0.78fr);
+  padding-left: clamp(var(--page-x), 10vw, 10rem);
+  padding-right: clamp(var(--page-x), 8vw, 8rem);
+}
+
+.ac-fig--handled {
+  height: 28vh;
+  min-height: 220px;
+}
+
+.ac-copy--handled {
+  align-self: end;
+  padding-bottom: clamp(1rem, 3vh, 2.5rem);
+}
+
+/* --- BOARD: source-aspect motion, one playback, no synthetic camera --- */
+.ac-motion {
+  position: relative;
+  padding: 2vh 0;
+  opacity: 0;
+  transition: opacity 900ms var(--ease-out);
+  /* Do not inherit the shared 18px reveal translation: that would translate
+     the footage through its ancestor and violate the faithful-render rule. */
+  transform: none;
+}
+
+.ac-motion.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.ac-motion-heading {
+  position: absolute;
+  z-index: 3;
+  left: auto;
+  right: var(--page-x);
+  top: clamp(2rem, 5vh, 4.5rem);
+  max-width: 32rem;
+  padding: clamp(1.2rem, 2.5vw, 2.2rem);
+  background: linear-gradient(135deg, rgba(8, 10, 12, 0.86), rgba(8, 10, 12, 0.38) 72%, transparent);
+}
+
+.ac-fig--motion {
+  width: 76vw;
+  max-width: 1380px;
+  aspect-ratio: 120 / 68;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.ac-video-still,
+.ac-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 50%;
+  background: var(--piano);
+}
+
+/* Absolute video rule: only opacity changes. No scale, transform, parallax,
+   translated wrapper, perspective, zoom, or animated crop is applied. */
+.ac-video {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 650ms var(--ease-out);
+}
+
+.ac-video.is-playing,
+.ac-video.is-held {
+  opacity: 1;
+}
+
+.ac-motion.is-failed .ac-video {
+  display: none;
+}
+
+/* --- closing master: stillness and sky after motion ------------------- */
+.ac-close {
+  position: relative;
+  padding-top: 2vh;
+}
+
+.ac-fig--close {
+  width: 100%;
+  height: 50vh;
+  min-height: 390px;
+}
+
+.ac-close-scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(8, 10, 12, 0.62) 0%, rgba(8, 10, 12, 0.2) 48%, transparent 70%),
+    linear-gradient(180deg, rgba(8, 10, 12, 0.16) 0%, transparent 56%, rgba(8, 10, 12, 0.34) 100%);
+}
+
+.ac-close-copy {
+  position: absolute;
+  z-index: 2;
+  left: var(--page-x);
+  top: clamp(2.4rem, 7vh, 6rem);
+  width: min(65vw, 960px);
+}
+
+.ac-rule--closing {
+  width: calc(100% - (2 * var(--page-x)));
+  margin: clamp(2rem, 4vh, 3.5rem) var(--page-x) 0;
+  background: linear-gradient(90deg, var(--line) 0%, var(--line-metal) 54%, var(--runway-point) 100%);
+}
+
+/* --- ACCESS -> ALTITUDE: only the boundary, never an AIR section ------ */
+.ac-egress {
+  position: relative;
+  min-height: 18vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--page-x) clamp(2rem, 5vh, 4rem);
+  background:
+    linear-gradient(180deg, rgba(211, 208, 200, 0) 0%, rgba(191, 197, 201, 0.88) 56%, #aeb8c0 100%),
+    linear-gradient(96deg, #c9c7c0 0%, #9eabb5 100%);
+}
+
+.ac-egress::before {
+  content: "";
+  position: absolute;
+  left: var(--page-x);
+  right: var(--page-x);
+  top: 42%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(8, 10, 12, 0.5), rgba(8, 10, 12, 0.16) 72%, transparent);
+}
+
+.ac-egress p {
+  display: flex;
+  align-items: baseline;
+  gap: 1.4rem;
+  margin: 0;
+  color: var(--navy);
+  text-transform: uppercase;
+}
+
+.ac-egress span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+}
+
+.ac-egress b {
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.after-access {
+  min-height: 1px;
+  background: #aeb8c0;
+}
+
+/* --- per-asset crops: protect the causal relationship in every frame -- */
+.ac-fig--open img       { object-position: 57% 54%; } /* terminal + client + limousine */
+.ac-fig--enter img      { object-position: 57% 51%; } /* smoked glass + host + client */
+.ac-fig--expected img   { object-position: 65% 20%; } /* full heads + client/host continuity */
+.ac-fig--prepared img   { object-position: 53% 52%; } /* jet through glass + seated client */
+.ac-fig--handled img    { object-position: 67% 54%; } /* service detail + aircraft depth */
+.ac-fig--close img      { object-position: 60% 54%; } /* sky + terminal + client + jet */
+
+/* --- tablet: reduce overlap and rebalance, do not shrink coordinates --- */
+@media (max-width: 1024px) {
+  .ac-title {
+    font-size: clamp(3.5rem, 7vw, 5rem);
+  }
+
+  .ac-close-title {
+    font-size: clamp(3.2rem, 6.5vw, 4.8rem);
+  }
+
+  .ac-statement--hero {
+    font-size: clamp(3rem, 5.8vw, 4.8rem);
+  }
+
+  .ac-approach       { height: 9vh; }
+  .ac-fig--open      { height: 38vh; min-height: 330px; }
+  .ac-fig--enter     { height: 31vh; min-height: 270px; }
+  .ac-fig--expected  { height: 29vh; min-height: 250px; }
+  .ac-fig--prepared  { height: 37vh; min-height: 320px; }
+  .ac-fig--handled   { height: 24vh; min-height: 215px; }
+  .ac-fig--close     { height: 41vh; min-height: 360px; }
+
+  .ac-block--enter,
+  .ac-prepared {
+    grid-template-columns: minmax(13rem, 0.44fr) minmax(0, 1fr);
+  }
+
+  .ac-block--expected {
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.5fr);
+  }
+
+  .ac-block--handled {
+    grid-template-columns: minmax(14rem, 0.66fr) minmax(0, 0.9fr);
+    padding-inline: clamp(var(--page-x), 6vw, 5rem);
+  }
+
+  .ac-fig--motion {
+    width: 84vw;
+  }
+
+  .ac-motion-heading {
+    max-width: 26rem;
+  }
+}
+
+@media (max-width: 820px) {
+  .ac-block,
+  .ac-prepared {
+    gap: clamp(1.4rem, 3vw, 2.2rem);
+  }
+
+  .ac-block--enter,
+  .ac-prepared {
+    grid-template-columns: minmax(11rem, 0.45fr) minmax(0, 1fr);
+  }
+
+  .ac-block--expected {
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, 0.5fr);
+  }
+
+  .ac-statement {
+    font-size: clamp(1.65rem, 3.8vw, 2.4rem);
+  }
+
+  .ac-statement--hero {
+    font-size: clamp(2.55rem, 5.9vw, 3.7rem);
+  }
+
+  .ac-motion-heading {
+    top: 1.5rem;
+    max-width: 22rem;
+  }
+}
+
+/* --- mobile: intentional editorial sequence and protected crops ------- */
+@media (max-width: 767px) {
+  .ac-approach {
+    height: 8vh;
+    min-height: 62px;
+  }
+
+  .ac-route-marks {
+    gap: 1rem;
+  }
+
+  .ac-open {
+    padding-bottom: 1vh;
+  }
+
+  .ac-fig--open {
+    width: 100%;
+    height: 38vh;
+    min-height: 310px;
+    margin: 0;
+  }
+
+  .ac-open-copy {
+    left: var(--page-x);
+    top: clamp(1.4rem, 4vh, 2.4rem);
+    right: var(--page-x);
+  }
+
+  .ac-title {
+    margin-top: 12px;
+    font-size: clamp(2.45rem, 11.4vw, 3.5rem);
+    line-height: 0.91;
+    letter-spacing: -0.038em;
+  }
+
+  .ac-support {
+    max-width: 20rem;
+    margin-top: 13px;
+    font-size: 0.92rem;
+  }
+
+  .ac-open-copy .ac-state {
+    margin-top: 1.2rem;
+  }
+
+  .ac-block,
+  .ac-prepared {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1.2vh var(--page-x);
+  }
+
+  .ac-block--enter .ac-copy,
+  .ac-block--expected .ac-copy,
+  .ac-prepared .ac-copy,
+  .ac-block--handled .ac-copy {
+    order: 2;
+    padding: 0;
+  }
+
+  .ac-fig--enter,
+  .ac-fig--expected,
+  .ac-fig--prepared,
+  .ac-fig--handled {
+    order: 1;
+    width: 100%;
+  }
+
+  .ac-fig--enter     { height: 21vh; min-height: 175px; }
+  .ac-fig--expected  { height: 22vh; min-height: 185px; }
+  .ac-fig--prepared  { height: 28vh; min-height: 235px; }
+  .ac-fig--handled   { height: 19vh; min-height: 158px; }
+
+  .ac-statement {
+    margin-top: 9px;
+    font-size: clamp(1.55rem, 7.2vw, 2.15rem);
+  }
+
+  .ac-statement--hero {
+    font-size: clamp(2.65rem, 11.5vw, 3.5rem);
+  }
+
+  .ac-statement--compact {
+    font-size: clamp(1.45rem, 6.6vw, 2rem);
+  }
+
+  .ac-rule {
+    margin-top: 15px;
+  }
+
+  .ac-rule--wide {
+    display: none;
+  }
+
+  .ac-motion {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5vh var(--page-x);
+  }
+
+  .ac-motion-heading {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    order: 2;
+    max-width: none;
+    margin-left: auto;
+    padding: 1rem 0 0;
+    text-align: right;
+    background: none;
+  }
+
+  .ac-statement--board {
+    font-size: clamp(1.75rem, 7.8vw, 2.35rem);
+  }
+
+  .ac-fig--motion {
+    order: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .ac-close {
+    padding-top: 1vh;
+  }
+
+  .ac-fig--close {
+    height: 32vh;
+    min-height: 265px;
+  }
+
+  .ac-close-copy {
+    top: clamp(1.8rem, 5vh, 3rem);
+    width: calc(100% - (2 * var(--page-x)));
+  }
+
+  .ac-close-title {
+    font-size: clamp(2.6rem, 11.2vw, 3.45rem);
+  }
+
+  .ac-rule--closing {
+    margin-top: 1.6rem;
+  }
+
+  .ac-egress {
+    min-height: 10vh;
+    padding-bottom: 1.2rem;
+  }
+
+  .ac-egress p {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  /* Each portrait crop has its own subject axis; none uses generic center. */
+  .ac-fig--open img       { object-position: 62% 54%; }
+  .ac-fig--enter img      { object-position: 59% 51%; }
+  .ac-fig--expected img   { object-position: 72% 50%; }
+  .ac-fig--prepared img   { object-position: 58% 52%; }
+  .ac-fig--handled img    { object-position: 68% 54%; }
+  .ac-fig--close img      { object-position: 72% 54%; }
+}
+
+/* --- reduced motion: every causal state remains, motion becomes still -- */
+@media (prefers-reduced-motion: reduce) {
+  .ac-line > span,
+  .ac-rule,
+  .ac-motion {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .ac-fig::after,
+  .ac-approach-plane {
+    display: none;
+  }
+
+  .ac-video {
+    display: none;
+  }
+}
+
+/* ============================================================
+   03 / AIR
+   Hybrid cinematic fleet chapter. Capability is shown as one client journey:
+   jet -> altitude -> transfer -> helicopter -> destination.
+   ============================================================ */
+
+.air {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background:
+    linear-gradient(
+      180deg,
+      #aeb8c0 0%,
+      #9fb2c1 18%,
+      #718ba0 34%,
+      #111820 48%,
+      #171b1f 72%,
+      #8d989f 90%,
+      #242a2e 100%
+    );
+}
+
+.masthead.is-air {
+  background: linear-gradient(180deg, rgba(8, 10, 12, 0.72) 0%, rgba(8, 10, 12, 0.2) 64%, transparent 100%);
+}
+
+/* --- ACCESS -> AIR: runway loses architecture and becomes atmosphere -- */
+.air-approach {
+  position: relative;
+  height: 9vh;
+  min-height: 72px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #aeb8c0 0%, #a8b6c0 52%, #9fb2c1 100%),
+    linear-gradient(96deg, rgba(242, 239, 232, 0.28), transparent 56%);
+}
+
+.air-approach-surface {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(112deg, transparent 0 48%, rgba(242, 239, 232, 0.2) 62%, transparent 78%);
+  clip-path: polygon(0 36%, 100% 0, 100% 100%, 0 100%);
+}
+
+.air-route-line {
+  position: absolute;
+  left: var(--page-x);
+  right: var(--page-x);
+  bottom: 27px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(13, 21, 29, 0.56), rgba(13, 21, 29, 0.22) 72%, transparent);
+}
+
+.air-route-marks {
+  position: absolute;
+  left: var(--page-x);
+  right: var(--page-x);
+  bottom: 7px;
+  display: flex;
+  gap: 1.8rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--navy) 72%, var(--titanium));
+}
+
+/* --- shared AIR typography and route datum --------------------------- */
+.air-eyebrow,
+.air-state {
+  display: block;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--runway) 78%, var(--ivory));
+}
+
+.air-eyebrow span {
+  color: currentColor;
+}
+
+.air-title,
+.air-close-title,
+.air-statement {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.air-title {
+  margin-top: 15px;
+  font-size: clamp(4.6rem, 7.4vw, 8.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  color: var(--navy);
+}
+
+.air-close-title {
+  font-size: clamp(4rem, 6.4vw, 7.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.042em;
+  color: var(--ivory);
+}
+
+.air-line {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: clip;
+}
+
+.air-line > span {
+  display: block;
+  transform: translate3d(0, 108%, 0);
+  transition: transform 1000ms var(--ease-out);
+}
+
+[data-rv].is-in .air-line > span {
+  transform: none;
+}
+
+[data-rv].is-in .air-line:nth-child(2) > span {
+  transition-delay: 110ms;
+}
+
+.air-support {
+  max-width: 35rem;
+  margin: 18px 0 0;
+  font-size: clamp(0.96rem, 1.05vw, 1.1rem);
+  line-height: 1.55;
+}
+
+.air-statement {
+  margin-top: 13px;
+  font-size: clamp(2rem, 3.35vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: var(--ivory);
+}
+
+.air-statement--cinematic {
+  font-size: clamp(3.25rem, 5.4vw, 6.4rem);
+  line-height: 0.91;
+  letter-spacing: -0.04em;
+}
+
+.air-statement--compact {
+  font-size: clamp(1.7rem, 2.7vw, 3.2rem);
+}
+
+.air-micro {
+  margin: 11px 0 0;
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.air-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.air-rule {
+  display: block;
+  width: min(280px, 68%);
+  height: 1px;
+  margin-top: 24px;
+  background: linear-gradient(90deg, var(--line) 0%, var(--line-metal) 72%, transparent 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1200ms var(--ease-soft);
+}
+
+[data-rv].is-in .air-rule,
+.air-breath .air-rule {
+  transform: scaleX(1);
+}
+
+/* --- figures: masks move, aircraft and footage do not ---------------- */
+.air-fig {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--piano);
+}
+
+.air-fig > img:not(.air-video-still) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.air-fig::after {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+  background: #9daeba;
+  transform-origin: bottom;
+  transition: transform 1150ms var(--ease-soft);
+}
+
+[data-rv].is-in .air-fig::after {
+  transform: scaleY(0);
+}
+
+/* --- JET: true exterior hero with real left-hand source space -------- */
+.air-open {
+  position: relative;
+  padding-bottom: 1vh;
+}
+
+.air-fig--open {
+  width: calc(100% - var(--page-x));
+  height: 44vh;
+  min-height: 360px;
+  margin-left: var(--page-x);
+}
+
+.air-open-scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(242, 239, 232, 0.42) 0%, rgba(242, 239, 232, 0.12) 40%, transparent 65%),
+    linear-gradient(180deg, rgba(13, 21, 29, 0.06), transparent 62%, rgba(13, 21, 29, 0.24));
+}
+
+.air-open-copy {
+  position: absolute;
+  z-index: 2;
+  left: clamp(1.5rem, 3.5vw, 3.8rem);
+  top: clamp(1.8rem, 4.2vh, 3.8rem);
+  width: min(43vw, 680px);
+  color: var(--navy);
+}
+
+.air-open-copy .air-eyebrow,
+.air-open-copy .air-state {
+  color: color-mix(in srgb, var(--runway) 54%, var(--navy));
+}
+
+.air-open-copy .air-support {
+  color: color-mix(in srgb, var(--navy) 82%, var(--titanium));
+}
+
+.air-open-state {
+  position: absolute;
+  z-index: 2;
+  left: clamp(calc(var(--page-x) + 1.5rem), calc(var(--page-x) + 3.5vw), calc(var(--page-x) + 3.8rem));
+  bottom: clamp(1.5rem, 4vh, 3rem);
+  color: color-mix(in srgb, var(--runway) 54%, var(--navy));
+}
+
+/* --- CABIN: dark timber field against the intimate client frame ------ */
+.air-block {
+  display: grid;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 6rem);
+  padding: 1vh var(--page-x);
+}
+
+.air-block--jet-cabin {
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.44fr);
+  padding-left: 0;
+  background: #11171c;
+}
+
+.air-fig--jet-cabin {
+  height: 30vh;
+  min-height: 260px;
+}
+
+.air-copy--jet-cabin {
+  padding-right: clamp(0rem, 2vw, 2rem);
+}
+
+/* --- AIRBORNE: first motion opens the page into altitude -------------- */
+.air-motion {
+  position: relative;
+  opacity: 0;
+  transition: opacity 900ms var(--ease-out);
+  transform: none;
+}
+
+.air-motion.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.air-motion--jet {
+  padding: 1vh 0;
+  background: linear-gradient(180deg, #829cb1 0%, #91aabd 100%);
+}
+
+.air-fig--jet-motion {
+  width: 84vw;
+  max-width: 1480px;
+  aspect-ratio: 120 / 68;
+  margin-left: auto;
+}
+
+.air-motion-copy {
+  position: absolute;
+  z-index: 3;
+  max-width: 34rem;
+  padding: clamp(1.2rem, 2.5vw, 2.4rem);
+}
+
+.air-motion-copy--jet {
+  left: var(--page-x);
+  top: clamp(2rem, 7vh, 6rem);
+  background: linear-gradient(135deg, rgba(13, 21, 29, 0.8), rgba(13, 21, 29, 0.24) 72%, transparent);
+}
+
+.air-video-still,
+.air-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 50%;
+  background: var(--piano);
+}
+
+/* Absolute AIR video rule: opacity only. No scale, transform, translated
+   ancestor, parallax, perspective, object-position animation, or crop. */
+.air-video {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 650ms var(--ease-out);
+}
+
+.air-video.is-playing,
+.air-video.is-held {
+  opacity: 1;
+}
+
+.air-motion.is-failed .air-video {
+  display: none;
+}
+
+.air-breath {
+  position: relative;
+  height: 5vh;
+  min-height: 40px;
+  background: linear-gradient(180deg, #91aabd 0%, #788fa1 100%);
+}
+
+.air-rule--flight {
+  position: absolute;
+  left: var(--page-x);
+  right: var(--page-x);
+  top: 50%;
+  width: auto;
+  margin: 0;
+  background: linear-gradient(90deg, rgba(242, 239, 232, 0.58), rgba(242, 239, 232, 0.16) 82%, transparent);
+}
+
+/* --- TRANSFER: one image holds jet, client, and helicopter causality -- */
+.air-transfer {
+  position: relative;
+  padding: 1vh 0;
+  background: #28333c;
+}
+
+.air-fig--transfer {
+  width: 100%;
+  height: 40vh;
+  min-height: 340px;
+}
+
+.air-transfer-scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 0 48%, rgba(8, 10, 12, 0.2) 74%, rgba(8, 10, 12, 0.62) 100%),
+    linear-gradient(90deg, rgba(8, 10, 12, 0.32), transparent 50%);
+}
+
+.air-transfer-copy {
+  position: absolute;
+  z-index: 2;
+  left: var(--page-x);
+  bottom: clamp(2.2rem, 6vh, 5.5rem);
+  max-width: 41rem;
+}
+
+.air-transfer-copy .air-statement {
+  font-size: clamp(2.5rem, 4.2vw, 5rem);
+}
+
+.air-rule--transfer {
+  position: absolute;
+  z-index: 3;
+  left: var(--page-x);
+  right: var(--page-x);
+  bottom: calc(1vh + 20px);
+  width: auto;
+  margin: 0;
+  background: linear-gradient(90deg, var(--line) 0%, var(--line-metal) 48%, var(--runway-point) 72%, var(--line) 100%);
+}
+
+/* --- FINAL LEG: glazing carries cabin -> client -> destination -------- */
+.air-block--heli-cabin {
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.48fr);
+  padding-left: 0;
+  background: #101418;
+}
+
+.air-fig--heli-cabin {
+  height: 29vh;
+  min-height: 250px;
+}
+
+.air-copy--heli-cabin {
+  padding-right: clamp(0rem, 2vw, 2rem);
+}
+
+/* --- FINAL APPROACH: closer, offset, more architectural than flight --- */
+.air-motion--helicopter {
+  padding: 1vh 0;
+  background: linear-gradient(180deg, #202830 0%, #313a41 100%);
+}
+
+.air-fig--heli-motion {
+  width: 76vw;
+  max-width: 1360px;
+  aspect-ratio: 120 / 68;
+  margin-right: auto;
+}
+
+.air-motion-copy--helicopter {
+  right: var(--page-x);
+  top: clamp(2rem, 6vh, 5rem);
+  background: linear-gradient(135deg, rgba(8, 10, 12, 0.86), rgba(8, 10, 12, 0.32) 72%, transparent);
+}
+
+/* --- ARRIVE: aircraft becomes context, architecture becomes purpose --- */
+.air-block--arrive {
+  grid-template-columns: minmax(15rem, 0.42fr) minmax(0, 1fr);
+  padding-right: 0;
+  background: #333b41;
+}
+
+.air-fig--arrive {
+  height: 26vh;
+  min-height: 230px;
+}
+
+.air-copy--arrive {
+  padding-left: clamp(0rem, 2vw, 2rem);
+}
+
+/* --- closing master: client and architecture own the final frame ------ */
+.air-close {
+  position: relative;
+  padding-top: 1vh;
+  background: #717d85;
+}
+
+.air-fig--close {
+  width: 100%;
+  height: 43vh;
+  min-height: 360px;
+}
+
+.air-close-scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(8, 10, 12, 0.6) 0%, rgba(8, 10, 12, 0.22) 48%, transparent 70%),
+    linear-gradient(180deg, rgba(8, 10, 12, 0.12), transparent 58%, rgba(8, 10, 12, 0.3));
+}
+
+.air-close-copy {
+  position: absolute;
+  z-index: 2;
+  left: var(--page-x);
+  top: clamp(2.4rem, 7vh, 6rem);
+  width: min(70vw, 1080px);
+}
+
+.air-close-copy .air-support {
+  color: color-mix(in srgb, var(--ivory) 82%, var(--titanium));
+}
+
+.air-rule--closing {
+  width: calc(100% - (2 * var(--page-x)));
+  margin: 2vh var(--page-x) 0;
+  background: linear-gradient(90deg, var(--line) 0%, var(--line-metal) 46%, var(--runway-point) 68%, var(--line) 100%);
+}
+
+/* --- AIR -> BUSINESS: architecture expands, actual chapter stops here -- */
+.air-egress {
+  position: relative;
+  min-height: 12vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--page-x) clamp(2rem, 5vh, 4rem);
+  background:
+    linear-gradient(180deg, rgba(36, 42, 46, 0) 0%, rgba(25, 30, 34, 0.82) 58%, #14191d 100%),
+    repeating-linear-gradient(90deg, transparent 0 16%, rgba(242, 239, 232, 0.025) 16% calc(16% + 1px));
+}
+
+.air-egress::before {
+  content: "";
+  position: absolute;
+  left: var(--page-x);
+  right: var(--page-x);
+  top: 42%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--line), rgba(242, 239, 232, 0.08) 72%, transparent);
+}
+
+.air-egress p {
+  display: flex;
+  align-items: baseline;
+  gap: 1.4rem;
+  margin: 0;
+  color: var(--ivory);
+  text-transform: uppercase;
+}
+
+.air-egress span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--titanium);
+}
+
+.air-egress b {
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.after-air {
+  min-height: 1px;
+  background: #14191d;
+}
+
+/* --- per-asset crops: each state protects its causal subjects -------- */
+.air-fig--open img        { object-position: 57% 56%; } /* full jet + open sky */
+.air-fig--jet-cabin img   { object-position: 62% 20%; } /* full head + client + cabin depth */
+.air-fig--transfer img    { object-position: 50% 54%; } /* jet -> client -> helicopter */
+.air-fig--heli-cabin img  { object-position: 58% 50%; } /* client + glazing + city */
+.air-fig--arrive img      { object-position: 64% 54%; } /* helicopter + destination */
+.air-fig--close img       { object-position: 60% 35%; } /* client's face + helicopter + architecture */
+
+@media (min-width: 1025px) and (max-height: 740px) {
+  .air-fig--jet-motion {
+    width: 76vw;
+  }
+
+  .air-fig--heli-motion {
+    width: 68vw;
+  }
+}
+
+/* --- tablet ----------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .air-title {
+    font-size: clamp(3.8rem, 7.4vw, 5.2rem);
+  }
+
+  .air-close-title {
+    font-size: clamp(3.2rem, 6.4vw, 4.8rem);
+  }
+
+  .air-statement--cinematic {
+    font-size: clamp(2.8rem, 5.2vw, 4.4rem);
+  }
+
+  .air-approach          { height: 7vh; }
+  .air-fig--open         { height: 37vh; min-height: 315px; }
+  .air-fig--jet-cabin    { height: 26vh; min-height: 225px; }
+  .air-fig--transfer     { height: 35vh; min-height: 300px; }
+  .air-fig--heli-cabin   { height: 26vh; min-height: 225px; }
+  .air-fig--arrive       { height: 24vh; min-height: 205px; }
+  .air-fig--close        { height: 37vh; min-height: 315px; }
+
+  .air-open-copy {
+    width: min(48vw, 520px);
+  }
+
+  .air-block--jet-cabin,
+  .air-block--heli-cabin {
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.48fr);
+  }
+
+  .air-block--arrive {
+    grid-template-columns: minmax(12rem, 0.46fr) minmax(0, 1fr);
+  }
+
+  .air-fig--jet-motion {
+    width: 88vw;
+  }
+
+  .air-fig--heli-motion {
+    width: 82vw;
+  }
+
+  .air-motion-copy {
+    max-width: 27rem;
+  }
+
+  .air-breath {
+    height: 4vh;
+    min-height: 34px;
+  }
+
+  .air-egress {
+    min-height: 10vh;
+  }
+}
+
+@media (max-width: 820px) {
+  .air-block {
+    gap: clamp(1.3rem, 3vw, 2.2rem);
+  }
+
+  .air-statement {
+    font-size: clamp(1.65rem, 3.8vw, 2.4rem);
+  }
+
+  .air-statement--cinematic {
+    font-size: clamp(2.4rem, 5.5vw, 3.5rem);
+  }
+
+  .air-motion-copy {
+    max-width: 22rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 820px) {
+  .air-transfer {
+    margin-bottom: 10vh;
+  }
+}
+
+/* --- mobile: natural jet -> helicopter -> purpose story -------------- */
+@media (max-width: 767px) {
+  .air-approach {
+    height: 6vh;
+    min-height: 50px;
+  }
+
+  .air-route-marks {
+    gap: 0.9rem;
+  }
+
+  .air-route-marks span:nth-child(3),
+  .air-route-marks span:nth-child(4) {
+    display: none;
+  }
+
+  .air-open {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1vh;
+  }
+
+  .air-fig--open {
+    order: 2;
+    width: 100%;
+    height: 22vh;
+    min-height: 185px;
+    margin: 0;
+  }
+
+  .air-open-copy {
+    position: relative;
+    inset: auto;
+    order: 1;
+    width: 100%;
+    padding: 1.25rem var(--page-x) 1.1rem;
+    background: #aeb8c0;
+  }
+
+  .air-title {
+    margin-top: 11px;
+    font-size: clamp(2.85rem, 12.6vw, 3.8rem);
+  }
+
+  .air-support {
+    max-width: 19rem;
+    margin-top: 12px;
+    font-size: 0.9rem;
+  }
+
+  .air-open-state {
+    position: relative;
+    inset: auto;
+    order: 3;
+    padding: 0.75rem var(--page-x) 0.35rem;
+    background: #aeb8c0;
+  }
+
+  .air-open-scrim {
+    display: none;
+  }
+
+  .air-block {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.9rem;
+    padding: 0.8vh var(--page-x);
+  }
+
+  .air-block .air-fig {
+    order: 1;
+    width: 100%;
+  }
+
+  .air-block .air-copy {
+    order: 2;
+    padding: 0;
+  }
+
+  .air-fig--jet-cabin   { height: 20vh; min-height: 170px; }
+  .air-fig--transfer    { height: 22vh; min-height: 185px; }
+  .air-fig--heli-cabin  { height: 19vh; min-height: 160px; }
+  .air-fig--arrive      { height: 18vh; min-height: 150px; }
+
+  .air-statement {
+    margin-top: 8px;
+    font-size: clamp(1.55rem, 7.2vw, 2.15rem);
+  }
+
+  .air-statement--compact {
+    font-size: clamp(1.4rem, 6.5vw, 1.95rem);
+  }
+
+  .air-rule {
+    margin-top: 14px;
+  }
+
+  .air-motion {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5vh var(--page-x);
+  }
+
+  .air-motion-copy {
+    position: relative;
+    inset: auto;
+    order: 2;
+    max-width: none;
+    padding: 1rem 0 0;
+    background: none;
+  }
+
+  .air-motion-copy--helicopter {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .air-statement--cinematic {
+    font-size: clamp(2.15rem, 9.5vw, 2.9rem);
+  }
+
+  .air-fig--jet-motion,
+  .air-fig--heli-motion {
+    order: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .air-breath {
+    height: 3.5vh;
+    min-height: 30px;
+  }
+
+  .air-transfer {
+    display: flex;
+    flex-direction: column;
+    padding: 0.8vh var(--page-x);
+  }
+
+  .air-transfer-copy {
+    position: relative;
+    inset: auto;
+    order: 2;
+    padding-top: 1rem;
+  }
+
+  .air-transfer-copy .air-statement {
+    font-size: clamp(1.7rem, 7.6vw, 2.3rem);
+  }
+
+  .air-transfer-scrim {
+    display: none;
+  }
+
+  .air-rule--transfer {
+    display: none;
+  }
+
+  .air-close {
+    padding-top: 1vh;
+  }
+
+  .air-fig--close {
+    height: 30vh;
+    min-height: 250px;
+  }
+
+  .air-close-copy {
+    top: clamp(1.8rem, 5vh, 3rem);
+    width: calc(100% - (2 * var(--page-x)));
+  }
+
+  .air-close-title {
+    font-size: clamp(2.5rem, 10.8vw, 3.35rem);
+  }
+
+  .air-rule--closing {
+    margin-top: 1.5rem;
+  }
+
+  .air-egress {
+    min-height: 8vh;
+    padding-bottom: 1rem;
+  }
+
+  .air-egress p {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  /* Explicit mobile focal axes; video remains uncropped at source aspect. */
+  .air-fig--open img        { object-position: 68% 56%; }
+  .air-fig--jet-cabin img   { object-position: 66% 50%; }
+  .air-fig--transfer img    { object-position: 56% 54%; }
+  .air-fig--heli-cabin img  { object-position: 58% 50%; }
+  .air-fig--arrive img      { object-position: 68% 54%; }
+  .air-fig--close img       { object-position: 68% 54%; }
+}
+
+/* --- reduced motion: both films become their approved stills --------- */
+@media (prefers-reduced-motion: reduce) {
+  .air-line > span,
+  .air-rule,
+  .air-motion {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .air-fig::after,
+  .air-approach-surface {
+    display: none;
+  }
+
+  .air-video {
+    display: none;
+  }
+}
+
+.anchor {
+  display: block;
+  height: 1px;
+}
+
+@media (min-width: 900px) {
+  .hero h1 .line:first-child > span {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    height: 400vh;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 7.2vw, 5.4rem);
+  }
+
+  .route-marks {
+    display: none;
+  }
+
+  .hero-copy {
+    bottom: clamp(4.2rem, 10vh, 6.5rem);
+  }
+}
+
+@media (max-width: 820px) {
+  .hero {
+    height: 375vh;
+  }
+
+  .primary-nav,
+  .plan-link {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .masthead {
+    grid-template-columns: 1fr auto;
+  }
+
+  .logo {
+    height: 36px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --nav-h: 62px;
+    --page-x: 1.15rem;
+  }
+
+  .hero {
+    height: 315vh;
+  }
+
+  .hero-stage {
+    min-height: 100dvh;
+  }
+
+  .hero-poster,
+  .hero-video,
+  .hero-fallback {
+    object-position: 50% 40%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.35rem, 11vw, 3.1rem);
+    letter-spacing: -0.02em;
+  }
+
+  .timestamp {
+    top: calc(var(--nav-h) + 14px);
+  }
+
+  .hero-copy {
+    width: min(92vw, 28rem);
+  }
+
+  .route {
+    bottom: 1.5rem;
+  }
+}
+
+@media (max-height: 740px) and (min-width: 768px) {
+  .hero h1 {
+    font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+  }
+
+  .lede {
+    margin-top: 14px;
+  }
+
+  .journey {
+    margin-top: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    height: auto;
+  }
+
+  .hero-stage {
+    position: relative;
+    height: 100dvh;
+  }
+
+  .hero-video {
+    display: none;
+  }
+
+  .hero-fallback,
+  .hero-fallback[hidden] {
+    display: block;
+  }
+
+  [data-in],
+  .hero h1 .line > span {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .route-line {
+    transform: scaleX(1);
+  }
+
+  .grain {
+    display: none;
+  }
+}
+
+/* ============================================================
+   04 / BUSINESS
+   One pinned stage; seven incoming sheets cover fixed prior sheets.
+   The vertical scroll position is the only motion source.
+   ============================================================ */
+
+.business {
+  position: relative;
+  height: 740vh;
+  height: 740svh;
+  --business-route: 0.2;
+  background: #0a0d10;
+}
+
+.business-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0a0d10;
+}
+
+.business-panel {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--piano);
+  color: var(--ivory);
+  transform: translate3d(var(--business-x, 100%), 0, 0);
+  backface-visibility: hidden;
+  contain: layout paint;
+}
+
+.business.is-engaged .business-panel:not(.business-panel--01) {
+  will-change: transform;
+}
+
+.business-panel--01 {
+  z-index: 10;
+  --business-x: 0%;
+}
+
+.business-panel--02 { z-index: 20; }
+.business-panel--03 { z-index: 30; }
+.business-panel--04 { z-index: 40; }
+.business-panel--05 { z-index: 50; }
+.business-panel--06 { z-index: 60; }
+.business-panel--07 { z-index: 70; }
+.business-panel--08 { z-index: 80; }
+
+.business-panel:not(.business-panel--01)::before {
+  content: "";
+  position: absolute;
+  z-index: 8;
+  inset: 0 auto 0 0;
+  width: 1px;
+  pointer-events: none;
+  background: rgba(242, 239, 232, 0.32);
+  box-shadow: -1.4vw 0 2.6vw rgba(0, 0, 0, 0.13);
+}
+
+.business-media {
+  position: absolute;
+  z-index: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #0a0d10;
+}
+
+.business-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+}
+
+.business-media--full {
+  inset: 0;
+}
+
+.business-scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.business-copy {
+  position: absolute;
+  z-index: 3;
+}
+
+.business-eyebrow,
+.business-state,
+.business-index,
+.business-route-labels,
+.business-egress span {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.business-eyebrow,
+.business-state {
+  margin: 0;
+  font-size: 9px;
+  line-height: 1.4;
+  letter-spacing: 0.34em;
+}
+
+.business-eyebrow span {
+  color: currentColor;
+}
+
+.business-title,
+.business-statement,
+.business-closing {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.business-title span,
+.business-statement span,
+.business-closing span {
+  display: block;
+}
+
+.business-title {
+  margin-top: 16px;
+  font-size: clamp(4.5rem, 7.25vw, 8.7rem);
+}
+
+.business-statement {
+  margin-top: 14px;
+  font-size: clamp(3.2rem, 5.25vw, 6.3rem);
+}
+
+.business-support {
+  max-width: 33rem;
+  margin: 20px 0 0;
+  font-size: clamp(0.94rem, 1.05vw, 1.08rem);
+  line-height: 1.55;
+}
+
+.business-copy-rule {
+  display: block;
+  width: min(240px, 80%);
+  height: 1px;
+  margin-top: 22px;
+  background: linear-gradient(90deg, var(--line), var(--line-metal) 70%, transparent);
+}
+
+/* ARRIVE — source sky is the opening field; architecture owns the right. */
+.business-panel--01 .business-scrim {
+  background:
+    linear-gradient(90deg, rgba(242, 239, 232, 0.2) 0%, rgba(242, 239, 232, 0.1) 40%, transparent 61%),
+    linear-gradient(180deg, transparent 45%, rgba(8, 10, 12, 0.14) 74%, rgba(8, 10, 12, 0.28));
+}
+
+.business-copy--01 {
+  left: var(--page-x);
+  bottom: clamp(7.8rem, 16vh, 10.5rem);
+  width: min(52vw, 840px);
+  color: var(--navy);
+}
+
+.business-copy--01 .business-support {
+  color: color-mix(in srgb, var(--navy) 84%, var(--titanium));
+}
+
+.business-copy--01 .business-state {
+  margin-top: 24px;
+  color: color-mix(in srgb, var(--navy) 76%, var(--champagne));
+}
+
+/* ENTER — copy sits in the monolithic stone field, away from the client. */
+.business-panel--02 .business-scrim {
+  background: linear-gradient(90deg, rgba(8, 10, 12, 0.58), rgba(8, 10, 12, 0.16) 36%, transparent 58%);
+}
+
+.business-copy--02 {
+  left: var(--page-x);
+  top: clamp(8.2rem, 18vh, 12rem);
+  width: min(46vw, 720px);
+}
+
+.business-copy--02 .business-state {
+  color: color-mix(in srgb, var(--champagne) 56%, var(--ivory));
+}
+
+/* PREPARE — one right-aligned image plane against a piano-black field. */
+.business-panel--03 {
+  background: #080b0e;
+}
+
+.business-panel--03 .business-media {
+  inset: 0 0 0 auto;
+  width: 86vw;
+}
+
+.business-panel--03 .business-media img {
+  object-position: 58% 50%;
+}
+
+.business-panel--03 .business-scrim {
+  background: linear-gradient(90deg, rgba(8, 10, 12, 0.78), rgba(8, 10, 12, 0.34) 29%, transparent 54%);
+}
+
+.business-copy--03 {
+  left: var(--page-x);
+  top: 50%;
+  width: min(47vw, 720px);
+  transform: translateY(-48%);
+}
+
+.business-copy--03 .business-state {
+  color: color-mix(in srgb, var(--champagne) 50%, var(--ivory));
+}
+
+/* DECIDE — boardroom image is the hero; copy stays out of the faces. */
+.business-panel--04 .business-media img {
+  object-position: 50% 50%;
+}
+
+.business-panel--04 .business-scrim {
+  background:
+    linear-gradient(180deg, transparent 42%, rgba(8, 10, 12, 0.3) 67%, rgba(8, 10, 12, 0.78)),
+    linear-gradient(90deg, rgba(8, 10, 12, 0.22), transparent 42%);
+}
+
+.business-copy--04 {
+  left: var(--page-x);
+  bottom: clamp(7.7rem, 15vh, 10rem);
+  width: min(73vw, 1040px);
+}
+
+.business-copy--04 .business-state {
+  color: color-mix(in srgb, var(--champagne) 48%, var(--ivory));
+}
+
+.business-copy--04 .business-statement {
+  font-size: clamp(3rem, 4.45vw, 5.35rem);
+}
+
+/* THE MOMENT — quiet inset scale break; no headline spectacle. */
+.business-panel--05 {
+  background: linear-gradient(112deg, #07090b 0%, #0d1318 68%, #11171b 100%);
+}
+
+.business-panel--05 .business-media {
+  top: 14vh;
+  right: 4vw;
+  width: 68vw;
+  height: 72vh;
+  height: 72svh;
+}
+
+.business-panel--05 .business-media img {
+  object-position: 53% 50%;
+}
+
+.business-copy--05 {
+  left: var(--page-x);
+  top: 50%;
+  width: min(21vw, 290px);
+  transform: translateY(-50%);
+}
+
+.business-statement--quiet {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.8vw, 2rem);
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+}
+
+/* RESOLVED — approved frame begins the daylight shift. */
+.business-panel--06 .business-scrim {
+  background:
+    linear-gradient(90deg, rgba(8, 10, 12, 0.68), rgba(8, 10, 12, 0.18) 39%, transparent 62%),
+    linear-gradient(180deg, transparent 56%, rgba(8, 10, 12, 0.2));
+}
+
+.business-copy--06 {
+  left: var(--page-x);
+  bottom: clamp(7.8rem, 16vh, 10.5rem);
+  width: min(46vw, 720px);
+}
+
+.business-copy--06 .business-state {
+  color: color-mix(in srgb, var(--champagne) 62%, var(--ivory));
+}
+
+/* DEPART — a slightly inset plane lets the dark chapter field remain. */
+.business-panel--07 {
+  background: #0d1216;
+}
+
+.business-panel--07 .business-media {
+  inset: 0 0 0 auto;
+  width: 91vw;
+}
+
+.business-panel--07 .business-media img {
+  object-position: 58% 50%;
+}
+
+.business-panel--07 .business-scrim {
+  background: linear-gradient(90deg, rgba(8, 10, 12, 0.67), rgba(8, 10, 12, 0.14) 37%, transparent 58%);
+}
+
+.business-copy--07 {
+  left: var(--page-x);
+  top: clamp(8.8rem, 22vh, 14rem);
+  width: min(40vw, 620px);
+}
+
+.business-copy--07 .business-state {
+  color: color-mix(in srgb, var(--champagne) 64%, var(--ivory));
+}
+
+/* Closing master — the warmer open sky owns the statement. */
+.business-panel--08 .business-media img {
+  object-position: 53% 50%;
+}
+
+.business-panel--08 .business-scrim {
+  background:
+    linear-gradient(90deg, rgba(242, 239, 232, 0.29), rgba(242, 239, 232, 0.12) 43%, transparent 65%),
+    linear-gradient(180deg, transparent 46%, rgba(8, 10, 12, 0.12) 74%, rgba(8, 10, 12, 0.3));
+}
+
+.business-copy--08 {
+  left: var(--page-x);
+  top: clamp(8.6rem, 19vh, 12.5rem);
+  width: min(60vw, 940px);
+  color: var(--navy);
+}
+
+.business-closing {
+  font-size: clamp(3.7rem, 6.15vw, 7.4rem);
+}
+
+.business-copy--08 .business-support {
+  color: color-mix(in srgb, var(--navy) 82%, var(--titanium));
+}
+
+/* Persistent editorial datum. It is language, not carousel UI. */
+.business-index {
+  position: absolute;
+  z-index: 90;
+  top: calc(var(--nav-h) + 18px);
+  left: var(--page-x);
+  right: var(--page-x);
+  pointer-events: none;
+  font-size: 8px;
+  line-height: 1.4;
+  letter-spacing: 0.3em;
+  color: var(--ivory);
+  text-shadow: 0 1px 15px rgba(8, 10, 12, 0.75);
+}
+
+.business-index p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 7px;
+}
+
+.business-index > span {
+  color: color-mix(in srgb, var(--ivory) 70%, var(--champagne));
+}
+
+.business-route {
+  position: absolute;
+  z-index: 91;
+  left: var(--page-x);
+  right: var(--page-x);
+  bottom: clamp(1.35rem, 3vh, 2.5rem);
+  pointer-events: none;
+}
+
+.business-route-track {
+  display: block;
+  height: 1px;
+  background: rgba(242, 239, 232, 0.16);
+}
+
+.business-route-track i {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--titanium), var(--line-metal) 76%, var(--ivory));
+  transform: scaleX(var(--business-route));
+  transform-origin: left;
+  transition: transform 420ms var(--ease-soft);
+}
+
+.business-route-labels {
+  display: flex;
+  justify-content: space-between;
+  margin: 9px 0 0;
+  font-size: 7px;
+  letter-spacing: 0.27em;
+  color: rgba(242, 239, 232, 0.6);
+  text-shadow: 0 1px 10px rgba(8, 10, 12, 0.72);
+}
+
+.business-route-labels span {
+  opacity: 0.42;
+  transition: opacity 320ms ease;
+}
+
+.business-route-labels span.is-passed {
+  opacity: 1;
+}
+
+.masthead.is-business {
+  background: linear-gradient(180deg, rgba(8, 10, 12, 0.82) 0%, rgba(8, 10, 12, 0.32) 68%, transparent 100%);
+}
+
+.business-egress {
+  position: relative;
+  min-height: 26vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--page-x) clamp(2.5rem, 6vh, 5rem);
+  background:
+    linear-gradient(180deg, #0a0d10 0%, #15191b 52%, #2b2a27 100%),
+    linear-gradient(108deg, transparent 36%, rgba(166, 141, 105, 0.1) 76%, transparent);
+}
+
+.business-egress::before {
+  content: "";
+  position: absolute;
+  left: var(--page-x);
+  right: var(--page-x);
+  top: 37%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--line), var(--line-metal) 68%, transparent);
+}
+
+.business-egress p {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.business-egress span {
+  font-size: 8px;
+  letter-spacing: 0.32em;
+  color: color-mix(in srgb, var(--titanium) 78%, var(--champagne));
+}
+
+.business-egress b {
+  font-size: clamp(1.3rem, 2.2vw, 2.4rem);
+  font-weight: 300;
+  letter-spacing: -0.015em;
+}
+
+.after-business {
+  background: #2b2a27;
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .business {
+    height: 650vh;
+    height: 650svh;
+  }
+
+  .business-title {
+    font-size: clamp(3.8rem, 7.4vw, 6rem);
+  }
+
+  .business-statement {
+    font-size: clamp(2.8rem, 5.3vw, 4.6rem);
+  }
+
+  .business-panel--03 .business-media { width: 88vw; }
+  .business-panel--05 .business-media { width: 72vw; right: 3vw; }
+  .business-panel--07 .business-media { width: 93vw; }
+  .business-copy--05 { width: min(22vw, 220px); }
+  .business-route-labels { letter-spacing: 0.18em; }
+}
+
+@media (max-height: 740px) and (min-width: 768px) {
+  .business-title { font-size: clamp(3.3rem, 6.6vw, 5.7rem); }
+  .business-statement { font-size: clamp(2.7rem, 4.7vw, 4.4rem); }
+  .business-closing { font-size: clamp(3.1rem, 5.5vw, 5.4rem); }
+  .business-support { margin-top: 13px; }
+  .business-copy--01,
+  .business-copy--04,
+  .business-copy--06 { bottom: 6.7rem; }
+  .business-panel--05 .business-media { top: 12svh; height: 74svh; }
+}
+
+/* Mobile is an intentional vertical editorial chapter, not a trapped pin. */
+@media (max-width: 767px) {
+  .business {
+    height: auto;
+    background: #090c0f;
+  }
+
+  .business-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    overflow: visible;
+    isolation: auto;
+  }
+
+  .business-panel,
+  .business-panel--01,
+  .business-panel--02,
+  .business-panel--03,
+  .business-panel--04,
+  .business-panel--05,
+  .business-panel--06,
+  .business-panel--07,
+  .business-panel--08 {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 0 0 clamp(4.5rem, 14vh, 7rem);
+    overflow: hidden;
+    transform: none;
+    contain: none;
+  }
+
+  .business-panel:not(.business-panel--01)::before {
+    display: none;
+  }
+
+  .business-media,
+  .business-panel--03 .business-media,
+  .business-panel--05 .business-media,
+  .business-panel--07 .business-media {
+    position: relative;
+    inset: auto;
+    order: 1;
+    width: 100%;
+    height: clamp(19rem, 64vw, 29rem);
+    margin: 0;
+    transform: translate3d(24px, 0, 0);
+    opacity: 0;
+    transition: transform 800ms var(--ease-out), opacity 650ms ease;
+  }
+
+  .business-panel.is-in .business-media,
+  .business-panel.is-in .business-copy {
+    transform: none;
+    opacity: 1;
+  }
+
+  .business-panel--01 .business-media { height: min(72svh, 35rem); }
+  .business-panel--03 .business-media { width: 92%; margin-left: auto; }
+  .business-panel--04 .business-media { height: clamp(20rem, 68vw, 31rem); }
+  .business-panel--05 .business-media { width: 82%; height: clamp(17rem, 54vw, 24rem); margin: 0 auto; }
+  .business-panel--07 .business-media { width: 94%; margin-left: auto; }
+  .business-panel--08 .business-media { height: min(68svh, 33rem); }
+
+  .business-panel--01 .business-media img { object-position: 70% 50%; }
+  .business-panel--02 .business-media img { object-position: 66% 50%; }
+  .business-panel--03 .business-media img { object-position: 64% 50%; }
+  .business-panel--04 .business-media img { object-position: 52% 50%; }
+  .business-panel--05 .business-media img { object-position: 61% 50%; }
+  .business-panel--06 .business-media img { object-position: 51% 50%; }
+  .business-panel--07 .business-media img { object-position: 68% 50%; }
+  .business-panel--08 .business-media img { object-position: 68% 50%; }
+
+  .business-copy,
+  .business-copy--01,
+  .business-copy--02,
+  .business-copy--03,
+  .business-copy--04,
+  .business-copy--05,
+  .business-copy--06,
+  .business-copy--07,
+  .business-copy--08 {
+    position: relative;
+    inset: auto;
+    order: 2;
+    width: auto;
+    margin: 0;
+    padding: 1.5rem var(--page-x) 0;
+    color: var(--ivory);
+    transform: translate3d(24px, 0, 0);
+    opacity: 0;
+    transition: transform 800ms 80ms var(--ease-out), opacity 650ms 80ms ease;
+  }
+
+  .business-copy--01 .business-support,
+  .business-copy--08 .business-support {
+    color: color-mix(in srgb, var(--ivory) 78%, var(--titanium));
+  }
+
+  .business-panel--08 .business-copy--08 {
+    color: var(--ivory);
+  }
+
+  .business-title {
+    font-size: clamp(2.8rem, 13.5vw, 4.2rem);
+  }
+
+  .business-statement {
+    font-size: clamp(2.3rem, 10.5vw, 3.4rem);
+  }
+
+  .business-statement--quiet {
+    font-size: clamp(1.25rem, 5.8vw, 1.65rem);
+  }
+
+  .business-closing {
+    font-size: clamp(2.65rem, 12vw, 3.8rem);
+  }
+
+  .business-support {
+    margin-top: 15px;
+  }
+
+  .business-copy--05 {
+    padding-left: 9vw;
+    padding-right: 9vw;
+  }
+
+  .business-index,
+  .business-route {
+    display: none;
+  }
+
+  .business-egress {
+    min-height: 22vh;
+    padding-bottom: 2rem;
+  }
+
+  .business-egress p {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+}
+
+/* Reduced motion uses the same semantic order as mobile at every width. */
+@media (prefers-reduced-motion: reduce) {
+  .business {
+    height: auto;
+  }
+
+  .business-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    overflow: visible;
+    isolation: auto;
+  }
+
+  .business-panel,
+  .business-panel--01,
+  .business-panel--02,
+  .business-panel--03,
+  .business-panel--04,
+  .business-panel--05,
+  .business-panel--06,
+  .business-panel--07,
+  .business-panel--08 {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 0 0 clamp(4.5rem, 12vh, 7rem);
+    overflow: hidden;
+    transform: none;
+    transition: none;
+    contain: none;
+    will-change: auto;
+  }
+
+  .business-panel:not(.business-panel--01)::before {
+    display: none;
+  }
+
+  .business-media,
+  .business-panel--03 .business-media,
+  .business-panel--05 .business-media,
+  .business-panel--07 .business-media {
+    position: relative;
+    inset: auto;
+    order: 1;
+    width: 100%;
+    height: min(62vw, 76svh);
+    margin: 0;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .business-panel--03 .business-media { width: min(88%, 1500px); margin-left: auto; }
+  .business-panel--05 .business-media { width: min(70%, 1180px); margin: 0 auto; }
+  .business-panel--07 .business-media { width: min(92%, 1540px); margin-left: auto; }
+
+  .business-copy,
+  .business-copy--01,
+  .business-copy--02,
+  .business-copy--03,
+  .business-copy--04,
+  .business-copy--05,
+  .business-copy--06,
+  .business-copy--07,
+  .business-copy--08 {
+    position: relative;
+    inset: auto;
+    order: 2;
+    width: min(900px, calc(100% - (2 * var(--page-x))));
+    margin: 0;
+    padding: 1.7rem var(--page-x) 0;
+    color: var(--ivory);
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .business-copy--01 .business-support,
+  .business-copy--08 .business-support {
+    color: color-mix(in srgb, var(--ivory) 78%, var(--titanium));
+  }
+
+  .business-index,
+  .business-route {
+    display: none;
+  }
+
+  .business-route-track i,
+  .business-route-labels span {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   05 / SEA
+   Natural editorial flow: structure releases into horizon.
+   No scene pin, scrub, video, image zoom, or brokerage interface.
+   ============================================================ */
+
+.business-egress {
+  min-height: 24vh;
+  background:
+    linear-gradient(180deg, #0a0d10 0%, #272b2d 45%, #727b7d 78%, #bec7c8 100%),
+    linear-gradient(108deg, transparent 36%, rgba(166, 141, 105, 0.1) 76%, transparent);
+}
+
+.business-egress p {
+  color: var(--navy);
+}
+
+.business-egress span {
+  color: color-mix(in srgb, var(--navy) 70%, var(--champagne));
+}
+
+.sea {
+  position: relative;
+  --sea-route: 0.26;
+  height: 466vh;
+  background:
+    linear-gradient(
+      180deg,
+      #c8d0d0 0%,
+      #ddd7cc 24%,
+      #d9d4c8 39%,
+      #96afba 56%,
+      #c5ad8a 77%,
+      #192b39 100%
+    );
+}
+
+.sea-scene {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 760ms ease, transform 900ms var(--ease-out);
+  contain: layout paint;
+}
+
+.sea-scene.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.sea-scene--01 { height: 68vh; }
+.sea-scene--02 { height: 58vh; }
+.sea-scene--03 { height: 44vh; }
+.sea-scene--04 { height: 40vh; }
+.sea-scene--05 { height: 72vh; }
+.sea-scene--06 { height: 50vh; }
+.sea-scene--07 { height: 66vh; }
+.sea-scene--08 { height: 68vh; }
+
+.sea-media {
+  position: absolute;
+  z-index: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #cbd1cf;
+}
+
+.sea-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+}
+
+.sea-scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sea-copy {
+  position: absolute;
+  z-index: 3;
+}
+
+.sea-eyebrow,
+.sea-state,
+.sea-route,
+.sea-egress span {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.sea-eyebrow,
+.sea-state {
+  margin: 0;
+  font-size: 9px;
+  line-height: 1.4;
+  letter-spacing: 0.35em;
+}
+
+.sea-title,
+.sea-statement,
+.sea-closing {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.sea-title span,
+.sea-statement span,
+.sea-closing span {
+  display: block;
+}
+
+.sea-title {
+  margin-top: 16px;
+  font-size: clamp(4.5rem, 7.8vw, 9rem);
+}
+
+.sea-statement {
+  margin-top: 13px;
+  font-size: clamp(2.4rem, 4.15vw, 5rem);
+}
+
+.sea-statement--large {
+  font-size: clamp(3.35rem, 5.8vw, 6.8rem);
+}
+
+.sea-statement--quiet {
+  font-size: clamp(1.55rem, 2.4vw, 2.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+
+.sea-support {
+  max-width: 34rem;
+  margin: 19px 0 0;
+  font-size: clamp(0.95rem, 1.05vw, 1.08rem);
+  line-height: 1.55;
+}
+
+/* One quiet datum follows marina edge -> deck seam -> open horizon. */
+.sea-route {
+  position: sticky;
+  z-index: 9;
+  top: calc(100svh - 52px);
+  height: 0;
+  margin: 0 var(--page-x);
+  pointer-events: none;
+  color: var(--ivory);
+  text-shadow: 0 1px 12px rgba(8, 10, 12, 0.62);
+}
+
+.sea-route-track {
+  display: block;
+  height: 1px;
+  background: rgba(242, 239, 232, 0.22);
+}
+
+.sea-route-track i {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--titanium), var(--line-metal) 76%, rgba(242, 239, 232, 0.86));
+  transform: scaleX(var(--sea-route));
+  transform-origin: left;
+  transition: transform 520ms var(--ease-soft);
+}
+
+.sea-route p {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0 0;
+  font-size: 7px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+}
+
+.sea-route b {
+  font-weight: 400;
+  color: color-mix(in srgb, var(--ivory) 72%, var(--champagne));
+}
+
+/* ARRIVE — first water, but the transport still anchors causality. */
+.sea-scene--01 {
+  background: #c8d0d0;
+}
+
+.sea-media--01 {
+  inset: 0 auto 0 0;
+  width: 94vw;
+}
+
+.sea-media--01 img {
+  object-position: 54% 54%;
+}
+
+.sea-media--01 .sea-scrim {
+  background: linear-gradient(90deg, rgba(242, 239, 232, 0.38), rgba(242, 239, 232, 0.12) 39%, transparent 61%);
+}
+
+.sea-copy--01 {
+  left: var(--page-x);
+  top: clamp(4.8rem, 12vh, 8rem);
+  width: min(56vw, 900px);
+  color: var(--navy);
+}
+
+.sea-copy--01 .sea-support {
+  color: color-mix(in srgb, var(--navy) 82%, var(--titanium));
+}
+
+.sea-copy--01 .sea-state {
+  margin-top: 24px;
+  color: color-mix(in srgb, var(--navy) 68%, var(--champagne));
+}
+
+/* READY — preserve the complete yacht silhouette and waterline. */
+.sea-scene--02 {
+  background: #d7d5cd;
+}
+
+.sea-media--02 {
+  inset: 0 0 0 auto;
+  width: 96vw;
+}
+
+.sea-media--02 img {
+  object-position: 58% 54%;
+}
+
+.sea-copy--02 {
+  left: var(--page-x);
+  top: clamp(3.5rem, 9vh, 6.5rem);
+  color: var(--navy);
+}
+
+.sea-copy--02 .sea-state,
+.sea-copy--03 .sea-state {
+  color: color-mix(in srgb, var(--navy) 66%, var(--champagne));
+}
+
+/* BOARD — stone, client, threshold, teak form one horizontal sentence. */
+.sea-scene--03 {
+  background: #e0dbd0;
+}
+
+.sea-media--03 {
+  inset: 0 0 0 auto;
+  width: 70vw;
+}
+
+.sea-media--03 img {
+  object-position: 61% 51%;
+}
+
+.sea-copy--03 {
+  left: var(--page-x);
+  top: 50%;
+  width: min(31vw, 460px);
+  color: var(--navy);
+  transform: translateY(-50%);
+}
+
+/* RELEASE — the smallest image plane and the quietest room. */
+.sea-scene--04 {
+  background: linear-gradient(110deg, #0b1218, #13202a 72%, #20333e);
+}
+
+.sea-media--04 {
+  inset: 0 auto 0 7vw;
+  width: 62vw;
+}
+
+.sea-media--04 img {
+  object-position: 58% 28%;
+}
+
+.sea-copy--04 {
+  right: var(--page-x);
+  top: 50%;
+  width: min(27vw, 430px);
+  color: var(--ivory);
+  transform: translateY(-50%);
+}
+
+.sea-copy--04 .sea-state {
+  color: color-mix(in srgb, var(--ivory) 66%, var(--champagne));
+}
+
+/* OPEN WATER — still image; the source owns all physical movement. */
+.sea-scene--05 {
+  background: #9cb2bb;
+}
+
+.sea-media--05 {
+  inset: 0;
+}
+
+.sea-media--05 img {
+  object-position: 56% 54%;
+}
+
+.sea-media--05 .sea-scrim {
+  background: linear-gradient(90deg, rgba(242, 239, 232, 0.28), rgba(242, 239, 232, 0.08) 41%, transparent 63%);
+}
+
+.sea-copy--05 {
+  left: var(--page-x);
+  top: clamp(5rem, 15vh, 10rem);
+  width: min(48vw, 760px);
+  color: var(--navy);
+}
+
+.sea-copy--05 .sea-state,
+.sea-copy--06 .sea-state {
+  color: color-mix(in srgb, var(--navy) 64%, var(--champagne));
+}
+
+/* BREATHE — the person is held inside a much larger water field. */
+.sea-scene--06 {
+  background: #c9c4b8;
+}
+
+.sea-media--06 {
+  inset: 0 0 0 auto;
+  width: 78vw;
+}
+
+.sea-media--06 img {
+  object-position: 62% 57%;
+}
+
+.sea-copy--06 {
+  left: var(--page-x);
+  top: 50%;
+  width: min(42vw, 650px);
+  color: var(--navy);
+  transform: translateY(-50%);
+}
+
+/* STAY — the yacht recedes beneath water, light, and coastline. */
+.sea-scene--07 {
+  background: #c0ab8f;
+}
+
+.sea-media--07 {
+  inset: 0;
+}
+
+.sea-media--07 img {
+  object-position: 54% 52%;
+}
+
+.sea-media--07 .sea-scrim {
+  background: linear-gradient(90deg, rgba(242, 239, 232, 0.26), rgba(242, 239, 232, 0.06) 43%, transparent 63%);
+}
+
+.sea-copy--07 {
+  left: var(--page-x);
+  top: clamp(4.6rem, 13vh, 8.5rem);
+  width: min(48vw, 760px);
+  color: var(--navy);
+}
+
+.sea-copy--07 .sea-state {
+  color: color-mix(in srgb, var(--navy) 58%, var(--champagne));
+}
+
+/* Closing master — stillness settles toward blue hour. */
+.sea-scene--08 {
+  background: #233847;
+}
+
+.sea-media--08 {
+  inset: 0;
+}
+
+.sea-media--08 img {
+  object-position: 58% 52%;
+}
+
+.sea-media--08 .sea-scrim {
+  background:
+    linear-gradient(90deg, rgba(242, 239, 232, 0.2), rgba(242, 239, 232, 0.05) 41%, transparent 62%),
+    linear-gradient(180deg, transparent 55%, rgba(8, 10, 12, 0.16));
+}
+
+.sea-copy--08 {
+  left: var(--page-x);
+  top: clamp(5rem, 15vh, 10rem);
+  width: min(58vw, 900px);
+  color: var(--navy);
+}
+
+.sea-closing {
+  font-size: clamp(4.2rem, 7vw, 8rem);
+}
+
+.sea-copy--08 .sea-support {
+  color: color-mix(in srgb, var(--navy) 78%, var(--titanium));
+}
+
+.masthead.is-sea {
+  background: linear-gradient(180deg, rgba(8, 10, 12, 0.7) 0%, rgba(8, 10, 12, 0.22) 68%, transparent 100%);
+}
+
+.sea-egress {
+  position: relative;
+  min-height: 30vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--page-x) clamp(2.8rem, 7vh, 5.5rem);
+  background:
+    linear-gradient(180deg, #192b39 0%, #111e29 55%, var(--navy) 100%),
+    linear-gradient(110deg, transparent 42%, rgba(166, 141, 105, 0.08) 76%, transparent);
+}
+
+.sea-egress::before {
+  content: "";
+  position: absolute;
+  left: var(--page-x);
+  right: var(--page-x);
+  top: 38%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--line), var(--line-metal) 72%, transparent);
+}
+
+.sea-egress p {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.sea-egress span {
+  font-size: 8px;
+  letter-spacing: 0.32em;
+  color: color-mix(in srgb, var(--titanium) 72%, var(--champagne));
+}
+
+.sea-egress b {
+  font-size: clamp(1.25rem, 2.1vw, 2.25rem);
+  font-weight: 300;
+  letter-spacing: -0.012em;
+}
+
+.after-sea {
+  background: var(--navy);
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .sea {
+    height: 418vh;
+  }
+
+  .sea-scene--01 { height: 60vh; }
+  .sea-scene--02 { height: 50vh; }
+  .sea-scene--03 { height: 40vh; }
+  .sea-scene--04 { height: 38vh; }
+  .sea-scene--05 { height: 62vh; }
+  .sea-scene--06 { height: 44vh; }
+  .sea-scene--07 { height: 58vh; }
+  .sea-scene--08 { height: 66vh; }
+
+  .sea-title { font-size: clamp(3.8rem, 7.7vw, 6.2rem); }
+  .sea-statement { font-size: clamp(2.2rem, 4.5vw, 4rem); }
+  .sea-statement--large { font-size: clamp(3rem, 6vw, 5.4rem); }
+  .sea-closing { font-size: clamp(3.7rem, 7vw, 6rem); }
+
+  .sea-media--03 { width: 74vw; }
+  .sea-media--04 { left: 4vw; width: 65vw; }
+  .sea-media--06 { width: 82vw; }
+  .sea-copy--04 { width: 28vw; }
+}
+
+@media (max-height: 740px) and (min-width: 768px) {
+  .sea-title { font-size: clamp(3.5rem, 6.7vw, 6rem); }
+  .sea-statement { font-size: clamp(2.1rem, 3.9vw, 3.8rem); }
+  .sea-statement--large { font-size: clamp(2.8rem, 5.2vw, 5rem); }
+  .sea-closing { font-size: clamp(3.4rem, 6.2vw, 5.8rem); }
+  .sea-support { margin-top: 13px; }
+}
+
+@media (max-width: 767px) {
+  .business-egress {
+    min-height: 20vh;
+  }
+
+  .sea {
+    height: 382vh;
+  }
+
+  .sea-scene--01 { height: 52vh; }
+  .sea-scene--02 { height: 42vh; }
+  .sea-scene--03 { height: 42vh; }
+  .sea-scene--04 { height: 40vh; }
+  .sea-scene--05 { height: 52vh; }
+  .sea-scene--06 { height: 46vh; }
+  .sea-scene--07 { height: 50vh; }
+  .sea-scene--08 { height: 58vh; }
+
+  .sea-route {
+    position: sticky;
+    top: calc(100svh - 28px);
+    left: auto;
+    right: auto;
+    bottom: auto;
+    height: 0;
+    margin: 0 var(--page-x);
+  }
+
+  .sea-route p {
+    display: none;
+  }
+
+  .sea-media,
+  .sea-media--01,
+  .sea-media--02,
+  .sea-media--03,
+  .sea-media--04,
+  .sea-media--05,
+  .sea-media--06,
+  .sea-media--07,
+  .sea-media--08 {
+    inset: 0;
+    width: 100%;
+  }
+
+  .sea-media--01 img { object-position: 63% 52%; }
+  .sea-media--02 img { object-position: 64% 54%; }
+  .sea-media--03 img { object-position: 72% 52%; }
+  .sea-media--04 img { object-position: 67% 34%; }
+  .sea-media--05 img { object-position: 67% 54%; }
+  .sea-media--06 img { object-position: 67% 58%; }
+  .sea-media--07 img { object-position: 68% 52%; }
+  .sea-media--08 img { object-position: 66% 52%; }
+
+  .sea-copy,
+  .sea-copy--01,
+  .sea-copy--02,
+  .sea-copy--03,
+  .sea-copy--04,
+  .sea-copy--05,
+  .sea-copy--06,
+  .sea-copy--07,
+  .sea-copy--08 {
+    left: var(--page-x);
+    right: auto;
+    top: auto;
+    bottom: clamp(1.8rem, 6vh, 3.5rem);
+    width: min(88vw, 34rem);
+    color: var(--ivory);
+    transform: none;
+    text-shadow: 0 1px 16px rgba(8, 10, 12, 0.68);
+  }
+
+  .sea-copy--01,
+  .sea-copy--05,
+  .sea-copy--07,
+  .sea-copy--08 {
+    top: calc(var(--nav-h) + 1.6rem);
+    bottom: auto;
+    color: var(--navy);
+    text-shadow: none;
+  }
+
+  .sea-copy--01 .sea-support,
+  .sea-copy--08 .sea-support {
+    color: color-mix(in srgb, var(--navy) 82%, var(--titanium));
+  }
+
+  .sea-media--03::after,
+  .sea-media--04::after,
+  .sea-media--06::after {
+    content: "";
+    position: absolute;
+    inset: 35% 0 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent, rgba(8, 10, 12, 0.58));
+  }
+
+  .sea-title {
+    font-size: clamp(2.8rem, 12.8vw, 4rem);
+  }
+
+  .sea-statement,
+  .sea-statement--large {
+    font-size: clamp(2.15rem, 9.8vw, 3.25rem);
+  }
+
+  .sea-statement--quiet {
+    font-size: clamp(1.5rem, 6.8vw, 2.1rem);
+  }
+
+  .sea-closing {
+    font-size: clamp(2.75rem, 12vw, 3.8rem);
+  }
+
+  .sea-support {
+    max-width: 20rem;
+    margin-top: 12px;
+    font-size: 0.9rem;
+  }
+
+  .sea-copy--01 .sea-state {
+    margin-top: 14px;
+  }
+
+  .sea-egress {
+    min-height: 24vh;
+    padding-bottom: 2.2rem;
+  }
+
+  .sea-egress p {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sea-scene,
+  .sea-scene.is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .sea-route-track i {
+    transform: scaleX(1);
+    transition: none;
+  }
+}
+
+/* ============================================================
+   06 / RETURN
+   Six films, one deterministic pinned scrub, then normal flow.
+   ============================================================ */
+
+.return {
+  position: relative;
+  height: 1080vh;
+  background: var(--navy);
+}
+
+.return-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #07101a;
+}
+
+.return-stack,
+.return-scene,
+.return-media,
+.return-media img,
+.return-media video,
+.return-scrim {
+  position: absolute;
+  inset: 0;
+}
+
+.return-scene {
+  --return-opacity: 0;
+  --return-copy: 0;
+  z-index: 1;
+  overflow: hidden;
+  opacity: var(--return-opacity);
+  pointer-events: none;
+}
+
+.return-scene--01 {
+  --return-opacity: 1;
+}
+
+.return-media {
+  z-index: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #07101a;
+}
+
+.return-media img,
+.return-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+}
+
+.return-media video {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 260ms linear;
+}
+
+.return-media video.is-ready {
+  opacity: 1;
+}
+
+.return-scrim {
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5, 9, 13, 0.68) 0%, rgba(5, 9, 13, 0.28) 38%, transparent 67%),
+    linear-gradient(180deg, rgba(5, 9, 13, 0.22), transparent 34%, rgba(5, 9, 13, 0.2));
+}
+
+.return-scene--01 .return-media img,
+.return-scene--01 .return-media video { object-position: 57% 52%; }
+.return-scene--02 .return-media img,
+.return-scene--02 .return-media video { object-position: 57% 52%; }
+.return-scene--03 .return-media img,
+.return-scene--03 .return-media video { object-position: 58% 51%; }
+.return-scene--04 .return-media img,
+.return-scene--04 .return-media video { object-position: 58% 54%; }
+.return-scene--05 .return-media img,
+.return-scene--05 .return-media video { object-position: 61% 50%; }
+.return-scene--06 .return-media img,
+.return-scene--06 .return-media video { object-position: 59% 52%; }
+
+.return-copy {
+  position: absolute;
+  z-index: 4;
+  left: var(--page-x);
+  top: clamp(7rem, 15vh, 10.5rem);
+  width: min(57vw, 940px);
+  color: var(--ivory);
+  opacity: var(--return-copy);
+  transform: translate3d(0, calc((1 - var(--return-copy)) * 18px), 0);
+  text-shadow: 0 2px 24px rgba(2, 5, 8, 0.68);
+}
+
+.return-scene--01 .return-copy {
+  width: min(69vw, 1120px);
+}
+
+.return-scene--02 .return-copy {
+  top: clamp(6.5rem, 14vh, 9.5rem);
+  width: min(45vw, 720px);
+}
+
+.return-scene--03 .return-copy {
+  top: auto;
+  bottom: clamp(7rem, 16vh, 11rem);
+  width: min(62vw, 980px);
+}
+
+.return-scene--04 .return-copy {
+  width: min(45vw, 700px);
+}
+
+.return-scene--05 .return-copy {
+  width: min(42vw, 650px);
+}
+
+.return-scene--05 .return-statement {
+  font-size: clamp(3.2rem, 4.5vw, 5.35rem);
+}
+
+.return-copy--closing {
+  width: min(53vw, 850px);
+}
+
+.return-eyebrow,
+.return-state,
+.return-index,
+.return-route,
+.final-cta-eyebrow,
+.site-footer {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.return-eyebrow,
+.return-state {
+  margin: 0 0 17px;
+  font-size: 9px;
+  line-height: 1.4;
+  letter-spacing: 0.36em;
+  color: color-mix(in srgb, var(--ivory) 68%, var(--champagne));
+}
+
+.return-eyebrow-chapter {
+  display: none;
+}
+
+.return-title,
+.return-statement {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: -0.048em;
+  text-transform: uppercase;
+}
+
+.return-title span,
+.return-statement span {
+  display: block;
+}
+
+.return-title {
+  font-size: clamp(4.4rem, 6.7vw, 7.8rem);
+}
+
+.return-statement {
+  font-size: clamp(4rem, 6.4vw, 7.5rem);
+}
+
+.return-statement--wide {
+  font-size: clamp(3.6rem, 5.7vw, 6.8rem);
+}
+
+.return-support {
+  max-width: 35rem;
+  margin: 21px 0 0;
+  font-size: clamp(0.95rem, 1.05vw, 1.1rem);
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--ivory) 78%, var(--titanium));
+}
+
+.return-index {
+  position: absolute;
+  z-index: 8;
+  top: calc(var(--nav-h) + 22px);
+  left: var(--page-x);
+  right: var(--page-x);
+  color: var(--ivory);
+  pointer-events: none;
+  text-shadow: 0 1px 16px rgba(2, 5, 8, 0.72);
+}
+
+.return-index p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+}
+
+.return-index p + p {
+  justify-content: flex-start;
+  margin-top: 8px;
+  color: color-mix(in srgb, var(--ivory) 68%, var(--champagne));
+}
+
+.return-index b {
+  font-weight: 400;
+}
+
+.return-route {
+  position: absolute;
+  z-index: 8;
+  left: var(--page-x);
+  right: var(--page-x);
+  bottom: 35px;
+  color: color-mix(in srgb, var(--ivory) 72%, var(--champagne));
+  pointer-events: none;
+}
+
+.return-route > span {
+  display: block;
+  height: 1px;
+  background: rgba(242, 239, 232, 0.18);
+}
+
+.return-route i {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--titanium), var(--champagne) 76%, var(--ivory));
+  transform: scaleX(var(--return-route, 0.18));
+  transform-origin: left;
+}
+
+.return-route p {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0 0;
+}
+
+.return-route b {
+  font-size: 7px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+}
+
+.masthead.is-return {
+  background: linear-gradient(180deg, rgba(5, 8, 12, 0.86) 0%, rgba(5, 8, 12, 0.26) 72%, transparent 100%);
+}
+
+/* The conversion moment is physical and architectural, not a card. */
+.final-cta {
+  position: relative;
+  min-height: 112vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  padding: clamp(7rem, 15vh, 11rem) var(--page-x);
+  color: var(--navy);
+  background:
+    linear-gradient(118deg, rgba(166, 141, 105, 0.14), transparent 31%),
+    linear-gradient(180deg, #d8d1c4 0%, var(--ivory) 52%, #ddd7cc 100%);
+}
+
+.final-cta::before {
+  content: "A";
+  position: absolute;
+  right: -0.055em;
+  bottom: -0.29em;
+  font-family: var(--font-display);
+  font-size: min(62vw, 56rem);
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(13, 21, 29, 0.035);
+  pointer-events: none;
+}
+
+.final-cta-line {
+  position: absolute;
+  top: 0;
+  left: var(--page-x);
+  right: var(--page-x);
+  height: 1px;
+  background: color-mix(in srgb, var(--navy) 15%, transparent);
+}
+
+.final-cta-line span {
+  display: block;
+  width: 28%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--navy), var(--champagne));
+}
+
+.final-cta-eyebrow {
+  position: relative;
+  margin: 0 0 clamp(2.3rem, 5vh, 4rem);
+  font-size: 8px;
+  letter-spacing: 0.36em;
+  color: color-mix(in srgb, var(--navy) 64%, var(--champagne));
+}
+
+.final-cta h2 {
+  position: relative;
+  max-width: 13ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(4.3rem, 7.7vw, 9rem);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: -0.052em;
+  text-transform: uppercase;
+}
+
+.final-cta h2 span {
+  display: block;
+}
+
+.final-cta-support {
+  position: relative;
+  max-width: 33rem;
+  margin: 30px 0 0;
+  font-size: clamp(1rem, 1.2vw, 1.18rem);
+  line-height: 1.55;
+}
+
+.final-cta-action {
+  position: relative;
+  min-width: min(100%, 22rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin-top: clamp(2.8rem, 6vh, 4.8rem);
+  padding: 1.1rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--navy) 42%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--navy) 42%, transparent);
+  color: var(--navy);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: padding 420ms var(--ease-out), color 280ms ease;
+}
+
+.final-cta-action:hover,
+.final-cta-action:focus-visible {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  color: color-mix(in srgb, var(--navy) 72%, var(--champagne));
+}
+
+.final-cta-action b {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.site-footer {
+  min-height: 44vh;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1.3fr;
+  gap: clamp(2rem, 7vw, 8rem);
+  align-items: end;
+  padding: clamp(5rem, 12vh, 9rem) var(--page-x) clamp(2.5rem, 6vh, 4.5rem);
+  border-top: 1px solid rgba(242, 239, 232, 0.1);
+  background: var(--piano);
+  color: var(--ivory);
+}
+
+.site-footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.site-footer-brand strong {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.2vw, 5rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+}
+
+.site-footer-brand span,
+.site-footer-nav a,
+.site-footer-meta p {
+  font-size: 8px;
+  line-height: 1.6;
+  letter-spacing: 0.24em;
+}
+
+.site-footer-brand span,
+.site-footer-meta {
+  color: var(--titanium);
+}
+
+.site-footer-nav {
+  display: grid;
+  gap: 10px;
+}
+
+.site-footer-nav a {
+  width: fit-content;
+  color: var(--ivory);
+  text-decoration: none;
+}
+
+.site-footer-nav a:hover,
+.site-footer-nav a:focus-visible {
+  color: var(--champagne);
+}
+
+.site-footer-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  text-align: right;
+}
+
+.site-footer-meta p {
+  max-width: 24rem;
+  margin: 0;
+}
+
+.after-return {
+  min-height: 1px;
+  background: var(--piano);
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .return {
+    height: 960vh;
+  }
+
+  .return-title {
+    font-size: clamp(4.2rem, 7.5vw, 6.7rem);
+  }
+
+  .return-statement,
+  .return-statement--wide {
+    font-size: clamp(3.5rem, 6.4vw, 5.7rem);
+  }
+
+  .return-copy {
+    width: min(67vw, 760px);
+  }
+}
+
+@media (max-height: 740px) and (min-width: 768px) {
+  .return-copy {
+    top: clamp(5.5rem, 13vh, 7rem);
+  }
+
+  .return-scene--03 .return-copy {
+    top: auto;
+    bottom: clamp(4.5rem, 13vh, 6rem);
+  }
+
+  .return-title {
+    font-size: clamp(3.7rem, 6.6vw, 6rem);
+  }
+
+  .return-statement,
+  .return-statement--wide {
+    font-size: clamp(3.2rem, 5.7vw, 5.2rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .return {
+    height: auto;
+    background: var(--navy);
+  }
+
+  .return-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  .return-stack {
+    position: relative;
+    inset: auto;
+  }
+
+  .return-scene {
+    position: relative;
+    inset: auto;
+    min-height: 76svh;
+    opacity: 1 !important;
+  }
+
+  .return-media video {
+    display: none;
+  }
+
+  .return-scrim {
+    background: linear-gradient(180deg, rgba(5, 9, 13, 0.12) 20%, transparent 43%, rgba(5, 9, 13, 0.78) 100%);
+  }
+
+  .return-scene--01 .return-media img { object-position: 64% 52%; }
+  .return-scene--02 .return-media img { object-position: 60% 52%; }
+  .return-scene--03 .return-media img { object-position: 62% 51%; }
+  .return-scene--04 .return-media img { object-position: 62% 54%; }
+  .return-scene--05 .return-media img { object-position: 61% 50%; }
+  .return-scene--06 .return-media img { object-position: 66% 52%; }
+
+  .return-copy,
+  .return-scene--01 .return-copy,
+  .return-scene--02 .return-copy,
+  .return-scene--03 .return-copy,
+  .return-scene--04 .return-copy,
+  .return-scene--05 .return-copy,
+  .return-copy--closing {
+    left: var(--page-x);
+    right: var(--page-x);
+    top: auto;
+    bottom: clamp(2.5rem, 7vh, 4rem);
+    width: auto;
+    opacity: 1;
+    transform: none;
+  }
+
+  .return-title,
+  .return-statement,
+  .return-statement--wide {
+    font-size: clamp(2.75rem, 12vw, 4rem);
+  }
+
+  .return-support {
+    max-width: 21rem;
+    margin-top: 14px;
+    font-size: 0.9rem;
+  }
+
+  .return-index,
+  .return-route {
+    display: none;
+  }
+
+  .return-eyebrow-chapter {
+    display: inline;
+  }
+
+  .return-eyebrow-state {
+    display: none;
+  }
+
+  .final-cta {
+    min-height: 100svh;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  .final-cta::before {
+    right: -0.08em;
+    bottom: -0.13em;
+    font-size: 110vw;
+  }
+
+  .final-cta h2 {
+    max-width: 10ch;
+    font-size: clamp(3.1rem, 14vw, 4.7rem);
+  }
+
+  .final-cta-action {
+    min-width: 100%;
+  }
+
+  .site-footer {
+    min-height: 70svh;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    align-items: start;
+    padding-top: 6rem;
+  }
+
+  .site-footer-meta {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .return {
+    height: auto;
+  }
+
+  .return-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  .return-stack {
+    position: relative;
+    inset: auto;
+  }
+
+  .return-scene {
+    position: relative;
+    inset: auto;
+    min-height: 88svh;
+    opacity: 1 !important;
+  }
+
+  .return-media video {
+    display: none;
+  }
+
+  .return-copy,
+  .return-scene--01 .return-copy,
+  .return-scene--02 .return-copy,
+  .return-scene--03 .return-copy,
+  .return-scene--04 .return-copy,
+  .return-scene--05 .return-copy,
+  .return-copy--closing {
+    opacity: 1;
+    transform: none;
+  }
+
+  .return-index,
+  .return-route {
+    display: none;
+  }
+
+  .return-eyebrow-chapter {
+    display: inline;
+  }
+
+  .return-eyebrow-state {
+    display: none;
+  }
+
+  .final-cta-action {
+    transition: none;
+  }
+}

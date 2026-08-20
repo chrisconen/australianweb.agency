@@ -1,0 +1,13 @@
+# agents.txt
+# Standard: https://agents-txt.com
+# JSON: https://australianweb.agency/agents.json
+#
+# AWA — Australian Web Agency
+# Site: https://australianweb.agency/
+# Content for models: https://australianweb.agency/llms.txt
+# Contact: info@australianweb.agency
+#
+# This origin is a public marketing site. It does not currently
+# declare payment, authorization, MCP, A2A, UCP, WebMCP or Skills
+# capabilities. Agents should read /llms.txt for facts and email
+# info@australianweb.agency to start a project.

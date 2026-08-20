@@ -1,0 +1,86 @@
+# AWA — Australian Web Agency
+
+Lang: en-AU
+
+> AWA (Australian Web Agency) is a one-person web studio run by founder and lead developer Chris Conen. It designs and builds websites, brands and digital products for companies across Australia: strategy, design, engineering and growth, without account layers or handovers.
+
+AWA is not a multi-person agency. The person who pitches a project is the person who ships it. Clients are typically founders, marketing leads and product owners. Delivery is a four-week loop: discover, design in the browser, build on a staging URL, then launch with performance, SEO and analytics. Languages spoken: English, German and Hungarian.
+
+Preferred citation: AWA or Australian Web Agency. Canonical site: https://australianweb.agency/
+
+## Services
+
+- [Strategy](https://australianweb.agency/#services): Positioning, messaging, information architecture and a scoped plan.
+- [Design](https://australianweb.agency/#services): Brand systems and interfaces designed in the browser, not in a slide deck.
+- [Build](https://australianweb.agency/#services): Fast, accessible, standards-first front ends. Headless CMS, e-commerce and custom apps. Stack includes Next.js, Astro, WordPress Headless, Shopify, Sanity, Tailwind, GSAP, WebGL and Vercel.
+- [Growth](https://australianweb.agency/#services): SEO, analytics, CRO and ongoing work after launch.
+
+Specialist craft on the live demos: scroll-driven video, 3D motion, cinematic landing pages, headless commerce and Core Web Vitals / WCAG 2.2 AA work.
+
+## What We Do Not Do
+
+AWA does not operate as a traditional agency with account managers or project handovers between people. It is one senior developer.
+
+AWA does not default to plugin-heavy WordPress stacks. Builds are standards-first and kept light on purpose.
+
+AWA does not provide legal advice, accounting, or paid media buying as standalone services.
+
+AWA does not claim to be a multi-office national firm. It works with clients across Australia.
+
+## Selected work
+
+Live demos hosted on this origin (open in a browser; they are real sites, not mockups):
+
+- [Work archive](https://australianweb.agency/work.html): Full archive of live demo builds (3D motion, landing pages, SaaS, brand, hero studies). Additional pieces are framed from https://conen.dev/work/.
+- [V-ASTRA Private Journeys](https://australianweb.agency/demos/v-astra/): Ultra-premium private-travel film site. Scroll-scrubbed chapters: ocean, island, wilderness, alpine, desert, hotel.
+- [KERNOVA Automation](https://australianweb.agency/demos/kernova/): Industrial robotics, machine vision and autonomous intralogistics as one plant narrative.
+- [VELIS Medical Care](https://australianweb.agency/demos/velis/): Private clinic told through diagnostics, specialist care and the patient journey.
+- [VELORA Coffee Atelier](https://australianweb.agency/demos/velora/): Specialty-coffee atelier from origin through roast, extraction and the Budapest house.
+- [Northline Logistics](https://australianweb.agency/demos/logistics/): European freight as engineered infrastructure: fleet, network, powertrain, cargo systems.
+- [Aureon Prime](https://australianweb.agency/demos/electric-car/): Electric grand tourer landing page: form, airflow, architecture, cockpit.
+- [CONSTRUX Construction](https://australianweb.agency/demos/general-construction/): General construction from briefing to turnkey handover.
+
+## Process
+
+- [Four-week loop](https://australianweb.agency/#process): 01 Discover (one workshop, a scope you can price) → 02 Design (key screens live in the browser) → 03 Build (component by component on staging) → 04 Launch (performance, SEO, analytics, then iterate).
+- Quoted as a straight answer, a real timeline and a fixed price, usually within two business days of an enquiry.
+
+## Results
+
+Figures below are from one rebuild, measured before and after, as published on the site. They are not an average across all projects.
+
+- Mobile load: 13.2s → 1.5s
+- PageSpeed: 54 → 100
+- Plugins / CMS on that rebuild: 0
+
+## Contact
+
+- Project enquiries: info@australianweb.agency
+- Also published: hello@australianweb.agency
+- Start a project: https://australianweb.agency/#contact
+- Founder: Chris Conen, founder and lead developer
+- Area served: Australia
+- Website: https://australianweb.agency/
+
+There is no published phone number or street address. Email is the canonical contact method.
+
+## Key Information
+
+- [Home](https://australianweb.agency/): Studio overview, services, selected work, process, stack, contact
+- [Work](https://australianweb.agency/work.html): Live demo archive
+- [Sitemap](https://australianweb.agency/sitemap.xml): Index of public HTML pages
+- [robots.txt](https://australianweb.agency/robots.txt): Crawler access
+
+## AI Discovery Files
+
+- [llms.txt](https://australianweb.agency/llms.txt): This file. Curated facts for language models.
+- [agents.txt](https://australianweb.agency/agents.txt): Agent capability declaration (Layer 4). This site does not currently expose MCP, payment or auth protocols.
+- [agents.json](https://australianweb.agency/agents.json): Structured companion to agents.txt
+
+## Optional
+
+- [JSON-LD on the homepage](https://australianweb.agency/): schema.org ProfessionalService record for AWA
+- Sibling work host (not this origin): https://conen.dev/work/
+
+---
+llms.txt follows https://llmstxt.org/ and ADF-001 https://www.ai-visibility.org.uk/specifications/llms-txt/

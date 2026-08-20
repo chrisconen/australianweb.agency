@@ -1,0 +1,10 @@
+{
+  "$schema": "https://agents-txt.com/schema/agents-json/v1.0.json",
+  "version": "1.0",
+  "standard": "https://agents-txt.com",
+  "site": {
+    "name": "AWA — Australian Web Agency",
+    "url": "https://australianweb.agency/",
+    "description": "One-person web studio. Strategy, design, build and growth for companies across Australia. Contact: info@australianweb.agency. Facts for models: https://australianweb.agency/llms.txt"
+  }
+}

@@ -11,14 +11,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://australianweb.agency/demos/velora/</loc>
+    <loc>https://australianweb.agency/llms.txt</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://australianweb.agency/demos/velis/</loc>
+    <loc>https://australianweb.agency/agents.txt</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://australianweb.agency/demos/v-astra/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://australianweb.agency/demos/kernova/</loc>
@@ -26,8 +31,28 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://australianweb.agency/demos/v-astra/</loc>
+    <loc>https://australianweb.agency/demos/velis/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://australianweb.agency/demos/velora/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://australianweb.agency/demos/logistics/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://australianweb.agency/demos/electric-car/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://australianweb.agency/demos/general-construction/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

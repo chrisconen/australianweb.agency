@@ -10,16 +10,22 @@ Preferred citation: AWA or Australian Web Agency. Canonical site: https://austra
 
 ## Services
 
-- [AI visibility & agent readiness](https://australianweb.agency/#services): Making sure ChatGPT, Gemini, Copilot and Perplexity can find, understand and act on a business: free readiness test, structured data and product feeds, agentic checkout readiness (UCP), monthly AI visibility monitoring.
-- [Websites & web apps](https://australianweb.agency/#services): Brand, UX and interface design; 3D, motion and interactive storytelling; Core Web Vitals and WCAG 2.2 AA. Stack includes Next.js, Astro, WordPress, Sanity and WebGL.
-- [Online stores & agentic commerce](https://australianweb.agency/#services): Shopify, WooCommerce and headless (Medusa) stores; payments, shipping and stock in sync; product data AI assistants can compare.
-- [Automation & integrations](https://australianweb.agency/#connected): Connecting website, CRM, accounting and shipping (e.g. HubSpot, Pipedrive, Xero, MYOB, Australia Post, n8n) so orders, invoices and leads move without manual work.
-- [AI assistants & internal tools](https://australianweb.agency/#services): Website chat trained on a business's own content, email/document/quote processing, internal dashboards.
-- [Care, hosting & growth](https://australianweb.agency/#services): Uptime, speed and security monitoring, technical SEO, analytics and monthly improvements.
+- [AI visibility & agent readiness](https://australianweb.agency/ai-visibility.html): Making sure ChatGPT, Gemini, Copilot and Perplexity can find, understand and act on a business: free readiness test, structured data and product feeds, agentic checkout readiness (UCP), monthly AI visibility monitoring.
+- [Websites & web apps](https://australianweb.agency/websites.html): Brand, UX and interface design; 3D, motion and interactive storytelling; Core Web Vitals and WCAG 2.2 AA. Stack includes Next.js, Astro, WordPress, Sanity and WebGL.
+- [Online stores & agentic commerce](https://australianweb.agency/online-stores.html): Shopify, WooCommerce and headless (Medusa) stores; payments, shipping and stock in sync; product data AI assistants can compare.
+- [Automation & integrations](https://australianweb.agency/automation.html): Connecting website, CRM, accounting and shipping (e.g. HubSpot, Pipedrive, Xero, MYOB, Australia Post, n8n) so orders, invoices and leads move without manual work.
+- [AI assistants & internal tools](https://australianweb.agency/ai-assistants.html): Website chat trained on a business's own content, email/document/quote processing, internal dashboards.
+- [Care, hosting & growth](https://australianweb.agency/care.html): Uptime, speed and security monitoring, technical SEO, analytics and monthly improvements.
 
 - [AI Agent Readiness Test](https://australianweb.agency/agent-test.html): Free tool. Checks whether ChatGPT, Google AI Mode, Copilot, Claude and Perplexity can find, understand and act on a website (crawler access, firewall, structured data, UCP checkout profile, WebMCP), with a score out of 100 and fixes.
 
 Specialist craft on the live demos: scroll-driven video, 3D motion, cinematic landing pages, headless commerce and Core Web Vitals / WCAG 2.2 AA work.
+
+## Pricing and offers
+
+- Published 'from' prices (AUD, ex GST) are on each service page and sit below the typical Australian range found in October 2026 research, e.g. small business website from A$3,900, online store from A$8,900, single automation workflow from A$1,900, website AI assistant from A$4,900, AI readiness fix pack from A$1,490, care plans from A$149 a month. Every project is quoted in writing first.
+- [Founding clients](https://australianweb.agency/pilot.html): five places for Australian businesses, 30% off the first project plus three months of the Growth care plan free, in return for a published case study.
+- [Privacy](https://australianweb.agency/privacy.html): anonymous, cookieless, aggregate page counts only.
 
 ## What We Do Not Do
 
@@ -49,17 +55,18 @@ Interactive design concepts and technical explorations, not verified client case
 
 - [Project process](https://australianweb.agency/#process): Discover → Design → Build and connect → Launch and improve. Scope and timeline depend on project requirements, content readiness and feedback.
 - Project scope, pricing and timeline are agreed before work begins.
+- AWA works in writing, not on calls: a project brief, then a written plan and a fixed quote within two business days, then milestone reviews on a private preview.
 
 
 ## Contact
 
-- Project enquiries: info@australianweb.agency
-- Start a project: https://australianweb.agency/#contact
+- Start a project: [project brief](https://australianweb.agency/brief.html), about five minutes; reply in writing within two business days
+- Email: info@australianweb.agency
 - Founder: Chris Conen, founder and lead developer
 - Area served: Australia
 - Website: https://australianweb.agency/
 
-There is no published phone number or street address. Email is the canonical contact method.
+There is no published phone number or street address, and AWA does not take sales calls. The project brief is the canonical way to start; email works too.
 
 ## Key Information
 

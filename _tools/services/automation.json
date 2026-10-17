@@ -1,0 +1,97 @@
+{
+ "meta_title": "Automation & Integrations | Australian Web Agency",
+ "meta_description": "Stop retyping orders and invoices. AWA connects your website, CRM, accounting, shipping and messaging, with monitoring on every workflow.",
+ "hero_title": "Your tools talking | to each other",
+ "hero_lead": "We connect your website, CRM, accounting, shipping and messaging so orders, invoices and leads move without copy and paste. You work with one senior developer, Chris Conen, supported by an AI engineering team. We work Australia-wide.",
+ "included_intro": "Each automation is mapped, built and watched. You get one point of contact, and we say plainly where AI writes, tests and reviews the work under Chris's supervision.",
+ "included": [
+  {
+   "title": "Workflow mapping",
+   "text": "We trace how an order, invoice or lead moves today, then agree the path it should take between your tools."
+  },
+  {
+   "title": "CRM setup and migration",
+   "text": "We set up, clean and move your CRM so contacts, deals and history land in one place you can trust."
+  },
+  {
+   "title": "Invoicing, shipping and payments",
+   "text": "Paid orders can raise invoices, create shipping labels and record payments in Xero, MYOB or the tool you use."
+  },
+  {
+   "title": "Booking and enquiry routing",
+   "text": "New bookings and website enquiries go to the right person, with a record left in your CRM."
+  },
+  {
+   "title": "Email and SMS that respect consent",
+   "text": "Notifications go only where consent allows. We work to ACMA guidance and recommend you seek legal advice where needed."
+  },
+  {
+   "title": "APIs, webhooks and monitoring",
+   "text": "Custom APIs, webhooks and scheduled jobs on n8n or Cloudflare Workers, with error alerts on every automation."
+  }
+ ],
+ "use_cases": [
+  {
+   "who": "A Gold Coast surf shop",
+   "situation": "Online orders are retyped into Xero, and shipping labels are made by hand after each payment.",
+   "what_we_do": "We connect the store, accounting and a carrier so a paid order can raise an invoice and a label.",
+   "outcome": "Staff stop retyping orders. Invoices and labels follow the payment, and failed runs raise an alert."
+  },
+  {
+   "who": "A Sydney plumber",
+   "situation": "Website enquiries sit in an inbox while the job book and follow-up live somewhere else.",
+   "what_we_do": "We route each enquiry to the right person and record it in the CRM, with consent-aware follow-up messages.",
+   "outcome": "Enquiries land with a name on them. Nothing waits in a shared inbox to be copied across."
+  },
+  {
+   "who": "A Melbourne B2B supplier",
+   "situation": "Price changes on the website do not reach the CRM or the accounts team in time.",
+   "what_we_do": "We map the price-change path and push updates through a webhook or a scheduled job.",
+   "outcome": "Quotes and invoices use the current price. Exceptions show up as alerts, ready to fix."
+  }
+ ],
+ "demo_title": "See the flows before we build them",
+ "demo_text": "Try the pipeline for a paid order, a new enquiry and a price change. Estimate the time you get back, and see the Australian tools we connect.",
+ "steps": [
+  {
+   "title": "Map the work",
+   "text": "We look at how orders, invoices and leads move today, then write down what should happen without manual retyping."
+  },
+  {
+   "title": "Connect the tools",
+   "text": "Chris and the AI engineers wire your store, CRM, accounts, shipping and messaging, then test each path."
+  },
+  {
+   "title": "Check consent and alerts",
+   "text": "Marketing messages follow ACMA consent and unsubscribe guidance. Every automation gets monitoring and an error alert."
+  },
+  {
+   "title": "Hand it over",
+   "text": "You keep one point of contact. We show you what runs, what it writes, and who is told when something fails."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Which tools can you connect?",
+   "a": "Common Australian stacks include Shopify or WooCommerce, Xero or MYOB, Australia Post or Sendle, Stripe or Square, HubSpot or Zoho, and booking tools such as Cliniko or Timely. If your tool has an API or webhook, we can usually reach it."
+  },
+  {
+   "q": "Do you send marketing email and SMS?",
+   "a": "We build the sending flow. The ACMA says you need consent before sending marketing email or SMS, including when another party sends them on your behalf, and every message needs a working unsubscribe. We work to that guidance. This is not legal advice."
+  },
+  {
+   "q": "Does the Privacy Act apply to a small business?",
+   "a": "The OAIC says the Privacy Act 1988 covers organisations with annual turnover over $3 million, and government agencies. Many smaller businesses are outside it, with listed exceptions such as health providers. We build to the guidance and suggest you take legal advice."
+  },
+  {
+   "q": "Have you built this before?",
+   "a": "Yes. Chris Conen has built invoicing and shipping-label automation for Marina Yacht Sport’s new online store (launching late 2026), plus a lead endpoint that routes enquiries and scheduled monthly rescans for a compliance SaaS, both already running in production."
+  },
+  {
+   "q": "Who does the work?",
+   "a": "You deal with Chris Conen. AI engineers Architect and Astra write, test and review code under his supervision. There is no account manager. AWA is open about using AI, and we work Australia-wide."
+  }
+ ],
+ "cta_title": "Tell us what you still copy by hand",
+ "cta_text": "Describe the order, invoice or lead you retype today. We will map the flow and say which tools we would connect."
+}

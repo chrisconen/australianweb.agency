@@ -1,0 +1,97 @@
+{
+ "meta_title": "AI assistants and internal tools | AWA",
+ "meta_description": "Website chat that answers from your content and hands over to a person, plus internal tools that draft invoices and quotes and take on repeat work.",
+ "hero_title": "Answers from your content. | A person when it counts.",
+ "hero_lead": "Website chat that answers from your pages and documents, shows its sources, and hands over when a person should decide. Plus small internal tools that take repetitive work off your team and leave a draft for review.",
+ "included_intro": "Everything here is scoped to your content and your process. Your team reviews each draft before it is sent or saved, and the chat hands over when a person should decide.",
+ "included": [
+  {
+   "title": "Website chat on your content",
+   "text": "An assistant that answers from your pages and documents, so replies reflect your business rather than generic AI answers."
+  },
+  {
+   "title": "Sources and human handover",
+   "text": "Answers can show the page or document they came from. When a person should decide, the chat hands over."
+  },
+  {
+   "title": "Email, documents, invoices and quotes",
+   "text": "Incoming email, documents, invoices and quotes are turned into drafts. Your team reviews each one before it is sent or saved."
+  },
+  {
+   "title": "Dashboards and admin tools",
+   "text": "Small internal dashboards and admin tools for repeat jobs, so your team has one place to review the work."
+  },
+  {
+   "title": "Guardrails, logging and privacy",
+   "text": "We set limits on what the assistant can say and do, log what it did, and include the privacy settings you ask for."
+  },
+  {
+   "title": "Your choice of model",
+   "text": "OpenAI, Anthropic Claude or Google Gemini. We choose with you for the job, and we tell you which model is in use."
+  }
+ ],
+ "use_cases": [
+  {
+   "who": "A Sydney plumber",
+   "situation": "You get the same after-hours questions about service area, call-out timing, and whether the job needs a visit.",
+   "what_we_do": "We train a website assistant on your pages and documents. It shows its sources and hands over when a customer wants an exact quote.",
+   "outcome": "People get a straight answer after hours. You step in for the quote, with the question already clear."
+  },
+  {
+   "who": "A Gold Coast surf shop",
+   "situation": "Your team is with customers on the floor, while the same sizing, stock and shipping questions keep arriving on the site.",
+   "what_we_do": "We add a chat assistant grounded in your product pages and policies. It hands over returns and custom-order questions, and anything else it should not decide.",
+   "outcome": "Shoppers get answers from your own pages while you serve the floor. Your team takes the questions that need a human."
+  },
+  {
+   "who": "A Melbourne B2B supplier",
+   "situation": "Invoices, quotes and supplier emails arrive all week, and someone retypes the same fields every afternoon.",
+   "what_we_do": "We build a tool that reads those emails and documents and fills in a draft invoice or quote. Your team reviews it before it goes out.",
+   "outcome": "The copying is done before anyone checks it. Your people spend their time on the figures, then approve or correct the draft."
+  }
+ ],
+ "demo_title": "See it with sample data",
+ "demo_text": "The plumbing chat below answers from sample pages, shows its sources, and hands over when a customer wants an exact quote. The invoice demo fills in a draft invoice and stops for a person to review it.",
+ "steps": [
+  {
+   "title": "We map the work with you",
+   "text": "You show us the questions, documents and repeat jobs. Together we mark what the assistant may answer, what it must hand over, and what stays a draft until you approve it."
+  },
+  {
+   "title": "We build it under supervision",
+   "text": "Chris Conen supervises our AI engineers, Architect and Astra. They write the code, then test and review the assistant or internal tool against your content and the rules you set."
+  },
+  {
+   "title": "We check the guardrails",
+   "text": "We test sources, handover and the review step. We set logging, privacy settings and limits on what the system is allowed to do before it goes live."
+  },
+  {
+   "title": "Chris stays your point of contact",
+   "text": "You deal with Chris, and we work Australia-wide. When your pages or your process change, we update the tool, and you can see what it handled."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Who will I actually work with?",
+   "a": "You work with Chris Conen. He supervises Architect and Astra, the AI engineers who write, test and review the code. One point of contact, no account manager, Australia-wide. Chris built and runs NEXUS, our website chatbot, which answers from the studio's own content. He also uses an AI-assisted pipeline that audited and rewrote 152 website templates, each checked visually."
+  },
+  {
+   "q": "What does the assistant answer, and when does it hand over?",
+   "a": "It answers from your pages and documents, and it can show the source. Where that material is silent, or you want a person to decide, it hands over. The plumbing demo on this page does that for an exact quote. We set those rules with you."
+  },
+  {
+   "q": "Does the Privacy Act cover a small business?",
+   "a": "The OAIC says the Privacy Act 1988 covers organisations with annual turnover of more than $3 million and Australian Government agencies. Most small businesses with annual turnover of $3 million or less are not covered, except listed cases: health service providers, trading in personal information, Commonwealth contracts and residential tenancy databases. We work to that guidance. Ask a lawyer."
+  },
+  {
+   "q": "What privacy-policy change starts on 10 December 2026?",
+   "a": "The OAIC said on 30 September 2026 that from 10 December 2026, APP 1.8 will require an APP entity's privacy policy to state the kinds of personal information a program uses to make, or substantially help make, a decision that could significantly affect a person's rights or interests, and the decisions involved. We work to APP 1.8; ask a lawyer."
+  },
+  {
+   "q": "If a chatbot misleads a customer, are we liable?",
+   "a": "The ACCC's submission to the Parliamentary Joint Select Committee on Artificial Intelligence says a business would be liable under the Australian Consumer Law for a misleading representation by an AI customer-service chatbot, just as for its website or an employee. We keep answers tied to your sources and hand over rather than guess. Ask a lawyer about your own obligations."
+  }
+ ],
+ "cta_title": "Show us the work you repeat",
+ "cta_text": "You deal with Chris Conen as your one point of contact, and we work Australia-wide. Bring the questions customers ask and the documents your team retypes. We will say what an assistant can answer, what it should hand over, and what should stay a draft for review."
+}

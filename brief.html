@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Start your project brief | AWA</title>
+  <meta name="description" content="Tell us about your project in five minutes. You get a written plan and a fixed quote within two business days. No calls needed.">
+  <link rel="canonical" href="https://australianweb.agency/brief.html">
+  <meta name="theme-color" content="#0e1c27">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="awa.css">
+  <link rel="stylesheet" href="services.css">
+  <script src="awa.js" defer></script>
+  <script src="brief.js" defer></script>
+  <meta property="og:image" content="https://australianweb.agency/og.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://australianweb.agency/brief.html">
+  <meta property="og:title" content="Start your project brief | AWA">
+  <meta property="og:description" content="Five minutes, in writing. A written plan and a fixed quote within two business days.">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:site_name" content="AWA — Australian Web Agency">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<!-- header -->
+<a class="skip" href="#main">Skip to content</a>
+<script src="awa-stats.js" defer></script>
+<div class="promo-bar"><div class="wrap promo-inner"><p><span class="mono">Founding clients</span> 30% off for five Australian businesses, plus three months of care free.</p><a href="pilot.html" data-track="pilot">See the offer <span aria-hidden="true">↗</span></a></div></div>
+<header class="site-header"><div class="wrap header-inner">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
+  <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu <span class="menu-lines" aria-hidden="true"><i></i><i></i></span></button>
+  <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+    <div class="nav-drop"><a href="index.html#services">Services</a><div class="nav-drop-menu"><a href="ai-visibility.html">AI visibility &amp; agent readiness</a><a href="websites.html">Websites &amp; web apps</a><a href="online-stores.html">Online stores &amp; agentic commerce</a><a href="automation.html">Automation &amp; integrations</a><a href="ai-assistants.html">AI assistants &amp; internal tools</a><a href="care.html">Care, hosting &amp; growth</a></div></div>
+    <a href="index.html#connected">Systems</a><a href="index.html#team">How we work</a><a href="work.html">Work</a>
+    <a class="nav-test" href="agent-test.html">Free AI test</a>
+    <a class="btn btn-lime" href="brief.html" data-track="brief_start">Start a brief <span aria-hidden="true">↗</span></a>
+  </nav>
+</div></header>
+<!-- /header -->
+<main id="main" tabindex="-1">
+<section class="page-hero" aria-labelledby="brief-title"><div class="wrap">
+  <p class="label"><span class="dot" aria-hidden="true"></span>Project brief · about five minutes</p>
+  <h1 id="brief-title">Tell us what you need.<br><span class="hl">We reply in writing.</span></h1>
+  <p class="lead">No sales calls, no meetings to schedule across time zones. Send a short brief and you get a written plan and a fixed quote within two business days. Every decision stays on record.</p>
+</div></section>
+
+<section class="section"><div class="wrap brief-grid">
+  <form class="brief-form" id="brief-form" novalidate toolname="start_project_brief"
+    tooldescription="Send AWA a project brief. AWA replies by email with a written plan and a fixed quote within two business days.">
+    <fieldset>
+      <legend>What do you need?</legend>
+      <div class="brief-checks">
+        <label><input type="checkbox" name="services" value="websites"> Website or web app</label>
+        <label><input type="checkbox" name="services" value="online-stores"> Online store</label>
+        <label><input type="checkbox" name="services" value="automation"> Automation and integrations</label>
+        <label><input type="checkbox" name="services" value="ai-assistants"> AI assistant or internal tool</label>
+        <label><input type="checkbox" name="services" value="ai-visibility"> AI visibility and agent readiness</label>
+        <label><input type="checkbox" name="services" value="care"> Care, hosting and growth</label>
+        <label><input type="checkbox" name="services" value="not-sure"> Not sure yet</label>
+      </div>
+    </fieldset>
+    <div class="brief-row">
+      <label>Your name <span aria-hidden="true">*</span><input name="name" autocomplete="name" required maxlength="120"></label>
+      <label>Email <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+    </div>
+    <div class="brief-row">
+      <label>Business<input name="business" autocomplete="organization" maxlength="160"></label>
+      <label>Current website<input name="website" inputmode="url" placeholder="yourbusiness.com.au" maxlength="300"></label>
+    </div>
+    <label>What should the project achieve? <span aria-hidden="true">*</span>
+      <textarea name="goal" rows="6" required minlength="10" maxlength="4000" placeholder="For example: more enquiries from Google and AI assistants, a faster store, no more retyping orders into Xero."></textarea></label>
+    <div class="brief-row">
+      <label>Timing<select name="timing"><option>As soon as possible</option><option>Within 1–3 months</option><option>Later this year</option><option>Just exploring</option></select></label>
+      <label>Budget<select name="budget"><option>Not sure yet</option><option>Under A$3,000</option><option>A$3,000–10,000</option><option>A$10,000–25,000</option><option>A$25,000+</option></select></label>
+    </div>
+    <label class="brief-founding"><input type="checkbox" name="founding"> <span>I’d like to apply for a <a class="text-link" href="pilot.html">founding-client place</a> (30% off, in return for a case study).</span></label>
+    <input type="hidden" name="note">
+    <label class="brief-hp" aria-hidden="true">Company fax<input name="company_fax" tabindex="-1" autocomplete="off"></label>
+    <button class="btn btn-lime" type="submit">Send my brief <span aria-hidden="true">↗</span></button>
+    <p class="brief-status" id="brief-status" role="status" aria-live="polite"></p>
+    <p class="fineprint">We use these details only to reply and, if we work together, to deliver the project. See <a class="text-link" href="privacy.html">privacy</a>.</p>
+  </form>
+  <aside class="brief-aside" aria-label="What happens next">
+    <p class="mono">What happens next</p>
+    <ol>
+      <li><b>Within two business days</b> you get a written plan: what we’d build, how, and a fixed quote.</li>
+      <li><b>You reply with questions</b> or changes, in writing. Nothing is lost between calls.</li>
+      <li><b>We build on a private preview.</b> Each milestone comes with a link and a short written summary.</li>
+      <li><b>You approve</b> and we launch, with monitoring in place.</li>
+    </ol>
+    <p class="fineprint">Prefer to start with a check? <a class="text-link" href="agent-test.html">Run the free AI test ↗</a></p>
+  </aside>
+</div></section>
+</main>
+<!-- footer -->
+<footer class="site-footer"><div class="wrap footer-grid">
+  <div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a><p>AI-native web studio. One senior developer, an AI engineering team and one point of contact, Australia-wide.</p></div>
+  <nav class="footer-col" aria-label="Services"><p class="mono">Services</p><a href="ai-visibility.html">AI visibility &amp; agent readiness</a><a href="websites.html">Websites &amp; web apps</a><a href="online-stores.html">Online stores &amp; agentic commerce</a><a href="automation.html">Automation &amp; integrations</a><a href="ai-assistants.html">AI assistants &amp; internal tools</a><a href="care.html">Care, hosting &amp; growth</a></nav>
+  <nav class="footer-col" aria-label="Studio"><p class="mono">Studio</p><a href="work.html">Work</a><a href="index.html#team">How we work</a><a href="agent-test.html">Free AI test</a><a href="pilot.html">Founding clients</a><a href="privacy.html">Privacy</a><a href="mailto:info@australianweb.agency">info@australianweb.agency</a></nav>
+  <p class="footer-copy mono">© <span data-year>2026</span> Australian Web Agency · AI-native by design</p>
+</div></footer>
+<!-- /footer -->
+</body>
+</html>

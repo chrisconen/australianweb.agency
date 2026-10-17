@@ -1,7 +1,7 @@
 // node --test _worker/agent-test.test.mjs
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeUrl, parseRobots, robotsAllows, jsonLdNodes, productStatus, visibleWords, detectPlatform, runAudit } from './agent-test.js';
+import { normalizeUrl, parseRobots, robotsAllows, jsonLdNodes, productStatus, visibleWords, detectPlatform, runAudit, statRow, briefData } from './agent-test.js';
 
 test('normalizeUrl accepts public hosts only', () => {
   assert.equal(normalizeUrl('shop.com.au').href, 'https://shop.com.au/');
@@ -151,4 +151,23 @@ test('a headless store is recognised from commerce signals in the page', async (
   assert.equal(report.isShop, true);
   const badge = await runAudit(new URL('https://badge.example.com.au/'), { fetchImpl: fakeFetch({ 'https://badge.example.com.au/': { body: badgeOnly } }) });
   assert.equal(badge.isShop, true);
+});
+
+test('stats rows are aggregate, cleaned and allow-listed', () => {
+  assert.equal(statRow({ e: 'hack' }, 'AU'), null);
+  assert.deepEqual(statRow({ e: 'pageview', p: '/Automation.html?x=<b>', r: 'https://www.google.com/search?q=1' }, 'AU', '2026-10-17'),
+    ['2026-10-17', 'pageview', '/automation.html-x-b-', 'google.com', 'au', '']);
+  assert.deepEqual(statRow({ e: 'cta', p: '/', r: 'https://australianweb.agency/work.html', l: 'Book a call' }, undefined, '2026-10-17'),
+    ['2026-10-17', 'cta', '/', '', 'xx', 'book-a-call']);
+});
+
+test('briefs are validated, trimmed and bots are dropped', () => {
+  const ok = briefData({ name: ' Sam ', email: 'sam@shop.com.au', goal: 'A faster store with Afterpay', services: ['online-stores', 'hack'], founding: true });
+  assert.equal(ok.name, 'Sam');
+  assert.deepEqual(ok.services, ['online-stores']);
+  assert.equal(ok.founding, true);
+  assert.equal(briefData({ name: 'Sam', email: 'not-an-email', goal: 'A faster store' }), null);
+  assert.equal(briefData({ name: 'Sam', email: 'sam@shop.com.au', goal: 'short' }), null);
+  assert.equal(briefData({ name: 'Bot', email: 'b@b.co', goal: 'buy cheap links now', company_fax: '123' }), null);
+  assert.equal(briefData({ name: 'Eve', email: 'eve@x.com\nBcc: a@b.c', goal: 'header injection attempt' }), null);
 });

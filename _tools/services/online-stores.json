@@ -1,0 +1,97 @@
+{
+ "meta_title": "Online stores & agentic commerce | AWA",
+ "meta_description": "Shopify, WooCommerce and headless Medusa stores for Australia. New builds, migrations and speed rescues that convert and are ready for AI shopping agents.",
+ "hero_title": "Online stores that convert | ready for AI agents",
+ "hero_lead": "New builds, migrations and speed rescues on Shopify, WooCommerce and headless Medusa, for businesses across Australia. Payments, shipping, stock and product data are set so people can buy today, and so assistants can compare products and, where AI checkout is available to your store, complete checkout.",
+ "included_intro": "You work with Chris Conen. Architect and Astra, the AI engineers, write, test and review the code under his supervision. The build covers six areas.",
+ "included": [
+  {
+   "title": "Shopify, WooCommerce and headless Medusa",
+   "text": "A new Shopify, WooCommerce or headless Medusa store, matched to your catalogue, your staff and how you fulfil orders in Australia."
+  },
+  {
+   "title": "Migrations and speed rescues",
+   "text": "We migrate catalogue and checkout, then do speed and conversion work on templates, images and the path to payment."
+  },
+  {
+   "title": "Payments and buy now, pay later",
+   "text": "We connect Stripe, PayPal, Square, Afterpay, Zip or Tyro, and send the paid order to Xero, MYOB, QuickBooks Online or Reckon."
+  },
+  {
+   "title": "Shipping and stock in sync",
+   "text": "We connect Australia Post, StarTrack, Sendle, Couriers Please or Aramex, and keep stock aligned when an order is paid and a label is created."
+  },
+  {
+   "title": "Product data agents can compare",
+   "text": "Titles, prices, availability and attributes in the product feed, written so an assistant can compare your range."
+  },
+  {
+   "title": "UCP checkout readiness",
+   "text": "We complete the UCP technical implementation Google describes, so you can submit an interest form. Google selects merchants, and you stay seller of record."
+  }
+ ],
+ "use_cases": [
+  {
+   "who": "A Gold Coast surf shop",
+   "situation": "The site drags on a phone, Afterpay is awkward at checkout, and the shop floor and the website disagree on stock.",
+   "what_we_do": "We rebuild on Shopify, connect Afterpay, Stripe and Australia Post, and structure the product feed for comparison.",
+   "outcome": "A shopper can pay from their phone, and a paid order updates stock and creates a shipping label."
+  },
+  {
+   "who": "A Melbourne B2B supplier",
+   "situation": "Trade buyers reorder specific variants, while the website, the warehouse and Xero disagree on what is in stock.",
+   "what_we_do": "We build a headless Medusa store, connect Stripe and Xero, and structure variant data a buyer or an assistant can compare.",
+   "outcome": "A trade order checks out on the right variant, and the invoice and stock follow that payment."
+  },
+  {
+   "who": "A Perth bike shop",
+   "situation": "Riders compare specs in Google and ChatGPT before they visit, and the product pages bury the details that matter.",
+   "what_we_do": "We rewrite product data into feed-ready attributes and prepare the UCP technical work so you can submit Google's UCP interest form.",
+   "outcome": "An assistant can compare your range, and you can lodge Google's UCP interest form."
+  }
+ ],
+ "demo_title": "Try the three demos on this page",
+ "demo_text": "The product card, the platform chooser and the order pipeline show the data assistants read, which of Shopify, WooCommerce or headless Medusa fits, and the path from payment to customer notification.",
+ "steps": [
+  {
+   "title": "Map how you sell",
+   "text": "You tell Chris what you sell, which platform you are on, and where payment, stock or shipping breaks down."
+  },
+  {
+   "title": "Choose the platform",
+   "text": "We walk through the platform chooser with you and pick Shopify, WooCommerce or headless Medusa for your catalogue and team."
+  },
+  {
+   "title": "Build and connect it",
+   "text": "Architect and Astra write, test and review under Chris's supervision. The build covers checkout, payments, shipping, stock, accounting and speed."
+  },
+  {
+   "title": "Prepare for AI checkout",
+   "text": "We check feeds and the UCP technical steps, measure mobile speed, and Chris remains your one point of contact."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is AI checkout open to Australian stores?",
+   "a": "Partly. Google’s Universal Commerce Protocol (UCP) launched in Australia in June 2026 with selected retailers, so shoppers can buy single items inside Search, AI Mode and Gemini (Inside Retail). Google’s Merchant Center Help says checkout covers Australia for select merchants, and you stay the seller of record."
+  },
+  {
+   "q": "When can we turn UCP on in Merchant Center?",
+   "a": "Google’s Merchant Center Help (October 2026) says the self-serve UCP hub is rolling out in the United States first, with Australia and Canada to follow next year. We do the groundwork now: product data, feeds and checkout readiness, so you can apply as soon as it opens."
+  },
+  {
+   "q": "Can our Shopify store sell in ChatGPT or Gemini?",
+   "a": "Shopify’s Agentic Storefronts is on by default for eligible stores and can list products in ChatGPT, Google AI Mode, Gemini, Copilot and Meta. Shopify’s help centre (October 2026) says direct checkout in AI Mode and Gemini, and selling in ChatGPT, currently require selling to United States customers."
+  },
+  {
+   "q": "Are Australians buying through AI yet?",
+   "a": "Deloitte’s 2026 Retail Report found 45% of consumers use AI to compare products and services, and 11% use it to complete or automate purchases. An Ideally survey of 809 Australians, reported by eCommerceNews Australia in October 2026, found half had used AI to research a purchase."
+  },
+  {
+   "q": "Are you building a store like this?",
+   "a": "Yes. AWA (Chris Conen) is building a headless Medusa store for Marina Yacht Sport, a European yacht-equipment retailer, launching in late 2026. Stripe checkout, invoicing and shipping labels are connected. Measured the same morning, the new storefront scored 97 on mobile PageSpeed and the old store 69."
+  }
+ ],
+ "cta_title": "Plan the store with Chris",
+ "cta_text": "Tell Chris what you sell, which platform you are on, and whether you need a new build, a migration or a speed rescue. You deal with him directly, Australia-wide."
+}

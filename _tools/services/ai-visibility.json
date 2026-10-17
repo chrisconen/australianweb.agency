@@ -1,0 +1,97 @@
+{
+ "meta_title": "AI visibility and agent readiness | AWA",
+ "meta_description": "Help ChatGPT, Gemini, Copilot and Perplexity find your business, understand the offer and, where checkout is live, buy. Free AI agent readiness test.",
+ "hero_title": "Get found when people | ask an AI assistant",
+ "hero_lead": "Customers ask ChatGPT, Gemini, Copilot and Perplexity what to buy and who to call. We make sure those assistants can find your business, understand the offer and, where checkout is live, buy from you.",
+ "included_intro": "The free test on this page is live. It checks crawler access, firewall behaviour, structured data, UCP and WebMCP. This site scores 100/100. Your plan follows the same checks.",
+ "included": [
+  {
+   "title": "Readiness test and fix plan",
+   "text": "Run the free AI agent readiness test, then get a written plan for crawler access, structured data, feeds and checkout readiness."
+  },
+  {
+   "title": "Crawler and firewall access",
+   "text": "We set robots.txt and firewall rules so search agents can read the site, and separate those from training crawlers."
+  },
+  {
+   "title": "Structured data",
+   "text": "We add Organization, LocalBusiness, Product, Offer and FAQ markup so assistants can read who you are and what you sell."
+  },
+  {
+   "title": "Product feeds and llms.txt",
+   "text": "We prepare a Google Merchant Center feed and an llms.txt file that states your offer in plain text for agents."
+  },
+  {
+   "title": "UCP and WebMCP",
+   "text": "We prepare Universal Commerce Protocol checkout where Google has made it available to you, and WebMCP tools so browser agents can act."
+  },
+  {
+   "title": "Monthly visibility monitoring",
+   "text": "Each month we recheck crawler access, markup, feeds and whether assistants still describe your offer accurately."
+  }
+ ],
+ "use_cases": [
+  {
+   "who": "A Gold Coast surf shop",
+   "situation": "Shoppers ask ChatGPT and Gemini which board suits a beginner before they visit a store or a website.",
+   "what_we_do": "We open crawler access, add Product and Offer data, publish a Merchant Center feed and an llms.txt file.",
+   "outcome": "Assistants can name the shop, match boards to the question and point to a page where the range is clear."
+  },
+  {
+   "who": "A Sydney plumber",
+   "situation": "Homeowners ask an assistant who to call for a blocked drain in their suburb, then ring the first business they trust.",
+   "what_we_do": "We add LocalBusiness and FAQ markup, fix firewall blocks and state the service area in llms.txt.",
+   "outcome": "An assistant can find the business, quote the suburbs served and give a phone number a person can call."
+  },
+  {
+   "who": "A Melbourne B2B supplier",
+   "situation": "Buyers ask Copilot and Perplexity which Australian supplier stocks a part, then want a way to order it.",
+   "what_we_do": "We add Product and Offer data, a Merchant Center feed and UCP readiness where Google has opened it.",
+   "outcome": "Assistants can describe the part and the supplier, and send the buyer to a working product page."
+  }
+ ],
+ "demo_title": "See the answer change",
+ "demo_text": "Try the before-and-after AI answer, run the free test on your own site, and watch the shopping journey from question to product.",
+ "steps": [
+  {
+   "title": "Test the site",
+   "text": "You run the free AI agent readiness test on your site, and it reports how accessible your crawler, firewall, structured-data, UCP and WebMCP setup is."
+  },
+  {
+   "title": "Agree the fix plan",
+   "text": "Chris reviews the score with you and writes the fixes: access, markup, feeds, llms.txt and checkout readiness."
+  },
+  {
+   "title": "We build and check",
+   "text": "Our AI engineers make the changes under Chris’s supervision. We retest against the same checks before anything goes live."
+  },
+  {
+   "title": "Watch it monthly",
+   "text": "Each month we recheck access, markup and feeds, and note whether assistants still describe the offer accurately."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Do Australian shoppers actually use AI to choose what to buy?",
+   "a": "Deloitte’s 2026 Retail Report found 45% of consumers use AI to compare products and 38% to research options. An Ideally survey of 809 Australians, reported by eCommerceNews Australia in October 2026, found half had used AI to research a purchase."
+  },
+  {
+   "q": "Can customers check out inside Google’s AI results in Australia?",
+   "a": "Yes, for selected retailers. Google’s Universal Commerce Protocol (UCP) launched in Australia in June 2026, and Google’s Merchant Center Help says checkout covers Australia for select merchants. The self-serve Merchant Center hub is expected to reach Australia next year. We prepare the technical work so you can apply."
+  },
+  {
+   "q": "Will this put my pages into AI training data?",
+   "a": "No. We follow each publisher’s own split. Google’s crawler docs, updated 15 October 2026, say Google-Extended is a robots.txt token for Gemini training and grounding, and that it does not affect Google Search. OpenAI’s bots docs separate OAI-SearchBot from the GPTBot training crawler. We set the tokens you choose."
+  },
+  {
+   "q": "Does Google say we must do special optimisation for AI Overviews?",
+   "a": "Google’s Search Central guide, updated 10 December 2025, says AI Overviews and AI Mode link to indexed pages that can show a snippet. It says there are no extra technical requirements. We still fix crawl blocks, markup and feeds so those pages can be found and quoted accurately."
+  },
+  {
+   "q": "What is WebMCP, and is it finished?",
+   "a": "Chrome’s WebMCP docs, updated 7 October 2026, describe a proposed standard for exposing tools to browser agents. It is in a Chrome origin trial and Chrome says the API can change. The 16 October 2026 spec is a W3C Community Group draft, not a W3C Standard. We build to the current draft and retest when it changes."
+  }
+ ],
+ "cta_title": "Run the free readiness test",
+ "cta_text": "Put your site through the same check this one scores 100/100 on. You get the result, then a fix plan from Chris if you want the work done."
+}

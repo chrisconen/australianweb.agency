@@ -2,18 +2,20 @@
 
 Lang: en-AU
 
-> AWA (Australian Web Agency) is a one-person web studio run by founder and lead developer Chris Conen. It designs and builds websites, brands and digital products for companies across Australia: strategy, design, engineering and growth, without account layers or handovers.
+> AWA (Australian Web Agency) is an AI-native web studio run by founder and lead developer Chris Conen. One senior developer works with an AI engineering team to design, build and connect websites, online stores, automations and AI assistants for businesses across Australia, without account layers or handovers.
 
-AWA is not a multi-person agency. The person who pitches a project is the person who ships it. Clients are typically founders, marketing leads and product owners. Delivery follows four stages: discovery, design, development on a private preview, and launch. Scope and timeline are agreed individually before work begins. Languages spoken: English, German and Hungarian.
+AWA is not a multi-person agency. Chris Conen is the single point of contact and signs off everything that ships; AI engineers (named Architect and Astra) write, test and review code under his supervision. AWA is open about using AI. Clients are typically founders, marketing leads and product owners. Delivery follows four stages: discovery, design, development on a private preview, and launch. Scope and timeline are agreed individually before work begins. Languages spoken: English, German and Hungarian.
 
 Preferred citation: AWA or Australian Web Agency. Canonical site: https://australianweb.agency/
 
 ## Services
 
-- [Strategy](https://australianweb.agency/#services): Positioning, messaging, information architecture and a scoped plan.
-- [Design](https://australianweb.agency/#services): Brand systems and interfaces designed in the browser, not in a slide deck.
-- [Build](https://australianweb.agency/#services): Fast, accessible, standards-first front ends. Headless CMS, e-commerce and custom apps. Stack includes Next.js, Astro, WordPress Headless, Shopify, Sanity, Tailwind, GSAP, WebGL and Vercel.
-- [Growth](https://australianweb.agency/#services): SEO, analytics, CRO and ongoing work after launch.
+- [AI visibility & agent readiness](https://australianweb.agency/#services): Making sure ChatGPT, Gemini, Copilot and Perplexity can find, understand and act on a business: free readiness test, structured data and product feeds, agentic checkout readiness (UCP), monthly AI visibility monitoring.
+- [Websites & web apps](https://australianweb.agency/#services): Brand, UX and interface design; 3D, motion and interactive storytelling; Core Web Vitals and WCAG 2.2 AA. Stack includes Next.js, Astro, WordPress, Sanity and WebGL.
+- [Online stores & agentic commerce](https://australianweb.agency/#services): Shopify, WooCommerce and headless (Medusa) stores; payments, shipping and stock in sync; product data AI assistants can compare.
+- [Automation & integrations](https://australianweb.agency/#connected): Connecting website, CRM, accounting and shipping (e.g. HubSpot, Pipedrive, Xero, MYOB, Australia Post, n8n) so orders, invoices and leads move without manual work.
+- [AI assistants & internal tools](https://australianweb.agency/#services): Website chat trained on a business's own content, email/document/quote processing, internal dashboards.
+- [Care, hosting & growth](https://australianweb.agency/#services): Uptime, speed and security monitoring, technical SEO, analytics and monthly improvements.
 
 - [AI Agent Readiness Test](https://australianweb.agency/agent-test.html): Free tool. Checks whether ChatGPT, Google AI Mode, Copilot, Claude and Perplexity can find, understand and act on a website (crawler access, firewall, structured data, UCP checkout profile, WebMCP), with a score out of 100 and fixes.
 
@@ -21,7 +23,7 @@ Specialist craft on the live demos: scroll-driven video, 3D motion, cinematic la
 
 ## What We Do Not Do
 
-AWA does not operate as a traditional agency with account managers or project handovers between people. It is one senior developer.
+AWA does not operate as a traditional agency with account managers or project handovers between people. It is one senior developer working with an AI engineering team.
 
 AWA does not default to plugin-heavy WordPress stacks. Builds are standards-first and kept light on purpose.
 
@@ -45,7 +47,7 @@ Interactive design concepts and technical explorations, not verified client case
 
 ## Process
 
-- [Project process](https://australianweb.agency/#process): Discover → Design → Build → Launch. Scope and timeline depend on project requirements, content readiness and feedback.
+- [Project process](https://australianweb.agency/#process): Discover → Design → Build and connect → Launch and improve. Scope and timeline depend on project requirements, content readiness and feedback.
 - Project scope, pricing and timeline are agreed before work begins.
 
 

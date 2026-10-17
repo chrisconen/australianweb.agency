@@ -1,7 +1,7 @@
 // node --test _worker/agent-test.test.mjs
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeUrl, parseRobots, robotsAllows, jsonLdNodes, productStatus, visibleWords, runAudit } from './agent-test.js';
+import { normalizeUrl, parseRobots, robotsAllows, jsonLdNodes, productStatus, visibleWords, detectPlatform, runAudit } from './agent-test.js';
 
 test('normalizeUrl accepts public hosts only', () => {
   assert.equal(normalizeUrl('shop.com.au').href, 'https://shop.com.au/');
@@ -132,4 +132,23 @@ test('a shop without verified product data is capped at Agent-aware', async () =
   assert.equal(report.checks.find(c => c.id === 'product').status, 'info');
   assert.ok(report.score >= 85, String(report.score));
   assert.equal(report.grade, 'Agent-aware');
+});
+
+test('platform detection needs technical fingerprints, not a mention in the copy', () => {
+  const h = new Headers();
+  assert.equal(detectPlatform('<p>We build on Shopify, WooCommerce, BigCommerce, Magento and Wix.</p>', h), null);
+  assert.equal(detectPlatform('<link href="/wp-content/plugins/woocommerce/assets/css/x.css">', h), 'WooCommerce');
+  assert.equal(detectPlatform('<body class="home woocommerce-page woocommerce">', h), 'WooCommerce');
+  assert.equal(detectPlatform('<script src="https://cdn.shopify.com/s/files/x.js"></script>', h), 'Shopify');
+  assert.equal(detectPlatform('<script src="/static/version1/frontend/Magento_Theme/x.js"></script>', h), 'Magento');
+});
+
+test('a headless store is recognised from commerce signals in the page', async () => {
+  const home = `<html lang="en-AU"><head><title>Pets</title></head><body>${'<p>Food and toys for every pet.</p>'.repeat(40)}<button>Add to cart</button></body></html>`;
+  const badgeOnly = `<html><body><div class="CartBadge_container"></div>${'<p>Food and toys for every pet.</p>'.repeat(40)}</body></html>`;
+  const report = await runAudit(new URL('https://headless.example.com.au/'), { fetchImpl: fakeFetch({ 'https://headless.example.com.au/': { body: home } }) });
+  assert.equal(report.platform, null);
+  assert.equal(report.isShop, true);
+  const badge = await runAudit(new URL('https://badge.example.com.au/'), { fetchImpl: fakeFetch({ 'https://badge.example.com.au/': { body: badgeOnly } }) });
+  assert.equal(badge.isShop, true);
 });

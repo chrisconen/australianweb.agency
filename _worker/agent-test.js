@@ -152,13 +152,14 @@ export function productStatus(nodes) {
 export function detectPlatform(html, headers) {
   const h = html.slice(0, 400000);
   const powered = (headers.get('x-powered-by') || '') + ' ' + (headers.get('server') || '');
-  if (/cdn\.shopify\.com|Shopify\.theme|myshopify\.com/i.test(h) || headers.get('x-shopid')) return 'Shopify';
-  if (/woocommerce/i.test(h)) return 'WooCommerce';
-  if (/bigcommerce\.com|stencil-utils/i.test(h)) return 'BigCommerce';
-  if (/netostatic|neto-|maropost/i.test(h)) return 'Maropost (Neto)';
-  if (/Magento|mage\/cookies/i.test(h)) return 'Magento';
-  if (/static\.wixstatic\.com|wix\.com/i.test(h)) return 'Wix';
-  if (/squarespace/i.test(h)) return 'Squarespace';
+  // technical fingerprints only (asset paths, CDN hosts, theme globals): a page that merely mentions a platform is not built on it
+  if (/cdn\.shopify\.com|Shopify\.theme|\.myshopify\.com\//i.test(h) || headers.get('x-shopid')) return 'Shopify';
+  if (/plugins\/woocommerce\/|class="[^"]*\bwoocommerce\b/i.test(h)) return 'WooCommerce';
+  if (/cdn\d*\.bigcommerce\.com|stencil-utils/i.test(h)) return 'BigCommerce';
+  if (/netostatic\.com/i.test(h)) return 'Maropost (Neto)';
+  if (/\/static\/[^"']*Magento_|mage\/cookies/i.test(h)) return 'Magento';
+  if (/static\.wixstatic\.com/i.test(h)) return 'Wix';
+  if (/static1\.squarespace\.com|squarespace-cdn\.com/i.test(h)) return 'Squarespace';
   if (/wp-content|wp-includes/i.test(h) || /wordpress/i.test(powered)) return 'WordPress';
   return null;
 }
@@ -227,7 +228,8 @@ export async function runAudit(target, { fetchImpl = fetch } = {}) {
     productPage = final.href;
   }
   const isShop = ['Shopify', 'WooCommerce', 'BigCommerce', 'Maropost (Neto)', 'Magento'].includes(platform)
-    || productLd.status !== 'missing' || !!productPage || /\/(cart|basket|checkout)\b/i.test(html.slice(0, 400000));
+    || productLd.status !== 'missing' || !!productPage
+    || /\/(cart|basket|checkout)\b|add to (cart|bag|basket|trolley)|mini-?cart|cart-?(badge|count|drawer|icon)|CartBadge|"priceCurrency"|\/media\/catalog\/product\//i.test(html);
 
   let sitemapOk = false;
   const smUrl = robots.sitemaps[0] || origin + '/sitemap.xml';

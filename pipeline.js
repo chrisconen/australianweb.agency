@@ -48,18 +48,39 @@
     const svg = track.querySelector('.pl-svg'), base = svg.querySelector('.pl-base'), lit = svg.querySelector('.pl-lit'), comet = svg.querySelector('.pl-comet');
     const litGrad = svg.querySelector(`#${id}lit`), cometGrad = svg.querySelector(`#${id}comet`), cometStops = cometGrad.querySelectorAll('stop');
     if (!list.id) list.id = id + 'steps';
+    if (!track.id) track.id = id + 'panel';
     if (tablist && SCENARIOS.length > 1 && !tablist.children.length) {
       SCENARIOS.forEach(s => {
         const b = document.createElement('button');
         b.type = 'button';
         b.setAttribute('role', 'tab');
-        b.setAttribute('aria-controls', list.id);
+        b.setAttribute('aria-controls', track.id);
         b.textContent = s.tab;
         tablist.append(b);
       });
     }
     const tabs = tablist ? [...tablist.querySelectorAll('[role=tab]')] : [];
+    if (tabs.length) {
+      track.setAttribute('role', 'tabpanel');
+      tabs.forEach(t => t.setAttribute('aria-controls', track.id));
+    }
     let scenario = 0, pts = [], cum = [], total = 1, run = 0, visible = false, started = false;
+    // WCAG 2.2.2: auto-play runs through the scenarios once, then stops; a button pauses or replays it
+    let paused = false, finished = false, remaining = SCENARIOS.length;
+    const ctrl = document.createElement('button');
+    ctrl.type = 'button';
+    ctrl.className = 'pl-ctrl';
+    const setCtrl = () => {
+      const play = paused || finished;
+      ctrl.textContent = play ? '▶ Play' : '❚❚ Pause';
+      ctrl.setAttribute('aria-label', play ? 'Play the automation animation' : 'Pause the automation animation');
+    };
+    ctrl.addEventListener('click', () => {
+      if (finished) { finished = false; paused = false; remaining = 1; play(); } else paused = !paused;
+      setCtrl();
+    });
+    root.querySelector('.pl-head').append(ctrl);
+    setCtrl();
 
     function render() {
       const { label, steps } = SCENARIOS[scenario];
@@ -120,7 +141,7 @@
     function play() {
       const my = ++run;
       render();
-      if (reduce.matches) { requestAnimationFrame(showDone); return; }
+      if (reduce.matches) { finished = true; setCtrl(); requestAnimationFrame(showDone); return; }
       requestAnimationFrame(() => {
         if (my !== run) return;
         layout();
@@ -132,7 +153,7 @@
         let elapsed = 0, last = null;
         const tick = ts => {
           if (my !== run) return;
-          if (last !== null && visible) elapsed += Math.min(64, ts - last);
+          if (last !== null && visible && !paused) elapsed += Math.min(64, ts - last);
           last = ts;
           if (elapsed < travel) {
             const raw = elapsed / SEG_MS, seg = Math.min(pts.length - 2, Math.floor(raw)), f = ease(raw - seg);
@@ -142,7 +163,12 @@
             draw(total, pts.length - 2, 1);
             nodes.forEach(n => n.classList.add('is-active'));
             comet.style.opacity = 0;
-            if (elapsed >= travel + HOLD_MS) { scenario = (scenario + 1) % SCENARIOS.length; play(); return; }
+            if (elapsed >= travel + HOLD_MS) {
+              if (--remaining <= 0) { finished = true; setCtrl(); return; }
+              scenario = (scenario + 1) % SCENARIOS.length;
+              play();
+              return;
+            }
           }
           requestAnimationFrame(tick);
         };
@@ -151,12 +177,13 @@
     }
 
     tabs.forEach((t, i) => {
-      t.addEventListener('click', () => { scenario = i; play(); });
+      t.addEventListener('click', () => { scenario = i; remaining = 1; finished = paused = false; setCtrl(); play(); });
       t.addEventListener('keydown', e => {
         const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
         if (!k) return;
         e.preventDefault();
         scenario = (i + k + tabs.length) % tabs.length;
+        remaining = 1; finished = paused = false; setCtrl();
         play();
         tabs[scenario].focus();
       });

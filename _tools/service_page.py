@@ -92,11 +92,11 @@ SETUP = {
                      proof_link=('work.html', 'Explore the work ↗')),
     'online-stores': dict(no='03', band=demo('product-lens'), cta2=('agent-test.html', 'Test your store free'),
                           extra=demo('platform-chooser') + pipeline([ORDER, PRICE]),
-                          proof='We are building a headless Medusa store for a European yacht-equipment retailer, with Stripe checkout, invoicing and shipping labels connected. Mobile PageSpeed: 69 for the old store, 97 for the new one.',
+                          proof='We are building a headless Medusa store for Marina Yacht Sport (Europe, launching late 2026), with Stripe checkout, invoicing and shipping labels connected. Mobile PageSpeed: 69 for the old store, 97 for the new one.',
                           proof_link=('websites.html', 'How we build for speed ↗')),
     'automation': dict(no='04', band=pipeline([ORDER, ENQUIRY, PRICE, BOOKING]), cta2=('#calculator', 'Estimate your savings'),
                        extra='<div id="calculator">' + demo('savings-calc') + '</div>' + INTEGRATION_MAP,
-                       proof='Automations we already run in production: invoicing and shipping labels for an online store, enquiry routing, and scheduled monthly security rescans for a compliance platform.',
+                       proof='Automations we have built: invoicing and shipping labels for Marina Yacht Sport’s new store (launching late 2026), plus enquiry routing and scheduled monthly security rescans that already run in production.',
                        proof_link=('ai-assistants.html', 'Add AI to your workflows ↗')),
     'ai-assistants': dict(no='05', hero=demo('chat-demo'), cta2=('#document-ai', 'See document processing'),
                           extra='<div id="document-ai">' + demo('doc-extract') + '</div>',
@@ -106,6 +106,48 @@ SETUP = {
                  proof='We run the same monitoring on our own sites: uptime, Core Web Vitals, security headers and AI agent readiness, with scheduled monthly rescans for a compliance platform.',
                  proof_link=('agent-test.html?url=australianweb.agency', 'See our live score ↗')),
 }
+
+
+# 'From' prices (AUD, ex GST) set below the typical Australian range found in the October 2026 pricing research.
+# Each package must be genuinely available at that price for the scope listed (Australian Consumer Law).
+PRICES = {
+    'ai-visibility': ([
+        ('AI readiness fix pack', '1,490', 'one-off', ['Full readiness review and written fix plan', 'Crawler, firewall and structured-data fixes', 'Product feed and llms.txt set up', 'Retest against the same checks']),
+        ('AI visibility monitoring', '690', 'per month', ['Monthly readiness and feed checks', 'Spot checks of how assistants describe you', 'Plain-English report with fixes']),
+    ], 'Typical Australian pricing: A$1,950–5,000 for AI visibility setup, and A$1,000–3,000 a month for ongoing programs (Search Scope, Uprise Digital, 2026).'),
+    'websites': ([
+        ('Small business website', '3,900', 'one-off', ['Up to 6 pages, custom design', 'A CMS your team can edit', 'Core Web Vitals and WCAG 2.2 AA', 'AI-ready structured data']),
+        ('Premium website', '12,900', 'one-off', ['Bespoke design with motion or 3D', 'Up to 15 pages', 'Content structure and copy editing', 'Speed and accessibility to target']),
+        ('Web app', '19,900', 'one-off', ['Accounts, dashboards and admin tools', 'Payments or integrations as scoped', 'Tested and documented']),
+    ], 'Typical Australian pricing: A$4,000–9,000 for a 5–10 page small business site, A$15,000–40,000 for premium custom work and A$30,000–80,000 for a web app (Uprise Digital, Taqwanology, 2026).'),
+    'online-stores': ([
+        ('Online store', '8,900', 'one-off', ['Shopify or WooCommerce, custom theme', 'Up to 200 products imported', 'Payments incl. Afterpay or Zip, Australian shipping', 'Product data and feeds assistants can read']),
+        ('Headless store', '19,900', 'one-off', ['Medusa back end, custom storefront', 'Custom pricing, B2B rules and integrations', 'Fast front end built for Core Web Vitals']),
+    ], 'Typical Australian pricing: A$12,000–35,000 for a small-studio Shopify build with a custom theme (Pryce Digital, 2026), and A$10,000–20,000 as a typical ecommerce budget (Uprise Digital, 2026).'),
+    'automation': ([
+        ('Single workflow', '1,900', 'one-off', ['One automated workflow, e.g. order, invoice, label', 'Error alerts and a run log', 'Handover notes']),
+        ('Automation bundle', '4,900', 'one-off', ['Up to three connected workflows', 'CRM clean-up or migration', '30 days of monitoring']),
+        ('Hourly', '135', 'per hour', ['Small changes and integrations', 'Billed in 15-minute blocks']),
+    ], 'Typical Australian pricing: A$2,000–15,000 for small-business automation projects, and A$150–250 an hour for senior developers (SILA Automation, AI-DOS, Hatchet, 2026).'),
+    'ai-assistants': ([
+        ('Website assistant', '4,900', 'one-off', ['Answers from your pages and documents', 'Sources shown and human handover', 'Guardrails, logging and privacy settings', 'AI model usage billed at cost']),
+        ('Document processing', '2,900', 'one-off', ['One document type, e.g. supplier invoices', 'Drafts into Xero or MYOB for review', 'Accuracy check on your own samples']),
+    ], 'Typical Australian pricing: A$3,000–40,000 for a custom AI chatbot, and A$2,000–8,000 for document automation (Source Digital, Team 400, AI-DOS, 2026).'),
+    'care': ([
+        ('Essentials', '149', 'per month', ['Hosting, SSL and backups', 'Updates and uptime monitoring', '30 minutes of changes a month']),
+        ('Growth', '299', 'per month', ['Everything in Essentials', 'Speed, security and AI-readiness checks', 'Monthly report and 2 hours of improvements']),
+    ], 'Typical Australian pricing: A$90–380 a month for small-business care plans (Studio Slate, Chillybin, 2026).'),
+}
+
+
+def pricing(slug):
+    packs, market = PRICES[slug]
+    cards = ''.join(
+        f'<article class="svc-price"><p class="mono">{E(unit)}</p><h3>{E(name)}</h3><p class="svc-price-num"><span>From</span> A${E(price)}<span> + GST</span></p>'
+        f'<ul>{"".join(f"<li>{E(x)}</li>" for x in items)}</ul></article>' for name, price, unit, items in packs)
+    return (f'<div class="svc-prices">{cards}</div><p class="svc-market mono">{E(market)}</p>'
+            '<p class="fineprint">Prices in AUD, excluding GST. “From” prices cover the scope listed; every project is quoted in writing before work begins. '
+            '<a class="text-link" href="pilot.html" data-track="pilot">Founding clients save a further 30% ↗</a></p>')
 
 
 def render(slug, c):
@@ -152,9 +194,7 @@ def render(slug, c):
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="awa.css">
   <link rel="stylesheet" href="services.css">
   <link rel="stylesheet" href="demos.css">
@@ -190,6 +230,10 @@ def render(slug, c):
   <div class="svc-cases">{cases}</div>
 </div></section>
 <section class="proof svc-proof" aria-label="Proof"><div class="wrap svc-proof-inner"><p>{E(s["proof"])}</p><a class="text-link" href="{s["proof_link"][0]}">{E(s["proof_link"][1])}</a></div></section>
+<section class="section svc-pricing" aria-labelledby="pricing-title"><div class="wrap">
+  <div class="section-head"><p class="label">Pricing</p><h2 id="pricing-title">Clear prices, below the market.</h2><p class="section-intro">An AI engineering team means less time per project, and we pass that on. Every quote is fixed before work starts.</p></div>
+  {pricing(slug)}
+</div></section>
 <section class="section process" aria-labelledby="steps-title"><div class="wrap">
   <div class="section-head"><p class="label">How it works</p><h2 id="steps-title">Clear steps. No surprises.</h2></div>
   <ol class="steps">{steps}</ol>

@@ -350,6 +350,31 @@ export async function runAudit(target, { fetchImpl = fetch } = {}) {
   return { ok: true, url: target.href, finalUrl: final.href, checkedAt: new Date().toISOString(), platform, isShop, productPage, score, grade, checks };
 }
 
+// ---------- anonymous stats ----------
+// Cookieless, aggregate-only counts: one row per day/event/path/referrer-host/country/label with a counter.
+// No IP address, user agent or visitor id is stored.
+const EVENTS = new Set(['pageview', 'cta', 'book', 'test_run', 'calc_lead', 'chooser_lead', 'pilot']);
+const clean = (v, max) => String(v || '').toLowerCase().replace(/[^a-z0-9/._:-]+/g, '-').slice(0, max);
+
+export function statRow(body, country, today = new Date().toISOString().slice(0, 10)) {
+  if (!body || !EVENTS.has(body.e)) return null;
+  let ref = '';
+  try { ref = body.r ? new URL(body.r).hostname.replace(/^www\./, '') : ''; } catch { /* not a URL */ }
+  if (ref === 'australianweb.agency') ref = '';
+  return [today, body.e, clean(body.p, 80) || '/', clean(ref, 60), clean(country, 2) || 'xx', clean(body.l, 40)];
+}
+
+async function stat(req, env, h) {
+  let body;
+  try { body = JSON.parse(await req.text()); } catch { return new Response(null, { status: 204, headers: h }); }
+  const row = statRow(body, req.cf && req.cf.country);
+  if (row && env.awa_stats) {
+    await env.awa_stats.prepare('INSERT INTO daily (day, event, path, ref, country, label, n) VALUES (?1, ?2, ?3, ?4, ?5, ?6, 1) '
+      + 'ON CONFLICT (day, event, path, ref, country, label) DO UPDATE SET n = n + 1').bind(...row).run();
+  }
+  return new Response(null, { status: 204, headers: h });
+}
+
 // ---------- HTTP ----------
 
 function cors(origin) {
@@ -363,7 +388,16 @@ export default {
     const origin = req.headers.get('origin') || '';
     const h = cors(origin);
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
-    if (new URL(req.url).pathname !== '/agent-test') return json({ ok: false, error: 'not_found' }, 404, h);
+    const path = new URL(req.url).pathname;
+    if (path === '/e' && req.method === 'POST') {
+      if (origin && !ALLOWED_ORIGINS.some(re => re.test(origin))) return new Response(null, { status: 204, headers: h });
+      if (env && env.STATS_LIMITER) {
+        const { success } = await env.STATS_LIMITER.limit({ key: req.headers.get('cf-connecting-ip') || 'unknown' });
+        if (!success) return new Response(null, { status: 204, headers: h });
+      }
+      return stat(req, env, h);
+    }
+    if (path !== '/agent-test') return json({ ok: false, error: 'not_found' }, 404, h);
     if (req.method !== 'POST') return json({ ok: false, error: 'method_not_allowed' }, 405, h);
     if (origin && !ALLOWED_ORIGINS.some(re => re.test(origin))) return json({ ok: false, error: 'forbidden_origin' }, 403, h);
     if (env && env.RATE_LIMITER) {

@@ -91,3 +91,28 @@
   .svc-test-row{flex-direction:column;border-radius:16px}
   .svc-test .btn{justify-content:center}
 }
+
+/* pricing */
+.svc-pricing{border-top:1px solid var(--line)}
+.svc-prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.svc-price{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px}
+.svc-price:first-child{border-color:var(--ink);box-shadow:0 24px 50px -36px #0e1c2766}
+.svc-price .mono{color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.svc-price h3{font-size:22px;letter-spacing:-.025em;font-weight:600}
+.svc-price-num{font-size:clamp(34px,3.2vw,46px);font-weight:600;letter-spacing:-.04em;line-height:1.05}
+.svc-price-num span{font-size:14px;font-weight:500;letter-spacing:0;color:var(--muted)}
+.svc-price ul{display:grid;gap:7px;padding-top:12px;border-top:1px dashed var(--line);font-size:15px}
+.svc-price li{padding-left:20px;position:relative}
+.svc-price li::before{content:'✓';position:absolute;left:0;font-weight:700;color:#4c7a1b}
+.svc-market{margin-top:22px;color:var(--muted);font-size:12px;line-height:1.6}
+.svc-pricing .fineprint{margin-top:10px}
+
+/* pilot and privacy pages */
+.pilot-list{display:grid;gap:12px;border-top:1px solid var(--line);padding-top:18px}
+.pilot-list li{padding-left:28px;position:relative;font-size:18px}
+.pilot-list li::before{content:'✓';position:absolute;left:0;font-weight:700;color:#4c7a1b}
+.pilot-list+.fineprint{margin-top:22px}
+.privacy-text{display:grid;gap:10px;max-width:760px}
+.privacy-text h3{font-size:21px;letter-spacing:-.02em;font-weight:600;margin-top:18px}
+.privacy-text h3:first-child{margin-top:0}
+.privacy-text p{color:var(--muted)}

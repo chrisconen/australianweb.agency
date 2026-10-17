@@ -12,3 +12,5 @@ demos/**/*.mp4
 demos/**/*.webm
 
 .wrangler/
+
+__pycache__/

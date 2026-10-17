@@ -87,6 +87,7 @@
       if (!r.ok) { setStatus(r.message || 'The test could not run. Please try again in a minute.', true); return; }
       setStatus('');
       render(r);
+      if (window.awaStat) window.awaStat('test_run', r.grade);
     } catch {
       setStatus('The test service is not reachable right now. Please try again shortly.', true);
     } finally {

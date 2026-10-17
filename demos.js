@@ -22,6 +22,7 @@
         job.time += dt;
         if (job.draw(job.time, false) === false) jobs.delete(job);
       });
+      if (!jobs.size) last = 0;
       start();
     }
     function start() {
@@ -46,7 +47,7 @@
         const job = { draw, time: 0 };
         if (motion.matches) draw(Infinity, true);
         else { jobs.add(job); start(); }
-        return () => jobs.delete(job);
+        return () => { jobs.delete(job); if (!jobs.size) pause(); };
       },
       clear() { jobs.clear(); pause(); }
     };
@@ -75,32 +76,44 @@
     node.textContent = words.slice(0, Math.max(0, Math.floor((time - delay) / 35))).join(' ');
     return time >= delay + words.length * 35;
   }
+  function liveRegion(root) {
+    const region = el('p', 'dm-sr');
+    region.setAttribute('aria-live', 'polite');
+    region.setAttribute('aria-atomic', 'true');
+    root.append(region);
+    return region;
+  }
   function aiAnswer(root, c) {
     shell(root, true, 'Illustrative simulation of an AI assistant answer.', `
       <div class="dm-head"><span class="dm-label">AI discovery</span><span class="dm-chip">Example conversation</span></div>
       <p class="dm-bubble dm-user">Where can I buy an eco-friendly surfboard in Byron Bay?</p>
       <p class="dm-toggle-label">Your site, before and after an agent-readiness fix</p>
       <div class="dm-toggle" aria-label="Agent readiness comparison"></div>
-      <div class="dm-answer" aria-live="polite" aria-atomic="true"><p class="dm-answer-text"></p><div class="dm-chips dm-sources"></div>
-      <div class="dm-result" hidden><span class="dm-label">Recommended product</span><h3>Your Surf Store</h3><p>Eco Fish 6'2 · A$899 · In stock · Ships from Byron Bay</p><div class="dm-chips"><span class="dm-chip">yoursurfstore.example · product page</span><span class="dm-checkout" aria-hidden="true">Checkout in AI Mode ↗</span></div></div></div>`);
+      <div class="dm-answer"><p class="dm-answer-text" aria-hidden="true"></p><div class="dm-chips dm-sources"></div>
+      <div class="dm-result" hidden><span class="dm-label">Recommended product</span><p class="dm-h">Your Surf Store</p><p>Eco Fish 6'2 · A$899 · In stock · Ships from Byron Bay</p><div class="dm-chips"><span class="dm-chip">yoursurfstore.example · product page</span><span class="dm-checkout" aria-hidden="true">Checkout in AI Mode ↗</span></div></div></div>`);
     const answer = "Two local options come up: Saltwater Board Co. stocks recycled-foam boards from A$780, and Byron Shapers makes custom eco boards to order. I couldn't find current prices or stock for other shops in the area.";
     const region = $(root, '.dm-answer'), result = $(root, '.dm-result');
+    const announcement = liveRegion(root);
     let manual = false, mode = 0;
     const select = toggle($(root, '.dm-toggle'), ['Before', 'After'], i => { manual = true; run(i); });
     chips($(root, '.dm-sources'), ['saltwaterboards.example', 'byronshapers.example']);
     function run(i) {
       c.clear(); mode = i; select(i); result.hidden = true;
+      announcement.textContent = '';
+      let announced = false;
       $(root, '.dm-sources').hidden = true; region.setAttribute('aria-busy', 'true');
       c.add((t, reduced) => {
         if (reduced && !manual) { mode = 1; select(1); }
         const done = typeText($(root, '.dm-answer-text'), answer, t);
         if (done) {
+          if (!announced) { announcement.textContent = answer; announced = true; }
           region.setAttribute('aria-busy', 'false'); $(root, '.dm-sources').hidden = false;
           result.hidden = mode !== 1;
           result.style.boxShadow = mode === 1 && !reduced ? `0 0 ${Math.max(0, 24 * (1 - (t - answer.split(' ').length * 35) / 1000))}px #d9f86e38` : 'none';
         }
-        if (reduced || (manual && t > 2600)) return false;
-        if (!manual && t >= answer.split(' ').length * 35 + (mode ? 6500 : 3000)) { run(1 - mode); return false; }
+        const duration = answer.split(' ').length * 35;
+        if (reduced || ((manual || mode === 1) && t >= duration + 1000)) return false;
+        if (!manual && mode === 0 && t >= duration + 500) { run(1); return false; }
       });
     }
     run(0);
@@ -110,11 +123,12 @@
       <div class="dm-head"><span class="dm-label">Mobile performance</span></div><div class="dm-phones"></div>`);
     const phones = [ ['Before rebuild', 4000, 69], ['After rebuild', 2400, 97] ].map(([title, lcp, score], i) => {
       const item = el('div', 'dm-phone-column');
-      item.innerHTML = `<h3>${title}</h3><div class="dm-phone"><div class="dm-phone-top"><span>MARINA / SPORT</span><span>≡</span></div><div class="dm-phone-hero"><span>Made for<br>open water.</span><svg viewBox="0 0 240 120" aria-hidden="true"><path d="M20 95 Q120 75 220 95 L190 112 H55Z" fill="#f6f7f3"/><path d="M125 12 L125 84 L53 84Z" fill="#d9f86e"/><path d="M132 35 L181 84 H132Z" fill="#8ef5c8"/></svg></div><div class="dm-skeleton"></div><div class="dm-skeleton dm-short"></div><div class="dm-phone-cards"><i></i><i></i></div></div><div class="dm-speed-stats" aria-live="polite"><div><span class="dm-label">LCP</span><strong class="dm-timer">0.0 s</strong></div><div class="dm-gauge ${i ? 'dm-good' : 'dm-amber'}"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="34"/><circle class="dm-gauge-fill" cx="40" cy="40" r="34" pathLength="100"/></svg><strong>0</strong></div></div><p class="dm-label">Mobile PageSpeed / 100</p>`;
+      item.innerHTML = `<p class="dm-h">${title}</p><div class="dm-phone"><div class="dm-phone-top"><span>MARINA / SPORT</span><span>≡</span></div><div class="dm-phone-hero"><span>Made for<br>open water.</span><svg viewBox="0 0 240 120" aria-hidden="true"><path d="M20 95 Q120 75 220 95 L190 112 H55Z" fill="#f6f7f3"/><path d="M125 12 L125 84 L53 84Z" fill="#d9f86e"/><path d="M132 35 L181 84 H132Z" fill="#8ef5c8"/></svg></div><div class="dm-skeleton"></div><div class="dm-skeleton dm-short"></div><div class="dm-phone-cards"><i></i><i></i></div></div><div class="dm-speed-stats" aria-hidden="true"><div><span class="dm-label">LCP</span><strong class="dm-timer">0.0 s</strong></div><div class="dm-gauge ${i ? 'dm-good' : 'dm-amber'}"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="34"/><circle class="dm-gauge-fill" cx="40" cy="40" r="34" pathLength="100"/></svg><strong>0</strong></div></div><p class="dm-label">Mobile PageSpeed / 100</p>`;
       $(root, '.dm-phones').append(item); return { item, lcp, score };
     });
+    const announcement = liveRegion(root);
     function replay() {
-      c.clear();
+      c.clear(); announcement.textContent = '';
       phones.forEach(({ item }) => item.classList.remove('dm-painted'));
       c.add(t => {
         phones.forEach(({ item, lcp, score }) => {
@@ -124,7 +138,10 @@
           $(item, '.dm-gauge-fill').style.strokeDasharray = `${score * p} 100`;
           item.classList.toggle('dm-painted', t >= lcp);
         });
-        if (t >= 4000) return false;
+        if (t >= 4000) {
+          announcement.textContent = 'Before rebuild: LCP 4.0 seconds, Mobile PageSpeed 69 out of 100. After rebuild: LCP 2.4 seconds, Mobile PageSpeed 97 out of 100.';
+          return false;
+        }
       });
     }
     $(root, '.dm-head').append(button('Replay ↻', replay)); replay();
@@ -132,7 +149,7 @@
   function productLens(root) {
     shell(root, false, 'Example product. This is the structured data we add so assistants can compare and recommend it.', `
       <div class="dm-toggle dm-lens-toggle" aria-label="Product view"></div><div class="dm-lens-grid">
-      <article class="dm-product"><div class="dm-product-art"><span class="dm-label">Built for a lighter footprint</span><svg viewBox="0 0 400 260" role="img" aria-label="Two-tone sage and cream fish surfboard"><ellipse cx="205" cy="232" rx="100" ry="9" fill="#0e1c2710"/><g transform="rotate(28 200 130)"><path d="M200 15 C135 55 156 184 172 238 L200 219 L228 238 C244 184 265 55 200 15Z" fill="#f6f7f3" stroke="#476355" stroke-width="2"/><path d="M200 16 C265 55 244 184 228 238 L200 219Z" fill="#799687"/><path d="M200 20 V215" stroke="#476355"/><path d="M176 175 L185 205 M216 175 L207 205" stroke="#476355" stroke-width="3"/></g></svg></div><div class="dm-product-details"><span class="dm-label dm-field" tabindex="0" data-field="brand">Your Surf Store</span><h3 class="dm-field" tabindex="0" data-field="name">Eco Fish Surfboard 6'2</h3><div class="dm-head"><strong class="dm-price dm-field" tabindex="0" data-field="price">A$899</strong><span class="dm-stock dm-field" tabindex="0" data-field="stock">● In stock</span></div><p class="dm-field" tabindex="0" data-field="rating">★ 4.8 (32 reviews)</p></div></article>
+      <article class="dm-product"><div class="dm-product-art"><span class="dm-label">Built for a lighter footprint</span><svg viewBox="0 0 400 260" role="img" aria-label="Two-tone sage and cream fish surfboard"><ellipse cx="205" cy="232" rx="100" ry="9" fill="#0e1c2710"/><g transform="rotate(28 200 130)"><path d="M200 15 C135 55 156 184 172 238 L200 219 L228 238 C244 184 265 55 200 15Z" fill="#f6f7f3" stroke="#476355" stroke-width="2"/><path d="M200 16 C265 55 244 184 228 238 L200 219Z" fill="#799687"/><path d="M200 20 V215" stroke="#476355"/><path d="M176 175 L185 205 M216 175 L207 205" stroke="#476355" stroke-width="3"/></g></svg></div><div class="dm-product-details"><span class="dm-label dm-field" tabindex="0" data-field="brand">Your Surf Store</span><p class="dm-field dm-product-name" tabindex="0" data-field="name">Eco Fish Surfboard 6'2</p><div class="dm-head"><strong class="dm-price dm-field" tabindex="0" data-field="price">A$899</strong><span class="dm-stock dm-field" tabindex="0" data-field="stock">● In stock</span></div><p class="dm-field" tabindex="0" data-field="rating">★ 4.8 (32 reviews)</p></div></article>
       <div class="dm-code-panel"><p class="dm-label">Product / JSON-LD</p><pre class="dm-code" aria-label="Example Product structured data"></pre></div></div><ul class="dm-checklist"></ul>`);
     const schema = {
       '@context': 'https://schema.org', '@type': 'Product', name: "Eco Fish Surfboard 6'2",
@@ -173,7 +190,7 @@
     });
   }
   function platformChooser(root) {
-    shell(root, false, 'A starting point, not a verdict. We confirm the right platform in discovery.', '<div class="dm-chooser"><div class="dm-questions"></div><div class="dm-recommendation" aria-live="polite" aria-atomic="true"><span class="dm-label">Your starting point</span><h3>Answer three quick questions.</h3><p class="dm-why"></p><p class="dm-watch"></p></div></div>');
+    shell(root, false, 'A starting point, not a verdict. We confirm the right platform in discovery.', '<div class="dm-chooser"><div class="dm-questions"></div><div class="dm-recommendation" aria-live="polite" aria-atomic="true"><span class="dm-label">Your starting point</span><p class="dm-h">Answer three quick questions.</p><p class="dm-why"></p><p class="dm-watch"></p></div></div>');
     const questions = [
       ['How many products?', ['Under 200', '200-5,000', '5,000+'], [[2, 2, 0], [2, 1, 1], [1, 0, 2]]],
       ['How custom does it need to be?', ['Standard is fine', 'Some custom features', 'Fully custom'], [[2, 1, 0], [1, 2, 1], [0, 0, 3]]],
@@ -199,16 +216,24 @@
     });
     function update() {
       const count = answers.filter(a => a !== null).length;
-      if (count < 3) { $(root, '.dm-recommendation h3').textContent = `${count} of 3 answered. Keep going.`; return; }
+      if (count < 3) { $(root, '.dm-recommendation .dm-h').textContent = `${count} of 3 answered. Keep going.`; return; }
       const totals = [0, 0, 0];
       answers.forEach((a, q) => questions[q][2][a].forEach((n, i) => { totals[i] += n; }));
       const winner = totals.indexOf(Math.max(...totals));
-      ['h3', '.dm-why', '.dm-watch'].forEach((sel, i) => { $(root, '.dm-recommendation ' + sel).textContent = results[winner][i]; });
+      ['.dm-h', '.dm-why', '.dm-watch'].forEach((sel, i) => { $(root, '.dm-recommendation ' + sel).textContent = results[winner][i]; });
+      // turn the recommendation into a prefilled quote request
+      const name = results[winner][0], picks = questions.map(([qn, ch], i) => `${qn} ${ch[answers[i]]}`).join('\n');
+      let lead = $(root, '.dm-lead');
+      if (!lead) { lead = el('a', 'dm-button dm-lead'); lead.dataset.track = 'chooser_lead'; $(root, '.dm-recommendation').append(lead); }
+      lead.textContent = `Get a quote for a ${name} store ↗`;
+      lead.dataset.trackLabel = name;
+      lead.href = 'mailto:info@australianweb.agency?subject=' + encodeURIComponent(`Quote request: ${name} store`) + '&body=' + encodeURIComponent(`Hi Chris,\n\nThe platform chooser suggested ${name}.\n${picks}\n\nBusiness:\nWebsite:\n`);
     }
   }
   function savingsCalc(root, c) {
-    shell(root, false, 'Estimate only. Real savings depend on your processes; we measure them in discovery.', '<div class="dm-calculator"><div class="dm-sliders"></div><div class="dm-savings"><span class="dm-label">Time back for your business</span><div class="dm-totals" aria-live="polite" aria-atomic="true"><div><strong class="dm-hours">0</strong><p>Hours saved per month</p></div><div><strong class="dm-value">A$0</strong><p>Value per year</p></div></div><div class="dm-bars"><div class="dm-bar-label"><span>Manual now</span><span class="dm-manual"></span></div><div class="dm-bar"><i></i></div><div class="dm-bar-label"><span>After automation</span><span class="dm-after"></span></div><div class="dm-bar dm-bar-after"><i></i></div></div></div></div>');
+    shell(root, false, 'Estimate only. Real savings depend on your processes; we measure them in discovery.', '<div class="dm-calculator"><div class="dm-sliders"></div><div class="dm-savings"><span class="dm-label">Time back for your business</span><div class="dm-totals" aria-hidden="true"><div><strong class="dm-hours">0</strong><p>Hours saved per month</p></div><div><strong class="dm-value">A$0</strong><p>Value per year</p></div></div><div class="dm-bars"><div class="dm-bar-label"><span>Manual now</span><span class="dm-manual"></span></div><div class="dm-bar"><i></i></div><div class="dm-bar-label"><span>After automation</span><span class="dm-after"></span></div><div class="dm-bar dm-bar-after"><i></i></div></div></div></div>');
     const specs = [['Orders or enquiries per week', 10, 1000, 120, 10, ''], ['Minutes of manual admin each', 1, 30, 6, 1, ''], ['Hourly cost of that time (A$)', 25, 120, 45, 5, ''], ['Share we can automate', 40, 95, 80, 5, '%']];
+    const announcement = liveRegion(root);
     const inputs = [], id = ++serial;
     let shown = [0, 0];
     specs.forEach(([label, min, max, value, step, suffix], i) => {
@@ -227,56 +252,74 @@
       $(root, '.dm-manual').textContent = Math.round(hours) + ' h / month';
       $(root, '.dm-after').textContent = Math.round(hours - saved) + ' h / month';
       $(root, '.dm-bar-after i').style.width = (100 - share) + '%';
+      let lead = $(root, '.dm-lead');
+      if (!lead) { lead = el('a', 'dm-button dm-lead', 'Send me an automation plan ↗'); lead.dataset.track = 'calc_lead'; $(root, '.dm-savings').append(lead); }
+      lead.href = 'mailto:info@australianweb.agency?subject=' + encodeURIComponent('Automation plan request') + '&body=' + encodeURIComponent(
+        `Hi Chris,\n\nThe savings calculator estimated ${Math.round(saved)} hours a month (${money(saved * 12 * cost)} a year).\n`
+        + `Orders or enquiries per week: ${orders}\nMinutes of admin each: ${minutes}\nHourly cost: A$${cost}\nShare to automate: ${share}%\n\nWhat we do by hand today:\n`);
+      const announce = () => {
+        announcement.textContent = Math.round(saved).toLocaleString('en-AU') + ' hours saved per month. ' + money(target[1]) + ' value per year.';
+      };
       if (!animate) {
+        announce();
         shown = target;
         $(root, '.dm-hours').textContent = Math.round(saved).toLocaleString('en-AU');
         $(root, '.dm-value').textContent = money(target[1]);
         return;
       }
-      c.clear(); $(root, '.dm-totals').setAttribute('aria-busy', 'true');
+      c.clear();
       c.add(t => {
         const p = 1 - Math.pow(1 - Math.min(1, t / 550), 3);
         shown = target.map((n, i) => from[i] + (n - from[i]) * p);
         $(root, '.dm-hours').textContent = Math.round(shown[0]).toLocaleString('en-AU');
         $(root, '.dm-value').textContent = money(shown[1]);
-        if (p === 1) { $(root, '.dm-totals').setAttribute('aria-busy', 'false'); return false; }
+        if (p === 1) { announce(); return false; }
       });
     }
     update(false);
   }
   function chatDemo(root, c) {
-    shell(root, true, 'Simulated demo. A real assistant answers from your own content and hands over when it should.', '<div class="dm-head"><div><h3>Harbour Plumbing Co.</h3><span class="dm-online">● Online</span> <span class="dm-chip">AI assistant</span></div></div><div class="dm-conversation" aria-live="polite" aria-relevant="additions text"></div><div class="dm-suggestions" aria-label="Suggested questions"></div>');
+    shell(root, true, 'Simulated demo. A real assistant answers from your own content and hands over when it should.', '<div class="dm-head"><div><p class="dm-h">Harbour Plumbing Co.</p><span class="dm-online">● Online</span> <span class="dm-chip">AI assistant</span></div></div><div class="dm-conversation"></div><div class="dm-suggestions" aria-label="Suggested questions"></div>');
     const data = [
       ['Do you do weekend callouts?', 'Yes. We run emergency callouts 7 days, including weekends and public holidays, across the Inner West and Eastern Suburbs. A weekend call-out fee applies.', ['Services page', 'Pricing guide (PDF)']],
       ['Which suburbs do you cover?', "We cover Sydney's Inner West, Eastern Suburbs and the Lower North Shore. For other areas we can recommend a trusted partner.", ['Service areas page']],
       ['Can you give me an exact quote?', "I can't give an exact price without seeing the job, so I've passed your request to the team. Expect a call within one business hour.", ['Handed to a human']]
     ];
-    const conversation = $(root, '.dm-conversation');
+    const conversation = $(root, '.dm-conversation'), announcement = liveRegion(root);
+    // chips stay focusable while an answer types (aria-disabled, not disabled), and asked ones get a class, not aria-pressed
+    let busy = false;
+    const setBusy = on => { busy = on; buttons.forEach(n => n.setAttribute('aria-disabled', String(on))); };
     const buttons = data.map(([question, answer, sources]) => {
       const b = button(question, () => {
-        buttons.forEach(n => { n.disabled = true; }); b.setAttribute('aria-pressed', 'true');
+        if (busy) return;
+        setBusy(true); b.classList.add('is-used');
         conversation.append(el('p', 'dm-bubble dm-user', question));
         const bubble = el('div', 'dm-bubble'), text = el('p', '', 'Typing…'), source = el('div', 'dm-chips');
-        bubble.append(text, source); bubble.setAttribute('aria-busy', 'true'); conversation.append(bubble);
+        text.setAttribute('aria-hidden', 'true');
+        const completeText = el('p', 'dm-sr');
+        bubble.append(text, completeText, source); bubble.setAttribute('aria-busy', 'true'); conversation.append(bubble);
         c.add(t => {
           if (t < 900) return;
           if (typeText(text, answer, t, 900)) {
+            completeText.textContent = answer;
+            announcement.textContent = question + ' ' + answer;
             chips(source, sources); bubble.setAttribute('aria-busy', 'false');
-            buttons.forEach(n => { n.disabled = false; }); return false;
+            setBusy(false); return false;
           }
         });
       }, 'dm-question-chip');
-      b.setAttribute('aria-pressed', 'false'); $(root, '.dm-suggestions').append(b); return b;
+      $(root, '.dm-suggestions').append(b); return b;
     });
     function reset() {
-      c.clear(); conversation.replaceChildren(el('p', 'dm-bubble', 'Hi! I can answer questions about our services, areas and pricing.'));
-      buttons.forEach(b => { b.disabled = false; b.setAttribute('aria-pressed', 'false'); });
+      c.clear(); announcement.textContent = ''; conversation.replaceChildren(el('p', 'dm-bubble', 'Hi! I can answer questions about our services, areas and pricing.'));
+      setBusy(false); buttons.forEach(b => b.classList.remove('is-used'));
     }
     $(root, '.dm-head').append(button('Reset', reset, 'dm-text-button')); reset();
   }
   function docExtract(root, c) {
-    shell(root, false, 'Illustrative: AI document processing with a human review step before anything is approved.', `<div class="dm-head"><span class="dm-label">Document → structured data</span></div><div class="dm-document-grid"><div class="dm-invoice"><div class="dm-scan" aria-hidden="true"></div><p class="dm-label">Supplier document / example</p><h3 data-value="0">Coastal Timber Supplies</h3><p data-value="2">Tax invoice INV-20418</p><p data-value="3">Date 14 Oct 2026</p><p data-value="1">ABN 12 345 678 901</p><div class="dm-invoice-items"><div><span>Hardwood decking · 50 m</span><span>A$2,500.00</span></div><div><span>Treated pine · 25 m</span><span>A$1,250.00</span></div><div><span>Fixings · 5 boxes</span><span>A$625.00</span></div></div><p class="dm-invoice-gst" data-value="5">GST A$437.50</p><p class="dm-invoice-total" data-value="6">Total A$4,812.50 inc GST</p><p data-value="4">Due 28 Oct 2026</p></div><div class="dm-extraction"><h3>Extracted data</h3><div class="dm-extracted-fields" aria-live="polite" aria-atomic="true"></div><p class="dm-draft" aria-live="polite"></p><p class="dm-review">Human review required before approval</p></div></div>`);
+    shell(root, false, 'Illustrative: AI document processing with a human review step before anything is approved.', `<div class="dm-head"><span class="dm-label">Document → structured data</span></div><div class="dm-document-grid"><div class="dm-invoice"><div class="dm-scan" aria-hidden="true"></div><p class="dm-label">Supplier document / example</p><p class="dm-h" data-value="0">Coastal Timber Supplies</p><p data-value="2">Tax invoice INV-20418</p><p data-value="3">Date 14 Oct 2026</p><p data-value="1">ABN 12 345 678 901</p><div class="dm-invoice-items"><div><span>Hardwood decking · 50 m</span><span>A$2,500.00</span></div><div><span>Treated pine · 25 m</span><span>A$1,250.00</span></div><div><span>Fixings · 5 boxes</span><span>A$625.00</span></div></div><p class="dm-invoice-gst" data-value="5">GST A$437.50</p><p class="dm-invoice-total" data-value="6">Total A$4,812.50 inc GST</p><p data-value="4">Due 28 Oct 2026</p></div><div class="dm-extraction"><p class="dm-h">Extracted data</p><div class="dm-extracted-fields"></div><p class="dm-draft" aria-live="polite"></p><p class="dm-review">Human review required before approval</p></div></div>`);
     const data = [['Supplier', 'Coastal Timber Supplies'], ['ABN', '12 345 678 901'], ['Invoice no.', 'INV-20418'], ['Date', '14 Oct 2026'], ['Due date', '28 Oct 2026'], ['GST', 'A$437.50'], ['Total', 'A$4,812.50']];
+    const announcement = liveRegion(root);
     const id = ++serial;
     const fields = data.map(([label, value], i) => {
       const wrap = el('div', 'dm-extracted-field'), lab = el('label', '', label), output = el('input');
@@ -284,30 +327,31 @@
       wrap.append(lab, output); $(root, '.dm-extracted-fields').append(wrap); return { output, value, source: $(root, `[data-value="${i}"]`) };
     });
     function replay() {
-      c.clear(); fields.forEach(({ output, source }) => { output.value = ''; source.classList.remove('dm-highlight'); });
+      c.clear(); announcement.textContent = ''; fields.forEach(({ output, source }) => { output.value = ''; source.classList.remove('dm-highlight'); });
       $(root, '.dm-draft').textContent = ''; $(root, '.dm-extracted-fields').setAttribute('aria-busy', 'true');
       c.add((t, reduced) => {
-        const invoice = $(root, '.dm-invoice'), progress = Math.min(1, t / 5000);
+        const invoice = $(root, '.dm-invoice'), progress = Math.min(1, t / 4000);
         $(root, '.dm-scan').style.top = progress * 100 + '%';
         $(root, '.dm-scan').hidden = progress === 1;
         fields.forEach(({ output, value, source }) => {
-          const start = (source.offsetTop + source.offsetHeight / 2) / invoice.offsetHeight * 5000;
+          const start = (source.offsetTop + source.offsetHeight / 2) / invoice.offsetHeight * 4000;
           if (t >= start) {
             source.classList.add('dm-highlight'); output.value = value.slice(0, Math.max(0, Math.floor((t - start) / 18)));
           }
         });
-        if (t >= 5500) {
+        if (t >= 4500) {
+          fields.forEach(({ output, value, source }) => { output.value = value; source.classList.add('dm-highlight'); });
+          announcement.textContent = data.map(([label, value]) => label + ': ' + value).join('. ');
           $(root, '.dm-extracted-fields').setAttribute('aria-busy', 'false');
           $(root, '.dm-draft').textContent = '✓ Draft bill created in your accounting software';
+          return false;
         }
-        if (reduced) return false;
-        if (t >= 9500) { replay(); return false; }
       });
     }
     $(root, '.dm-head').append(button('Replay ↻', replay)); replay();
   }
   function monitor(root, c) {
-    shell(root, true, 'Illustrative dashboard. Care plans include monitoring like this, with alerts when something changes.', '<div class="dm-head"><span class="dm-label">Care / system health</span><span class="dm-last dm-label" aria-live="polite">Last check: 0s ago</span></div><div class="dm-uptime"><p>Uptime, last 30 days</p><strong>99.98<span>%</span></strong><div class="dm-uptime-bars"></div><div class="dm-head dm-label"><span>30 days ago</span><span>Today</span></div></div><div class="dm-lcp"><div class="dm-head"><p>Largest Contentful Paint</p><strong class="dm-current" aria-live="polite">1.9 s</strong></div><svg viewBox="0 0 460 100" role="img" aria-label="Illustrative LCP history between 1.7 and 2.2 seconds"><path d="M0 25H460 M0 75H460" stroke="#2a3d4b" stroke-dasharray="3 6"/><polyline fill="none" stroke="#8ef5c8" stroke-width="2.5" stroke-linejoin="round"/></svg><span class="dm-label">Target &lt; 2.5 s · healthy</span></div><ul class="dm-checks"></ul>');
+    shell(root, true, 'Illustrative dashboard. Care plans include monitoring like this, with alerts when something changes.', '<div class="dm-head"><span class="dm-label">Care / system health</span><span class="dm-last dm-label">Last check: 0s ago</span></div><div class="dm-uptime"><p>Uptime, last 30 days</p><strong>99.98<span>%</span></strong><div class="dm-uptime-bars"></div><div class="dm-head dm-label"><span>30 days ago</span><span>Today</span></div></div><div class="dm-lcp"><div class="dm-head"><p>Largest Contentful Paint</p><strong class="dm-current">1.9 s</strong></div><svg viewBox="0 0 460 100" role="img" aria-label="Illustrative LCP history between 1.7 and 2.2 seconds"><path d="M0 25H460 M0 75H460" stroke="#2a3d4b" stroke-dasharray="3 6"/><polyline fill="none" stroke="#8ef5c8" stroke-width="2.5" stroke-linejoin="round"/></svg><span class="dm-label">Target &lt; 2.5 s · healthy</span></div><ul class="dm-checks"></ul>');
     for (let i = 0; i < 30; i++) {
       const bar = el('span', i === 11 ? 'dm-uptime-warning' : '');
       bar.title = `Day ${i + 1}: ${i === 11 ? '99.4% uptime · brief interruption' : '100% uptime'}`;
@@ -317,16 +361,37 @@
     let values = [1.9, 1.8, 2, 2.1, 1.9, 1.7, 1.8, 2, 2.2, 2, 1.8, 1.9, 2, 1.8, 1.9], step = 0, seconds = -1;
     function draw() { $(root, 'polyline').setAttribute('points', values.map((v, i) => `${i * 460 / (values.length - 1)},${85 - (v - 1.7) * 130}`).join(' ')); }
     draw();
-    c.add((t, reduced) => {
-      if (reduced) return false;
-      const s = Math.floor(t / 1000) % 30;
-      if (s !== seconds) { seconds = s; $(root, '.dm-last').textContent = `Last check: ${s}s ago`; }
-      if (Math.floor(t / 1500) > step) {
-        step = Math.floor(t / 1500);
-        const value = Math.round((1.7 + Math.random() * .5) * 10) / 10;
-        values = [...values.slice(1), value]; draw(); $(root, '.dm-current').textContent = value.toFixed(1) + ' s';
-      }
-    });
+    root.append(el('p', 'dm-sr', 'Illustrative dashboard: uptime 99.98%, LCP about 1.9 seconds, all checks passing.'));
+    let paused = true, elapsed = 0;
+    const control = button('Resume live updates', () => {
+      if (paused) resume(); else pause();
+    }, 'dm-text-button');
+    control.setAttribute('aria-pressed', 'true');
+    $(root, '.dm-head').append(control);
+    function pause() {
+      c.clear(); paused = true;
+      control.textContent = 'Resume live updates';
+      control.setAttribute('aria-pressed', 'true');
+    }
+    function resume() {
+      paused = false;
+      control.textContent = 'Pause live updates';
+      control.setAttribute('aria-pressed', 'false');
+      const from = elapsed;
+      c.add((t, reduced) => {
+        if (reduced) { pause(); return false; }
+        elapsed = from + Math.min(t, 30000);
+        const s = Math.floor(elapsed / 1000) % 30;
+        if (s !== seconds) { seconds = s; $(root, '.dm-last').textContent = `Last check: ${s}s ago`; }
+        if (Math.floor(elapsed / 1500) > step) {
+          step = Math.floor(elapsed / 1500);
+          const value = Math.round((1.7 + Math.random() * .5) * 10) / 10;
+          values = [...values.slice(1), value]; draw(); $(root, '.dm-current').textContent = value.toFixed(1) + ' s';
+        }
+        if (t >= 30000) { pause(); return false; }
+      });
+    }
+    if (!motion.matches) resume();
   }
   const widgets = { 'ai-answer': aiAnswer, 'speed-race': speedRace, 'product-lens': productLens, 'platform-chooser': platformChooser, 'savings-calc': savingsCalc, 'chat-demo': chatDemo, 'doc-extract': docExtract, monitor };
   function init() {

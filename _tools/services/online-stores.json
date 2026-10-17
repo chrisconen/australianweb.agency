@@ -85,11 +85,11 @@
   },
   {
    "q": "Are Australians buying through AI yet?",
-   "a": "Deloitte’s 2026 Retail Report found 45% of consumers use AI to compare products and services, and 11% use it to complete or automate purchases. An Ideally survey of 809 Australians (October 2026) found half had used AI to research a purchase."
+   "a": "Deloitte’s 2026 Retail Report found 45% of consumers use AI to compare products and services, and 11% use it to complete or automate purchases. An Ideally survey of 809 Australians, reported by eCommerceNews Australia in October 2026, found half had used AI to research a purchase."
   },
   {
    "q": "Are you building a store like this?",
-   "a": "AWA (Chris Conen) is building a headless Medusa store for a European yacht-equipment retailer, with Stripe checkout, invoicing and shipping labels connected. Measured the same morning, the new storefront scored 97 on mobile PageSpeed and the old one scored 69."
+   "a": "Yes. AWA (Chris Conen) is building a headless Medusa store for Marina Yacht Sport, a European yacht-equipment retailer, launching in late 2026. Stripe checkout, invoicing and shipping labels are connected. Measured the same morning, the new storefront scored 97 on mobile PageSpeed and the old store 69."
   }
  ],
  "cta_title": "Plan the store with Chris",

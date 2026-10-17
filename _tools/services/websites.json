@@ -51,7 +51,7 @@
   }
  ],
  "demo_title": "See the speed, then the range",
- "demo_text": "The race is a real rebuild: Marina Yacht Sport’s online store, mobile PageSpeed 69 → 97 and Largest Contentful Paint 4.0 s → 2.4 s, measured the same morning. Below it, live concept builds you can open and explore.",
+ "demo_text": "The race is a real rebuild: Marina Yacht Sport’s online store against our new build (launching late 2026), mobile PageSpeed 69 → 97 and Largest Contentful Paint 4.0 s → 2.4 s, measured the same morning. Below it, live concept builds you can open and explore.",
  "steps": [
   {
    "title": "One conversation",
@@ -89,7 +89,7 @@
   },
   {
    "q": "Are the demos client projects?",
-   "a": "The speed race is a real 2026 rebuild for Marina Yacht Sport in Europe. The grid shows live concept demos, and the Work page holds 54 concept builds. Use cases on this page, such as a surf shop or a plumber, are examples of typical Australian businesses. They are not clients."
+   "a": "The speed race is a real 2026 rebuild for Marina Yacht Sport in Europe: the new store launches in late 2026, and both versions were measured the same morning. The grid shows live concept demos, and the Work page holds 54 concept builds. Use cases such as a surf shop or a plumber are typical Australian businesses, not clients."
   }
  ],
  "cta_title": "Tell us what the site has to do",

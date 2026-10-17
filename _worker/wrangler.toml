@@ -10,3 +10,15 @@ routes = [{ pattern = "api.australianweb.agency", custom_domain = true }]
 name = "RATE_LIMITER"
 namespace_id = "1001"
 simple = { limit = 6, period = 60 }
+
+# 120 stat events per minute per IP (page views and clicks); extra events are silently dropped.
+[[ratelimits]]
+name = "STATS_LIMITER"
+namespace_id = "1002"
+simple = { limit = 120, period = 60 }
+
+# anonymous aggregate stats (no cookies, no IP, no visitor id)
+[[d1_databases]]
+binding = "awa_stats"
+database_name = "awa-stats"
+database_id = "a6497fad-adcb-4460-8dac-26c7134c4018"

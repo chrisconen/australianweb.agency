@@ -23,9 +23,7 @@
   <meta property="og:site_name" content="AWA — Australian Web Agency">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://australianweb.agency/#awa","name":"AWA — Australian Web Agency","alternateName":"AWA","url":"https://australianweb.agency/","email":"info@australianweb.agency","description":"An AI-native web studio led by Chris Conen. Websites, online stores, automations and AI assistants for businesses across Australia, built by a senior developer working with an AI engineering team.","founder":{"@type":"Person","name":"Chris Conen","jobTitle":"Founder & lead developer","image":"https://australianweb.agency/chris-conen.webp"},"areaServed":{"@type":"Country","name":"Australia"},"availableLanguage":["en","de","hu"],"knowsAbout":["Web design","Web development","E-commerce","Agentic commerce","Universal Commerce Protocol","WebMCP","AI visibility","Business automation","CRM integration","AI assistants","Core Web Vitals","WCAG 2.2 AA","Technical SEO"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI visibility & agent readiness"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Websites & web apps"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Online stores & agentic commerce"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Automation & integrations"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI assistants & internal tools"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Care, hosting & growth"}}]}},{"@type":"WebSite","@id":"https://australianweb.agency/#website","url":"https://australianweb.agency/","name":"AWA — Australian Web Agency","inLanguage":"en-AU","publisher":{"@id":"https://australianweb.agency/#awa"}}]}</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="awa.css">
   <script src="awa.js" defer></script>
   <script src="pipeline.js" defer></script>
@@ -33,8 +31,10 @@
 <body>
 <!-- header -->
 <a class="skip" href="#main">Skip to content</a>
+<script src="awa-stats.js" defer></script>
+<div class="promo-bar"><div class="wrap promo-inner"><p><span class="mono">Founding clients</span> 30% off for five Australian businesses, plus three months of care free.</p><a href="pilot.html" data-track="pilot">See the offer <span aria-hidden="true">↗</span></a></div></div>
 <header class="site-header"><div class="wrap header-inner">
-  <a class="brand" href="index.html" aria-label="AWA, Australian Web Agency, home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
   <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu <span class="menu-lines" aria-hidden="true"><i></i><i></i></span></button>
   <nav class="site-nav" id="site-nav" aria-label="Main navigation">
     <div class="nav-drop"><a href="#services">Services</a><div class="nav-drop-menu"><a href="ai-visibility.html">AI visibility &amp; agent readiness</a><a href="websites.html">Websites &amp; web apps</a><a href="online-stores.html">Online stores &amp; agentic commerce</a><a href="automation.html">Automation &amp; integrations</a><a href="ai-assistants.html">AI assistants &amp; internal tools</a><a href="care.html">Care, hosting &amp; growth</a></div></div>
@@ -88,6 +88,7 @@
       <h3>AI visibility &amp; agent readiness</h3>
       <p>Customers now ask ChatGPT, Gemini and Perplexity what to buy. We make sure those assistants can find you, understand your offer and, where it is live, buy from you.</p>
       <ul><li>Free readiness test, then a fix plan</li><li>Structured data and product feeds</li><li>Agentic checkout readiness (UCP)</li><li>Monthly AI visibility monitoring</li></ul>
+      <p class="service-from mono">From A$1,490 + GST</p>
       <span class="service-links"><a class="text-link" href="ai-visibility.html">How it works ↗</a><a class="text-link" href="agent-test.html">Run the free test ↗</a></span>
     </article>
     <article class="service">
@@ -96,6 +97,7 @@
       <p>Distinctive, fast and accessible sites and applications, from a sharp landing page to a full product with logins and dashboards.</p>
       <ul><li>Brand, UX and interface design</li><li>3D, motion and interactive storytelling</li><li>Core Web Vitals and WCAG 2.2 AA</li></ul>
       <p class="chips mono">Next.js · Astro · WordPress · Sanity · WebGL</p>
+      <p class="service-from mono">From A$3,900 + GST</p>
       <a class="text-link service-more" href="websites.html">Explore the service ↗</a>
     </article>
     <article class="service">
@@ -104,6 +106,7 @@
       <p>Stores that convert people today and are ready for AI shopping agents tomorrow. New builds, migrations and speed rescues.</p>
       <ul><li>Shopify, WooCommerce and headless</li><li>Payments, shipping and stock in sync</li><li>Product data assistants can compare</li></ul>
       <p class="chips mono">Shopify · WooCommerce · Medusa · Stripe · Afterpay</p>
+      <p class="service-from mono">From A$8,900 + GST</p>
       <a class="text-link service-more" href="online-stores.html">Explore the service ↗</a>
     </article>
     <article class="service">
@@ -112,6 +115,7 @@
       <p>Your website, CRM, accounting and shipping talking to each other, so orders, invoices and leads move without copy and paste.</p>
       <ul><li>CRM setup, clean-up and migration</li><li>Invoicing, shipping and payment flows</li><li>Custom APIs and scheduled jobs</li></ul>
       <p class="chips mono">HubSpot · Pipedrive · Xero · MYOB · Australia Post · n8n</p>
+      <p class="service-from mono">From A$1,900 + GST</p>
       <a class="text-link service-more" href="automation.html">Explore the service ↗</a>
     </article>
     <article class="service">
@@ -120,6 +124,7 @@
       <p>Assistants that answer from your own content, and small tools that take repetitive work off your team’s plate.</p>
       <ul><li>Website chat trained on your content</li><li>Email, document and quote processing</li><li>Internal dashboards and admin tools</li></ul>
       <p class="chips mono">OpenAI · Claude · Gemini · RAG · Cloudflare</p>
+      <p class="service-from mono">From A$2,900 + GST</p>
       <a class="text-link service-more" href="ai-assistants.html">Explore the service ↗</a>
     </article>
     <article class="service">
@@ -128,6 +133,7 @@
       <p>After launch, the work continues: monitoring, updates, security, search and steady improvements measured against real numbers.</p>
       <ul><li>Uptime, speed and security monitoring</li><li>Technical SEO and analytics</li><li>Monthly improvements and reporting</li></ul>
       <p class="chips mono">GA4 · Search Console · Cloudflare · Vercel</p>
+      <p class="service-from mono">From A$149 a month + GST</p>
       <a class="text-link service-more" href="care.html">Explore the service ↗</a>
     </article>
   </div>
@@ -155,7 +161,7 @@
     </div>
   </div>
   <div class="pl-track">
-    <ol class="pl-steps" id="pl-steps" role="tabpanel" aria-label="Order paid automation">
+    <ol class="pl-steps" id="pl-steps" aria-label="Order paid automation">
       <li class="pl-step is-active"><span class="pl-icon"></span><span class="pl-time mono">0.0s</span><strong class="pl-title">Order paid</strong><span class="pl-detail mono">Shopify · #1042 · $189.00</span></li>
       <li class="pl-step is-active"><span class="pl-icon"></span><span class="pl-time mono">0.6s</span><strong class="pl-title">Invoice created</strong><span class="pl-detail mono">Xero · INV-1042</span></li>
       <li class="pl-step is-active"><span class="pl-icon"></span><span class="pl-time mono">1.3s</span><strong class="pl-title">Label printed</strong><span class="pl-detail mono">Australia Post · eParcel</span></li>
@@ -232,6 +238,7 @@
   <div><p class="label">Next step</p><h2 id="contact-title">Let’s build what’s next.</h2></div>
   <div class="contact-actions">
     <p>Tell us where your business is heading. You’ll hear back from Chris, not a sales team.</p>
+    <a class="btn btn-lime contact-book" href="mailto:info@australianweb.agency?subject=Book%20a%2020-minute%20call" data-track="book">Book a 20-minute call <span aria-hidden="true">↗</span></a>
     <a class="contact-mail" href="mailto:info@australianweb.agency">info@australianweb.agency</a>
     <a class="text-link" href="agent-test.html">Or start with the free AI test ↗</a>
   </div>
@@ -241,9 +248,9 @@
 
 <!-- footer -->
 <footer class="site-footer"><div class="wrap footer-grid">
-  <div class="footer-brand"><a class="brand" href="index.html" aria-label="AWA home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a><p>AI-native web studio. One senior developer, an AI engineering team and one point of contact, Australia-wide.</p></div>
+  <div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a><p>AI-native web studio. One senior developer, an AI engineering team and one point of contact, Australia-wide.</p></div>
   <nav class="footer-col" aria-label="Services"><p class="mono">Services</p><a href="ai-visibility.html">AI visibility &amp; agent readiness</a><a href="websites.html">Websites &amp; web apps</a><a href="online-stores.html">Online stores &amp; agentic commerce</a><a href="automation.html">Automation &amp; integrations</a><a href="ai-assistants.html">AI assistants &amp; internal tools</a><a href="care.html">Care, hosting &amp; growth</a></nav>
-  <nav class="footer-col" aria-label="Studio"><p class="mono">Studio</p><a href="work.html">Work</a><a href="index.html#team">How we work</a><a href="agent-test.html">Free AI test</a><a href="mailto:info@australianweb.agency">info@australianweb.agency</a></nav>
+  <nav class="footer-col" aria-label="Studio"><p class="mono">Studio</p><a href="work.html">Work</a><a href="index.html#team">How we work</a><a href="agent-test.html">Free AI test</a><a href="pilot.html">Founding clients</a><a href="privacy.html">Privacy</a><a href="mailto:info@australianweb.agency">info@australianweb.agency</a></nav>
   <p class="footer-copy mono">© <span data-year>2026</span> Australian Web Agency · AI-native by design</p>
 </div></footer>
 <!-- /footer -->

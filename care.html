@@ -11,9 +11,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="awa.css">
   <link rel="stylesheet" href="services.css">
   <link rel="stylesheet" href="demos.css">
@@ -33,8 +31,10 @@
 <body>
 <!-- header -->
 <a class="skip" href="#main">Skip to content</a>
+<script src="awa-stats.js" defer></script>
+<div class="promo-bar"><div class="wrap promo-inner"><p><span class="mono">Founding clients</span> 30% off for five Australian businesses, plus three months of care free.</p><a href="pilot.html" data-track="pilot">See the offer <span aria-hidden="true">↗</span></a></div></div>
 <header class="site-header"><div class="wrap header-inner">
-  <a class="brand" href="index.html" aria-label="AWA, Australian Web Agency, home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
   <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu <span class="menu-lines" aria-hidden="true"><i></i><i></i></span></button>
   <nav class="site-nav" id="site-nav" aria-label="Main navigation">
     <div class="nav-drop"><a href="index.html#services">Services</a><div class="nav-drop-menu"><a href="ai-visibility.html">AI visibility &amp; agent readiness</a><a href="websites.html">Websites &amp; web apps</a><a href="online-stores.html">Online stores &amp; agentic commerce</a><a href="automation.html">Automation &amp; integrations</a><a href="ai-assistants.html">AI assistants &amp; internal tools</a><a href="care.html" aria-current="page">Care, hosting &amp; growth</a></div></div>
@@ -71,6 +71,10 @@
   <div class="svc-cases"><article class="svc-case"><p class="mono svc-case-who">A Gold Coast surf shop</p><dl><dt>The situation</dt><dd>The site is live, but nobody is watching uptime, speed or the contact form after a plugin update.</dd><dt>What we do</dt><dd>We monitor the shop, apply updates, keep backups, and fix the issues the checks surface.</dd><dt>The outcome</dt><dd>You hear about failed checks from us, and the shop keeps a current, backed-up site.</dd></dl></article><article class="svc-case"><p class="mono svc-case-who">A Sydney plumber</p><dl><dt>The situation</dt><dd>Calls come from Google, and the mobile page feels slow when someone is out on a job.</dd><dt>What we do</dt><dd>We measure Largest Contentful Paint, INP and CLS against Google&#x27;s web.dev thresholds and improve pages that rate poorly.</dd><dt>The outcome</dt><dd>You see whether speed improved, in the same plain-English report as the other checks.</dd></dl></article><article class="svc-case"><p class="mono svc-case-who">A Melbourne B2B supplier</p><dl><dt>The situation</dt><dd>Buyers use the catalogue after hours, and there is no one in-house to watch the site.</dd><dt>What we do</dt><dd>We host on Cloudflare or Vercel, watch uptime and broken links, and send one monthly report.</dd><dt>The outcome</dt><dd>You are alerted when uptime or a key page fails, and you get a plain-English report of the month&#x27;s work.</dd></dl></article></div>
 </div></section>
 <section class="proof svc-proof" aria-label="Proof"><div class="wrap svc-proof-inner"><p>We run the same monitoring on our own sites: uptime, Core Web Vitals, security headers and AI agent readiness, with scheduled monthly rescans for a compliance platform.</p><a class="text-link" href="agent-test.html?url=australianweb.agency">See our live score ↗</a></div></section>
+<section class="section svc-pricing" aria-labelledby="pricing-title"><div class="wrap">
+  <div class="section-head"><p class="label">Pricing</p><h2 id="pricing-title">Clear prices, below the market.</h2><p class="section-intro">An AI engineering team means less time per project, and we pass that on. Every quote is fixed before work starts.</p></div>
+  <div class="svc-prices"><article class="svc-price"><p class="mono">per month</p><h3>Essentials</h3><p class="svc-price-num"><span>From</span> A$149<span> + GST</span></p><ul><li>Hosting, SSL and backups</li><li>Updates and uptime monitoring</li><li>30 minutes of changes a month</li></ul></article><article class="svc-price"><p class="mono">per month</p><h3>Growth</h3><p class="svc-price-num"><span>From</span> A$299<span> + GST</span></p><ul><li>Everything in Essentials</li><li>Speed, security and AI-readiness checks</li><li>Monthly report and 2 hours of improvements</li></ul></article></div><p class="svc-market mono">Typical Australian pricing: A$90–380 a month for small-business care plans (Studio Slate, Chillybin, 2026).</p><p class="fineprint">Prices in AUD, excluding GST. “From” prices cover the scope listed; every project is quoted in writing before work begins. <a class="text-link" href="pilot.html" data-track="pilot">Founding clients save a further 30% ↗</a></p>
+</div></section>
 <section class="section process" aria-labelledby="steps-title"><div class="wrap">
   <div class="section-head"><p class="label">How it works</p><h2 id="steps-title">Clear steps. No surprises.</h2></div>
   <ol class="steps"><li><span class="mono">01</span><h3>We baseline the site</h3><p>We record uptime, speed, security headers, SSL, backups and search setup so later work has numbers to measure against.</p></li><li><span class="mono">02</span><h3>We host and watch it</h3><p>The site is hosted on Cloudflare or Vercel. Monitoring stays on, and we alert you when a check fails.</p></li><li><span class="mono">03</span><h3>We keep it current</h3><p>Updates, backups and security checks run through the month. You hear from us when something needs a decision.</p></li><li><span class="mono">04</span><h3>We improve from the numbers</h3><p>Each month we choose improvements from the data, ship them, and explain what changed in plain English.</p></li></ol>
@@ -92,6 +96,7 @@
   <div><p class="label">Next step</p><h2 id="contact-title">Let’s build what’s next.</h2></div>
   <div class="contact-actions">
     <p>Tell us where your business is heading. You’ll hear back from Chris, not a sales team.</p>
+    <a class="btn btn-lime contact-book" href="mailto:info@australianweb.agency?subject=Book%20a%2020-minute%20call" data-track="book">Book a 20-minute call <span aria-hidden="true">↗</span></a>
     <a class="contact-mail" href="mailto:info@australianweb.agency">info@australianweb.agency</a>
     <a class="text-link" href="agent-test.html">Or start with the free AI test ↗</a>
   </div>
@@ -100,9 +105,9 @@
 </main>
 <!-- footer -->
 <footer class="site-footer"><div class="wrap footer-grid">
-  <div class="footer-brand"><a class="brand" href="index.html" aria-label="AWA home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a><p>AI-native web studio. One senior developer, an AI engineering team and one point of contact, Australia-wide.</p></div>
+  <div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a><p>AI-native web studio. One senior developer, an AI engineering team and one point of contact, Australia-wide.</p></div>
   <nav class="footer-col" aria-label="Services"><p class="mono">Services</p><a href="ai-visibility.html">AI visibility &amp; agent readiness</a><a href="websites.html">Websites &amp; web apps</a><a href="online-stores.html">Online stores &amp; agentic commerce</a><a href="automation.html">Automation &amp; integrations</a><a href="ai-assistants.html">AI assistants &amp; internal tools</a><a href="care.html">Care, hosting &amp; growth</a></nav>
-  <nav class="footer-col" aria-label="Studio"><p class="mono">Studio</p><a href="work.html">Work</a><a href="index.html#team">How we work</a><a href="agent-test.html">Free AI test</a><a href="mailto:info@australianweb.agency">info@australianweb.agency</a></nav>
+  <nav class="footer-col" aria-label="Studio"><p class="mono">Studio</p><a href="work.html">Work</a><a href="index.html#team">How we work</a><a href="agent-test.html">Free AI test</a><a href="pilot.html">Founding clients</a><a href="privacy.html">Privacy</a><a href="mailto:info@australianweb.agency">info@australianweb.agency</a></nav>
   <p class="footer-copy mono">© <span data-year>2026</span> Australian Web Agency · AI-native by design</p>
 </div></footer>
 <!-- /footer -->

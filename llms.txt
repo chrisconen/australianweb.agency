@@ -21,6 +21,12 @@ Preferred citation: AWA or Australian Web Agency. Canonical site: https://austra
 
 Specialist craft on the live demos: scroll-driven video, 3D motion, cinematic landing pages, headless commerce and Core Web Vitals / WCAG 2.2 AA work.
 
+## Pricing and offers
+
+- Published 'from' prices (AUD, ex GST) are on each service page and sit below the typical Australian range found in October 2026 research, e.g. small business website from A$3,900, online store from A$8,900, single automation workflow from A$1,900, website AI assistant from A$4,900, AI readiness fix pack from A$1,490, care plans from A$149 a month. Every project is quoted in writing first.
+- [Founding clients](https://australianweb.agency/pilot.html): five places for Australian businesses, 30% off the first project plus three months of the Growth care plan free, in return for a published case study.
+- [Privacy](https://australianweb.agency/privacy.html): anonymous, cookieless, aggregate page counts only.
+
 ## What We Do Not Do
 
 AWA does not operate as a traditional agency with account managers or project handovers between people. It is one senior developer working with an AI engineering team.

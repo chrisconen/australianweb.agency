@@ -18,7 +18,9 @@ SERVICES = [  # slug, nav name
     ('ai-assistants', 'AI assistants & internal tools'),
     ('care', 'Care, hosting & growth'),
 ]
-PAGES = ['index.html', 'work.html', 'agent-test.html'] + [f'{s}.html' for s, _ in SERVICES]
+PAGES = ['index.html', 'work.html', 'agent-test.html', 'pilot.html', 'privacy.html'] + [f'{s}.html' for s, _ in SERVICES]
+# booking link for every "Book a call" button; swap the mailto for the Cal.com URL once it exists
+BOOKING = 'mailto:info@australianweb.agency?subject=Book%20a%2020-minute%20call'
 
 
 def header(page):
@@ -26,10 +28,15 @@ def header(page):
     at = (lambda frag: f'#{frag}') if home else (lambda frag: f'index.html#{frag}')
     cur = lambda href: ' aria-current="page"' if href == page else ''
     drop = ''.join(f'<a href="{s}.html"{cur(s + ".html")}>{html.escape(n)}</a>' for s, n in SERVICES)
+    promo = '' if page == 'pilot.html' else ('<div class="promo-bar"><div class="wrap promo-inner"><p><span class="mono">Founding clients</span> '
+             '30% off for five Australian businesses, plus three months of care free.</p>'
+             '<a href="pilot.html" data-track="pilot">See the offer <span aria-hidden="true">↗</span></a></div></div>')
     return f'''<!-- header -->
 <a class="skip" href="#main">Skip to content</a>
+<script src="awa-stats.js" defer></script>
+{promo}
 <header class="site-header"><div class="wrap header-inner">
-  <a class="brand" href="index.html" aria-label="AWA, Australian Web Agency, home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
   <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu <span class="menu-lines" aria-hidden="true"><i></i><i></i></span></button>
   <nav class="site-nav" id="site-nav" aria-label="Main navigation">
     <div class="nav-drop"><a href="{at('services')}">Services</a><div class="nav-drop-menu">{drop}</div></div>
@@ -41,11 +48,12 @@ def header(page):
 <!-- /header -->'''
 
 
-CONTACT = '''<!-- contact -->
+CONTACT = f'''<!-- contact -->
 <section class="contact" id="contact" aria-labelledby="contact-title"><div class="wrap contact-grid">
   <div><p class="label">Next step</p><h2 id="contact-title">Let’s build what’s next.</h2></div>
   <div class="contact-actions">
     <p>Tell us where your business is heading. You’ll hear back from Chris, not a sales team.</p>
+    <a class="btn btn-lime contact-book" href="{BOOKING}" data-track="book">Book a 20-minute call <span aria-hidden="true">↗</span></a>
     <a class="contact-mail" href="mailto:info@australianweb.agency">info@australianweb.agency</a>
     <a class="text-link" href="agent-test.html">Or start with the free AI test ↗</a>
   </div>
@@ -57,9 +65,9 @@ def footer():
     svc = ''.join(f'<a href="{s}.html">{html.escape(n)}</a>' for s, n in SERVICES)
     return f'''<!-- footer -->
 <footer class="site-footer"><div class="wrap footer-grid">
-  <div class="footer-brand"><a class="brand" href="index.html" aria-label="AWA home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a><p>AI-native web studio. One senior developer, an AI engineering team and one point of contact, Australia-wide.</p></div>
+  <div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a><p>AI-native web studio. One senior developer, an AI engineering team and one point of contact, Australia-wide.</p></div>
   <nav class="footer-col" aria-label="Services"><p class="mono">Services</p>{svc}</nav>
-  <nav class="footer-col" aria-label="Studio"><p class="mono">Studio</p><a href="work.html">Work</a><a href="index.html#team">How we work</a><a href="agent-test.html">Free AI test</a><a href="mailto:info@australianweb.agency">info@australianweb.agency</a></nav>
+  <nav class="footer-col" aria-label="Studio"><p class="mono">Studio</p><a href="work.html">Work</a><a href="index.html#team">How we work</a><a href="agent-test.html">Free AI test</a><a href="pilot.html">Founding clients</a><a href="privacy.html">Privacy</a><a href="mailto:info@australianweb.agency">info@australianweb.agency</a></nav>
   <p class="footer-copy mono">© <span data-year>2026</span> Australian Web Agency · AI-native by design</p>
 </div></footer>
 <!-- /footer -->'''
@@ -77,6 +85,7 @@ def refresh_shared(page):
     if not p.exists():
         return
     s = p.read_text('utf-8')
+    s = re.sub(r'href="[^"]*"(\s+data-track="book")', lambda m: f'href="{BOOKING}"' + m.group(1), s)
     s = replace_block(s, 'header', header(page))
     s = replace_block(s, 'footer', footer())
     if '<!-- contact -->' in s:

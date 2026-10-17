@@ -296,6 +296,60 @@ img{display:block;max-width:100%;height:auto}
 .node{position:static;transform:none}
 .report-num{font-size:60px}
 .work-card img{aspect-ratio:16/10}
+}
+.flt-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.flt{display:flex;flex-direction:column;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;transition:border-color .25s,transform .3s var(--ease)}
+.flt:hover{border-color:var(--ink);transform:translateY(-3px)}
+.flt-code{color:#a06a00;letter-spacing:.1em}
+.flt-q{font-size:18px;font-weight:700;letter-spacing:-.015em;line-height:1.3}
+.flt-d{color:var(--muted);font-size:14.5px}
+.flt-fix{margin-top:auto;padding-top:13px;border-top:1px dashed var(--line);font-weight:500;letter-spacing:.06em}
+.flt:hover .flt-fix{color:#4c7a1b}
+.cap-wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,3.5vw,56px);margin-top:clamp(36px,4.5vw,64px);align-items:start}
+.cap-roles{background:var(--ink);color:#fff;border-radius:14px;padding:clamp(20px,2.4vw,30px)}
+.cap-roles-head{display:flex;justify-content:space-between;gap:10px;color:#9db0b7;letter-spacing:.08em;font-size:11px;padding-bottom:13px;border-bottom:1px solid #2a3d4b}
+.cap-roles-head span:last-child{color:var(--lime)}
+.cap-list{display:grid}
+.cap-list li{display:flex;justify-content:space-between;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid #2a3d4b;font-size:15px}
+.cap-list b{color:var(--lime);font-weight:500;text-align:right}
+.cap-roles-foot{color:#9db0b7;font-size:10.5px;letter-spacing:.08em;padding-top:13px}
+.cap-side h3{font-size:clamp(21px,2vw,27px);letter-spacing:-.025em;margin-bottom:14px}
+.cap-chips{display:flex;flex-wrap:wrap;gap:8px}
+.cap-chips li{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--muted);border:1px solid var(--line);background:var(--card);padding:8px 12px;border-radius:100px;transition:border-color .2s,color .2s}
+.cap-chips li:hover{border-color:var(--ink);color:var(--ink)}
+.cap-fit{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.cap-fit-col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.cap-fit-h{font-size:11px;letter-spacing:.1em;padding-bottom:11px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.cap-fit-h.is-fit{color:#4c7a1b}
+.cap-fit-h.is-nofit{color:#a06a00}
+.cap-fit-col ul{display:grid;gap:9px}
+.cap-fit-col li{padding-left:20px;position:relative;font-size:14.5px;color:var(--muted)}
+.cap-fit-col li::before{content:'\2713';position:absolute;left:0;font-weight:700;color:#4c7a1b}
+.cap-fit-col:last-child li::before{content:'\25AA';color:#a06a00}
+.cases{background:var(--ink);color:#fff}
+.cases .section-head h2{color:#fff}
+.cases .section-intro{color:#b8c7cc}
+.cases .label{color:var(--muted-dark)}
+.case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.case-card{background:var(--ink-2);border:1px solid var(--ink-line);border-radius:14px;padding:clamp(18px,2vw,26px)}
+.case-head{display:flex;justify-content:space-between;gap:10px;color:#9db0b7;font-size:11px;letter-spacing:.08em;padding-bottom:13px;border-bottom:1px solid var(--ink-line)}
+.case-head span:last-child{color:var(--lime)}
+.case-rows{display:grid;margin:0}
+.case-rows>div{padding:13px 0;border-bottom:1px solid var(--ink-line)}
+.case-rows>div:last-child{border-bottom:0;padding-bottom:0}
+.case-rows dt{color:var(--lime);letter-spacing:.12em;font-size:10.5px;margin-bottom:6px}
+.case-rows dd{margin:0;color:#b8c7cc;font-size:14.5px;line-height:1.6}
+.case-rows>div:last-child dd{color:#e6eef1}
+.case-cta{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:clamp(26px,3vw,40px);border-top:1px solid var(--ink-line);padding-top:24px}
+.case-cta p{color:#b8c7cc;font-size:17px}
+@media(max-width:1100px){
+.flt-grid,.case-grid{grid-template-columns:1fr 1fr}
+.cap-wrap{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+.flt-grid,.case-grid,.cap-fit{grid-template-columns:1fr}
+.cap-list li{flex-direction:column;align-items:flex-start;gap:4px}
+.cap-list b{text-align:left}
 }</style>
   <script src="awa.js" defer></script>
   <script src="pipeline.js" defer></script>
@@ -348,9 +402,25 @@ img{display:block;max-width:100%;height:auto}
 <div class="wrap hero-strip mono" aria-label="Disciplines"><span>Strategy</span><span>Design</span><span>Engineering</span><span>Commerce</span><span>Automation</span><span>AI</span></div>
 </section>
 
-<section class="section" id="services" aria-labelledby="services-title"><div class="wrap">
+  <section class="section faults" id="problems" aria-labelledby="problems-title"><div class="wrap">
+    <div class="section-head">
+      <p class="label">01 / Fault log</p>
+      <h2 id="problems-title">Sound familiar?</h2>
+      <p class="section-intro">Every business runs with a few of these faults in the background, quietly costing time, orders and nerves. We treat them the way an engineer would: identify the signature, fix the cause.</p>
+    </div>
+    <div class="flt-grid">
+      <a class="flt" href="websites.html"><span class="mono flt-code">FLT-01</span><p class="flt-q">&ldquo;The website looks fine &mdash; but the phone stays quiet.&rdquo;</p><p class="flt-d">Visitors find no reason and no path to take the next step. Every week, jobs quietly land with a competitor instead.</p><span class="mono flt-fix">FIX &rarr; WEBSITES &amp; WEB APPS</span></a>
+      <a class="flt" href="automation.html"><span class="mono flt-code">FLT-02</span><p class="flt-q">&ldquo;Every order gets typed three times: shop, Xero, shipping.&rdquo;</p><p class="flt-d">Double entry means double errors. Past a handful of orders a day, you are paying half a wage just for retyping.</p><span class="mono flt-fix">FIX &rarr; AUTOMATION</span></a>
+      <a class="flt" href="ai-assistants.html"><span class="mono flt-code">FLT-03</span><p class="flt-q">&ldquo;Quotes take days. The faster mob wins the job.&rdquo;</p><p class="flt-d">Evenings spent measuring up and writing quotes &mdash; while a competitor answers the same enquiry in two hours.</p><span class="mono flt-fix">FIX &rarr; AI ASSISTANTS</span></a>
+      <a class="flt" href="ai-visibility.html"><span class="mono flt-code">FLT-04</span><p class="flt-q">&ldquo;ChatGPT recommends the competition. We don&rsquo;t come up.&rdquo;</p><p class="flt-d">Your customers already ask AI assistants. If machines can&rsquo;t read your business, you don&rsquo;t exist for a growing slice of the market.</p><span class="mono flt-fix">FIX &rarr; AI VISIBILITY</span></a>
+      <a class="flt" href="care.html"><span class="mono flt-code">FLT-05</span><p class="flt-q">&ldquo;We found out the site was down from a customer.&rdquo;</p><p class="flt-d">Without monitoring, outages, slow pages and broken forms are invisible &mdash; until the phone rings. Or stops ringing.</p><span class="mono flt-fix">FIX &rarr; CARE &amp; MONITORING</span></a>
+      <a class="flt" href="#team"><span class="mono flt-code">FLT-06</span><p class="flt-q">&ldquo;The agency needs three meetings to change a headline.&rdquo;</p><p class="flt-d">Account manager, designer, developer, follow-ups &mdash; and a slot in two weeks. Coordination eats the budget, not the work.</p><span class="mono flt-fix">FIX &rarr; ONE RESPONSIBLE PERSON</span></a>
+    </div>
+  </div></section>
+
+  <section class="section" id="services" aria-labelledby="services-title"><div class="wrap">
   <div class="section-head">
-    <p class="label">01 / Services</p>
+    <p class="label">02 / Services</p>
     <h2 id="services-title">One studio.<br>Every layer of the web.</h2>
     <p class="section-intro">From the first impression to the systems behind it. Choose one piece or hand over the whole picture.</p>
   </div>
@@ -413,7 +483,7 @@ img{display:block;max-width:100%;height:auto}
 
 <section class="connected" id="connected" aria-labelledby="connected-title"><div class="wrap connected-grid">
   <div>
-    <p class="label">02 / Systems</p>
+    <p class="label">03 / Systems</p>
     <h2 id="connected-title">Everything connected.</h2>
     <p class="section-intro">Most small businesses run on five to ten tools that don’t talk to each other. We connect them, so the right information arrives in the right place on its own.</p>
   </div>
@@ -447,7 +517,7 @@ img{display:block;max-width:100%;height:auto}
 
 <section class="section" id="team" aria-labelledby="team-title"><div class="wrap">
   <div class="section-head">
-    <p class="label">03 / How we work</p>
+    <p class="label">04 / How we work</p>
     <h2 id="team-title">One person.<br>A whole team behind it.</h2>
     <p class="section-intro">AWA pairs a senior developer with an AI engineering team. You get the range of an agency without account managers, handovers or lost context.</p>
   </div>
@@ -469,6 +539,32 @@ img{display:block;max-width:100%;height:auto}
       <p class="fineprint">We are open about using AI. Every change is reviewed and tested before it reaches your customers.</p>
     </article>
   </div>
+</div>
+  <div class="wrap cap-wrap">
+    <div class="cap-roles">
+      <div class="cap-roles-head mono"><span>CAP-01 &mdash; CASTING A CLASSIC WEB PROJECT</span><span>AT AWA</span></div>
+      <ul class="cap-list">
+        <li><span>Project lead &amp; consulting</span><b class="mono">&rarr; CHRIS CONEN</b></li>
+        <li><span>Concept, UX &amp; interface design</span><b class="mono">&rarr; COVERED</b></li>
+        <li><span>Front-end &amp; back-end development</span><b class="mono">&rarr; COVERED</b></li>
+        <li><span>QA &amp; testing</span><b class="mono">&rarr; AUTOMATED + SIGN-OFF</b></li>
+        <li><span>Copy &amp; content</span><b class="mono">&rarr; COVERED</b></li>
+        <li><span>SEO, analytics &amp; AI visibility</span><b class="mono">&rarr; COVERED</b></li>
+        <li><span>Hosting, operations &amp; monitoring</span><b class="mono">&rarr; COVERED</b></li>
+      </ul>
+      <p class="mono cap-roles-foot">SEVEN ROLES &middot; ONE RESPONSIBLE PERSON &middot; NO COORDINATION OVERHEAD</p>
+    </div>
+    <div class="cap-side">
+      <h3>What that capacity builds</h3>
+      <ul class="cap-chips" aria-label="Examples of what AWA builds">
+        <li>Company websites</li><li>Landing pages</li><li>Web apps</li><li>Online stores</li><li>Headless commerce</li><li>Product configurators</li><li>Quote calculators</li><li>Booking systems</li><li>Customer portals</li><li>B2B ordering portals</li><li>Member &amp; login areas</li><li>Dashboards</li><li>Internal tools</li><li>Quote generators</li><li>Document pipelines (PDF &rarr; data)</li><li>AI chat assistants</li><li>Email automation</li><li>CRM integration</li><li>Xero &amp; accounting sync</li><li>Inventory &amp; shipping sync</li><li>Data migrations</li><li>Relaunches without ranking loss</li><li>Technical SEO</li><li>AI visibility build-outs</li><li>Accessibility retrofits</li><li>Monitoring &amp; care</li>
+      </ul>
+      <div class="cap-fit">
+        <div class="cap-fit-col"><p class="mono cap-fit-h is-fit">A PERFECT FIT WHEN</p><ul><li>You run a business without an in-house IT team and the owner decides</li><li>Website, store and workflows should be one system, not three projects</li><li>Speed and a fixed written quote matter: one week to three months</li><li>You want one contact who actually understands the technology</li></ul></div>
+        <div class="cap-fit-col"><p class="mono cap-fit-h is-nofit">HONESTLY NOT A FIT</p><ul><li>Enterprise procurement with committees and six approval stages</li><li>Operations teams promising minute-level 24/7 SLAs</li><li>Pure body-leasing with no responsibility for the outcome</li><li>Deep surgery on legacy ERP systems &mdash; only after an audit</li></ul></div>
+      </div>
+    </div>
+  </div>
 </div></section>
 
 <section class="proof" aria-labelledby="proof-title"><div class="wrap">
@@ -481,9 +577,38 @@ img{display:block;max-width:100%;height:auto}
   </div>
 </div></section>
 
-<section class="section" id="work" aria-labelledby="work-title"><div class="wrap">
+  <section class="section cases" id="cases" aria-labelledby="cases-title"><div class="wrap">
+    <div class="section-head">
+      <p class="label">05 / Use cases</p>
+      <h2 id="cases-title">Three businesses.<br>Three systems.</h2>
+      <p class="section-intro">Concept scenarios: how we put typical jobs together. The businesses are fictional &mdash; the building blocks behind them are exactly what we deliver.</p>
+    </div>
+    <div class="case-grid">
+      <article class="case-card"><p class="mono case-head"><span>CASE A &mdash; CABINET MAKER &middot; 8 STAFF</span><span>CONCEPT</span></p>
+        <dl class="case-rows">
+          <div><dt class="mono">PROBLEM</dt><dd>Every quote costs an evening: measuring, pricing, writing. Prospects drop off before the quote is finished.</dd></div>
+          <div><dt class="mono">SYSTEM</dt><dd>A website with an enquiry assistant that captures measurements and wishes in a structured way, plus a quote generator built on their own price lists &mdash; every quote prepared for sign-off.</dd></div>
+          <div><dt class="mono">GAIN</dt><dd>Days become one business day. The owner reviews and signs instead of typing &mdash; and the fastest quote in town wins the job.</dd></div>
+        </dl></article>
+      <article class="case-card"><p class="mono case-head"><span>CASE B &mdash; RETAILER &middot; SHOP + WAREHOUSE</span><span>CONCEPT</span></p>
+        <dl class="case-rows">
+          <div><dt class="mono">PROBLEM</dt><dd>The shop, inventory and shipping don&rsquo;t know each other. Orders get retyped into Xero, stock counts never match, returns are chaos.</dd></div>
+          <div><dt class="mono">SYSTEM</dt><dd>A store wired into inventory and accounting: payment, invoice, shipping label and stock movement run as one flow &mdash; with a log for every step.</dd></div>
+          <div><dt class="mono">GAIN</dt><dd>Orders flow through untouched. Stock is right, the books are right &mdash; and the team sells instead of typing.</dd></div>
+        </dl></article>
+      <article class="case-card"><p class="mono case-head"><span>CASE C &mdash; B2B SUPPLIER &middot; REPEAT CUSTOMERS</span><span>CONCEPT</span></p>
+        <dl class="case-rows">
+          <div><dt class="mono">PROBLEM</dt><dd>Regulars order by phone and email. Sales retypes orders, price lists circulate as stale spreadsheets.</dd></div>
+          <div><dt class="mono">SYSTEM</dt><dd>A customer portal with login: per-customer pricing, order history, two-click reordering &mdash; handed straight to order processing and accounting.</dd></div>
+          <div><dt class="mono">GAIN</dt><dd>Customers order themselves, around the clock and error-free. Sales calls for new business &mdash; not for typos.</dd></div>
+        </dl></article>
+    </div>
+    <div class="case-cta"><p>Your case looks different? That&rsquo;s exactly what the brief is for.</p><a class="btn btn-lime" href="brief.html" data-track="brief_start">Describe your case <span aria-hidden="true">&#8599;</span></a></div>
+  </div></section>
+
+  <section class="section" id="work" aria-labelledby="work-title"><div class="wrap">
   <div class="section-head section-head-row">
-    <div><p class="label">04 / Work</p><h2 id="work-title">Selected builds.</h2></div>
+    <div><p class="label">06 / Work</p><h2 id="work-title">Selected builds.</h2></div>
     <a class="btn btn-ink" href="work.html">All 54 live demos <span aria-hidden="true">↗</span></a>
   </div>
   <div class="work-grid">
@@ -496,7 +621,7 @@ img{display:block;max-width:100%;height:auto}
 </div></section>
 
 <section class="section process" id="process" aria-labelledby="process-title"><div class="wrap">
-  <div class="section-head"><p class="label">05 / Process</p><h2 id="process-title">Clear steps. No surprises.</h2></div>
+  <div class="section-head"><p class="label">07 / Process</p><h2 id="process-title">Clear steps. No surprises.</h2></div>
   <ol class="steps">
     <li><span class="mono">01 / Discover</span><h3>Find the real brief</h3><p>Your business, customers and systems. Then a fixed scope, timeline and price.</p></li>
     <li><span class="mono">02 / Design</span><h3>Make it tangible</h3><p>Messaging, visual direction and key flows you can click through, before the full build.</p></li>

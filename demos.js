@@ -227,7 +227,7 @@
       if (!lead) { lead = el('a', 'dm-button dm-lead'); lead.dataset.track = 'chooser_lead'; $(root, '.dm-recommendation').append(lead); }
       lead.textContent = `Get a quote for a ${name} store ↗`;
       lead.dataset.trackLabel = name;
-      lead.href = 'mailto:info@australianweb.agency?subject=' + encodeURIComponent(`Quote request: ${name} store`) + '&body=' + encodeURIComponent(`Hi Chris,\n\nThe platform chooser suggested ${name}.\n${picks}\n\nBusiness:\nWebsite:\n`);
+      lead.href = 'brief.html?service=online-stores&note=' + encodeURIComponent(`Platform chooser suggested ${name}.\n${picks}`);
     }
   }
   function savingsCalc(root, c) {
@@ -254,9 +254,7 @@
       $(root, '.dm-bar-after i').style.width = (100 - share) + '%';
       let lead = $(root, '.dm-lead');
       if (!lead) { lead = el('a', 'dm-button dm-lead', 'Send me an automation plan ↗'); lead.dataset.track = 'calc_lead'; $(root, '.dm-savings').append(lead); }
-      lead.href = 'mailto:info@australianweb.agency?subject=' + encodeURIComponent('Automation plan request') + '&body=' + encodeURIComponent(
-        `Hi Chris,\n\nThe savings calculator estimated ${Math.round(saved)} hours a month (${money(saved * 12 * cost)} a year).\n`
-        + `Orders or enquiries per week: ${orders}\nMinutes of admin each: ${minutes}\nHourly cost: A$${cost}\nShare to automate: ${share}%\n\nWhat we do by hand today:\n`);
+      lead.href = 'brief.html?service=automation&note=' + encodeURIComponent(`Savings calculator: about ${Math.round(saved)} hours a month (${money(saved * 12 * cost)} a year). ` + `${orders} orders or enquiries a week, ${minutes} minutes each, A$${cost} an hour, ${share}% automatable.`);
       const announce = () => {
         announcement.textContent = Math.round(saved).toLocaleString('en-AU') + ' hours saved per month. ' + money(target[1]) + ' value per year.';
       };

@@ -169,7 +169,7 @@ def render(slug, c):
     hero_inner = (f'<div class="hero-split"><div>{{copy}}</div><div class="svc-hero-demo">{hero_demo}</div></div>' if hero_demo else '{copy}')
     copy = (f'<p class="label"><span class="dot" aria-hidden="true"></span>Service {s["no"]} · {E(name)}</p>'
             f'<h1 id="svc-title">{h1}</h1><p class="lead">{E(c["hero_lead"])}</p>'
-            f'<div class="hero-actions"><a class="btn btn-lime" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>'
+            f'<div class="hero-actions"><a class="btn btn-lime" href="brief.html?service={slug}" data-track="brief_start">Start a brief <span aria-hidden="true">↗</span></a>'
             f'<a class="btn btn-ghost" href="{s["cta2"][0]}">{E(s["cta2"][1])}</a></div>')
     band = f'<section class="svc-band" aria-label="Interactive example"><div class="wrap">{s["band"]}</div></section>' if s.get('band') else ''
     included = ''.join(f'<article class="svc-item"><span class="mono">{i + 1:02d}</span><h3>{E(x["title"])}</h3><p>{E(x["text"])}</p></article>'
@@ -244,7 +244,7 @@ def render(slug, c):
 </div></section>
 <section class="svc-cta" aria-labelledby="cta-title"><div class="wrap"><div class="svc-cta-box">
   <div><h2 id="cta-title">{E(c["cta_title"])}</h2><p>{E(c["cta_text"])}</p></div>
-  <div class="hero-actions"><a class="btn btn-lime" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="{s["cta2"][0]}">{E(s["cta2"][1])}</a></div>
+  <div class="hero-actions"><a class="btn btn-lime" href="brief.html?service={slug}" data-track="brief_start">Start a brief <span aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="{s["cta2"][0]}">{E(s["cta2"][1])}</a></div>
 </div></div></section>
 <section class="section svc-related-section" aria-labelledby="related-title"><div class="wrap">
   <div class="section-head"><p class="label">Related services</p><h2 id="related-title">The rest of the picture.</h2><p class="section-intro">Most projects touch more than one of these. One conversation covers all of them.</p></div>

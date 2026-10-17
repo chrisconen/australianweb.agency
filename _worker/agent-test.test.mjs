@@ -1,7 +1,7 @@
 // node --test _worker/agent-test.test.mjs
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeUrl, parseRobots, robotsAllows, jsonLdNodes, productStatus, visibleWords, detectPlatform, runAudit, statRow } from './agent-test.js';
+import { normalizeUrl, parseRobots, robotsAllows, jsonLdNodes, productStatus, visibleWords, detectPlatform, runAudit, statRow, briefData } from './agent-test.js';
 
 test('normalizeUrl accepts public hosts only', () => {
   assert.equal(normalizeUrl('shop.com.au').href, 'https://shop.com.au/');
@@ -159,4 +159,15 @@ test('stats rows are aggregate, cleaned and allow-listed', () => {
     ['2026-10-17', 'pageview', '/automation.html-x-b-', 'google.com', 'au', '']);
   assert.deepEqual(statRow({ e: 'cta', p: '/', r: 'https://australianweb.agency/work.html', l: 'Book a call' }, undefined, '2026-10-17'),
     ['2026-10-17', 'cta', '/', '', 'xx', 'book-a-call']);
+});
+
+test('briefs are validated, trimmed and bots are dropped', () => {
+  const ok = briefData({ name: ' Sam ', email: 'sam@shop.com.au', goal: 'A faster store with Afterpay', services: ['online-stores', 'hack'], founding: true });
+  assert.equal(ok.name, 'Sam');
+  assert.deepEqual(ok.services, ['online-stores']);
+  assert.equal(ok.founding, true);
+  assert.equal(briefData({ name: 'Sam', email: 'not-an-email', goal: 'A faster store' }), null);
+  assert.equal(briefData({ name: 'Sam', email: 'sam@shop.com.au', goal: 'short' }), null);
+  assert.equal(briefData({ name: 'Bot', email: 'b@b.co', goal: 'buy cheap links now', company_fax: '123' }), null);
+  assert.equal(briefData({ name: 'Eve', email: 'eve@x.com\nBcc: a@b.c', goal: 'header injection attempt' }), null);
 });

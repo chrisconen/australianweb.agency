@@ -55,17 +55,18 @@ Interactive design concepts and technical explorations, not verified client case
 
 - [Project process](https://australianweb.agency/#process): Discover → Design → Build and connect → Launch and improve. Scope and timeline depend on project requirements, content readiness and feedback.
 - Project scope, pricing and timeline are agreed before work begins.
+- AWA works in writing, not on calls: a project brief, then a written plan and a fixed quote within two business days, then milestone reviews on a private preview.
 
 
 ## Contact
 
-- Project enquiries: info@australianweb.agency
-- Start a project: https://australianweb.agency/#contact
+- Start a project: [project brief](https://australianweb.agency/brief.html), about five minutes; reply in writing within two business days
+- Email: info@australianweb.agency
 - Founder: Chris Conen, founder and lead developer
 - Area served: Australia
 - Website: https://australianweb.agency/
 
-There is no published phone number or street address. Email is the canonical contact method.
+There is no published phone number or street address, and AWA does not take sales calls. The project brief is the canonical way to start; email works too.
 
 ## Key Information
 

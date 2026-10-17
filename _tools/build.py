@@ -18,9 +18,9 @@ SERVICES = [  # slug, nav name
     ('ai-assistants', 'AI assistants & internal tools'),
     ('care', 'Care, hosting & growth'),
 ]
-PAGES = ['index.html', 'work.html', 'agent-test.html', 'pilot.html', 'privacy.html'] + [f'{s}.html' for s, _ in SERVICES]
-# booking link for every "Book a call" button; swap the mailto for the Cal.com URL once it exists
-BOOKING = 'mailto:info@australianweb.agency?subject=Book%20a%2020-minute%20call'
+PAGES = ['index.html', 'work.html', 'agent-test.html', 'pilot.html', 'privacy.html', 'brief.html'] + [f'{s}.html' for s, _ in SERVICES]
+# every "start a brief" button points here (we work in writing; no calls)
+BOOKING = 'brief.html'
 
 
 def header(page):
@@ -42,7 +42,7 @@ def header(page):
     <div class="nav-drop"><a href="{at('services')}">Services</a><div class="nav-drop-menu">{drop}</div></div>
     <a href="{at('connected')}">Systems</a><a href="{at('team')}">How we work</a><a href="work.html"{cur('work.html')}>Work</a>
     <a class="nav-test" href="agent-test.html"{cur('agent-test.html')}>Free AI test</a>
-    <a class="btn btn-lime" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+    <a class="btn btn-lime" href="brief.html" data-track="brief_start">Start a brief <span aria-hidden="true">↗</span></a>
   </nav>
 </div></header>
 <!-- /header -->'''
@@ -52,8 +52,8 @@ CONTACT = f'''<!-- contact -->
 <section class="contact" id="contact" aria-labelledby="contact-title"><div class="wrap contact-grid">
   <div><p class="label">Next step</p><h2 id="contact-title">Let’s build what’s next.</h2></div>
   <div class="contact-actions">
-    <p>Tell us where your business is heading. You’ll hear back from Chris, not a sales team.</p>
-    <a class="btn btn-lime contact-book" href="{BOOKING}" data-track="book">Book a 20-minute call <span aria-hidden="true">↗</span></a>
+    <p>We work in writing, so every decision is on record and time zones don’t matter. Send a five-minute brief and get a written plan and a fixed quote within two business days, from Chris, not a sales team.</p>
+    <a class="btn btn-lime contact-book" href="{BOOKING}" data-track="brief_start">Start your project brief <span aria-hidden="true">↗</span></a>
     <a class="contact-mail" href="mailto:info@australianweb.agency">info@australianweb.agency</a>
     <a class="text-link" href="agent-test.html">Or start with the free AI test ↗</a>
   </div>
@@ -85,7 +85,7 @@ def refresh_shared(page):
     if not p.exists():
         return
     s = p.read_text('utf-8')
-    s = re.sub(r'href="[^"]*"(\s+data-track="book")', lambda m: f'href="{BOOKING}"' + m.group(1), s)
+    s = re.sub(r'href="brief\.html[^"]*"(\s+data-track="brief_start")|href="[^"]*"(\s+data-track="book")', lambda m: m.group(0) if m.group(1) else f'href="{BOOKING}"' + m.group(2), s)
     s = replace_block(s, 'header', header(page))
     s = replace_block(s, 'footer', footer())
     if '<!-- contact -->' in s:

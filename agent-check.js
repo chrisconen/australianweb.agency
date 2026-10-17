@@ -59,15 +59,15 @@
       wrap.append(sec);
     }
     const open = r.checks.filter(c => c.status === 'fail' || c.status === 'warn').map(c => `- ${c.label}: ${c.detail}`).join('\n');
-    $('at-mail').href = 'mailto:info@australianweb.agency?subject=' + encodeURIComponent(`Agent readiness fix plan: ${r.finalUrl} (${r.score}/100)`)
-      + '&body=' + encodeURIComponent(`Hi Chris,\n\nPlease send me a fix plan for ${r.finalUrl}.\nScore: ${r.score}/100 (${r.grade})\n\nOpen items:\n${open}\n\nThanks,\n`);
+    $('at-mail').href = 'brief.html?service=ai-visibility&website=' + encodeURIComponent(r.finalUrl)
+      + '&note=' + encodeURIComponent(`AI agent readiness test: ${r.score}/100 (${r.grade}).\nOpen items:\n${open}`.slice(0, 1500));
     if (r.grade === 'Agent-ready') {
       const em = el('em', null, 'ahead.');
       $('at-cta-title').replaceChildren('Stay ', em);
       $('at-cta-text').textContent = 'Agentic checkout and WebMCP are moving fast. I can keep your site ahead as the standards land in Australia.';
     } else {
       $('at-cta-title').replaceChildren('Want these ', el('em', null, 'fixed?'));
-      $('at-cta-text').textContent = 'Send the report and I’ll reply with a plain-English fix plan for your site: what matters first, what it involves and what it costs.';
+      $('at-cta-text').textContent = 'Send the report as a brief and you’ll get a plain-English fix plan in writing: what matters first, what it involves and what it costs.';
     }
     const results = $('at-results');
     results.hidden = false;

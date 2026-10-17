@@ -96,6 +96,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://australianweb.agency/brief.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://australianweb.agency/privacy.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

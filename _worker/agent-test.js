@@ -353,7 +353,7 @@ export async function runAudit(target, { fetchImpl = fetch } = {}) {
 // ---------- anonymous stats ----------
 // Cookieless, aggregate-only counts: one row per day/event/path/referrer-host/country/label with a counter.
 // No IP address, user agent or visitor id is stored.
-const EVENTS = new Set(['pageview', 'cta', 'book', 'test_run', 'calc_lead', 'chooser_lead', 'pilot']);
+const EVENTS = new Set(['pageview', 'cta', 'book', 'brief_start', 'brief', 'test_run', 'calc_lead', 'chooser_lead', 'pilot']);
 const clean = (v, max) => String(v || '').toLowerCase().replace(/[^a-z0-9/._:-]+/g, '-').slice(0, max);
 
 export function statRow(body, country, today = new Date().toISOString().slice(0, 10)) {
@@ -373,6 +373,57 @@ async function stat(req, env, h) {
       + 'ON CONFLICT (day, event, path, ref, country, label) DO UPDATE SET n = n + 1').bind(...row).run();
   }
   return new Response(null, { status: 204, headers: h });
+}
+
+// ---------- project briefs ----------
+// Written briefs replace calls: stored in D1, and mailed to Chris when Email Routing (send_email binding) is set up.
+const BRIEF_SERVICES = new Set(['ai-visibility', 'websites', 'online-stores', 'automation', 'ai-assistants', 'care', 'not-sure']);
+const EMAIL_RE = /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/;
+
+export function briefData(b) {
+  if (!b || typeof b !== 'object' || b.company_fax) return null; // company_fax is a honeypot field
+  const s = (v, n) => String(v ?? '').replace(/\r/g, '').trim().slice(0, n);
+  const d = {
+    name: s(b.name, 120), email: s(b.email, 200), business: s(b.business, 160), website: s(b.website, 300), goal: s(b.goal, 4000),
+    services: (Array.isArray(b.services) ? b.services : []).filter(x => BRIEF_SERVICES.has(x)).slice(0, 7),
+    timing: s(b.timing, 60), budget: s(b.budget, 60), founding: b.founding === true, note: s(b.note, 1500),
+  };
+  if (!d.name || !EMAIL_RE.test(d.email) || d.goal.length < 10) return null;
+  return d;
+}
+
+const b64 = str => btoa(String.fromCharCode(...new TextEncoder().encode(str)));
+
+async function mailBrief(env, id, d) {
+  const { EmailMessage } = await import('cloudflare:email');
+  const from = 'briefs@australianweb.agency';
+  const subject = `New brief: ${d.business || d.name}${d.founding ? ' (founding client)' : ''}`.replace(/[\r\n]+/g, ' ');
+  const body = [
+    `Brief ${id}`, '', `Name: ${d.name}`, `Email: ${d.email}`, `Business: ${d.business}`, `Website: ${d.website}`,
+    `Services: ${d.services.join(', ') || '-'}`, `Timing: ${d.timing}`, `Budget: ${d.budget}`, `Founding client: ${d.founding ? 'yes' : 'no'}`,
+    '', 'What the project should achieve:', d.goal, '', d.note ? `Note: ${d.note}` : '',
+  ].join('\r\n');
+  const raw = [
+    `From: AWA briefs <${from}>`, `To: ${env.BRIEF_TO}`, `Reply-To: ${d.email}`, `Subject: =?UTF-8?B?${b64(subject)}?=`,
+    `Message-ID: <${id}@australianweb.agency>`, `Date: ${new Date().toUTCString()}`, 'MIME-Version: 1.0',
+    'Content-Type: text/plain; charset=utf-8', 'Content-Transfer-Encoding: base64', '', b64(body).replace(/.{76}/g, '$&\r\n'),
+  ].join('\r\n');
+  await env.BRIEF_MAIL.send(new EmailMessage(from, env.BRIEF_TO, raw));
+}
+
+async function brief(req, env, h) {
+  let raw;
+  try { raw = await req.json(); } catch { return json({ ok: false, error: 'bad_request' }, 400, h); }
+  if (raw && raw.company_fax) return json({ ok: true }, 200, h); // bots get a quiet success
+  const d = briefData(raw);
+  if (!d) return json({ ok: false, error: 'invalid', message: 'Please add your name, a valid email and a few words about the project.' }, 400, h);
+  const id = crypto.randomUUID();
+  if (env.awa_stats) await env.awa_stats.prepare('INSERT INTO briefs (id, created, data) VALUES (?1, ?2, ?3)').bind(id, new Date().toISOString(), JSON.stringify(d)).run();
+  let mailed = false;
+  if (env.BRIEF_MAIL && env.BRIEF_TO) {
+    try { await mailBrief(env, id, d); mailed = true; } catch { /* stored in D1 either way */ }
+  }
+  return json({ ok: true, id, mailed }, 200, h);
 }
 
 // ---------- HTTP ----------
@@ -396,6 +447,14 @@ export default {
         if (!success) return new Response(null, { status: 204, headers: h });
       }
       return stat(req, env, h);
+    }
+    if (path === '/brief' && req.method === 'POST') {
+      if (origin && !ALLOWED_ORIGINS.some(re => re.test(origin))) return json({ ok: false, error: 'forbidden_origin' }, 403, h);
+      if (env && env.RATE_LIMITER) {
+        const { success } = await env.RATE_LIMITER.limit({ key: 'brief:' + (req.headers.get('cf-connecting-ip') || 'unknown') });
+        if (!success) return json({ ok: false, error: 'rate_limited', message: 'Too many briefs from your connection. Try again in a minute.' }, 429, h);
+      }
+      return brief(req, env, h);
     }
     if (path !== '/agent-test') return json({ ok: false, error: 'not_found' }, 404, h);
     if (req.method !== 'POST') return json({ ok: false, error: 'method_not_allowed' }, 405, h);

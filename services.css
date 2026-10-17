@@ -116,3 +116,50 @@
 .privacy-text h3{font-size:21px;letter-spacing:-.02em;font-weight:600;margin-top:18px}
 .privacy-text h3:first-child{margin-top:0}
 .privacy-text p{color:var(--muted)}
+
+/* project brief */
+.brief-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:start}
+.brief-form{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(22px,3vw,40px);display:grid;gap:20px}
+.brief-form fieldset{border:0;margin:0;padding:0;min-width:0}
+.brief-form legend,.brief-form label{font-weight:600;font-size:15px}
+.brief-form legend{padding:0;margin-bottom:12px}
+.brief-form label{display:block;min-width:0}
+.brief-form label>span[aria-hidden]{color:var(--muted)}
+.brief-form input:not([type=checkbox]),.brief-form select,.brief-form textarea{width:100%;font:inherit;font-weight:400;font-size:16px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:8px;display:block;transition:border-color .2s,background .2s}
+.brief-form textarea{resize:vertical;min-height:150px;line-height:1.5}
+.brief-form input:not([type=checkbox]):focus,.brief-form select:focus,.brief-form textarea:focus{outline:none;border-color:var(--ink);background:#fff;box-shadow:0 0 0 3px #d9f86e99}
+.brief-form ::placeholder{color:#7d8c91}
+.brief-form input[type=checkbox]{width:18px;height:18px;margin:0;flex:none;accent-color:var(--ink)}
+.brief-checks{display:flex;flex-wrap:wrap;gap:8px}
+.brief-checks label{display:flex;align-items:center;gap:10px;font-weight:500;font-size:14.5px;border:1px solid var(--line);border-radius:100px;padding:9px 14px;cursor:pointer;transition:border-color .2s,background .2s}
+.brief-checks label:hover{border-color:var(--ink)}
+.brief-checks label:has(:checked){background:var(--lime);border-color:var(--lime)}
+.brief-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.brief-form .brief-founding{display:flex;align-items:flex-start;gap:12px;font-weight:500;background:#d9f86e33;border:1px dashed #9cbf2a;border-radius:12px;padding:14px 16px}
+.brief-form .brief-founding input{margin-top:3px}
+.brief-form .brief-hp{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.brief-form .btn{justify-self:start}
+.brief-status{min-height:1.6em;font-weight:600}
+.brief-status:empty{display:none}
+.brief-status.is-error{color:#a3261a}
+.brief-form .fineprint{margin:0;padding:0}
+.brief-aside{position:sticky;top:110px;background:var(--ink);color:#fff;border-radius:18px;padding:clamp(22px,3vw,36px)}
+.brief-aside>.mono{color:var(--lime);text-transform:uppercase;letter-spacing:.08em}
+.brief-aside ol{list-style:none;margin:18px 0 0;padding:0;counter-reset:step;display:grid;gap:16px}
+.brief-aside li{counter-increment:step;position:relative;color:#c5d2d6;padding:16px 0 0 42px;border-top:1px solid var(--ink-line)}
+.brief-aside li::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:20px;font-family:var(--mono);font-size:12px;color:var(--lime)}
+.brief-aside b{color:#fff}
+.brief-aside .fineprint{color:#c5d2d6;margin-top:22px}
+.brief-aside .text-link{color:#fff}
+.brief-done{display:grid;gap:10px;outline:none}
+.brief-done h2{font-size:clamp(30px,3.4vw,46px);line-height:1.05;letter-spacing:-.035em;font-weight:600}
+.brief-done p{color:var(--muted);font-size:18px}
+@media(max-width:900px){
+  .brief-grid{grid-template-columns:1fr}
+  .brief-aside{position:static}
+}
+@media(max-width:560px){
+  .brief-row{grid-template-columns:1fr}
+  .brief-checks label{flex:1 1 100%;border-radius:12px}
+  .brief-form .btn{justify-self:stretch;justify-content:center}
+}

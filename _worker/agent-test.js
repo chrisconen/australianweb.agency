@@ -229,7 +229,7 @@ export async function runAudit(target, { fetchImpl = fetch } = {}) {
   }
   const isShop = ['Shopify', 'WooCommerce', 'BigCommerce', 'Maropost (Neto)', 'Magento'].includes(platform)
     || productLd.status !== 'missing' || !!productPage
-    || /\/(cart|basket|checkout)\b|add to (cart|bag|basket|trolley)|mini-?cart|cart-?(badge|count|drawer|icon)|CartBadge|"priceCurrency"|\/media\/catalog\/product\//i.test(html);
+    || /\/(cart|basket|checkout)\b|add to (cart|bag|basket|trolley)|mini-?cart|cart-?(badge|count|drawer|icon)|CartBadge|\/media\/catalog\/product\//i.test(html);
 
   let sitemapOk = false;
   const smUrl = robots.sitemaps[0] || origin + '/sitemap.xml';

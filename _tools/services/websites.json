@@ -1,0 +1,97 @@
+{
+ "meta_title": "Websites & Web Apps | Australian Web Agency",
+ "meta_description": "Distinctive, fast and accessible websites and web apps for Australian businesses. Core Web Vitals, WCAG 2.2 AA and technical SEO, one point of contact.",
+ "hero_title": "Websites and web apps | built to be used",
+ "hero_lead": "A sharp landing page or a full product with logins and dashboards. We design it, build it and keep it fast and accessible. You work with Chris Conen. Architect and Astra write, test and review the code under his supervision.",
+ "included_intro": "Every engagement covers design, build and the checks that decide whether the site is usable. Scope follows the job, from a single page to an application your team runs day to day.",
+ "included": [
+  {
+   "title": "Brand, UX and interface design",
+   "text": "We shape the look, the structure and the interface so the page is clear on a phone and obvious to use."
+  },
+  {
+   "title": "Motion and interactive storytelling",
+   "text": "3D, motion and interactive sequences where they help the story. They stay light enough to keep the page fast."
+  },
+  {
+   "title": "Fast front ends",
+   "text": "We build on Next.js, Astro, WordPress, Sanity or WebGL, and tune for Core Web Vitals on real devices."
+  },
+  {
+   "title": "WCAG 2.2 AA accessibility",
+   "text": "We build and check to WCAG 2.2 Level AA, and review relevant Level AAA items such as headings, links and transcripts."
+  },
+  {
+   "title": "Accounts, dashboards and admin",
+   "text": "Web apps with sign-in, customer dashboards and admin tools, so your team can run the product without us in the middle."
+  },
+  {
+   "title": "Technical SEO and content structure",
+   "text": "Clean URLs, metadata, headings and a content model your editors can keep, so search engines and people can both follow it."
+  }
+ ],
+ "use_cases": [
+  {
+   "who": "A Gold Coast surf shop",
+   "situation": "The current site is slow on mobile and the new season's boards are hard to find.",
+   "what_we_do": "We rebuild the shopfront with a clear range, fast pages and product content your staff can update.",
+   "outcome": "Shoppers reach the right board quickly, and the site stays readable on a phone at the beach."
+  },
+  {
+   "who": "A Sydney plumber",
+   "situation": "Enquiries arrive by phone because the website does not explain the work or make booking obvious.",
+   "what_we_do": "We design a local site with plain service pages, suburb coverage and a short enquiry path.",
+   "outcome": "People see what you do and how to book before they call, including after hours."
+  },
+  {
+   "who": "A Melbourne B2B supplier",
+   "situation": "Trade customers chase quotes by email and staff retype the same orders.",
+   "what_we_do": "We build a signed-in catalogue with account pricing, an order dashboard and an admin view for your team.",
+   "outcome": "Customers place repeat orders themselves, and your staff spend less time on the same paperwork."
+  }
+ ],
+ "demo_title": "See the speed, then the range",
+ "demo_text": "The race is a real rebuild: Marina Yacht Sport’s online store, mobile PageSpeed 69 → 97 and Largest Contentful Paint 4.0 s → 2.4 s, measured the same morning. Below it, live concept builds you can open and explore.",
+ "steps": [
+  {
+   "title": "One conversation",
+   "text": "You speak with Chris. No account managers. We agree what the site must do, who it is for, and whether it is a page or a product."
+  },
+  {
+   "title": "Design and structure",
+   "text": "We set the brand, the interface and the content structure, including motion or 3D only where it earns its place."
+  },
+  {
+   "title": "Build, test, review",
+   "text": "Architect and Astra write, test and review the code under Chris's supervision. We check speed, accessibility and the paths your customers take."
+  },
+  {
+   "title": "Launch and hand over",
+   "text": "We put it live across Australia, show your team the admin tools, and leave the content model ready for you to run."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Do you use AI to build the site?",
+   "a": "Yes. AWA is open about it. Architect and Astra, our AI engineers, write, test and review code. Chris Conen supervises that work and is your only point of contact, Australia-wide. There is no account manager between you and the build."
+  },
+  {
+   "q": "What does accessible mean on a site you build?",
+   "a": "We work to the Australian Human Rights Commission’s April 2025 guidelines on equal access to digital goods and services, which recommend WCAG 2.2 Level AA as a minimum. They are not legally binding, and this is not legal advice: for a compliance opinion, ask a lawyer."
+  },
+  {
+   "q": "How do you judge whether a page is fast?",
+   "a": "We use the thresholds in Google's web.dev article on Core Web Vitals, last updated 7 May 2025. At the 75th percentile, Good is LCP at or under 2,500 ms, INP at or under 200 ms, and CLS at or under 0.1. Poor is LCP over 4,000 ms, INP over 500 ms and CLS over 0.25."
+  },
+  {
+   "q": "Can you build a web app, or only a marketing site?",
+   "a": "Both. A landing page when that is the job. A web application when you need accounts, dashboards and admin tools. The same engagement covers interface design, a fast front end and the content structure behind it."
+  },
+  {
+   "q": "Are the demos client projects?",
+   "a": "The speed race is a real 2026 rebuild for Marina Yacht Sport in Europe. The grid shows live concept demos, and the Work page holds 54 concept builds. Use cases on this page, such as a surf shop or a plumber, are examples of typical Australian businesses. They are not clients."
+  }
+ ],
+ "cta_title": "Tell us what the site has to do",
+ "cta_text": "One conversation with Chris. We will say whether you need a page or a product, and what we would design, build and check."
+}

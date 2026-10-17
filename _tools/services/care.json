@@ -1,0 +1,97 @@
+{
+ "meta_title": "Care, hosting & growth | Australian Web Agency",
+ "meta_description": "After launch we monitor uptime, speed and security, keep the site updated and backed up, and improve search against real numbers. Australia-wide.",
+ "hero_title": "Care after launch | tied to real numbers",
+ "hero_lead": "After launch the work continues. We monitor uptime, speed and security, apply updates, keep backups, look after technical search, and make steady improvements you can see in the numbers. One point of contact, Australia-wide.",
+ "included_intro": "Care covers the checks, the housekeeping and a monthly round of improvements. Hosting is on Cloudflare or Vercel. You get one report, in plain English.",
+ "included": [
+  {
+   "title": "Monitoring and alerts",
+   "text": "We watch uptime, speed and security and alert you when a check fails. Chris Conen monitors his own sites with these checks."
+  },
+  {
+   "title": "Updates and backups",
+   "text": "We patch the software your site depends on and keep regular backups, two strategies in the Australian Signals Directorate's Essential Eight."
+  },
+  {
+   "title": "Security headers and SSL",
+   "text": "We set and check SSL and security headers, and correct them when a scan shows they have drifted."
+  },
+  {
+   "title": "Technical SEO and analytics",
+   "text": "We maintain technical SEO, Google Analytics 4 and Search Console, and read the numbers before we change the site."
+  },
+  {
+   "title": "AI visibility",
+   "text": "We check whether AI agents can reach your key pages and read them clearly. We are also open about how we use AI."
+  },
+  {
+   "title": "Monthly improvements",
+   "text": "Each month we make a focused set of improvements and send a plain-English report of what changed and what the numbers show."
+  }
+ ],
+ "use_cases": [
+  {
+   "who": "A Gold Coast surf shop",
+   "situation": "The site is live, but nobody is watching uptime, speed or the contact form after a plugin update.",
+   "what_we_do": "We monitor the shop, apply updates, keep backups, and fix the issues the checks surface.",
+   "outcome": "You hear about failed checks from us, and the shop keeps a current, backed-up site."
+  },
+  {
+   "who": "A Sydney plumber",
+   "situation": "Calls come from Google, and the mobile page feels slow when someone is out on a job.",
+   "what_we_do": "We measure Largest Contentful Paint, INP and CLS against Google's web.dev thresholds and improve pages that rate poorly.",
+   "outcome": "You see whether speed improved, in the same plain-English report as the other checks."
+  },
+  {
+   "who": "A Melbourne B2B supplier",
+   "situation": "Buyers use the catalogue after hours, and there is no one in-house to watch the site.",
+   "what_we_do": "We host on Cloudflare or Vercel, watch uptime and broken links, and send one monthly report.",
+   "outcome": "You are alerted when uptime or a key page fails, and you get a plain-English report of the month's work."
+  }
+ ],
+ "demo_title": "The checks, on one screen",
+ "demo_text": "This dashboard is illustrative. It shows the uptime, speed, SSL, security header, backup, broken-link and AI-readiness checks we keep on a site.",
+ "steps": [
+  {
+   "title": "We baseline the site",
+   "text": "We record uptime, speed, security headers, SSL, backups and search setup so later work has numbers to measure against."
+  },
+  {
+   "title": "We host and watch it",
+   "text": "The site is hosted on Cloudflare or Vercel. Monitoring stays on, and we alert you when a check fails."
+  },
+  {
+   "title": "We keep it current",
+   "text": "Updates, backups and security checks run through the month. You hear from us when something needs a decision."
+  },
+  {
+   "title": "We improve from the numbers",
+   "text": "Each month we choose improvements from the data, ship them, and explain what changed in plain English."
+  }
+ ],
+ "faq": [
+  {
+   "q": "What does care include after launch?",
+   "a": "Uptime, speed and security monitoring with alerts, updates and backups, SSL and security headers, technical SEO, GA4 and Search Console, AI visibility checks, and monthly improvements with a plain-English report. Hosting is on Cloudflare or Vercel."
+  },
+  {
+   "q": "How do you judge whether a page is fast?",
+   "a": "Google's web.dev article, last updated 7 May 2025, rates the 75th percentile of page loads. Good is LCP at or under 2,500 ms, INP at or under 200 ms and CLS at or under 0.1. Poor is LCP over 4,000 ms, INP over 500 ms and CLS over 0.25. Anything between those cut-offs is rated 'needs improvement'."
+  },
+  {
+   "q": "Do you follow the Essential Eight?",
+   "a": "Patching and regular backups are two of the eight strategies in the Australian Signals Directorate’s Essential Eight, and we apply both. ASD’s newer Essentials series is written mainly for government and large organisations; for smaller sites we work from ASD’s small business cyber security guidance. This is not legal advice."
+  },
+  {
+   "q": "What about analytics and tracking pixels?",
+   "a": "The OAIC's 4 November 2024 guidance says the Privacy Act does not prohibit tracking pixels and groups pixels with cookies. Organisations must comply with the APPs. In its 2023 survey, 69% of adults did not think personal information used for tracking, profiling and targeted advertising was fair and reasonable. We work to that guidance. Seek legal advice on your notices."
+  },
+  {
+   "q": "Who does the work?",
+   "a": "You deal with Chris Conen. He leads a team of AI agents: Architect and Astra write, test and review code with him. He also runs scheduled monthly security and performance rescans for a compliance SaaS."
+  }
+ ],
+ "cta_title": "Put your site on a care plan",
+ "cta_text": "Tell us about the site you already have. We will reply with what we would monitor, which platform we would host it on, and what the first month of care would cover."
+}

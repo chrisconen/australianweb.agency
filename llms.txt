@@ -10,12 +10,12 @@ Preferred citation: AWA or Australian Web Agency. Canonical site: https://austra
 
 ## Services
 
-- [AI visibility & agent readiness](https://australianweb.agency/#services): Making sure ChatGPT, Gemini, Copilot and Perplexity can find, understand and act on a business: free readiness test, structured data and product feeds, agentic checkout readiness (UCP), monthly AI visibility monitoring.
-- [Websites & web apps](https://australianweb.agency/#services): Brand, UX and interface design; 3D, motion and interactive storytelling; Core Web Vitals and WCAG 2.2 AA. Stack includes Next.js, Astro, WordPress, Sanity and WebGL.
-- [Online stores & agentic commerce](https://australianweb.agency/#services): Shopify, WooCommerce and headless (Medusa) stores; payments, shipping and stock in sync; product data AI assistants can compare.
-- [Automation & integrations](https://australianweb.agency/#connected): Connecting website, CRM, accounting and shipping (e.g. HubSpot, Pipedrive, Xero, MYOB, Australia Post, n8n) so orders, invoices and leads move without manual work.
-- [AI assistants & internal tools](https://australianweb.agency/#services): Website chat trained on a business's own content, email/document/quote processing, internal dashboards.
-- [Care, hosting & growth](https://australianweb.agency/#services): Uptime, speed and security monitoring, technical SEO, analytics and monthly improvements.
+- [AI visibility & agent readiness](https://australianweb.agency/ai-visibility.html): Making sure ChatGPT, Gemini, Copilot and Perplexity can find, understand and act on a business: free readiness test, structured data and product feeds, agentic checkout readiness (UCP), monthly AI visibility monitoring.
+- [Websites & web apps](https://australianweb.agency/websites.html): Brand, UX and interface design; 3D, motion and interactive storytelling; Core Web Vitals and WCAG 2.2 AA. Stack includes Next.js, Astro, WordPress, Sanity and WebGL.
+- [Online stores & agentic commerce](https://australianweb.agency/online-stores.html): Shopify, WooCommerce and headless (Medusa) stores; payments, shipping and stock in sync; product data AI assistants can compare.
+- [Automation & integrations](https://australianweb.agency/automation.html): Connecting website, CRM, accounting and shipping (e.g. HubSpot, Pipedrive, Xero, MYOB, Australia Post, n8n) so orders, invoices and leads move without manual work.
+- [AI assistants & internal tools](https://australianweb.agency/ai-assistants.html): Website chat trained on a business's own content, email/document/quote processing, internal dashboards.
+- [Care, hosting & growth](https://australianweb.agency/care.html): Uptime, speed and security monitoring, technical SEO, analytics and monthly improvements.
 
 - [AI Agent Readiness Test](https://australianweb.agency/agent-test.html): Free tool. Checks whether ChatGPT, Google AI Mode, Copilot, Claude and Perplexity can find, understand and act on a website (crawler access, firewall, structured data, UCP checkout profile, WebMCP), with a score out of 100 and fixes.
 

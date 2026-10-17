@@ -3,77 +3,243 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>AWA — Web Design for Ambitious Australian Businesses</title>
-  <meta name="description" content="Big ambitions. Better websites. Independent website strategy, design and development for Australian businesses. Work directly with the person who builds your site.">
+  <title>AWA — AI-native web studio for Australian businesses</title>
+  <meta name="description" content="Websites, online stores, automations and AI assistants: designed, built and connected by one senior developer working with an AI engineering team. Agency range, one point of contact.">
   <link rel="canonical" href="https://australianweb.agency/">
   <meta name="google-site-verification" content="sQ7WQ2B5FSZCiTHZG0uIDk9MoHnncVxA9-spHp9KlX8">
-  <meta name="theme-color" content="#10202c">
+  <meta name="theme-color" content="#0e1c27">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="clips/sydney-opera.webp" fetchpriority="high">
-  <link rel="stylesheet" href="studio.css">
-  <script src="studio.js" defer></script>
   <meta property="og:image" content="https://australianweb.agency/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://australianweb.agency/">
-  <meta property="og:title" content="AWA — Web Design for Ambitious Australian Businesses">
-  <meta property="og:description" content="Big ambitions. Better websites. Independent website strategy, design and development for Australian businesses. Work directly with the person who builds your site.">
+  <meta property="og:title" content="AWA — AI-native web studio for Australian businesses">
+  <meta property="og:description" content="Websites, online stores, automations and AI assistants: designed, built and connected by one senior developer working with an AI engineering team. Agency range, one point of contact.">
   <meta property="og:locale" content="en_AU">
   <meta property="og:site_name" content="AWA — Australian Web Agency">
   <meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://australianweb.agency/#awa","name":"AWA — Australian Web Agency","alternateName":"AWA","url":"https://australianweb.agency/","email":"info@australianweb.agency","description":"An independent web studio led by Chris Conen. Website strategy, design, development and ongoing improvement for businesses across Australia.","founder":{"@type":"Person","name":"Chris Conen","jobTitle":"Founder & lead developer"},"areaServed":{"@type":"Country","name":"Australia"},"availableLanguage":["en","de","hu"],"knowsAbout":["Web design","3D motion websites","Scroll-driven video","Headless commerce","Core Web Vitals","WCAG 2.2 AA","SEO","Astro","Next.js"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Strategy"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Design"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Build"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Growth"}}]}},{"@type":"WebSite","@id":"https://australianweb.agency/#website","url":"https://australianweb.agency/","name":"AWA — Australian Web Agency","inLanguage":"en-AU","publisher":{"@id":"https://australianweb.agency/#awa"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://australianweb.agency/#awa","name":"AWA — Australian Web Agency","alternateName":"AWA","url":"https://australianweb.agency/","email":"info@australianweb.agency","description":"An AI-native web studio led by Chris Conen. Websites, online stores, automations and AI assistants for businesses across Australia, built by a senior developer working with an AI engineering team.","founder":{"@type":"Person","name":"Chris Conen","jobTitle":"Founder & lead developer","image":"https://australianweb.agency/chris-conen.webp"},"areaServed":{"@type":"Country","name":"Australia"},"availableLanguage":["en","de","hu"],"knowsAbout":["Web design","Web development","E-commerce","Agentic commerce","Universal Commerce Protocol","WebMCP","AI visibility","Business automation","CRM integration","AI assistants","Core Web Vitals","WCAG 2.2 AA","Technical SEO"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI visibility & agent readiness"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Websites & web apps"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Online stores & agentic commerce"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Automation & integrations"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI assistants & internal tools"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Care, hosting & growth"}}]}},{"@type":"WebSite","@id":"https://australianweb.agency/#website","url":"https://australianweb.agency/","name":"AWA — Australian Web Agency","inLanguage":"en-AU","publisher":{"@id":"https://australianweb.agency/#awa"}}]}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="awa.css">
+  <script src="awa.js" defer></script>
+  <script src="pipeline.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="container header-inner">
-  <a class="brand" href="index.html" aria-label="Australian Web Agency home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap header-inner">
+  <a class="brand" href="index.html" aria-label="AWA, Australian Web Agency, home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
   <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu <span class="menu-lines" aria-hidden="true"><i></i><i></i></span></button>
   <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-    <a href="work.html" >Work</a><a href="#services">Services</a><a href="#studio">The studio</a><a href="#process">Process</a>
-    <a class="pill pill-lime header-cta" href="#contact">Let’s talk <span class="arrow" aria-hidden="true">↗</span></a>
+    <a href="#services">Services</a><a href="#connected">Systems</a><a href="#team">How we work</a><a href="#work">Work</a>
+    <a class="nav-test" href="agent-test.html">Free AI test</a>
+    <a class="btn btn-lime" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
   </nav>
-</div></header><main id="main" tabindex="-1">
-<section class="hero" id="top" aria-labelledby="hero-heading"><div class="container">
-  <div class="hero-topline"><p class="eyebrow">Independent web studio. Australia-wide.</p><span class="coordinates">Strategy · Design · Development</span></div>
-  <h1 id="hero-heading"><span>Big ambitions.</span><span><em>Better websites.</em></span></h1>
-  <div class="hero-summary"><p class="hero-description">Your business has something others don’t. Let’s make it the first thing people see. Distinctive websites that bring your value into focus — and make the next step feel natural.</p><div class="hero-actions"><a class="pill pill-lime" href="#contact">Discuss your project <span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="#work">Explore the work <span class="arrow" aria-hidden="true">↓</span></a></div></div>
-  <figure class="hero-film"><img src="clips/sydney-opera.webp" alt="Sydney Opera House beside the harbour" width="960" height="540" fetchpriority="high"><video muted loop playsinline preload="none" data-src="clips/sydney-opera.mp4" data-mobile-src="clips/sydney-opera-p.mp4" aria-hidden="true" tabindex="-1"></video><span class="film-credit">A different perspective / Sydney, Australia</span><figcaption class="film-caption"><p>Made to stand out.<br><em>Built to mean business.</em></p><button class="film-toggle" type="button" aria-label="Play background film" aria-pressed="false" hidden><span aria-hidden="true">▶</span></button></figcaption></figure>
-  <div class="hero-footnote"><span>From your first idea to what comes next.</span><a href="#work">Discover AWA <span class="arrow" aria-hidden="true">↓</span></a></div>
+</div></header>
+
+<main id="main" tabindex="-1">
+<section class="hero" aria-labelledby="hero-title"><div class="wrap hero-grid">
+  <div class="hero-copy">
+    <p class="label"><span class="dot" aria-hidden="true"></span>AI-native web studio · Australia-wide</p>
+    <h1 id="hero-title">Built for people.<br><span class="hl">Ready for AI.</span></h1>
+    <p class="lead">Websites, online stores, automations and AI assistants: designed, built and connected by one senior developer working with an AI engineering team. Agency range. One point of contact.</p>
+    <form class="hero-test" action="agent-test.html" method="get" toolname="run_agent_readiness_test"
+      tooldescription="Test whether AI assistants can find, understand and act on a public website. Opens the report page.">
+      <label for="hero-url">Can AI assistants find your business? Test it free.</label>
+      <div class="hero-test-row">
+        <input id="hero-url" name="url" type="text" inputmode="url" autocomplete="url" spellcheck="false" placeholder="yourbusiness.com.au" required>
+        <button class="btn btn-lime" type="submit">Run the test</button>
+      </div>
+    </form>
+  </div>
+  <figure class="report" aria-label="Example AI agent readiness report">
+    <div class="report-bar"><span class="mono">agent-test</span><span class="mono muted">example report</span></div>
+    <div class="report-score"><span class="report-num">64</span><span class="mono">/100</span><span class="report-grade">Agent-aware</span></div>
+    <ul class="report-rows">
+      <li class="is-pass"><i aria-hidden="true">✓</i><span>ChatGPT, Google and Copilot crawlers can read your pages</span></li>
+      <li class="is-pass"><i aria-hidden="true">✓</i><span>Business identity found in structured data</span></li>
+      <li class="is-warn"><i aria-hidden="true">!</i><span>Products have no price or stock data for assistants</span></li>
+      <li class="is-fail"><i aria-hidden="true">✕</i><span>Firewall turns Perplexity and ChatGPT away</span></li>
+      <li class="is-warn"><i aria-hidden="true">!</i><span>No checkout profile for Google AI Mode (UCP)</span></li>
+    </ul>
+    <figcaption class="mono muted">Illustrative output. Run the real test on your own site.</figcaption>
+  </figure>
+</div>
+<div class="wrap hero-strip mono" aria-label="Disciplines"><span>Strategy</span><span>Design</span><span>Engineering</span><span>Commerce</span><span>Automation</span><span>AI</span></div>
+</section>
+
+<section class="section" id="services" aria-labelledby="services-title"><div class="wrap">
+  <div class="section-head">
+    <p class="label">01 / Services</p>
+    <h2 id="services-title">One studio.<br>Every layer of the web.</h2>
+    <p class="section-intro">From the first impression to the systems behind it. Choose one piece or hand over the whole picture.</p>
+  </div>
+  <div class="service-grid">
+    <article class="service service-feature">
+      <div class="service-top"><span class="mono">01</span><span class="badge">New</span></div>
+      <h3>AI visibility &amp; agent readiness</h3>
+      <p>Customers now ask ChatGPT, Gemini and Perplexity what to buy. We make sure those assistants can find you, understand your offer and, where it is live, buy from you.</p>
+      <ul><li>Free readiness test, then a fix plan</li><li>Structured data and product feeds</li><li>Agentic checkout readiness (UCP)</li><li>Monthly AI visibility monitoring</li></ul>
+      <a class="text-link" href="agent-test.html">Run the free test ↗</a>
+    </article>
+    <article class="service">
+      <div class="service-top"><span class="mono">02</span></div>
+      <h3>Websites &amp; web apps</h3>
+      <p>Distinctive, fast and accessible sites and applications, from a sharp landing page to a full product with logins and dashboards.</p>
+      <ul><li>Brand, UX and interface design</li><li>3D, motion and interactive storytelling</li><li>Core Web Vitals and WCAG 2.2 AA</li></ul>
+      <p class="chips mono">Next.js · Astro · WordPress · Sanity · WebGL</p>
+    </article>
+    <article class="service">
+      <div class="service-top"><span class="mono">03</span></div>
+      <h3>Online stores &amp; agentic commerce</h3>
+      <p>Stores that convert people today and are ready for AI shopping agents tomorrow. New builds, migrations and speed rescues.</p>
+      <ul><li>Shopify, WooCommerce and headless</li><li>Payments, shipping and stock in sync</li><li>Product data assistants can compare</li></ul>
+      <p class="chips mono">Shopify · WooCommerce · Medusa · Stripe · Afterpay</p>
+    </article>
+    <article class="service">
+      <div class="service-top"><span class="mono">04</span></div>
+      <h3>Automation &amp; integrations</h3>
+      <p>Your website, CRM, accounting and shipping talking to each other, so orders, invoices and leads move without copy and paste.</p>
+      <ul><li>CRM setup, clean-up and migration</li><li>Invoicing, shipping and payment flows</li><li>Custom APIs and scheduled jobs</li></ul>
+      <p class="chips mono">HubSpot · Pipedrive · Xero · MYOB · Australia Post · n8n</p>
+    </article>
+    <article class="service">
+      <div class="service-top"><span class="mono">05</span></div>
+      <h3>AI assistants &amp; internal tools</h3>
+      <p>Assistants that answer from your own content, and small tools that take repetitive work off your team’s plate.</p>
+      <ul><li>Website chat trained on your content</li><li>Email, document and quote processing</li><li>Internal dashboards and admin tools</li></ul>
+      <p class="chips mono">OpenAI · Claude · Gemini · RAG · Cloudflare</p>
+    </article>
+    <article class="service">
+      <div class="service-top"><span class="mono">06</span></div>
+      <h3>Care, hosting &amp; growth</h3>
+      <p>After launch, the work continues: monitoring, updates, security, search and steady improvements measured against real numbers.</p>
+      <ul><li>Uptime, speed and security monitoring</li><li>Technical SEO and analytics</li><li>Monthly improvements and reporting</li></ul>
+      <p class="chips mono">GA4 · Search Console · Cloudflare · Vercel</p>
+    </article>
+  </div>
 </div></section>
-<div class="intro-strip"><div class="container"><p><strong>For businesses ready for their next chapter.</strong>Founders. Growing brands. Established businesses.</p><p><strong>One experienced partner.</strong>Strategy through to launch.</p><p><strong>Direct from the start.</strong>You speak with the person building it.</p></div></div>
-<section class="section container" id="work" aria-labelledby="work-heading"><p class="eyebrow">01 / Selected explorations</p><div class="section-head"><h2 id="work-heading">A little different.<br><em>A lot more you.</em></h2><div><p>A considered website starts with the business behind it. Explore live concepts across travel, technology, hospitality and beyond.</p><a class="text-link" href="work.html">View the full collection <span class="arrow" aria-hidden="true">↗</span></a></div></div><div class="work-grid"><article class="project-card reveal" data-category="3d"><a class="project-link" data-preview data-title="V-ASTRA" href="/demos/v-astra/" aria-label="Explore V-ASTRA live concept"><span class="project-image"><img src="demos/v-astra/cover.webp" alt="" width="960" height="640" loading="lazy" decoding="async"><span class="project-type">Concept / Luxury travel</span><span class="project-art-title sans" aria-hidden="true">V-ASTRA</span><span class="project-arrow" aria-hidden="true">↗</span></span><div class="project-meta"><h3>V-ASTRA</h3><span>3D Motion ↗</span></div><p class="project-description">An invitation to explore. Immersive ocean, island and wilderness chapters for an ambitious travel concept.</p></a></article><article class="project-card reveal" data-category="landing"><a class="project-link" data-preview data-title="Altovia" href="/demos/altovia/" aria-label="Explore Altovia live concept"><span class="project-image"><img src="demos/altovia/media/web/poster.jpg" alt="" width="960" height="640" loading="lazy" decoding="async"><span class="project-type">Concept / Private charter</span><span class="project-art-title" aria-hidden="true">Altovia</span><span class="project-arrow" aria-hidden="true">↗</span></span><div class="project-meta"><h3>Altovia</h3><span>Landing ↗</span></div><p class="project-description">A seamless journey, from first impression to final destination. Cinematic storytelling for a private travel concept.</p></a></article><article class="project-card reveal" data-category="landing"><a class="project-link" data-preview data-title="Kernova" href="/demos/kernova/" aria-label="Explore Kernova live concept"><span class="project-image"><img src="demos/kernova/cover.jpg" alt="" width="960" height="640" loading="lazy" decoding="async"><span class="project-type">Concept / Industrial technology</span><span class="project-art-title sans" aria-hidden="true">Kernova</span><span class="project-arrow" aria-hidden="true">↗</span></span><div class="project-meta"><h3>Kernova</h3><span>Landing ↗</span></div><p class="project-description">Complex engineering, clearly communicated. A connected story of robotics, automation and intelligent manufacturing.</p></a></article><article class="project-card reveal" data-category="landing"><a class="project-link" data-preview data-title="Velora" href="/demos/velora/" aria-label="Explore Velora live concept"><span class="project-image"><img src="demos/velora/cover.jpg" alt="" width="960" height="640" loading="lazy" decoding="async"><span class="project-type">Concept / Specialty coffee</span><span class="project-art-title" aria-hidden="true">Velora</span><span class="project-arrow" aria-hidden="true">↗</span></span><div class="project-meta"><h3>Velora</h3><span>Landing ↗</span></div><p class="project-description">From origin to the first sip. An expressive coffee experience built around the people, place and craft behind the cup.</p></a></article></div><div class="section-tail"><p>These are working design concepts, shared to show the craft and possibilities. They are not client case studies.</p><a class="pill pill-ink" href="work.html">Explore all 54 demos <span class="arrow" aria-hidden="true">↗</span></a></div></section>
-<section class="studio-section" id="studio" aria-labelledby="studio-heading"><div class="container studio-layout"><div class="studio-aside"><p class="eyebrow">02 / The independent advantage</p><div class="studio-monogram" aria-hidden="true">1:1<span>↗</span></div></div><div class="studio-copy reveal"><h2 id="studio-heading">Your business is personal.<br><em>So is the way we work.</em></h2><p>AWA is the independent web studio of Chris Conen. When you get in touch, you speak with the person who will shape, design and build your website.</p><p>That means context stays intact. Decisions stay clear. And the care that goes into the first conversation carries through to the last detail.</p><div class="studio-details"><div><b>One point of contact.</b><p>Direct access to your designer and developer, from the first brief to launch.</p></div><div><b>A clear path forward.</b><p>A considered scope, an agreed timeline and work you can see as it takes shape.</p></div></div></div></div></section>
-<section class="section container" id="services" aria-labelledby="services-heading"><p class="eyebrow">03 / What we bring</p><div class="section-head"><h2 id="services-heading">The whole picture.<br><em>Every small detail.</em></h2><div><p>From finding the right words to building the right experience. Everything your website needs to make a stronger impression and earn the next conversation.</p></div></div><div class="service-list">
-  <article class="service-row reveal"><span class="service-number">01</span><h3>Strategy &amp; positioning</h3><div><p>Give people a reason to choose you. We clarify your offer, sharpen your message and map a straightforward path from first visit to enquiry.</p><div class="service-tags"><span>Website strategy</span><span>Messaging</span><span>Content structure</span></div></div></article>
-  <article class="service-row reveal"><span class="service-number">02</span><h3>Brand &amp; web design</h3><div><p>A website that feels unmistakably yours. Thoughtful art direction, confident typography and interfaces that make your business easier to understand.</p><div class="service-tags"><span>Visual identity</span><span>Web design</span><span>Motion &amp; 3D</span></div></div></article>
-  <article class="service-row reveal"><span class="service-number">03</span><h3>Development &amp; commerce</h3><div><p>Bring the experience to life with careful engineering. Fast, responsive websites, online shops and custom digital products built around how your business works.</p><div class="service-tags"><span>Custom development</span><span>E-commerce</span><span>CMS integration</span></div></div></article>
-  <article class="service-row reveal"><span class="service-number">04</span><h3>Search &amp; ongoing growth</h3><div><p>Launch gives us a starting point. Search foundations, useful analytics and considered improvements help your website keep pace with your business.</p><div class="service-tags"><span>Technical SEO</span><span>Analytics</span><span>Conversion improvements</span></div></div></article>
-</div><div class="technology-note"><p>The technology follows the brief. We choose the tools that fit your content, customers and future plans.</p><div class="technology-list" aria-label="Technologies we work with"><span>Next.js</span><span>Astro</span><span>Shopify</span><span>WordPress</span><span>Sanity</span><span>WebGL</span></div></div></section>
-<section class="section process-section" id="process" aria-labelledby="process-heading"><div class="container"><p class="eyebrow">04 / From conversation to launch</p><div class="section-head"><h2 id="process-heading">Good work.<br><em>Clear process.</em></h2><div><p>You should always know what we’re working on, what happens next and where your input matters.</p></div></div><div class="process-grid">
-  <article class="process-step"><div class="step-top"><span>01 / Discover</span><span aria-hidden="true">↗</span></div><h3>Find the real brief.</h3><p>We get to know your business, your customers and what needs to change. Then we agree the scope, priorities and measures of success.</p></article>
-  <article class="process-step"><div class="step-top"><span>02 / Design</span><span aria-hidden="true">↗</span></div><h3>Make it tangible.</h3><p>Messaging, visual direction and key pages take shape. You review real work and help refine the details before the full build.</p></article>
-  <article class="process-step"><div class="step-top"><span>03 / Build</span><span aria-hidden="true">↗</span></div><h3>Bring it together.</h3><p>We build the website on a private preview, connect what your business needs and check the experience across screen sizes.</p></article>
-  <article class="process-step"><div class="step-top"><span>04 / Launch</span><span aria-hidden="true">↗</span></div><h3>Go live with clarity.</h3><p>Final checks, search essentials and a practical handover. You know how your site works and what ongoing support looks like.</p></article>
-</div><p class="process-note">Every project is scoped individually. Your timeline reflects the work involved, content readiness and feedback — and is agreed before we begin.</p></div></section>
-<section class="section container" aria-labelledby="standards-heading"><div class="standards-layout"><div><p class="eyebrow">05 / Built with intention</p><h2 class="split-heading" id="standards-heading">Looks matter.<br><em>So does everything<br>underneath.</em></h2></div><div class="standards-list">
-  <article class="standard"><span class="arrow" aria-hidden="true">↗</span><div><h3>Respect your visitors’ time.</h3><p>Thoughtful performance, purposeful motion and a clear next step. The experience should feel good on a phone as well as a large screen.</p></div></article>
-  <article class="standard"><span class="arrow" aria-hidden="true">↗</span><div><h3>Make the essentials effortless.</h3><p>Readable content, clear navigation and attention to keyboard access. Good design helps more people get where they need to go.</p></div></article>
-  <article class="standard"><span class="arrow" aria-hidden="true">↗</span><div><h3>Leave room for what’s next.</h3><p>A considered structure, appropriate technology and a useful handover make your website easier to maintain as your business evolves.</p></div></article>
-</div></div></section><section class="contact-section" id="contact" aria-labelledby="contact-heading"><div class="container">
-  <div class="contact-top"><p class="eyebrow">The next chapter</p><span>Good things start with a conversation.</span></div>
-  <div class="contact-title"><h2 id="contact-heading">Let’s make<br><em>your next move.</em></h2><a class="contact-orbit" href="mailto:info@australianweb.agency?subject=Let%E2%80%99s%20talk%20about%20my%20website" aria-label="Email AWA about your project"><span class="arrow" aria-hidden="true">↗</span></a></div>
-  <div class="contact-bottom"><p>Tell us where your business is heading, what you need and when. We’ll help you see what comes next.</p><a class="contact-email" href="mailto:info@australianweb.agency">info@australianweb.agency</a></div>
-</div></section></main><footer class="site-footer"><div class="container">
-  <div class="footer-top"><a class="brand" href="index.html" aria-label="Australian Web Agency home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a><nav class="footer-links" aria-label="Footer navigation"><a href="work.html">Explore the work</a><a href="index.html#studio">Meet the studio</a><a href="mailto:info@australianweb.agency">Get in touch ↗</a></nav></div>
-  <div class="footer-bottom"><span>© <span data-year>2026</span> Australian Web Agency</span><span>Independent by design. Australia-wide.</span></div>
+
+<section class="connected" id="connected" aria-labelledby="connected-title"><div class="wrap connected-grid">
+  <div>
+    <p class="label">02 / Systems</p>
+    <h2 id="connected-title">Everything connected.</h2>
+    <p class="section-intro">Most small businesses run on five to ten tools that don’t talk to each other. We connect them, so the right information arrives in the right place on its own.</p>
+  </div>
+  <div class="hub" aria-label="Systems we connect">
+    <div class="hub-core"><span class="mono">your</span>business</div>
+    <span class="node n1">Website</span><span class="node n2">Online store</span><span class="node n3">CRM</span><span class="node n4">Accounting</span>
+    <span class="node n5">Shipping</span><span class="node n6">Payments</span><span class="node n7">Email &amp; SMS</span><span class="node n8 node-ai">AI assistants</span>
+  </div>
+</div>
+<div class="wrap"><div class="pipeline" data-pipeline>
+  <div class="pl-head">
+    <p class="mono pl-kicker">Example automation · running</p>
+    <div class="pl-tabs" role="tablist" aria-label="Example automations">
+      <button type="button" role="tab" aria-selected="true" aria-controls="pl-steps">Order paid</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="pl-steps" tabindex="-1">New enquiry</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="pl-steps" tabindex="-1">Price change</button>
+    </div>
+  </div>
+  <div class="pl-track">
+    <svg class="pl-svg" aria-hidden="true" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="plLitGrad" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#d9f86e"/><stop offset=".25" stop-color="#8ef5c8"/><stop offset=".5" stop-color="#7cc8ff"/><stop offset=".75" stop-color="#b8a6ff"/><stop offset="1" stop-color="#ffc978"/></linearGradient>
+        <linearGradient id="plCometGrad" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#d9f86e" stop-opacity="0"/><stop offset=".72" stop-color="#d9f86e"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+        <filter id="plGlow" filterUnits="userSpaceOnUse" x="-200" y="-200" width="5000" height="5000"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <path class="pl-base"/><path class="pl-lit" stroke="url(#plLitGrad)"/><path class="pl-comet" stroke="url(#plCometGrad)" filter="url(#plGlow)"/>
+    </svg>
+    <ol class="pl-steps" id="pl-steps" role="tabpanel" aria-label="Order paid automation">
+      <li class="pl-step is-active"><span class="pl-icon"></span><span class="pl-time mono">0.0s</span><strong class="pl-title">Order paid</strong><span class="pl-detail mono">Shopify · #1042 · $189.00</span></li>
+      <li class="pl-step is-active"><span class="pl-icon"></span><span class="pl-time mono">0.6s</span><strong class="pl-title">Invoice created</strong><span class="pl-detail mono">Xero · INV-1042</span></li>
+      <li class="pl-step is-active"><span class="pl-icon"></span><span class="pl-time mono">1.3s</span><strong class="pl-title">Label printed</strong><span class="pl-detail mono">Australia Post · eParcel</span></li>
+      <li class="pl-step is-active"><span class="pl-icon"></span><span class="pl-time mono">1.9s</span><strong class="pl-title">Stock updated</strong><span class="pl-detail mono">Inventory · 23 → 22</span></li>
+      <li class="pl-step is-active"><span class="pl-icon"></span><span class="pl-time mono">2.4s</span><strong class="pl-title">Customer notified</strong><span class="pl-detail mono">Email + SMS · tracking link</span></li>
+    </ol>
+  </div>
+  <p class="pl-note mono">Illustrative timings. Real flows are built around your tools.</p>
+</div></div></section>
+
+<section class="section" id="team" aria-labelledby="team-title"><div class="wrap">
+  <div class="section-head">
+    <p class="label">03 / How we work</p>
+    <h2 id="team-title">One person.<br>A whole team behind it.</h2>
+    <p class="section-intro">AWA pairs a senior developer with an AI engineering team. You get the range of an agency without account managers, handovers or lost context.</p>
+  </div>
+  <div class="team-grid">
+    <article class="member member-human">
+      <img class="member-photo" src="chris-conen.webp" alt="Chris Conen, founder of AWA" width="120" height="121" loading="lazy" decoding="async">
+      <p class="mono member-role">Human · founder</p>
+      <h3>Chris Conen</h3>
+      <p>Your single point of contact. Strategy, design direction, every decision that matters, and sign-off on everything that ships.</p>
+    </article>
+    <article class="member">
+      <p class="mono member-role">AI engineering team</p>
+      <h3>Architect &amp; Astra</h3>
+      <p>AI engineers that write, test and review code, run audits and watch your site around the clock. Fast and tireless, never unsupervised.</p>
+    </article>
+    <article class="member member-note">
+      <p class="mono member-role">What it means for you</p>
+      <ul><li>Agency range across design, code, data and AI</li><li>Faster delivery and lower cost than a traditional team</li><li>One conversation from brief to launch</li></ul>
+      <p class="fineprint">We are open about using AI. Every change is reviewed and tested before it reaches your customers.</p>
+    </article>
+  </div>
+</div></section>
+
+<section class="proof" aria-labelledby="proof-title"><div class="wrap">
+  <h2 class="visually-hidden" id="proof-title">Results and facts</h2>
+  <div class="proof-grid">
+    <div><p class="proof-num">69<span>→</span>97</p><p>Mobile PageSpeed after we rebuilt a live online store (Marina Yacht Sport, Europe, 2026).</p></div>
+    <div><p class="proof-num">152</p><p>Website templates audited, rewritten and visually checked by our AI-assisted pipeline.</p></div>
+    <div><p class="proof-num">54</p><p>Live concept builds across 3D, motion, landing pages and commerce.</p></div>
+    <div><p class="proof-num">100<span>/100</span></p><p>This site’s own AI agent readiness score. <a href="agent-test.html?url=australianweb.agency">Check it yourself ↗</a></p></div>
+  </div>
+</div></section>
+
+<section class="section" id="work" aria-labelledby="work-title"><div class="wrap">
+  <div class="section-head section-head-row">
+    <div><p class="label">04 / Work</p><h2 id="work-title">Selected builds.</h2></div>
+    <a class="btn btn-ink" href="work.html">All 54 live demos <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="work-grid">
+    <a class="work-card" href="demos/v-astra/"><img src="demos/v-astra/cover.webp" alt="" width="960" height="640" loading="lazy" decoding="async"><span class="work-meta"><span>V-ASTRA</span><span class="mono">3D motion · travel</span></span></a>
+    <a class="work-card" href="demos/altovia/"><img src="demos/altovia/media/web/poster.jpg" alt="" width="960" height="640" loading="lazy" decoding="async"><span class="work-meta"><span>Altovia</span><span class="mono">Landing · private charter</span></span></a>
+    <a class="work-card" href="demos/kernova/"><img src="demos/kernova/cover.jpg" alt="" width="960" height="640" loading="lazy" decoding="async"><span class="work-meta"><span>Kernova</span><span class="mono">Landing · industrial tech</span></span></a>
+    <a class="work-card" href="demos/velora/"><img src="demos/velora/cover.jpg" alt="" width="960" height="640" loading="lazy" decoding="async"><span class="work-meta"><span>Velora</span><span class="mono">Landing · specialty coffee</span></span></a>
+  </div>
+  <p class="fineprint">These are working concepts that show the craft. They are not client case studies.</p>
+</div></section>
+
+<section class="section process" id="process" aria-labelledby="process-title"><div class="wrap">
+  <div class="section-head"><p class="label">05 / Process</p><h2 id="process-title">Clear steps. No surprises.</h2></div>
+  <ol class="steps">
+    <li><span class="mono">01 / Discover</span><h3>Find the real brief</h3><p>Your business, customers and systems. Then a fixed scope, timeline and price.</p></li>
+    <li><span class="mono">02 / Design</span><h3>Make it tangible</h3><p>Messaging, visual direction and key flows you can click through, before the full build.</p></li>
+    <li><span class="mono">03 / Build</span><h3>Build and connect</h3><p>Developed on a private preview, integrated with your tools and tested on every screen.</p></li>
+    <li><span class="mono">04 / Run</span><h3>Launch and improve</h3><p>Go live with monitoring in place, then improve month by month against real numbers.</p></li>
+  </ol>
+</div></section>
+
+<section class="contact" id="contact" aria-labelledby="contact-title"><div class="wrap contact-grid">
+  <div><p class="label">Next step</p><h2 id="contact-title">Let’s build what’s next.</h2></div>
+  <div class="contact-actions">
+    <p>Tell us where your business is heading. You’ll hear back from Chris, not a sales team.</p>
+    <a class="contact-mail" href="mailto:info@australianweb.agency">info@australianweb.agency</a>
+    <a class="text-link" href="agent-test.html">Or start with the free AI test ↗</a>
+  </div>
+</div></section>
+</main>
+
+<footer class="site-footer"><div class="wrap footer-inner">
+  <a class="brand" href="index.html" aria-label="AWA home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
+  <nav class="footer-links mono" aria-label="Footer navigation"><a href="#services">Services</a><a href="work.html">Work</a><a href="agent-test.html">Free AI test</a><a href="mailto:info@australianweb.agency">Email</a></nav>
+  <p class="mono muted">© <span data-year>2026</span> Australian Web Agency · AI-native by design</p>
 </div></footer>
-<dialog class="preview-dialog" aria-labelledby="preview-title">
-  <div class="preview-bar"><div><h2 id="preview-title">Project preview</h2><small>Interactive concept · Explore the live build</small></div><div class="preview-actions"><a class="preview-open" href="work.html" target="_blank" rel="noopener noreferrer">Open in new tab ↗</a><button class="preview-close" type="button" aria-label="Close project preview"><span class="close-label">Close</span><span aria-hidden="true">✕</span></button></div></div>
-  <div class="preview-content"><div class="preview-status" role="status"><p>Loading the live demo. You can also open it in a new tab.</p><a class="preview-fallback" href="work.html" target="_blank" rel="noopener noreferrer">Open demo in a new tab ↗</a></div><iframe src="about:blank" title="Interactive project preview" referrerpolicy="no-referrer" allow="fullscreen" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe></div>
-</dialog>
-</body></html>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AI Agent Readiness Test — AWA</title>
+  <meta name="description" content="Free test: can ChatGPT, Google AI Mode, Claude and Perplexity find, understand and act on your website? Instant report with what to fix.">
+  <link rel="canonical" href="https://australianweb.agency/agent-test.html">
+  <meta name="theme-color" content="#10202c">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="studio.css">
+  <script src="studio.js" defer></script>
+  <script src="agent-check.js" defer></script>
+  <meta property="og:image" content="https://australianweb.agency/og.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://australianweb.agency/agent-test.html">
+  <meta property="og:title" content="Can AI assistants find your business? Free AI Agent Readiness Test">
+  <meta property="og:description" content="See what ChatGPT, Google AI Mode, Claude and Perplexity can find, understand and do on your website.">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:site_name" content="AWA — Australian Web Agency">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AI Agent Readiness Test","url":"https://australianweb.agency/agent-test.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"AUD"},"provider":{"@id":"https://australianweb.agency/#awa"}}</script>
+  <style>
+    .at-hero{background:var(--ink);color:#fff;padding-block:66px 76px}
+    .at-hero .eyebrow{color:var(--lime)}
+    .at-intro{display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:end;margin-top:35px}
+    .at-intro h1{font-size:clamp(52px,7.4vw,118px);line-height:.98;letter-spacing:-.06em;margin:0}
+    .at-intro h1 em{color:var(--lime);font-family:var(--serif);font-weight:400;font-size:1.07em;letter-spacing:-.03em}
+    .at-intro p{color:#c5d0d4;font-size:clamp(16px,1.25vw,18px);margin:0}
+    .at-form{display:flex;gap:12px;margin-top:52px;max-width:860px}
+    .at-form label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+    .at-form input{flex:1;min-width:0;font:inherit;font-size:18px;padding:18px 22px;border-radius:100px;border:1px solid #4d5d66;background:#16293a;color:#fff}
+    .at-form input::placeholder{color:#8fa0a7}
+    .at-form input:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+    .at-form button{font:inherit;font-weight:600;font-size:16px;padding:0 30px;border:0;border-radius:100px;background:var(--lime);color:var(--ink);cursor:pointer;white-space:nowrap}
+    .at-form button:disabled{opacity:.6;cursor:progress}
+    .at-note{margin-top:16px;font-size:13px;color:#9fb0b6;max-width:760px}
+    .at-status{margin-top:22px;min-height:1.6em;color:var(--lime);font-size:15px}
+    .at-status.is-error{color:#ffb4a8}
+    .at-results{padding-block:70px 30px}
+    .at-results[hidden]{display:none}
+    .at-results:focus{outline:none}
+    .at-score{display:grid;grid-template-columns:auto 1fr;gap:20px 46px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:40px}
+    .at-score-num{font-size:clamp(84px,10vw,148px);line-height:.85;letter-spacing:-.07em;font-weight:600}
+    .at-score-num small{font-size:.28em;letter-spacing:0;color:var(--muted);font-weight:400}
+    .at-grade{font-family:var(--serif);font-size:clamp(34px,3.6vw,54px);line-height:1;margin:0}
+    .at-meta{color:var(--muted);font-size:14px;margin:12px 0 0;overflow-wrap:anywhere}
+    .at-group{display:grid;grid-template-columns:.62fr 1.38fr;gap:46px;border-bottom:1px solid var(--line);padding-block:42px}
+    .at-group h2{font-size:clamp(26px,2.4vw,36px);line-height:1.08;letter-spacing:-.035em;margin:0}
+    .at-group h2 span{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+    .at-checks{list-style:none;margin:0;padding:0}
+    .at-group>*,.at-check>*{min-width:0}
+    .at-check{display:grid;grid-template-columns:34px 1fr;gap:4px 14px;padding-block:16px;border-top:1px solid var(--line);overflow-wrap:anywhere}
+    .at-check:first-child{border-top:0;padding-top:0}
+    .at-icon{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:700;margin-top:1px}
+    .is-pass .at-icon{background:#d9f86e;color:var(--ink)}
+    .is-warn .at-icon{background:#ffd66b;color:#4a3500}
+    .is-fail .at-icon{background:#ff8f7d;color:#4b0d04}
+    .is-info .at-icon{background:var(--line);color:var(--muted)}
+    .at-check h3{font-size:17px;margin:0;line-height:1.35}
+    .at-check p{margin:4px 0 0;color:var(--muted);font-size:15px;grid-column:2}
+    .at-check .at-fix{color:var(--ink)}
+    .at-check .at-fix b{font-weight:600}
+    .at-cta{background:var(--lime);border-radius:6px;padding:44px 46px;margin-top:56px;display:flex;justify-content:space-between;align-items:center;gap:30px}
+    .at-cta h2{font-size:clamp(28px,3vw,44px);line-height:1.05;letter-spacing:-.04em;margin:0}
+    .at-cta h2 em{font-family:var(--serif);font-weight:400}
+    .at-cta p{margin:10px 0 0;max-width:560px}
+    .at-cta .pill{background:var(--ink);color:#fff;flex:none}
+    .at-again{margin-top:28px;font:inherit;background:none;border:0;border-bottom:1px solid currentColor;padding:0;cursor:pointer;color:var(--ink)}
+    .at-method{padding-block:40px 100px}
+    .at-method .at-group{border-bottom:0}
+    .at-method ul{margin:0;padding-left:20px;color:var(--muted)}
+    .at-method li{margin-bottom:8px}
+    .at-method li b{color:var(--ink);font-weight:600}
+    @media(max-width:860px){.at-intro,.at-group{grid-template-columns:1fr;gap:22px}.at-form{flex-direction:column}.at-form button{padding:17px 30px}.at-score{grid-template-columns:1fr}.at-cta{flex-direction:column;align-items:start;padding:34px 26px}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="container header-inner">
+  <a class="brand" href="index.html" aria-label="Australian Web Agency home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a>
+  <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu <span class="menu-lines" aria-hidden="true"><i></i><i></i></span></button>
+  <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+    <a href="work.html">Work</a><a href="index.html#services">Services</a><a href="index.html#team">How we work</a><a href="index.html#process">Process</a>
+    <a class="pill pill-lime header-cta" href="index.html#contact">Let’s talk <span class="arrow" aria-hidden="true">↗</span></a>
+  </nav>
+</div></header><main id="main" tabindex="-1">
+<section class="at-hero" aria-labelledby="at-heading"><div class="container">
+  <p class="eyebrow">Free check / AI agent readiness</p>
+  <div class="at-intro">
+    <h1 id="at-heading">Can AI assistants<br><em>find your business?</em></h1>
+    <p>ChatGPT, Google’s AI Mode, Claude and Perplexity now recommend businesses, and Google has started letting Australians buy inside AI Mode. See what these assistants can find, understand and do on your website.</p>
+  </div>
+  <form class="at-form" id="at-form" novalidate toolname="run_agent_readiness_test"
+    tooldescription="Test whether AI assistants can find, understand and act on a public website. Returns a score out of 100 with fixes.">
+    <label for="at-url">Your website address</label>
+    <input id="at-url" name="url" type="text" inputmode="url" autocomplete="url" spellcheck="false" placeholder="yourbusiness.com.au" required
+      toolparamdescription="The public website address to test, e.g. yourbusiness.com.au">
+    <button type="submit">Run the test</button>
+  </form>
+  <p class="at-note">The test reads only what is public, the same pages any visitor sees. It takes about 20 seconds. Nothing is stored except a 24-hour cache of the result.</p>
+  <p class="at-status" id="at-status" role="status" aria-live="polite"></p>
+</div></section>
+
+<section class="at-results container" id="at-results" aria-labelledby="at-grade" hidden tabindex="-1">
+  <div class="at-score">
+    <p class="at-score-num"><span id="at-score">0</span><small>/100</small></p>
+    <div><h2 class="at-grade" id="at-grade"></h2><p class="at-meta" id="at-meta"></p></div>
+  </div>
+  <div id="at-groups"></div>
+  <div class="at-cta">
+    <div><h2 id="at-cta-title">Want these <em>fixed?</em></h2><p id="at-cta-text">Send the report and I’ll reply with a plain-English fix plan for your site: what matters first, what it involves and what it costs.</p></div>
+    <a class="pill" id="at-mail" href="mailto:info@australianweb.agency">Send me the fix plan <span class="arrow" aria-hidden="true">↗</span></a>
+  </div>
+  <button class="at-again" type="button" id="at-again">Test another website</button>
+</section>
+
+<section class="at-method container" aria-labelledby="at-method-heading">
+  <div class="at-group">
+    <h2 id="at-method-heading"><span>How it works</span>What the test checks</h2>
+    <ul>
+      <li><b>Find:</b> whether the crawlers behind ChatGPT, Google AI Mode, Copilot, Claude and Perplexity may read your pages, and whether your firewall turns them away.</li>
+      <li><b>Understand:</b> whether your content is readable without JavaScript and described in structured data: who you are, what you sell, prices and stock.</li>
+      <li><b>Act:</b> whether agents can complete actions: a Universal Commerce Protocol profile for checkout in Google AI Mode and Gemini, WebMCP tools, and labelled forms.</li>
+      <li>This is an outside-in check. It cannot see your Google Merchant Center feed or Business Profile, or how often assistants actually mention you.</li>
+    </ul>
+  </div>
+</section>
+</main><footer class="site-footer"><div class="container">
+  <div class="footer-top"><a class="brand" href="index.html" aria-label="Australian Web Agency home"><span class="brand-mark" aria-hidden="true">awa<span>.</span></span><span class="brand-name">Australian<br>Web Agency</span></a><nav class="footer-links" aria-label="Footer navigation"><a href="work.html">Explore the work</a><a href="index.html#team">How we work</a><a href="mailto:info@australianweb.agency">Get in touch ↗</a></nav></div>
+  <div class="footer-bottom"><span>© <span data-year>2026</span> Australian Web Agency</span><span>Independent by design. Australia-wide.</span></div>
+</div></footer>
+</body></html>

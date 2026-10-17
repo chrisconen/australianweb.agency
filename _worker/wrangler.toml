@@ -22,3 +22,8 @@ simple = { limit = 120, period = 60 }
 binding = "awa_stats"
 database_name = "awa-stats"
 database_id = "a6497fad-adcb-4460-8dac-26c7134c4018"
+
+# project briefs are mailed from briefs@australianweb.agency to BRIEF_TO (a verified Email Routing destination, set as a secret:
+# `wrangler secret put BRIEF_TO`). Without the secret, briefs are only stored in D1.
+[[send_email]]
+name = "BRIEF_MAIL"

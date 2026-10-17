@@ -1,0 +1,12 @@
+name = "awa-agent-test"
+main = "agent-test.js"
+compatibility_date = "2026-07-29"
+
+# Public endpoint once deployed: https://api.australianweb.agency/agent-test (the DNS zone is on Cloudflare).
+routes = [{ pattern = "api.australianweb.agency", custom_domain = true }]
+
+# 6 tests per minute per IP; the Worker skips the check if the binding is missing.
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+simple = { limit = 6, period = 60 }

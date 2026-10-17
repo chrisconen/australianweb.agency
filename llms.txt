@@ -15,6 +15,8 @@ Preferred citation: AWA or Australian Web Agency. Canonical site: https://austra
 - [Build](https://australianweb.agency/#services): Fast, accessible, standards-first front ends. Headless CMS, e-commerce and custom apps. Stack includes Next.js, Astro, WordPress Headless, Shopify, Sanity, Tailwind, GSAP, WebGL and Vercel.
 - [Growth](https://australianweb.agency/#services): SEO, analytics, CRO and ongoing work after launch.
 
+- [AI Agent Readiness Test](https://australianweb.agency/agent-test.html): Free tool. Checks whether ChatGPT, Google AI Mode, Copilot, Claude and Perplexity can find, understand and act on a website (crawler access, firewall, structured data, UCP checkout profile, WebMCP), with a score out of 100 and fixes.
+
 Specialist craft on the live demos: scroll-driven video, 3D motion, cinematic landing pages, headless commerce and Core Web Vitals / WCAG 2.2 AA work.
 
 ## What We Do Not Do
@@ -67,7 +69,7 @@ There is no published phone number or street address. Email is the canonical con
 ## AI Discovery Files
 
 - [llms.txt](https://australianweb.agency/llms.txt): This file. Curated facts for language models.
-- [agents.txt](https://australianweb.agency/agents.txt): Agent capability declaration (Layer 4). This site does not currently expose MCP, payment or auth protocols.
+- [agents.txt](https://australianweb.agency/agents.txt): Agent capability declaration (Layer 4). The agent test page exposes one WebMCP tool (run_agent_readiness_test); the site does not expose MCP, payment or auth protocols.
 - [agents.json](https://australianweb.agency/agents.json): Structured companion to agents.txt
 
 ## Optional

@@ -3,6 +3,7 @@ service pages from _tools/services/<slug>.json.  usage: python _tools/build.py
 
 Shared blocks live between <!-- header -->...<!-- /header -->, <!-- contact -->...<!-- /contact --> and
 <!-- footer -->...<!-- /footer --> markers; this script rewrites those blocks in place on every page listed in PAGES.
+Stylesheet links on those pages are inlined as <style data-src="x.css"> blocks, so edit the .css files and rebuild.
 """
 import html
 import json
@@ -80,6 +81,19 @@ def replace_block(s, name, block):
     return pat.sub(lambda m: block, s, count=1)
 
 
+CSS_TAG = re.compile(r'<link rel="stylesheet" href="([\w-]+\.css)">|<style data-src="([\w-]+\.css)">.*?</style>', re.S)
+
+
+def inline_css(s):
+    # ponytail: whole stylesheets inlined (about 10 KB gzipped per page) instead of critical-path extraction;
+    # saves one to three render-blocking requests. Edit the .css files, then rebuild.
+    def css(m):
+        name = m.group(1) or m.group(2)
+        code = re.sub(r'/\*.*?\*/', '', (ROOT / name).read_text('utf-8'), flags=re.S)
+        return f'<style data-src="{name}">{re.sub(r"\s*\n\s*", chr(10), code).strip()}</style>'
+    return CSS_TAG.sub(css, s)
+
+
 def refresh_shared(page):
     p = ROOT / page
     if not p.exists():
@@ -90,7 +104,7 @@ def refresh_shared(page):
     s = replace_block(s, 'footer', footer())
     if '<!-- contact -->' in s:
         s = replace_block(s, 'contact', CONTACT)
-    p.write_text(s, 'utf-8')
+    p.write_text(inline_css(s), 'utf-8')
 
 
 if __name__ == '__main__':

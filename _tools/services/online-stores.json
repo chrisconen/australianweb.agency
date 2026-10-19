@@ -1,9 +1,9 @@
 {
- "meta_title": "Online stores & agentic commerce | AWA",
- "meta_description": "Shopify, WooCommerce and headless Medusa stores for Australia. New builds, migrations and speed rescues that convert and are ready for AI shopping agents.",
- "hero_title": "Online stores that convert | ready for AI agents",
- "hero_lead": "New builds, migrations and speed rescues on Shopify, WooCommerce and headless Medusa, for businesses across Australia. Payments, shipping, stock and product data are set so people can buy today, and so assistants can compare products and, where AI checkout is available to your store, complete checkout.",
- "included_intro": "You work with Chris Conen. Architect and Astra, the AI engineers, write, test and review the code under his supervision. The build covers six areas.",
+ "meta_title": "Free online stores & custom ecommerce | AWA",
+ "meta_description": "Start with licence-free Neocart software and A$999 setup + GST, or scope a custom Shopify, WooCommerce or Medusa project with AWA.",
+ "hero_title": "A store for your | next chapter.",
+ "hero_lead": "Start with a free Neocart base shop and A$999 setup + GST, with hosting and domain separate. Need a custom platform, migration or deeper integration? Explore our separately scoped Shopify, WooCommerce and Medusa projects below.",
+ "included_intro": "The following services describe custom platform work, quoted separately from the free Neocart base-store campaign. You work directly with Chris Conen, with AI engineering support under his supervision.",
  "included": [
   {
    "title": "Shopify, WooCommerce and headless Medusa",
@@ -71,6 +71,10 @@
   }
  ],
  "faq": [
+  {
+   "q": "How does the free Neocart offer differ?",
+   "a": "The Neocart base software costs A$0. Agreed launch setup is A$999 once plus GST; hosting, domain and external provider fees are separate. Shopify, WooCommerce, Medusa and custom integrations remain separately scoped projects."
+  },
   {
    "q": "Is AI checkout open to Australian stores?",
    "a": "Partly. Google’s Universal Commerce Protocol (UCP) launched in Australia in June 2026 with selected retailers, so shoppers can buy single items inside Search, AI Mode and Gemini (Inside Retail). Google’s Merchant Center Help says checkout covers Australia for select merchants, and you stay the seller of record."

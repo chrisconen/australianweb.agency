@@ -88,3 +88,10 @@ There is no published phone number or street address, and AWA does not take sale
 
 ---
 llms.txt follows https://llmstxt.org/ and ADF-001 https://www.ai-visibility.org.uk/specifications/llms-txt/
+
+
+## Free Neocart online store and journal (19 October 2026)
+
+- https://australianweb.agency/free-online-store.html — A$0 base software, no monthly software fee or Neocart platform sales commission. A$999 one-time setup plus GST. Hosting, domain and external provider fees are separate. First 20 supplied products entered; additional integrations and migration separately scoped. Storefront language agreed in writing. Optional external planner has a Hungarian interface.
+- https://australianweb.agency/journal.html — Three original English guides to free-store models, operating costs and launch preparation.
+- The free-store campaign is separate from custom Shopify/WooCommerce/Medusa work and the founding-client programme. No combined discount is implied.

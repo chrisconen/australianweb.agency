@@ -121,7 +121,7 @@ PRICES = {
         ('Web app', '19,900', 'one-off', ['Accounts, dashboards and admin tools', 'Payments or integrations as scoped', 'Tested and documented']),
     ], 'Typical Australian pricing: A$4,000–9,000 for a 5–10 page small business site, A$15,000–40,000 for premium custom work and A$30,000–80,000 for a web app (Uprise Digital, Taqwanology, 2026).'),
     'online-stores': ([
-        ('Online store', '8,900', 'one-off', ['Shopify or WooCommerce, custom theme', 'Up to 200 products imported', 'Payments incl. Afterpay or Zip, Australian shipping', 'Product data and feeds assistants can read']),
+        ('Custom platform store', '8,900', 'one-off', ['Shopify or WooCommerce, custom theme', 'Up to 200 products imported', 'Payments incl. Afterpay or Zip, Australian shipping', 'Product data and feeds assistants can read']),
         ('Headless store', '19,900', 'one-off', ['Medusa back end, custom storefront', 'Custom pricing, B2B rules and integrations', 'Fast front end built for Core Web Vitals']),
     ], 'Typical Australian pricing: A$12,000–35,000 for a small-studio Shopify build with a custom theme (Pryce Digital, 2026), and A$10,000–20,000 as a typical ecommerce budget (Uprise Digital, 2026).'),
     'automation': ([
@@ -171,6 +171,9 @@ def render(slug, c):
             f'<h1 id="svc-title">{h1}</h1><p class="lead">{E(c["hero_lead"])}</p>'
             f'<div class="hero-actions"><a class="btn btn-lime" href="brief.html?service={slug}" data-track="brief_start">Start a brief <span aria-hidden="true">↗</span></a>'
             f'<a class="btn btn-ghost" href="{s["cta2"][0]}">{E(s["cta2"][1])}</a></div>')
+    if slug == 'online-stores':
+        from commerce_pages import service_promo
+        copy += service_promo()
     band = f'<section class="svc-band" aria-label="Interactive example"><div class="wrap">{s["band"]}</div></section>' if s.get('band') else ''
     included = ''.join(f'<article class="svc-item"><span class="mono">{i + 1:02d}</span><h3>{E(x["title"])}</h3><p>{E(x["text"])}</p></article>'
                        for i, x in enumerate(c['included']))

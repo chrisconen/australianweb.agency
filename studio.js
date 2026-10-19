@@ -19,6 +19,7 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuButton?.getAttribute('aria-expanded') === 'true') closeMenu(true); });
   document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
   mobile.addEventListener('change', () => closeMenu());
+  matchMedia('(max-width: 980px)').addEventListener('change', () => closeMenu());
 
   // One film, loaded on demand. The poster is always a usable baseline.
   const film = document.querySelector('.hero-film');
